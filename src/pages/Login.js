@@ -1,18 +1,16 @@
 import React from "react";
-// import HeaderContainer from "@/containers/common/header";
-import Hgroup from "@/components/common/hgroup";
-
+import HgroupComponent from "@/components/hgroup";
 import LoginContainer from "@/containers/login";
 
-const LoginWrapper = () => {
+const LoginPage = () => {
   return (
     <>
       <section>
-        <Hgroup attribute={{ title: "본문 영역", invisible: true }} />
+        <HgroupComponent attribute={{ title: "본문 영역", invisible: true }} />
         <LoginContainer />
       </section>
     </>
   );
 };
 
-export default LoginWrapper;
+export default LoginPage;

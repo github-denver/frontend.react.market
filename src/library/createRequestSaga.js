@@ -17,27 +17,16 @@ export const createRequestActionTypes = (type) => {
   이때, success, failure라는 Action 객체가 생성되는데 export function* Saga()를 보면 success, failure라는 Action 객체에 대한 행동이 없기 때문에 곧바로 Reducer로 이동합니다.
   */
 export default function createRequestSaga(type, request) {
-  console.group(
-    "1. export default function createRequestSaga(type, request) { .. }"
-  );
-
   const success = `${type}Success`;
-  console.log("success: ", success);
-
   const failure = `${type}Failure`;
-  console.log("failure: ", failure);
-  console.groupEnd();
 
   return function* (action) {
-    console.group("4, 14. return function* (action) { .. }");
-    console.log("action: ", action);
-
-    console.log("loadingStart");
+    console.log("loading start");
     yield put(loadingStart(type));
 
     try {
       const response = yield call(request, action.payload);
-      console.log("→ response: ", response);
+      console.log("response: ", response);
 
       yield put({
         type: success,
@@ -52,8 +41,7 @@ export default function createRequestSaga(type, request) {
       });
     }
 
-    console.log("loadingFinish");
+    console.log("loading finish");
     yield put(loadingFinish(type));
-    console.groupEnd();
   };
 }

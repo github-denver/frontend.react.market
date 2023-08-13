@@ -3,28 +3,23 @@ import { takeLatest } from "redux-saga/effects";
 import * as gateway from "@/library/gateway/auth";
 import createRequestSaga from "@/library/createRequestSaga";
 
-const LOGIN = "auth/login";
+const USER_REGISTER = "auth/register";
+const USER_LOGIN = "auth/login";
 
-export const login = createAction(LOGIN, (payload) => {
-  console.group(
-    "3. export const login = createAction(LOGIN, ({ id, password }) => { .. }"
-  );
-  console.log("payload.id: ", payload.id);
-  console.log("payload.password: ", payload.password);
-  console.groupEnd();
+export const register = createAction(USER_REGISTER, (payload) => {
+  console.log("payload: ", payload);
 
   return { payload };
 });
+export const login = createAction(USER_LOGIN, (payload) => ({ payload }));
 
-const loginSaga = createRequestSaga(LOGIN, gateway.login);
+const registerSaga = createRequestSaga(USER_REGISTER, gateway.register);
+const loginSaga = createRequestSaga(USER_LOGIN, gateway.login);
 
 // Main Saga
 export function* authSaga() {
-  console.group("2. export function* authSaga() { .. }");
-  console.log("LOGIN: ", LOGIN);
-  console.groupEnd();
-
-  yield takeLatest(LOGIN, loginSaga);
+  yield takeLatest(USER_REGISTER, registerSaga);
+  yield takeLatest(USER_LOGIN, loginSaga);
 }
 
 const initialState = {
@@ -44,12 +39,20 @@ const authSlice = createSlice({
         error: null,
       };
     },
+    registerSuccess: (state, action) => {
+      return {
+        ...state,
+        auth: action.payload,
+        error: null,
+      };
+    },
+    registerFailure: (state, action) => {
+      return {
+        ...state,
+        error: action.payload.response.data.message,
+      };
+    },
     loginSuccess: (state, action) => {
-      console.group("7. loginSuccess: (state, action) => { .. }");
-      console.log("state: ", JSON.stringify(state));
-      console.log("action: ", action);
-      console.groupEnd();
-
       return {
         ...state,
         auth: action.payload,
@@ -57,27 +60,10 @@ const authSlice = createSlice({
       };
     },
     loginFailure: (state, action) => {
-      console.group("7. loginFailure: (state, action) => { .. }");
-      console.log("state: ", JSON.stringify(state));
-      console.log("action: ", action);
-      console.log(
-        "action.payload.response.data.message: ",
-        action.payload.response.data.message
-      );
-      console.groupEnd();
-
       return {
         ...state,
         error: action.payload.response.data.message,
       };
-    },
-    logout: (state, action) => {
-      console.group("logout: (state, action) => { .. }");
-      console.log("state: ", JSON.stringify(state));
-      console.log("action: ", action);
-      console.groupEnd();
-
-      return {};
     },
   },
   // 외부 action 및 비동기 action

@@ -1,44 +1,51 @@
 import { createAction, createSlice } from "@reduxjs/toolkit";
-import { takeLatest } from "redux-saga/effects";
+import { call, takeLatest } from "redux-saga/effects";
 import * as gateway from "@/library/gateway/auth";
 import createRequestSaga from "@/library/createRequestSaga";
+import Cookies from "js-cookie";
 
-const TEMPORARY_USER = "user/temporaryUser"; // 새로 고침 이후 임시 로그인을 처리합니다.
+const SAVED_USER = "user/savedUser"; // 새로 고침 이후 임시 로그인을 처리합니다.
 
 // 회원정보를 확인합니다.
 const USER_CHECK = "user/check";
-const USER_CHECK_SUCCESS = "user/check/success";
 const USER_CHECK_FAILURE = "user/check/failure";
+const USER_LOGOUT = "user/logout";
 
-export const temporaryUser1 = createAction(TEMPORARY_USER, (payload) => {
-  console.group(
-    "3. export const temporaryUser1 = createAction(TEMPORARY_USER, (payload) => { .. }"
-  );
-  console.log("payload: ", payload);
-  console.groupEnd();
-
-  return { payload };
-});
-
-export const userCheck = createAction(USER_CHECK, (payload) => {
-  console.group(
-    "12. export const userCheck = createAction(USER_CHECK, (payload) => { .. }"
-  );
-  console.log("payload: ", payload);
-  console.groupEnd();
-
-  return { payload };
-});
+export const savedUserCheck = createAction(SAVED_USER, (payload) => ({
+  payload,
+}));
+export const userCheck = createAction(USER_CHECK, (payload) => ({ payload }));
+export const logout = createAction(USER_LOGOUT, (payload) => ({ payload }));
 
 const userCheckSaga = createRequestSaga(USER_CHECK, gateway.userCheck);
 
+function userCheckFailureSaga() {
+  try {
+    localStorage.removeItem("user");
+
+    Cookies.remove("accessToken");
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function* logoutSaga() {
+  try {
+    yield call(gateway.logout);
+
+    localStorage.removeItem("user");
+
+    Cookies.remove("accessToken");
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 // Main Saga
 export function* userSaga() {
-  console.group("2. export function* userSaga() { .. }");
-  console.log("USER_CHECK: ", USER_CHECK);
-  console.groupEnd();
-
   yield takeLatest(USER_CHECK, userCheckSaga);
+  yield takeLatest(USER_CHECK_FAILURE, userCheckFailureSaga);
+  yield takeLatest(USER_LOGOUT, logoutSaga);
 }
 
 const initialState = {
@@ -51,28 +58,21 @@ const userSlice = createSlice({
   initialState,
   // 내부 action 및 동기 action
   reducers: {
-    temporaryUser: (state, action) => {
-      console.group("16. temporaryUser: (state, action) => { .. }");
-      console.log("state: ", JSON.stringify(state));
-      console.log("action: ", action);
-      console.groupEnd();
-
+    savedUser: (state, action) => {
       return {
         ...state,
         user: action.payload,
       };
     },
     checkSuccess: (state, action) => {
-      console.group("16. checkSuccess: (state, action) => { .. }");
-      console.log("state: ", JSON.stringify(state));
-      console.log("action: ", action);
-      console.groupEnd();
-
-      return {
-        ...state,
-        user: action.payload,
-        error: null,
-      };
+      state.user = action.payload;
+      state.error = null;
+    },
+    checkFailure: (state, action) => {
+      state.error = action.payload;
+    },
+    logout: (state, action) => {
+      state.user = null;
     },
   },
   // 외부 action 및 비동기 action
@@ -84,6 +84,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { temporaryUser } = userSlice.actions;
+export const { savedUser } = userSlice.actions;
 
 export default userSlice.reducer;

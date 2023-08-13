@@ -1,54 +1,33 @@
 import { createAction, createSlice } from "@reduxjs/toolkit";
-import { takeLatest } from "redux-saga/effects";
-import * as gateway from "@/library/gateway/auth";
-import createRequestSaga from "@/library/createRequestSaga";
 
 const CHANGE_FIELD = "form/changeField";
-const INITIAL_LOGIN = "form/initialLogin";
-const INITIAL_REGISTER = "form/initialRegister";
+const INITIAL_LOGIN_FORM = "form/initialLoginForm";
+const INITIAL_REGISTER_FORM = "form/initialRegisterForm";
 
-export const formChangeField = createAction(CHANGE_FIELD, (payload) => {
-  console.group(
-    "3. export const formChangeField = createAction(CHANGE_FIELD, (payload) => { .. }"
-  );
-  console.log("CHANGE_FIELD: ", CHANGE_FIELD);
-  console.log("payload: ", payload);
-  console.groupEnd();
-
-  return { payload };
-});
-
-export const initialLogin = createAction(INITIAL_LOGIN, (payload) => {
-  console.group(
-    "3. export const initialLogin = createAction(INITIAL_LOGIN, (payload) => { .. }"
-  );
-  console.log("payload: ", payload);
-  console.groupEnd();
-
-  return { payload };
-});
-
-export const initialRegister = createAction(INITIAL_REGISTER, (payload) => {
-  console.group(
-    "3. export const initialRegister = createAction(INITIAL_REGISTER, (payload) => { .. }"
-  );
-  console.log("payload: ", payload);
-  console.groupEnd();
-
-  return { payload };
-});
+export const formChangeField = createAction(CHANGE_FIELD, (payload) => ({
+  payload,
+}));
+export const initialLoginForm = createAction(INITIAL_LOGIN_FORM, (payload) => ({
+  payload,
+}));
+export const initialRegisterForm = createAction(
+  INITIAL_REGISTER_FORM,
+  (payload) => ({
+    payload,
+  })
+);
 
 const initialState = {
-  login: {
-    id: "",
-    password: "",
-  },
   register: {
     id: "",
     name: "",
     email: "",
     password: "",
-    confirm: "",
+    passwordConfirm: "",
+  },
+  login: {
+    id: "",
+    password: "",
   },
 };
 
@@ -58,17 +37,18 @@ const formSlice = createSlice({
   // 내부 action 및 동기 action
   reducers: {
     changeField: (state, action) => {
-      console.group("changeField: (state, action) => { .. }");
-      console.log("state: ", state);
-      console.log("action: ", action);
-
+      console.log("action.payload: ", action.payload);
       const { form, key, value } = action.payload;
-      console.log("form: ", form);
-      console.log("key: ", key);
-      console.log("value: ", value);
-      console.groupEnd();
 
       state[form][key] = value;
+    },
+    initialRegisterForm: (state) => {
+      state.register = initialState.register;
+      state.error = null;
+    },
+    initialLoginForm: (state) => {
+      state.login = initialState.login;
+      state.error = null;
     },
   },
   // 외부 action 및 비동기 action

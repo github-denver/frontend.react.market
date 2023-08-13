@@ -1,15 +1,17 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "@/App.css";
-import Main from "@/pages/Main";
-import Login from "@/pages/Login";
+import MainPage from "@/pages/Main";
+import LoginPage from "@/pages/Login";
+import RegisterPage from "@/pages/Register";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route index element={<Main />} />
-        <Route path="/beluga/member/login" element={<Login />} />
+        <Route index element={<MainPage />} />
+        <Route path="/beluga/member/login" element={<LoginPage />} />
+        <Route path="/beluga/member/register" element={<RegisterPage />} />
       </Routes>
     </div>
   );

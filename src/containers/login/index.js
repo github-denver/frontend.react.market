@@ -1,88 +1,59 @@
 import React, { useEffect, useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import PaperLoginWrapper from "@/components/paper/login";
+import FormLoginComponent from "@/components/form/login";
 import { login } from "@/modules/auth";
 import { useNavigate } from "react-router-dom";
 import { userCheck } from "@/modules/user";
 import Cookies from "js-cookie";
 import { formChangeField } from "@/modules/form";
+import { initialLoginForm } from "@/modules/form";
 
-const LoginContainer = (props) => {
-  console.group("10. const LoginContainer = (props) => { .. }");
+const LoginContainer = () => {
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const { formData, accessToken, error, user } = useSelector((payload) => {
-    console.group(
-      "5, 8, 9, 11, 13, 15, 17, 18. const { form, accessToken, error } = useSelector(({ auth, user }) => { .. }, shallowEqual)"
-    );
-    const formData = payload.form;
-    console.log("formData: ", formData);
+  const { formData, accessToken, error, user } = useSelector(
+    ({ form, auth, user }) => {
+      let accessToken = null;
+      let savedUser = null;
 
-    const auth = payload.auth; // let accessToken
-    console.log("auth: ", auth);
+      if (auth.auth?.accessToken) {
+        accessToken = auth.auth.accessToken;
+      }
 
-    const profile = payload.user; // let user
-    console.log("profile: ", profile);
+      if (user.user?.user2) {
+        savedUser = user.user.user2;
+      }
 
-    let accessToken = null;
-    let user = null;
-
-    console.log("auth.auth?.accessToken: ", auth.auth?.accessToken);
-    if (auth.auth?.accessToken) {
-      accessToken = auth.auth.accessToken;
-    }
-
-    console.log("profile.user?.user2: ", profile.user?.user2);
-    if (profile.user?.user2) {
-      user = profile.user.user2;
-    }
-
-    console.groupEnd();
-
-    return {
-      formData: formData.login,
-      accessToken,
-      error: auth.error,
-      user,
-    };
-  }, shallowEqual);
-  console.log("formData: ", formData);
-  console.log("accessToken: ", accessToken);
-  console.log("error: ", error);
-  console.log("user: ", user);
+      return {
+        formData: form.login,
+        accessToken,
+        error: auth.error,
+        user: savedUser,
+      };
+    },
+    shallowEqual
+  );
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleFieldChange = (event) => {
-    console.group("const handleFieldChange = (event) => { .. }");
-    console.log("event: ", event);
-
     const { value, name } = event.target;
-    console.log("value: ", value);
-    console.log("name: ", name);
-    console.groupEnd();
 
     dispatch(formChangeField({ form: "login", key: name, value }));
   };
 
   const handleLoginSubmit = (event) => {
-    console.group("const handleLoginSubmit = (event) => { .. }");
-    console.log("event: ", event);
-    console.groupEnd();
-
     event.preventDefault();
 
     const { id, password } = formData;
-    console.log("id: ", id);
-    console.log("password: ", password);
 
     dispatch(login({ id, password }));
   };
 
   useEffect(() => {
     console.log("로그인 양식을 초기화합니다.");
-    // dispatch();
+    dispatch(initialLoginForm());
   }, [dispatch]);
 
   useEffect(() => {
@@ -116,10 +87,9 @@ const LoginContainer = (props) => {
       }
     }
   }, [navigate, accessToken, user]);
-  console.groupEnd();
 
   return (
-    <PaperLoginWrapper
+    <FormLoginComponent
       formData={formData}
       errorMessage={errorMessage}
       onFieldChange={handleFieldChange}

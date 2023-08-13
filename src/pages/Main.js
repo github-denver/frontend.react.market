@@ -1,7 +1,7 @@
 import React from "react";
-import HeaderContainer from "@/containers/common/header";
-import Hgroup from "@/components/common/hgroup";
-import Quick from "@/components/common/quick";
+import HeaderContainer from "@/containers/header";
+import HgroupComponent from "@/components/hgroup";
+import QuickComponent from "@/components/quick";
 
 // import Swiper core and required modules
 import { Navigation, Pagination, A11y } from "swiper";
@@ -10,29 +10,29 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 
-const MainWrapper = (props) => {
+const MainPage = () => {
   return (
     <>
       <HeaderContainer />
 
       <section>
-        <Hgroup attribute={{ title: "본문 영역", invisible: true }} />
+        <HgroupComponent attribute={{ title: "본문 영역", invisible: true }} />
 
         <Swiper
           // install Swiper modules
           modules={[Navigation, Pagination, A11y]}
           navigation
           pagination={{ clickable: true }}
-          // onSwiper={(swiper) => console.log(swiper)}
-          // onSlideChange={() => console.log("slide change")}
+          onSwiper={(swiper) => {}}
+          onSlideChange={() => {}}
         >
           <SwiperSlide>매월 5일은 오!데이딜 인기상품 1DAY 특가</SwiperSlide>
         </Swiper>
 
-        <Quick />
+        <QuickComponent />
       </section>
       <footer>
-        <Hgroup
+        <HgroupComponent
           attribute={{ title: "회사정보 및 이용약관", invisible: true }}
         />
       </footer>
@@ -40,4 +40,4 @@ const MainWrapper = (props) => {
   );
 };
 
-export default MainWrapper;
+export default MainPage;

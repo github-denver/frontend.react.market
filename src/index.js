@@ -7,25 +7,19 @@ import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import Cookies from "js-cookie";
-import { temporaryUser1, userCheck } from "./modules/user";
+import { savedUserCheck, userCheck } from "./modules/user";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
 
 function user() {
-  console.group("function user() { .. }");
-
   try {
     const user = localStorage.getItem("user");
-    console.log("user: ", user);
-
     const accessToken = Cookies.get("accessToken");
-    console.log("accessToken: ", accessToken);
-    console.groupEnd();
 
     if (typeof accessToken === "undefined") return;
 
-    store.dispatch(temporaryUser1(user));
+    store.dispatch(savedUserCheck(user));
     store.dispatch(userCheck(accessToken));
   } catch (error) {
     console.error(error);
