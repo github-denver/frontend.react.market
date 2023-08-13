@@ -6,11 +6,7 @@ import createRequestSaga from "@/library/createRequestSaga";
 const USER_REGISTER = "auth/register";
 const USER_LOGIN = "auth/login";
 
-export const register = createAction(USER_REGISTER, (payload) => {
-  console.log("payload: ", payload);
-
-  return { payload };
-});
+export const register = createAction(USER_REGISTER, (payload) => ({ payload }));
 export const login = createAction(USER_LOGIN, (payload) => ({ payload }));
 
 const registerSaga = createRequestSaga(USER_REGISTER, gateway.register);

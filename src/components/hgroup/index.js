@@ -19,7 +19,9 @@ const filteredText = (category, navigation) => {
 };
 
 const StyledHeading = ({ level = 2, children }) => {
-  return <Heading as={`h${level}`}>{children}</Heading>;
+  const tag = typeof level === "number" ? `h${level}` : level;
+
+  return <Heading as={tag}>{children}</Heading>;
 };
 
 const HgroupComponent = ({ attribute }) => {

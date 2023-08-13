@@ -37,7 +37,6 @@ const formSlice = createSlice({
   // 내부 action 및 동기 action
   reducers: {
     changeField: (state, action) => {
-      console.log("action.payload: ", action.payload);
       const { form, key, value } = action.payload;
 
       state[form][key] = value;

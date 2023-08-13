@@ -19,16 +19,16 @@ const UtilityComponent = ({ attribute }) => {
                 </button>
               </li>
               <li>
-                <Link to="/beluga/member/login">마이페이지</Link>
+                <Link to="/member/login">마이페이지</Link>
               </li>
             </>
           ) : (
             <>
               <li>
-                <Link to="/beluga/member/login">로그인</Link>
+                <Link to="/member/login">로그인</Link>
               </li>
               <li>
-                <Link to="/beluga/member/register">회원가입</Link>
+                <Link to="/member/register">회원가입</Link>
               </li>
             </>
           )}

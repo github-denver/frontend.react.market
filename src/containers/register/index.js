@@ -35,7 +35,6 @@ const RegisterContainer = () => {
   const handleRegisterSubmit = (event) => {
     event.preventDefault();
 
-    console.log("formData: ", formData);
     const { id, name, password, passwordConfirm } = formData;
 
     if ([id, name, password, passwordConfirm].includes("")) {
@@ -50,7 +49,6 @@ const RegisterContainer = () => {
       return;
     }
 
-    console.log("{ id, name, password }: ", { id, name, password });
     dispatch(register({ id, name, password }));
   };
 
@@ -77,7 +75,7 @@ const RegisterContainer = () => {
     if (accessToken) {
       console.log("회원가입에 성공했습니다.");
 
-      navigate("/beluga/member/login");
+      navigate("/member/login");
 
       return () => {
         // 언 마운트 될 때 리덕스에서 데이터를 삭제합니다.
