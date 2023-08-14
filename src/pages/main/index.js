@@ -2,6 +2,8 @@ import React from "react";
 import HeaderContainer from "@/containers/header";
 import HgroupComponent from "@/components/hgroup";
 import QuickComponent from "@/components/quick";
+import ThumbnailComponent from "@/components/thumbnail";
+import FooterComponent from "@/components/footer";
 
 // import Swiper core and required modules
 import { Navigation, Pagination, A11y } from "swiper";
@@ -30,12 +32,37 @@ const MainPage = () => {
         </Swiper>
 
         <QuickComponent />
-      </section>
-      <footer>
+
         <HgroupComponent
-          attribute={{ title: "회사정보 및 이용약관", invisible: true }}
+          attribute={{ title: "주간 20평대 집들이 best", invisible: false }}
         />
-      </footer>
+
+        <ul>
+          <li>
+            <ThumbnailComponent
+              attribute={{
+                rank: 1,
+                timer: "00:00:00",
+                bookmark: true,
+                sticker: "<em>오늘만 이 가격!!</em>",
+                title: "<em>따뜻한 26평!</em>홈스타일링 노하우만으로 완성",
+              }}
+            />
+          </li>
+          <li>
+            <ThumbnailComponent
+              attribute={{
+                rank: 1,
+                timer: "00:00:00",
+                bookmark: true,
+                sticker: "<em>오늘만 이 가격!!</em>",
+                title: "<em>따뜻한 26평!</em>홈스타일링 노하우만으로 완성",
+              }}
+            />
+          </li>
+        </ul>
+      </section>
+      <FooterComponent />
     </>
   );
 };

@@ -1,14 +1,22 @@
 import React from "react";
+import HeaderContainer from "@/containers/header";
 import HgroupComponent from "@/components/hgroup";
 import RegisterContainer from "@/containers/register";
 
 const RegisterPage = () => {
   return (
     <>
+      <HeaderContainer attribute={{ minimal: true }} />
       <section>
         <HgroupComponent attribute={{ title: "본문 영역", invisible: true }} />
         <RegisterContainer />
       </section>
+
+      <footer>
+        <small>
+          Copyright 2014. bucketplace, Co., Ltd. All rights reserved.
+        </small>
+      </footer>
     </>
   );
 };

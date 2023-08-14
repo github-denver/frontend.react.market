@@ -30,7 +30,7 @@ const HeaderContainer = (props) => {
 
   return (
     <>
-      <HeaderComponent attribute={{ minimal, user, handleLogoutClick }} />;
+      <HeaderComponent attribute={{ minimal, user, handleLogoutClick }} />
     </>
   );
 };
