@@ -23,16 +23,34 @@ const MainPage = () => {
 
         <NavigationComponent />
 
-        <Swiper
-          // install Swiper modules
-          modules={[Navigation, Pagination, A11y]}
-          navigation
-          pagination={{ clickable: true }}
-          onSwiper={(swiper) => {}}
-          onSlideChange={() => {}}
-        >
-          <SwiperSlide>매월 5일은 오!데이딜 인기상품 1DAY 특가</SwiperSlide>
-        </Swiper>
+        <div className="___swiper___">
+          <Swiper
+            // install Swiper modules
+            modules={[Navigation, Pagination, A11y]}
+            navigation
+            pagination={{ clickable: true }}
+            spaceBetween={16}
+            onSwiper={(swiper) => {}}
+            onSlideChange={() => {}}
+          >
+            <SwiperSlide>
+              <img
+                className="image_common"
+                src="/swiper_mobile_2.jpg"
+                alt="매월 5일은 오!데이딜 인기상품 1DAY 특가"
+              />
+              {/* <img src="/swiper.jpg" alt="매월 5일은 오!데이딜 인기상품 1DAY 특가" /> */}
+            </SwiperSlide>
+            <SwiperSlide>
+              <img
+                className="image_common"
+                src="/swiper_mobile_2.jpg"
+                alt="매월 5일은 오!데이딜 인기상품 1DAY 특가"
+              />
+              {/* <img src="/swiper.jpg" alt="매월 5일은 오!데이딜 인기상품 1DAY 특가" /> */}
+            </SwiperSlide>
+          </Swiper>
+        </div>
 
         <QuickComponent />
 
@@ -52,7 +70,7 @@ const MainPage = () => {
               }}
             />
           </li>
-          <li>
+          <li className="item_quick">
             <ThumbnailComponent
               attribute={{
                 label: 1,

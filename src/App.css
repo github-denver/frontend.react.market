@@ -155,3 +155,16 @@ img {
   height: 100%;
   z-index: -1;
 }
+
+.___swiper___ {
+  overflow: hidden;
+  margin: 2rem;
+  border-radius: 0.8rem;
+}
+.___swiper___ .swiper-slide {
+  overflow: hidden;
+  border-radius: 0.8rem;
+}
+.___swiper___ .image_common {
+  width: 100%;
+}
