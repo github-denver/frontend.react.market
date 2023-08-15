@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const StyledThumbnail = styled.div``;
 
 const ThumbnailComponent = ({ attribute }) => {
-  const { rank, timer, sticker, bookmark, title } = attribute;
+  const { label, timer, sticker, bookmark, title, author, options } = attribute;
 
   const thumbnailSticker = `${sticker}`;
   const thumbnailDescription = `${title}`;
@@ -14,15 +14,44 @@ const ThumbnailComponent = ({ attribute }) => {
     <>
       <StyledThumbnail>
         <Link to="/">
-          <img src="/sample.jpg" alt="" />
+          <div>
+            <img src="/sample.jpg" alt="" />
 
-          <span>{rank}순위</span>
-          <span>남은 시간 {timer}</span>
-          <span dangerouslySetInnerHTML={{ __html: thumbnailSticker }}></span>
-          <span>홍길동</span>
+            {label && <span>{label}</span>}
 
-          <p dangerouslySetInnerHTML={{ __html: thumbnailDescription }}></p>
+            {timer && (
+              <>
+                <span>남은 시간</span>
+                <span>{timer}</span>
+              </>
+            )}
+
+            {sticker && (
+              <span dangerouslySetInnerHTML={{ __html: thumbnailSticker }} />
+            )}
+          </div>
         </Link>
+
+        <p>
+          <Link
+            to="/"
+            dangerouslySetInnerHTML={{ __html: thumbnailDescription }}
+          />
+        </p>
+
+        {author && (
+          <Link to="/">
+            <img src="/profile.png" alt="" />
+            <span>홍길동</span>
+          </Link>
+        )}
+
+        {options && (
+          <ul>
+            <li>북마크 9999</li>
+            <li>조회수 9999</li>
+          </ul>
+        )}
 
         {bookmark && (
           <button type="button">

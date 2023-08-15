@@ -1,6 +1,7 @@
 import React from "react";
 import HeaderContainer from "@/containers/header";
 import HgroupComponent from "@/components/hgroup";
+import NavigationComponent from "@/components/navigation";
 import QuickComponent from "@/components/quick";
 import ThumbnailComponent from "@/components/thumbnail";
 import FooterComponent from "@/components/footer";
@@ -19,6 +20,8 @@ const MainPage = () => {
 
       <section>
         <HgroupComponent attribute={{ title: "본문 영역", invisible: true }} />
+
+        <NavigationComponent />
 
         <Swiper
           // install Swiper modules
@@ -41,7 +44,7 @@ const MainPage = () => {
           <li>
             <ThumbnailComponent
               attribute={{
-                rank: 1,
+                label: 1,
                 timer: "00:00:00",
                 bookmark: true,
                 sticker: "<em>오늘만 이 가격!!</em>",
@@ -52,7 +55,7 @@ const MainPage = () => {
           <li>
             <ThumbnailComponent
               attribute={{
-                rank: 1,
+                label: 1,
                 timer: "00:00:00",
                 bookmark: true,
                 sticker: "<em>오늘만 이 가격!!</em>",
