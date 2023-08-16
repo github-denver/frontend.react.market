@@ -41,18 +41,12 @@ const MainPage = () => {
               />
               {/* <img src="/swiper.jpg" alt="매월 5일은 오!데이딜 인기상품 1DAY 특가" /> */}
             </SwiperSlide>
-            <SwiperSlide>
-              <img
-                className="image_common"
-                src="/swiper_mobile_2.jpg"
-                alt="매월 5일은 오!데이딜 인기상품 1DAY 특가"
-              />
-              {/* <img src="/swiper.jpg" alt="매월 5일은 오!데이딜 인기상품 1DAY 특가" /> */}
-            </SwiperSlide>
           </Swiper>
         </div>
 
         <QuickComponent />
+
+        <hr className="boundary" />
 
         <HgroupComponent
           attribute={{ title: "주간 20평대 집들이 best", invisible: false }}

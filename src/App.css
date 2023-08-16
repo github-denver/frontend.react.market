@@ -168,3 +168,10 @@ img {
 .___swiper___ .image_common {
   width: 100%;
 }
+
+.boundary {
+  height: 1rem;
+  border: 0 none;
+  box-sizing: border-box;
+  background-color: #f7f9fa;
+}
