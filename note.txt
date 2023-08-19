@@ -1,5 +1,5 @@
 <Hgroup
-  attribute={{ title: "주간 20평대 집들이 best", invisible: false }}
+  attribute={{ title: "주간 20평대 집들이 best",  }}
 />
 
 <ThumbnailWrapper />

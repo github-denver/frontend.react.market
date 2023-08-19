@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import HeaderContainer from "@/containers/header";
 import HgroupComponent from "@/components/hgroup";
+import NavigationComponent from "@/components/navigation";
 import ThumbnailComponent from "@/components/thumbnail";
 import ProfileComponent from "@/components/profile";
 import FooterComponent from "@/components/footer";
@@ -14,8 +15,10 @@ const ArticleReadPage = () => {
       <section>
         <HgroupComponent attribute={{ title: "본문 영역", invisible: true }} />
 
+        <NavigationComponent />
+
         <HgroupComponent
-          attribute={{ level: 3, title: "집들이", invisible: false }}
+          attribute={{ level: 3, title: "집들이", invisible: true }}
         />
 
         <div className="read_header">
@@ -25,26 +28,16 @@ const ArticleReadPage = () => {
               // timer: "00:00:00",
               // bookmark: true,
               // sticker: "<em>오늘만 이 가격!!</em>",
-              title: "<em>따뜻한 26평!</em>홈스타일링 노하우만으로 완성",
+              title: "<em>따뜻한 26평!</em> 홈스타일링 노하우만으로 완성",
               author: false,
               // options: true,
             }}
           />
 
           <ProfileComponent>
-            <dl>
-              <dt>공간</dt>
-              <dd>아파트</dd>
-              <dt>평수</dt>
-              <dd>34평</dd>
-              <dt>분야</dt>
-              <dd>부분공사</dd>
-              <dt>가족형태</dt>
-              <dd>취학 자녀가 있는 집</dd>
-            </dl>
+            {/* <div className="box_metadata"></div> */}
           </ProfileComponent>
         </div>
-        {/* read_header */}
 
         <div className="read_contents">
           <div className="metadata">
@@ -52,40 +45,66 @@ const ArticleReadPage = () => {
               attribute={{
                 level: "strong",
                 title: "상세정보",
-                invisible: false,
+                invisible: true,
               }}
             />
+            <div className="box_metadata">
+              <ul className="list_metadata">
+                <li className="item_metadata">
+                  <span className="icon_common">공간</span>
+                  <span className="text_metadata">아파트</span>
+                </li>
+                <li className="item_metadata">
+                  <span className="icon_common">평수</span>
+                  <span className="text_metadata">34평</span>
+                </li>
+                <li className="item_metadata">
+                  <span className="icon_common">작업</span>
+                  <span className="text_metadata">반셀프</span>
+                </li>
+                <li className="item_metadata">
+                  <span className="icon_common">분야</span>
+                  <span className="text_metadata">부분공사</span>
+                </li>
+                <li className="item_metadata">
+                  <span className="icon_common">가족형태</span>
+                  <span className="text_metadata">취학 자녀가 있는 집</span>
+                </li>
+                <li className="item_metadata">
+                  <span className="icon_common">스타일</span>
+                  <span className="text_metadata">내추럴</span>
+                </li>
+                <li className="item_metadata">
+                  <span className="icon_common">기간</span>
+                  <span className="text_metadata">3주</span>
+                </li>
+                <li className="item_metadata">
+                  <span className="icon_common">예산</span>
+                  <span className="text_metadata">3,000만 원</span>
+                </li>
+                <li className="item_metadata">
+                  <span className="icon_common">세부공사</span>
+                  <span className="text_metadata">
+                    주방 리모델링, 조명 시공, 중문, 가벽&amp;파티션
+                  </span>
+                </li>
+              </ul>
 
-            <dl>
-              <dt>공간</dt>
-              <dd>아파트</dd>
-              <dt>평수</dt>
-              <dd>34평</dd>
-              <dt>작업</dt>
-              <dd>반셀프</dd>
-              <dt>분야</dt>
-              <dd>부분공사</dd>
-              <dt>가족형태</dt>
-              <dd>취학 자녀가 있는 집</dd>
-              <dt>스타일</dt>
-              <dd>내추럴</dd>
-              <dt>기간</dt>
-              <dd>3주</dd>
-              <dt>예산</dt>
-              <dd>3,000만 원</dd>
-              <dt>세부공사</dt>
-              <dd>주방 리모델링, 조명 시공, 중문, 가벽&amp;파티션</dd>
-            </dl>
-
-            <button type="button">
-              <span>9개 접어두기</span>
-            </button>
+              <button type="button" className="button_gravity">
+                <span className="text_local">5개 접어두기</span>
+              </button>
+            </div>
           </div>
-          {/* metadata */}
 
-          <div className="content">내용입니다.</div>
+          <hr className="boundary" />
 
-          <div className="comment">
+          <div className="content">
+            내용입니다.
+            <br />
+            내용입니다.
+          </div>
+
+          <div className="comment" style={{ display: "none" }}>
             <HgroupComponent attribute={{ level: "strong", title: "댓글" }} />
 
             <div>
@@ -163,9 +182,7 @@ const ArticleReadPage = () => {
               </li>
             </ul>
           </div>
-          {/* comment */}
         </div>
-        {/* read_contents */}
       </section>
       <FooterComponent />
     </>

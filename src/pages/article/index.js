@@ -1,19 +1,35 @@
 import React from "react";
+import styled from "styled-components";
 import HeaderContainer from "@/containers/header";
 import HgroupComponent from "@/components/hgroup";
 import ThumbnailComponent from "@/components/thumbnail";
 import FooterComponent from "@/components/footer";
 
+const StyledList = styled.div`
+  .list_normal {
+    margin-top: -3rem;
+    padding: 1.2rem;
+  }
+
+  .list_normal .item_normal {
+    margin-top: 3rem;
+  }
+`;
+
 const ArticleListPage = () => {
   return (
-    <>
+    <StyledList>
       <HeaderContainer />
 
       <section>
         <HgroupComponent attribute={{ title: "본문 영역", invisible: true }} />
 
         <HgroupComponent
-          attribute={{ level: 3, title: "집들이", invisible: false }}
+          attribute={{
+            level: 3,
+            title: "집들이",
+            invisible: true,
+          }}
         />
 
         <select defaultValue="인기순">
@@ -44,27 +60,29 @@ const ArticleListPage = () => {
           <option value="70평대 이상">70평대 이상</option>
         </select>
 
-        <ul>
-          <li>
+        <ul className="list_normal">
+          <li className="item_normal">
             <ThumbnailComponent
               attribute={{
                 label: "새소식",
                 // timer: "00:00:00",
                 bookmark: true,
                 // sticker: "<em>오늘만 이 가격!!</em>",
-                title: "<em>따뜻한 26평!</em>홈스타일링 노하우만으로 완성",
+                title: "<em>따뜻한 26평!</em> 홈스타일링 노하우만으로 완성",
+                author: true,
                 options: true,
               }}
             />
           </li>
-          <li>
+          <li className="item_normal">
             <ThumbnailComponent
               attribute={{
                 label: "새소식",
                 // timer: "00:00:00",
                 bookmark: true,
                 // sticker: "<em>오늘만 이 가격!!</em>",
-                title: "<em>따뜻한 26평!</em>홈스타일링 노하우만으로 완성",
+                title: "<em>따뜻한 26평!</em> 홈스타일링 노하우만으로 완성",
+                author: true,
                 options: true,
               }}
             />
@@ -72,7 +90,7 @@ const ArticleListPage = () => {
         </ul>
       </section>
       <FooterComponent />
-    </>
+    </StyledList>
   );
 };
 

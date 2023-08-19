@@ -7,13 +7,14 @@ const RegisterPage = () => {
   return (
     <>
       <HeaderContainer attribute={{ minimal: true }} />
-      <section>
+
+      <section className="container">
         <HgroupComponent attribute={{ title: "본문 영역", invisible: true }} />
         <RegisterContainer />
       </section>
 
-      <footer>
-        <small>
+      <footer className="footer_minimal">
+        <small className="text_copyright_minimal">
           Copyright 2014. bucketplace, Co., Ltd. All rights reserved.
         </small>
       </footer>

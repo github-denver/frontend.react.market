@@ -8,10 +8,13 @@ export const userCheck = (token) => {
   });
 };
 
-export const register = ({ id, name, password }) =>
-  axios.post("/api/register", { id, name, password });
+export const register = ({ id, name, password, email }) =>
+  axios.post("/api/register", { id, name, password, email });
 
 export const login = ({ id, password }) =>
   axios.post("/api/login", { id, password });
 
 export const logout = () => axios.get("/api/logout");
+
+export const profile = ({ id, name, password, email, picture }) =>
+  axios.post("/api/profile", { id, name, password, email, picture });

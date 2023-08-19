@@ -48,12 +48,10 @@ const MainPage = () => {
 
         <hr className="boundary" />
 
-        <HgroupComponent
-          attribute={{ title: "주간 20평대 집들이 best", invisible: false }}
-        />
+        <HgroupComponent attribute={{ title: "주간 20평대 집들이 best" }} />
 
-        <ul>
-          <li>
+        <ul className="list_global">
+          <li className="item_global">
             <ThumbnailComponent
               attribute={{
                 label: 1,
@@ -64,7 +62,7 @@ const MainPage = () => {
               }}
             />
           </li>
-          <li className="item_quick">
+          <li className="item_global">
             <ThumbnailComponent
               attribute={{
                 label: 1,

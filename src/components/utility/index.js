@@ -1,17 +1,26 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import { SlHome, SlArrowDown, SlHandbag, SlWrench } from "react-icons/sl";
 import NavigationComponent from "@/components/navigation";
+import { MdClose } from "react-icons/md";
 
 const StyledUtility = styled.div`
+  /*
   position: fixed;
   top: 0;
-  right: 0;
+  // right: 0;
   bottom: 0;
-  left: 0;
+  ${(porps) => {
+    return css`
+      left: ${porps.$visible};
+    `;
+  }}
+  // left: 0;
   z-index: 100;
+  width: 100%;
   text-align: left;
+  transition: left 0.4s;
 
   .inner_utility {
     overflow: auto;
@@ -28,15 +37,15 @@ const StyledUtility = styled.div`
   }
 
   .title_common {
-    display: inline-block;
-    vertical-align: middle;
+    display: block;
   }
   .title_common .link_common {
-    display: block;
+    display: inline-block;
     width: 7.4rem;
     height: 2.6rem;
     font-size: 1.6rem;
     line-height: 2.6rem;
+    vertical-align: middle;
     text-align: center;
   }
 
@@ -54,16 +63,18 @@ const StyledUtility = styled.div`
 
   .list_gravity .button_gravity {
     display: block;
+    width: 100%;
     padding: 1.4rem 0;
     border: 0.1rem solid #35c5f0;
     border-radius: 0.4rem;
+    box-sizing: border-box;
     background-color: #fff;
     color: #35c5f0;
     line-height: 1;
     text-align: center;
   }
 
-  .list_gravity .button_gravity .text_locallocal {
+  .list_gravity .button_gravity .text_local {
     display: inline-block;
     font-weight: 700;
     font-size: 1.4rem;
@@ -74,7 +85,7 @@ const StyledUtility = styled.div`
     background-color: #35c5f0;
   }
 
-  .list_gravity .button_gravity.fill .text_locallocal {
+  .list_gravity .button_gravity.fill .text_local {
     color: #fff;
   }
 
@@ -198,21 +209,57 @@ const StyledUtility = styled.div`
     left: 0;
     z-index: 1;
     background-color: #000;
-    opacity: 0.5;
+    ${(porps) =>
+    porps.$visible === "-100%"
+      ? css`
+          opacity: 0;
+          pointer-events: none;
+        `
+      : css`
+          opacity: 0.5;
+        `}
+    transition: opacity 0.4s;
   }
+
+  .button_close {
+    display: inline-block;
+    border: 0 none;
+    background-color: transparent;
+    vertical-align: middle;
+
+    svg {
+      display: block;
+    }
+  }
+  */
 `;
 
 const UtilityComponent = ({ attribute }) => {
-  const { user, handleLogoutClick } = attribute;
+  const { user, handleLogoutClick, visible, handleUtilityVisible } = attribute;
 
   return (
     <>
-      <StyledUtility>
+      <StyledUtility $visible={visible}>
         <div className="inner_utility">
           <strong className="title_common">
-            <Link to="/" className="link_common">
-              <span className="ir_wa">오늘의 집</span>
-            </Link>
+            <div className="outer_cell">
+              <div className="inner_cell">
+                <Link to="/" className="link_common">
+                  <span className="ir_wa">오늘의 집</span>
+                </Link>
+              </div>
+
+              <div className="inner_cell">
+                <button
+                  type="button"
+                  className="button_close"
+                  onClick={handleUtilityVisible}
+                >
+                  <MdClose size={24} />
+                  <span className="screen_out">주메뉴 닫기</span>
+                </button>
+              </div>
+            </div>
           </strong>
 
           <ul className="list_gravity">
@@ -224,12 +271,12 @@ const UtilityComponent = ({ attribute }) => {
                     className="button_gravity"
                     onClick={handleLogoutClick}
                   >
-                    <span className="text_locallocal">로그아웃</span>
+                    <span className="text_local">로그아웃</span>
                   </button>
                 </li>
                 <li className="item_gravity">
-                  <Link to="/member/login" className="button_gravity">
-                    <span className="text_locallocal">마이페이지</span>
+                  <Link to="/member/profile" className="button_gravity fill">
+                    <span className="text_local">마이페이지</span>
                   </Link>
                 </li>
               </>
@@ -237,12 +284,12 @@ const UtilityComponent = ({ attribute }) => {
               <>
                 <li className="item_gravity">
                   <Link to="/member/login" className="button_gravity">
-                    <span className="text_locallocal">로그인</span>
+                    <span className="text_local">로그인</span>
                   </Link>
                 </li>
                 <li className="item_gravity">
                   <Link to="/member/register" className="button_gravity fill">
-                    <span className="text_locallocal">회원가입</span>
+                    <span className="text_local">회원가입</span>
                   </Link>
                 </li>
               </>
@@ -466,7 +513,6 @@ const UtilityComponent = ({ attribute }) => {
             </li>
           </ul>
         </div>
-        {/* inner_utility */}
 
         <div className="dimmed"></div>
       </StyledUtility>

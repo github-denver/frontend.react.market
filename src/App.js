@@ -4,6 +4,7 @@ import "@/App.css";
 import MainPage from "@/pages/main";
 import LoginPage from "@/pages/login";
 import RegisterPage from "@/pages/register";
+import ProfilePage from "@/pages/profile";
 import ArticleListPage from "@/pages/article";
 import ArticleReadPage from "@/pages/article/read";
 import Error404Page from "@/pages/error/404";
@@ -15,6 +16,7 @@ function App() {
         <Route index element={<MainPage />} />
         <Route path="/member/login" element={<LoginPage />} />
         <Route path="/member/register" element={<RegisterPage />} />
+        <Route path="/member/profile" element={<ProfilePage />} />
         <Route
           path="/article/:category/list/:number"
           element={<ArticleListPage />}

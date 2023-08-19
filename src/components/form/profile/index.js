@@ -3,9 +3,44 @@ import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 import HgroupComponent from "@/components/hgroup";
 
+const StyledButtonGravity = styled.button`
+  display: block;
+  width: 100%;
+  padding: 1.4rem 0;
+  border: 0.1rem solid #35c5f0;
+  border-radius: 0.4rem;
+  box-sizing: border-box;
+  ${(posps) =>
+    posps.$fill
+      ? css`
+          background-color: #35c5f0;
+
+          .text_local {
+            color: #fff;
+          }
+        `
+      : css`
+          background-color: #fff;
+        `};
+  color: #35c5f0;
+  line-height: 1;
+
+  .text_local {
+    display: inline-block;
+    /* margin: 0; */
+    font-weight: 700;
+    font-size: 1.4rem;
+    vertical-align: middle;
+  }
+`;
+
 const StyledRegister = styled.div`
   margin-top: -1.2rem;
   padding: 0 1.2rem 2.4rem;
+
+  ${StyledButtonGravity} {
+    margin-top: 2rem;
+  }
 `;
 
 const StyledSocial = styled.div`
@@ -80,12 +115,19 @@ const StyledGroupField = styled.div`
         top: 0;
         right: 0;
         width: 30%;
-        margin-top: 0;
       }
     `};
 
   .inner_common {
     position: relative;
+    margin-top: 1rem;
+
+    ${StyledButtonGravity} {
+      margin-top: 0;
+    }
+  }
+
+  ${StyledButtonGravity} {
     margin-top: 1rem;
   }
 `;
@@ -134,38 +176,6 @@ const StyledBoxField = styled.div`
   }
 `;
 
-const StyledButtonGravity = styled.button`
-  display: block;
-  width: 100%;
-  margin-top: 2rem;
-  padding: 1.4rem 0;
-  border: 0.1rem solid #35c5f0;
-  border-radius: 0.4rem;
-  box-sizing: border-box;
-  ${(posps) =>
-    posps.$fill
-      ? css`
-          background-color: #35c5f0;
-
-          .text_local {
-            color: #fff;
-          }
-        `
-      : css`
-          background-color: #fff;
-        `};
-  color: #35c5f0;
-  line-height: 1;
-
-  .text_local {
-    display: inline-block;
-    /* margin: 0; */
-    font-weight: 700;
-    font-size: 1.4rem;
-    vertical-align: middle;
-  }
-`;
-
 const StyledOuterBoxField = styled.div`
   display: inline-block;
   width: 70%;
@@ -197,68 +207,59 @@ const StyledLinkOptions = styled(Link)`
   color: #424242;
 `;
 
-const RegisterFormComponent = ({
+const ProfileFormComponent = ({
+  loading,
   formData,
   errorMessage,
   onFieldChange,
-  onRegisterSubmit,
+  onModifySubmit,
+  user,
 }) => {
+  console.log("* user: ", user);
+
+  if (loading || !user) {
+    console.log("읽어들이는 중이거나 아직 데이터가 존재하지 않습니다.");
+
+    return <p>읽어들이는 중..</p>;
+  }
+
+  if (!user) {
+    console.log("정보가 존재하지 않습니다.");
+
+    return <p>정보가 존재하지 않습니다.</p>;
+  }
+
   return (
     <StyledRegister>
       <HgroupComponent
-        attribute={{ level: 3, title: "회원가입", invisible: true }}
+        attribute={{ level: 3, title: "마이페이지", invisible: true }}
       />
 
-      <StyledSocial>
-        <p className="text_local">SNS 계정으로 간편하게 회원가입하세요.</p>
-
-        <StyledListSocial>
-          <StyledItemSocial>
-            <StyledLinkSocial to="/">네이버 로그인</StyledLinkSocial>
-          </StyledItemSocial>
-          <StyledItemSocial>
-            <StyledLinkSocial to="/">카카오 로그인</StyledLinkSocial>
-          </StyledItemSocial>
-        </StyledListSocial>
-
-        <StyledStandardLink to="/">
-          로그인에 문제가 있으신가요?
-        </StyledStandardLink>
-      </StyledSocial>
-
-      <form onSubmit={onRegisterSubmit}>
+      <form onSubmit={onModifySubmit}>
         <fieldset>
-          <legend className="screen_out">회원가입 영역</legend>
+          <legend className="screen_out">마이페이지 영역</legend>
 
-          <StyledGroupField $standard={true} $confirm={true}>
+          <StyledGroupField $standard={true}>
             <StyledLabelField htmlFor="id">아이디</StyledLabelField>
 
-            <p className="text_common">
+            {/* <p className="text_common">
               아이디는 알파벳 소·대문자, 숫자, - . _만 입력 가능하고 4자리 이상
               8자리 이하로 입력해 주세요.
-            </p>
+            </p> */}
 
-            <div className="inner_common">
-              <StyledOuterBoxField>
-                <StyledBoxField>
-                  <input
-                    type="text"
-                    name="id"
-                    id="id"
-                    className="textfield_local"
-                    placeholder="아이디를 입력해 주세요."
-                    onChange={onFieldChange}
-                    value={formData.id}
-                  />
-                </StyledBoxField>
-              </StyledOuterBoxField>
-
-              <StyledButtonGravity type="button">
-                <span className="text_local">
-                  <span className="screen_out">아이디</span> 중복검사
-                </span>
-              </StyledButtonGravity>
-            </div>
+            <StyledBoxField>
+              <input
+                type="text"
+                name="id"
+                id="id"
+                className="textfield_local"
+                // placeholder="아이디를 입력해 주세요."
+                onChange={onFieldChange}
+                // value={formData.id}
+                defaultValue={user.id}
+                disabled
+              />
+            </StyledBoxField>
           </StyledGroupField>
 
           <StyledGroupField $standard={true}>
@@ -277,7 +278,8 @@ const RegisterFormComponent = ({
                 className="textfield_local"
                 placeholder="패스워드를 입력해 주세요."
                 onChange={onFieldChange}
-                value={formData.password}
+                // value={formData.password}
+                defaultValue={user.password}
               />
             </StyledBoxField>
           </StyledGroupField>
@@ -295,7 +297,8 @@ const RegisterFormComponent = ({
                 className="textfield_local"
                 placeholder="패스워드를 한 번 더 입력해 주세요."
                 onChange={onFieldChange}
-                value={formData.passwordConfirm}
+                // value={formData.passwordConfirm}
+                defaultValue={user.passwordConfirm}
               />
             </StyledBoxField>
           </StyledGroupField>
@@ -318,7 +321,8 @@ const RegisterFormComponent = ({
                     className="textfield_local"
                     placeholder="닉네임을 입력해 주세요."
                     onChange={onFieldChange}
-                    value={formData.name}
+                    // value={formData.name}
+                    defaultValue={user.name}
                   />
                 </StyledBoxField>
               </StyledOuterBoxField>
@@ -344,7 +348,8 @@ const RegisterFormComponent = ({
                     className="textfield_local"
                     placeholder="이메일을 입력해 주세요."
                     onChange={onFieldChange}
-                    value={formData.email}
+                    // value={formData.email}
+                    defaultValue={user.email}
                   />
                 </StyledBoxField>
               </StyledOuterBoxField>
@@ -357,66 +362,15 @@ const RegisterFormComponent = ({
             </div>
           </StyledGroupField>
 
-          {/* <div>
-              <HgroupComponent
-                attribute={{
-                  level: "strong",
-                  title: "약관 동의",
-                  invisible: true,
-                }}
-              />
-
-              <ul>
-                <li>
-                  <input type="checkbox" name="terms" />
-                  <label htmlFor="terms">전체 동의</label>
-                  <p>선택항목에 대한 동의 포함</p>
-                </li>
-                <li>
-                  <input type="checkbox" name="" />
-                  <label htmlFor="">
-                    이용약관 <em>필수</em>
-                  </label>
-                </li>
-                <li>
-                  <input type="checkbox" name="" />
-                  <label htmlFor="">
-                    개인정보수집 및 이용동의 <em>필수</em>
-                  </label>
-                </li>
-                <li>
-                  <input type="checkbox" name="" />
-                  <label htmlFor="">
-                    개인정보 마케팅 활용 동의 <em>필수</em>
-                  </label>
-                </li>
-                <li>
-                  <input type="checkbox" name="" />
-                  <label htmlFor="">
-                    이벤트, 쿠폰, 특가 알림 메일 및 SMS 등 수신{" "}
-                    <span>선택</span>
-                  </label>
-                </li>
-              </ul>
-              <p>필수 항목에 동의해 주세요.</p>
-            </div> */}
-
           {errorMessage && <p>{errorMessage}</p>}
 
           <StyledButtonGravity type="submit" $fill={true}>
-            <span className="text_local">회원가입</span>
+            <span className="text_local">회원정보 수정</span>
           </StyledButtonGravity>
-
-          {/* <Link to="/">홈으로</Link> */}
         </fieldset>
       </form>
-
-      {/* <span className="text_global">이미 아이디가 있으신가요?</span>
-        <Link to="/member/login" className="link_global">
-          로그인
-        </Link> */}
     </StyledRegister>
   );
 };
 
-export default RegisterFormComponent;
+export default ProfileFormComponent;

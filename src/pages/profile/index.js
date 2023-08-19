@@ -1,16 +1,16 @@
 import React from "react";
 import HeaderContainer from "@/containers/header";
 import HgroupComponent from "@/components/hgroup";
-import LoginContainer from "@/containers/login";
+import ProfileContainer from "@/containers/profile";
 
-const LoginPage = () => {
+const ProfilePage = () => {
   return (
     <>
       <HeaderContainer attribute={{ minimal: true }} />
 
       <section className="container">
         <HgroupComponent attribute={{ title: "본문 영역", invisible: true }} />
-        <LoginContainer />
+        <ProfileContainer />
       </section>
 
       <footer className="footer_minimal">
@@ -22,4 +22,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default ProfilePage;

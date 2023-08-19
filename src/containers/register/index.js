@@ -9,19 +9,17 @@ import { initialRegisterForm } from "@/modules/form";
 const RegisterContainer = () => {
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const { formData, accessToken, error } = useSelector(({ form, auth }) => {
-    let accessToken = null;
-
-    if (auth.auth?.accessToken) {
-      accessToken = auth.auth.accessToken;
-    }
-
-    return {
-      formData: form.register,
-      accessToken,
-      error: auth.error,
-    };
-  }, shallowEqual);
+  const { formData, auth, error, user } = useSelector(
+    ({ form, auth, user }) => {
+      return {
+        formData: form.register,
+        auth: auth.auth,
+        error: auth.error,
+        user: user.user,
+      };
+    },
+    shallowEqual
+  );
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -35,7 +33,7 @@ const RegisterContainer = () => {
   const handleRegisterSubmit = (event) => {
     event.preventDefault();
 
-    const { id, name, password, passwordConfirm } = formData;
+    const { id, name, password, passwordConfirm, email } = formData;
 
     if ([id, name, password, passwordConfirm].includes("")) {
       setErrorMessage("필수 정보를 입력해 주세요!");
@@ -49,7 +47,7 @@ const RegisterContainer = () => {
       return;
     }
 
-    dispatch(register({ id, name, password }));
+    dispatch(register({ id, name, password, email }));
   };
 
   useEffect(() => {
@@ -72,17 +70,40 @@ const RegisterContainer = () => {
       return;
     }
 
-    if (accessToken) {
-      console.log("회원가입에 성공했습니다.");
+    console.log("auth: ", auth);
+    console.log("typeof auth: ", typeof auth);
+    if (auth) {
+      console.log("로그인 화면으로 이동합니다.");
 
       navigate("/member/login");
 
       return () => {
         // 언 마운트 될 때 리덕스에서 데이터를 삭제합니다.
+        console.log(
+          "로그인 화면으로 이동 전에 언 마운트 될 때 리덕스에서 회원가입 데이터를 삭제합니다."
+        );
         dispatch(initialRegisterForm());
       };
     }
-  }, [navigate, dispatch, accessToken, error]);
+
+    console.log("user: ", user);
+    console.log("typeof user: ", typeof user);
+    if (user) {
+      // 사용자 확인에 성공했습니다.
+
+      console.log("메인 화면으로 이동합니다.");
+
+      navigate("/");
+
+      return () => {
+        // 언 마운트 될 때 리덕스에서 데이터를 삭제합니다.
+        console.log(
+          "메인 화면으로 이동 전에 언 마운트 될 때 리덕스에서 회원가입 데이터를 삭제합니다."
+        );
+        dispatch(initialRegisterForm());
+      };
+    }
+  }, [navigate, dispatch, auth, error, user]);
 
   return (
     <FormRegisterComponent

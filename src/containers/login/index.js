@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import FormLoginComponent from "@/components/form/login";
+import LoginFormComponent from "@/components/form/login";
 import { login } from "@/modules/auth";
 import { useNavigate } from "react-router-dom";
 import { userCheck } from "@/modules/user";
@@ -73,8 +73,12 @@ const LoginContainer = () => {
   }, [dispatch, accessToken, error]);
 
   useEffect(() => {
+    console.log("user: ", user);
+    console.log("typeof user: ", typeof user);
     if (user) {
-      console.log("사용자 확인에 성공했습니다.");
+      // 사용자 확인에 성공했습니다.
+
+      console.log("메인 화면으로 이동합니다.");
 
       navigate("/");
 
@@ -89,7 +93,7 @@ const LoginContainer = () => {
   }, [navigate, accessToken, user]);
 
   return (
-    <FormLoginComponent
+    <LoginFormComponent
       formData={formData}
       errorMessage={errorMessage}
       onFieldChange={handleFieldChange}

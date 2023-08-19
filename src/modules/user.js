@@ -65,6 +65,7 @@ const userSlice = createSlice({
       };
     },
     checkSuccess: (state, action) => {
+      console.log("action.payload: ", action.payload);
       state.user = action.payload;
       state.error = null;
     },
