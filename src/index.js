@@ -7,19 +7,21 @@ import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import Cookies from "js-cookie";
-import { savedUserCheck, userCheck } from "./modules/user";
+// import { savedUserCheck } from "./modules/user";
+import { userCheck } from "./modules/user";
+import { saveAccessToken } from "./modules/auth";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
 
 function user() {
   try {
-    const user = localStorage.getItem("user");
+    // const user = localStorage.getItem("user");
     const accessToken = Cookies.get("accessToken");
-
     if (typeof accessToken === "undefined") return;
 
-    store.dispatch(savedUserCheck(user));
+    // store.dispatch(savedUserCheck(user));
+    store.dispatch(saveAccessToken(accessToken));
     store.dispatch(userCheck(accessToken));
   } catch (error) {
     console.error(error);

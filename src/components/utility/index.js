@@ -242,14 +242,14 @@ const UtilityComponent = ({ attribute }) => {
       <StyledUtility $visible={visible}>
         <div className="inner_utility">
           <strong className="title_common">
-            <div className="outer_cell">
-              <div className="inner_cell">
+            <div className="outer_half">
+              <div className="inner_half">
                 <Link to="/" className="link_common">
                   <span className="ir_wa">오늘의 집</span>
                 </Link>
               </div>
 
-              <div className="inner_cell">
+              <div className="inner_half">
                 <button
                   type="button"
                   className="button_close"

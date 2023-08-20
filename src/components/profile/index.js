@@ -72,8 +72,8 @@ const ProfileComponent = ({ attribute, children }) => {
     <>
       <StyledProfile>
         <div className="group_profile">
-          <div className="outer_cell">
-            <div className="inner_cell">
+          <div className="outer_half">
+            <div className="inner_half">
               <Link to="/" className="link_profile">
                 <img src="/profile.png" alt="" className="thumbnail_profile" />
                 <span className="box_local">
@@ -83,7 +83,7 @@ const ProfileComponent = ({ attribute, children }) => {
               </Link>
             </div>
 
-            <div className="inner_cell">
+            <div className="inner_half">
               <button type="button" className="button_gravity fill">
                 <span className="text_local">팔로우</span>
               </button>

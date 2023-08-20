@@ -1,15 +1,21 @@
 import axios from "@/library/gateway/axios";
 
-export const userCheck = (token) => {
-  return axios.get("/api/me", {
+export const userCheck = (token) =>
+  axios.get("/api/me", {
     params: {
       accessToken: token,
     },
   });
-};
 
 export const register = ({ id, name, password, email }) =>
   axios.post("/api/register", { id, name, password, email });
+
+export const idCheck = ({ id }) => axios.get(`/api/idCheck?id=${id}`);
+
+export const nameCheck = ({ name }) => axios.get(`/api/nameCheck?name=${name}`);
+
+export const emailCheck = ({ email }) =>
+  axios.get(`/api/emailCheck?email=${email}`);
 
 export const login = ({ id, password }) =>
   axios.post("/api/login", { id, password });

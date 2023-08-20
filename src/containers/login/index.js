@@ -53,6 +53,7 @@ const LoginContainer = () => {
 
   useEffect(() => {
     console.log("로그인 양식을 초기화합니다.");
+
     dispatch(initialLoginForm());
   }, [dispatch]);
 
@@ -73,12 +74,8 @@ const LoginContainer = () => {
   }, [dispatch, accessToken, error]);
 
   useEffect(() => {
-    console.log("user: ", user);
-    console.log("typeof user: ", typeof user);
     if (user) {
-      // 사용자 확인에 성공했습니다.
-
-      console.log("메인 화면으로 이동합니다.");
+      console.log("사용자 확인에 성공했습니다. 메인 화면으로 이동합니다.");
 
       navigate("/");
 

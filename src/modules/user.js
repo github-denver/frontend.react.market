@@ -4,16 +4,14 @@ import * as gateway from "@/library/gateway/auth";
 import createRequestSaga from "@/library/createRequestSaga";
 import Cookies from "js-cookie";
 
-const SAVED_USER = "user/savedUser"; // 새로 고침 이후 임시 로그인을 처리합니다.
+// const SAVED_USER = "user/savedUser"; // 새로 고침 이후 임시 로그인을 처리합니다.
 
 // 회원정보를 확인합니다.
 const USER_CHECK = "user/check";
 const USER_CHECK_FAILURE = "user/check/failure";
 const USER_LOGOUT = "user/logout";
 
-export const savedUserCheck = createAction(SAVED_USER, (payload) => ({
-  payload,
-}));
+// export const savedUserCheck = createAction(SAVED_USER, (payload) => ({ payload }));
 export const userCheck = createAction(USER_CHECK, (payload) => ({ payload }));
 export const logout = createAction(USER_LOGOUT, (payload) => ({ payload }));
 
@@ -65,7 +63,6 @@ const userSlice = createSlice({
       };
     },
     checkSuccess: (state, action) => {
-      console.log("action.payload: ", action.payload);
       state.user = action.payload;
       state.error = null;
     },

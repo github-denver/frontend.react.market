@@ -4,10 +4,16 @@ import * as gateway from "@/library/gateway/auth";
 import createRequestSaga from "@/library/createRequestSaga";
 import Cookies from "js-cookie";
 
+const ACCESS_TOKEN_SAVE = "auth/accessTokenSave";
+
 const USER_REGISTER = "auth/register";
 const USER_LOGIN = "auth/login";
 const USER_LOGOUT = "auth/singout";
 const USER_PROFILE = "auth/profile";
+
+export const saveAccessToken = createAction(ACCESS_TOKEN_SAVE, (payload) => ({
+  payload,
+}));
 
 export const register = createAction(USER_REGISTER, (payload) => ({ payload }));
 export const login = createAction(USER_LOGIN, (payload) => ({ payload }));
@@ -49,6 +55,12 @@ const authSlice = createSlice({
   initialState,
   // 내부 action 및 동기 action
   reducers: {
+    accessTokenSave: (state, action) => {
+      state.auth = {
+        accessToken: action.payload,
+        message: null,
+      };
+    },
     registerSuccess: (state, action) => {
       return {
         ...state,
@@ -90,6 +102,6 @@ const authSlice = createSlice({
   },
 });
 
-export const {} = authSlice.actions;
+export const { accessTokenSave } = authSlice.actions;
 
 export default authSlice.reducer;

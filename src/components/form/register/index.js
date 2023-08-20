@@ -202,6 +202,10 @@ const RegisterFormComponent = ({
   errorMessage,
   onFieldChange,
   onRegisterSubmit,
+  onIdCheck,
+  onNameCheck,
+  onEmailCheck,
+  onLayerClose,
 }) => {
   return (
     <StyledRegister>
@@ -253,7 +257,7 @@ const RegisterFormComponent = ({
                 </StyledBoxField>
               </StyledOuterBoxField>
 
-              <StyledButtonGravity type="button">
+              <StyledButtonGravity type="button" onClick={onIdCheck}>
                 <span className="text_local">
                   <span className="screen_out">아이디</span> 중복검사
                 </span>
@@ -323,7 +327,7 @@ const RegisterFormComponent = ({
                 </StyledBoxField>
               </StyledOuterBoxField>
 
-              <StyledButtonGravity type="button">
+              <StyledButtonGravity type="button" onClick={onNameCheck}>
                 <span className="text_local">
                   <span className="screen_out">닉네임</span> 중복검사
                 </span>
@@ -349,7 +353,7 @@ const RegisterFormComponent = ({
                 </StyledBoxField>
               </StyledOuterBoxField>
 
-              <StyledButtonGravity type="button">
+              <StyledButtonGravity type="button" onClick={onEmailCheck}>
                 <span className="text_local">
                   <span className="screen_out">이메일</span> 중복검사
                 </span>
@@ -401,7 +405,27 @@ const RegisterFormComponent = ({
               <p>필수 항목에 동의해 주세요.</p>
             </div> */}
 
-          {errorMessage && <p>{errorMessage}</p>}
+          {errorMessage && (
+            <div className="layer_wrapper">
+              <div className="outer_cell">
+                <div className="inner_cell">
+                  <div className="inner_layer">
+                    <p className="text_layer">{errorMessage}</p>
+
+                    <StyledButtonGravity
+                      type="button"
+                      $fill={true}
+                      onClick={onLayerClose}
+                    >
+                      <span className="text_local">닫기</span>
+                    </StyledButtonGravity>
+                  </div>
+                </div>
+              </div>
+
+              <div className="dimmed"></div>
+            </div>
+          )}
 
           <StyledButtonGravity type="submit" $fill={true}>
             <span className="text_local">회원가입</span>

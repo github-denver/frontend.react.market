@@ -4,14 +4,19 @@ import FormProfileComponent from "@/components/form/profile";
 import { profile } from "@/modules/auth";
 import { useNavigate } from "react-router-dom";
 import { formChangeField } from "@/modules/form";
-import { initialRegisterForm } from "@/modules/form";
+// import { initialRegisterForm } from "@/modules/form";
 
 const ProfileContainer = () => {
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const { loading, formData, error, user } = useSelector(
+  const { loading, formData, accessToken, error, user } = useSelector(
     ({ loading, form, auth, user }) => {
+      let accessToken = null;
       let savedUser = null;
+
+      if (auth.auth?.accessToken) {
+        accessToken = auth.auth.accessToken;
+      }
 
       if (user.user?.user2) {
         savedUser = user.user.user2;
@@ -19,6 +24,7 @@ const ProfileContainer = () => {
 
       return {
         formData: form.register,
+        accessToken,
         error: auth.error,
         user: savedUser,
         loading: loading["user/check"],
@@ -26,7 +32,6 @@ const ProfileContainer = () => {
     },
     shallowEqual
   );
-  console.log("# user: ", user);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -39,8 +44,6 @@ const ProfileContainer = () => {
 
   const handleModifySubmit = (event) => {
     event.preventDefault();
-
-    console.log("* formData: ", formData);
 
     const { id, name, password, passwordConfirm, email } = formData;
 
@@ -63,24 +66,21 @@ const ProfileContainer = () => {
     if (error) {
       console.error(error);
 
-      console.log("error.response.status: ", error.response.status);
-
       setErrorMessage(`에러가 발생하였습니다.`);
 
       return;
     }
 
-    console.log("user: ", user);
     console.log("!user: ", !user);
-    if (!user) {
+    console.log("!accessToken: ", !accessToken);
+    if (!user && !accessToken) {
       navigate("/member/login");
     }
 
     return () => {
-      // 언 마운트 될 때 리덕스에서 데이터를 삭제합니다.
       console.log("언 마운트 될 때 리덕스에서 데이터를 삭제합니다.");
     };
-  }, [navigate, error, user]);
+  }, [navigate, accessToken, error, user]);
 
   return (
     <FormProfileComponent
