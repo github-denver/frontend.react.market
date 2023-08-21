@@ -5,32 +5,18 @@ import { login } from "@/modules/auth";
 import { useNavigate } from "react-router-dom";
 import { userCheck } from "@/modules/user";
 import Cookies from "js-cookie";
-import { formChangeField } from "@/modules/form";
-import { initialLoginForm } from "@/modules/form";
+import { formChangeField, initialLoginForm } from "@/modules/form";
 
 const LoginContainer = () => {
   const [errorMessage, setErrorMessage] = useState(null);
 
   const { formData, accessToken, error, user } = useSelector(
-    ({ form, auth, user }) => {
-      let accessToken = null;
-      let savedUser = null;
-
-      if (auth.auth?.accessToken) {
-        accessToken = auth.auth.accessToken;
-      }
-
-      if (user.user?.user2) {
-        savedUser = user.user.user2;
-      }
-
-      return {
-        formData: form.login,
-        accessToken,
-        error: auth.error,
-        user: savedUser,
-      };
-    },
+    ({ form, auth, user }) => ({
+      formData: form.login,
+      accessToken: auth.auth?.accessToken,
+      error: auth.error,
+      user: user.user?.user2,
+    }),
     shallowEqual
   );
 
@@ -48,7 +34,21 @@ const LoginContainer = () => {
 
     const { id, password } = formData;
 
+    if (!id.trim()) {
+      setErrorMessage("아이디를 입력해 주세요.");
+      return;
+    }
+
+    if (!password.trim()) {
+      setErrorMessage("패스워드를 입력해 주세요.");
+      return;
+    }
+
     dispatch(login({ id, password }));
+  };
+
+  const handleLayerClose = () => {
+    setErrorMessage(null);
   };
 
   useEffect(() => {
@@ -62,11 +62,7 @@ const LoginContainer = () => {
       console.error(error);
 
       setErrorMessage(`${error} 로그인에 실패했습니다.`);
-
-      return;
-    }
-
-    if (accessToken) {
+    } else if (accessToken) {
       console.log("로그인에 성공했습니다.");
 
       dispatch(userCheck(accessToken));
@@ -95,6 +91,7 @@ const LoginContainer = () => {
       errorMessage={errorMessage}
       onFieldChange={handleFieldChange}
       onLoginSubmit={handleLoginSubmit}
+      onLayerClose={handleLayerClose}
     />
   );
 };

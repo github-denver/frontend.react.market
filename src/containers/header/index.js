@@ -9,19 +9,12 @@ const HeaderContainer = (props) => {
 
   const minimal = attribute?.minimal;
 
-  const { user } = useSelector((payload) => {
-    const profile = payload.user; // let user
-
-    let user = null;
-
-    if (profile.user?.user2) {
-      user = profile.user.user2;
-    }
-
-    return {
-      user,
-    };
-  }, shallowEqual);
+  const { user } = useSelector(
+    ({ user }) => ({
+      user: user.user?.user2,
+    }),
+    shallowEqual
+  );
 
   const dispatch = useDispatch();
 

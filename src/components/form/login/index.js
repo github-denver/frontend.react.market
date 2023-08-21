@@ -202,6 +202,7 @@ const LoginFormComponent = ({
   errorMessage,
   onFieldChange,
   onLoginSubmit,
+  onLayerClose,
 }) => {
   return (
     <StyledLogin>
@@ -249,7 +250,27 @@ const LoginFormComponent = ({
             </StyledBoxField>
           </StyledGroupField>
 
-          {errorMessage && <p>{errorMessage}</p>}
+          {errorMessage && (
+            <div className="layer_wrapper">
+              <div className="outer_cell">
+                <div className="inner_cell">
+                  <div className="inner_layer">
+                    <p className="text_layer">{errorMessage}</p>
+
+                    <StyledButtonGravity
+                      type="button"
+                      $fill={true}
+                      onClick={onLayerClose}
+                    >
+                      <span className="text_local">닫기</span>
+                    </StyledButtonGravity>
+                  </div>
+                </div>
+              </div>
+
+              <div className="dimmed"></div>
+            </div>
+          )}
 
           <StyledButtonGravity type="submit">
             <span className="text_local">로그인</span>
