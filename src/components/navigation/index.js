@@ -2,93 +2,143 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
-const StyledNavigation = styled.nav`
-  /*
-  ${({ $first }) =>
-    $first &&
-    css`
-      border-top: 0 none;
-    `}
-  border-bottom: 0.1rem solid #eee;
-
-  .inner_navigation {
-    overflow: auto;
-  }
-
-  ul {
-    padding-left: 1.6rem;
-    white-space: nowrap;
-  }
-  li {
-    display: table-cell;
-    width: 36rem;
-    box-sizing: border-box;
-    text-align: center;
-    vertical-align: middle;
-  }
-  li:last-child {
-    padding-right: 1.6rem;
-  }
-  a {
-    display: block;
-    padding: 0.95rem 0.8rem;
-    font-size: 1.4rem;
-  }
-  */
+const StyledLinkNavigation = styled(Link)`
+  display: block;
+  /* ${(props) =>
+    props.$type === "vertical"
+      ? css`
+          font-size: 1.4rem;
+        `
+      : css`
+          display: block;
+          padding: 0.95rem 0.8rem;
+          font-size: 1.4rem;
+        `} */
 `;
 
-const NavigationComponent = () => {
+const StyledItemNavigation = styled.li`
+  /* ${(props) =>
+    props.$type === "vertical"
+      ? css``
+      : css`
+          display: table-cell;
+          width: 36rem;
+          box-sizing: border-box;
+          text-align: center;
+          vertical-align: middle;
+
+          &:last-child {
+            padding-right: 1.6rem;
+          }
+        `} */
+`;
+
+const StyledListNavigation = styled.ul`
+  /* ${(props) =>
+    props.$type === "vertical"
+      ? css``
+      : css`
+          padding-left: 1.6rem;
+          white-space: nowrap;
+        `} */
+`;
+
+const StyledInnerNavigation = styled.div`
+  /* ${(props) =>
+    props.$type === "vertical"
+      ? css``
+      : css`
+          overflow: auto;
+        `} */
+`;
+
+const StyledNavigation = styled.nav`
+  ${(props) =>
+    props.$type === "vertical"
+      ? css`
+          ${StyledListNavigation} {
+            margin-top: 0.4rem;
+          }
+
+          ${StyledItemNavigation} {
+            margin-top: 0.4rem;
+
+            &:first-child {
+              margin-top: 0;
+            }
+          }
+
+          ${StyledLinkNavigation} {
+            padding: 0.95rem 4rem 0.95rem 4.6rem;
+            font-size: 1.4rem;
+            border-radius: 0.4rem;
+
+            &:hover,
+            &:focus {
+              font-weight: 700;
+              background-color: #f7f9fa;
+            }
+          }
+        `
+      : css`
+          border-bottom: 1rem solid #eee;
+        `}
+`;
+
+const NavigationComponent = ({ attribute = {} }) => {
+  const { type } = attribute;
+
   return (
-    <StyledNavigation>
-      <div className="inner_navigation">
-        <ul>
-          <li>
-            <Link to="/">홈</Link>
-          </li>
-          <li>
-            <Link to="/">추천</Link>
-          </li>
-          <li>
-            <Link to="/">집들이</Link>
-          </li>
-          <li>
-            <Link to="/">집사진</Link>
-          </li>
-          <li>
-            <Link to="/">살림 수납</Link>
-          </li>
-          <li>
-            <Link to="/">콜렉터블</Link>
-          </li>
-          <li>
-            <Link to="/">홈스토랑</Link>
-          </li>
-          <li>
-            <Link to="/">핫플레이스</Link>
-          </li>
-          <li>
-            <Link to="/">육아</Link>
-          </li>
-          <li>
-            <Link to="/">플랜테리어</Link>
-          </li>
-          <li>
-            <Link to="/">반려동물</Link>
-          </li>
-          <li>
-            <Link to="/">캠핑</Link>
-          </li>
-          <li>
-            <Link to="/">취미</Link>
-          </li>
-          <li>
-            <Link to="/">3D 인테리어</Link>
-          </li>
-          <li>
-            <Link to="/">이벤트</Link>
-          </li>
-        </ul>
-      </div>
+    <StyledNavigation $type={type}>
+      <StyledInnerNavigation>
+        <StyledListNavigation>
+          <StyledItemNavigation>
+            <StyledLinkNavigation to="/">홈</StyledLinkNavigation>
+          </StyledItemNavigation>
+          <StyledItemNavigation>
+            <StyledLinkNavigation to="/">추천</StyledLinkNavigation>
+          </StyledItemNavigation>
+          <StyledItemNavigation>
+            <StyledLinkNavigation to="/">집들이</StyledLinkNavigation>
+          </StyledItemNavigation>
+          <StyledItemNavigation>
+            <StyledLinkNavigation to="/">집사진</StyledLinkNavigation>
+          </StyledItemNavigation>
+          <StyledItemNavigation>
+            <StyledLinkNavigation to="/">살림 수납</StyledLinkNavigation>
+          </StyledItemNavigation>
+          <StyledItemNavigation>
+            <StyledLinkNavigation to="/">콜렉터블</StyledLinkNavigation>
+          </StyledItemNavigation>
+          <StyledItemNavigation>
+            <StyledLinkNavigation to="/">홈스토랑</StyledLinkNavigation>
+          </StyledItemNavigation>
+          <StyledItemNavigation>
+            <StyledLinkNavigation to="/">핫플레이스</StyledLinkNavigation>
+          </StyledItemNavigation>
+          <StyledItemNavigation>
+            <StyledLinkNavigation to="/">육아</StyledLinkNavigation>
+          </StyledItemNavigation>
+          <StyledItemNavigation>
+            <StyledLinkNavigation to="/">플랜테리어</StyledLinkNavigation>
+          </StyledItemNavigation>
+          <StyledItemNavigation>
+            <StyledLinkNavigation to="/">반려동물</StyledLinkNavigation>
+          </StyledItemNavigation>
+          <StyledItemNavigation>
+            <StyledLinkNavigation to="/">캠핑</StyledLinkNavigation>
+          </StyledItemNavigation>
+          <StyledItemNavigation>
+            <StyledLinkNavigation to="/">취미</StyledLinkNavigation>
+          </StyledItemNavigation>
+          <StyledItemNavigation>
+            <StyledLinkNavigation to="/">3D 인테리어</StyledLinkNavigation>
+          </StyledItemNavigation>
+          <StyledItemNavigation>
+            <StyledLinkNavigation to="/">이벤트</StyledLinkNavigation>
+          </StyledItemNavigation>
+        </StyledListNavigation>
+      </StyledInnerNavigation>
     </StyledNavigation>
   );
 };

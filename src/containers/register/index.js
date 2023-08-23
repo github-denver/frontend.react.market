@@ -64,22 +64,27 @@ const RegisterContainer = () => {
     dispatch(register({ id, name, password, email }));
   };
 
-  const handleDuplicateCheck = async (type, checkFunction, fieldName) => {
+  const handleDuplicateCheck = async (
+    type,
+    checkFunction,
+    fieldName,
+    labelName
+  ) => {
     const { [fieldName]: fieldValue } = formData;
 
     if (![fieldValue].every(Boolean)) {
-      setErrorMessage(`${fieldName}을(를) 입력해 주세요.`);
+      setErrorMessage(`${labelName}을(를) 입력해 주세요.`);
       return;
     }
 
     const result = await checkFunction({ [fieldName]: fieldValue });
 
     if (result.data.length > 0) {
-      setErrorMessage(`사용 불가능한 ${fieldName}입니다.`);
+      setErrorMessage(`사용 불가능한 ${labelName}입니다.`);
 
       setDuplicateChecks((prevChecks) => ({ ...prevChecks, [type]: false }));
     } else {
-      setErrorMessage(`사용 가능한 ${fieldName}입니다.`);
+      setErrorMessage(`사용 가능한 ${labelName}입니다.`);
 
       setDuplicateChecks((prevChecks) => ({ ...prevChecks, [type]: true }));
     }
@@ -126,10 +131,12 @@ const RegisterContainer = () => {
       errorMessage={errorMessage}
       onFieldChange={handleFieldChange}
       onRegisterSubmit={handleRegisterSubmit}
-      onIdCheck={() => handleDuplicateCheck("idCheck", idCheck, "id")}
-      onNameCheck={() => handleDuplicateCheck("nameCheck", nameCheck, "name")}
+      onIdCheck={() => handleDuplicateCheck("idCheck", idCheck, "id", "아이디")}
+      onNameCheck={() =>
+        handleDuplicateCheck("nameCheck", nameCheck, "name", "닉네임")
+      }
       onEmailCheck={() =>
-        handleDuplicateCheck("emailCheck", emailCheck, "email")
+        handleDuplicateCheck("emailCheck", emailCheck, "email", "이메일")
       }
       onLayerClose={handleLayerClose}
     />

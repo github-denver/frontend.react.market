@@ -12,8 +12,8 @@ const StyledHeader = styled.header`
   width: 100%;
   box-sizing: border-box;
 
-  ${(posps) =>
-    !posps.$minimal
+  ${(props) =>
+    !props.$minimal
       ? css`
           left: 0;
           height: 5rem;
@@ -44,20 +44,22 @@ const StyledLogotypeLink = styled(Link)`
 const StyledButton = styled.button`
   position: absolute;
   top: 50%;
-  ${(posps) => {
-    posps.$direction === "basket" &&
-      css`
+
+  ${(props) => {
+    if (props.$direction === "basket") {
+      return `
         right: 1rem;
       `;
-    posps.$direction === "search" &&
-      css`
+    } else if (props.$direction === "search") {
+      return `
         right: 4.9rem;
       `;
-    posps.$direction === "hamburger" &&
-      css`
+    } else if (props.$direction === "hamburger") {
+      return `
         left: 1rem;
       `;
-  }};
+    }
+  }}
   z-index: 1;
   width: 3.6rem;
   height: 3.6rem;

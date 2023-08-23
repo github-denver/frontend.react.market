@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { SlArrowRight } from "react-icons/sl";
 
 const StyledHgroup = styled.div`
-  ${(posps) =>
-    !posps.$invisible
+  ${(props) =>
+    !props.$invisible
       ? css`
           position: relative;
           padding: 1.6rem;

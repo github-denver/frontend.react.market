@@ -10,8 +10,8 @@ const StyledButtonGravity = styled.button`
   border: 0.1rem solid #35c5f0;
   border-radius: 0.4rem;
   box-sizing: border-box;
-  ${(posps) =>
-    posps.$fill
+  ${(props) =>
+    props.$fill
       ? css`
           background-color: #35c5f0;
 
@@ -47,8 +47,8 @@ const StyledSocial = styled.div`
   text-align: center;
 
   .text_local {
-    ${(posps) =>
-      posps.$space &&
+    ${(props) =>
+      props.$space &&
       css`
         margin-top: 3.5rem;
       `};
@@ -87,8 +87,8 @@ const StyledStandardLink = styled(Link)`
 
 const StyledGroupField = styled.div`
   position: relative;
-  ${(posps) =>
-    posps.$standard
+  ${(props) =>
+    props.$standard
       ? css`
           margin-top: 3rem;
         `
@@ -104,8 +104,8 @@ const StyledGroupField = styled.div`
     color: #757575;
   }
 
-  ${(posps) =>
-    posps.$confirm &&
+  ${(props) =>
+    props.$confirm &&
     css`
       ${StyledBoxField} {
       }
@@ -133,8 +133,8 @@ const StyledGroupField = styled.div`
 `;
 
 const StyledLabelField = styled.label`
-  ${(posps) =>
-    posps.$flexible
+  ${(props) =>
+    props.$flexible
       ? css`
           position: absolute;
           top: 50%;

@@ -160,7 +160,7 @@ img {
   z-index: -1;
 }
 
-.outer_half {
+/* .outer_half {
   width: 100%;
 }
 
@@ -173,7 +173,7 @@ img {
 
 .outer_half .inner_half:first-child {
   text-align: left;
-}
+} */
 
 .outer_cell {
   display: table;
@@ -227,7 +227,7 @@ img {
   font-size: 1.4rem;
 }
 
-.dimmed {
+/* .dimmed {
   position: fixed;
   top: 0;
   right: 0;
@@ -236,7 +236,7 @@ img {
   z-index: 1;
   background-color: #000;
   opacity: 0.5;
-}
+} */
 
 /*
 .___swiper___ {
