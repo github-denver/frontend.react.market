@@ -71,8 +71,6 @@ const ProfileContainer = () => {
       return;
     }
 
-    console.log("!user: ", !user);
-    console.log("!accessToken: ", !accessToken);
     if (!user && !accessToken) {
       navigate("/member/login");
     }

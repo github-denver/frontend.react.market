@@ -24,3 +24,9 @@ export const logout = () => axios.get("/api/logout");
 
 export const profile = ({ id, name, password, email, picture }) =>
   axios.post("/api/profile", { id, name, password, email, picture });
+
+export const sendEmail = ({ email }) =>
+  axios.post("/api/mail/authentication", { email });
+
+export const oauth = ({ token, password, passwordConfirm }) =>
+  axios.post("/api/mail/verification", { token, password, passwordConfirm });

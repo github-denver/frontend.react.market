@@ -2,55 +2,13 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
-const StyledLinkNavigation = styled(Link)`
-  display: block;
-  /* ${(props) =>
-    props.$type === "vertical"
-      ? css`
-          font-size: 1.4rem;
-        `
-      : css`
-          display: block;
-          padding: 0.95rem 0.8rem;
-          font-size: 1.4rem;
-        `} */
-`;
+const StyledLinkNavigation = styled(Link)``;
 
-const StyledItemNavigation = styled.li`
-  /* ${(props) =>
-    props.$type === "vertical"
-      ? css``
-      : css`
-          display: table-cell;
-          width: 36rem;
-          box-sizing: border-box;
-          text-align: center;
-          vertical-align: middle;
+const StyledItemNavigation = styled.li``;
 
-          &:last-child {
-            padding-right: 1.6rem;
-          }
-        `} */
-`;
+const StyledListNavigation = styled.ul``;
 
-const StyledListNavigation = styled.ul`
-  /* ${(props) =>
-    props.$type === "vertical"
-      ? css``
-      : css`
-          padding-left: 1.6rem;
-          white-space: nowrap;
-        `} */
-`;
-
-const StyledInnerNavigation = styled.div`
-  /* ${(props) =>
-    props.$type === "vertical"
-      ? css``
-      : css`
-          overflow: auto;
-        `} */
-`;
+const StyledInnerNavigation = styled.div``;
 
 const StyledNavigation = styled.nav`
   ${(props) =>
@@ -69,19 +27,48 @@ const StyledNavigation = styled.nav`
           }
 
           ${StyledLinkNavigation} {
+            display: block;
             padding: 0.95rem 4rem 0.95rem 4.6rem;
             font-size: 1.4rem;
             border-radius: 0.4rem;
 
             &:hover,
             &:focus {
-              font-weight: 700;
-              background-color: #f7f9fa;
+              /* font-weight: 700; */
+              /* background-color: #f7f9fa; */
             }
           }
         `
       : css`
-          border-bottom: 1rem solid #eee;
+          /* border-top: 0.1rem solid #eee; */
+          border-bottom: 0.1rem solid #eee;
+
+          ${StyledInnerNavigation} {
+            overflow: auto;
+          }
+
+          ${StyledListNavigation} {
+            padding-left: 1.6rem;
+            white-space: nowrap;
+          }
+
+          ${StyledItemNavigation} {
+            display: table-cell;
+            width: 36rem;
+            box-sizing: border-box;
+            text-align: center;
+            vertical-align: middle;
+
+            &:last-child {
+              padding-right: 1.6rem;
+            }
+          }
+
+          ${StyledLinkNavigation} {
+            display: block;
+            padding: 0.95rem 0.8rem;
+            font-size: 1.4rem;
+          }
         `}
 `;
 

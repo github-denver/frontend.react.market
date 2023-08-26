@@ -3,35 +3,14 @@ import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 import HgroupComponent from "@/components/hgroup";
 
-const StyledDimmed = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-  background-color: #000;
-  ${(porps) =>
-    porps.$visible
-      ? css`
-          display: block;
-          opacity: 0.5;
-        `
-      : css`
-          display: none;
-          opacity: 0;
-          pointer-events: none;
-        `}
-  transition: opacity 0.4s;
-`;
-
 const StyledLogin = styled.div`
-  /* margin-top: -1.2rem; */
+  margin-top: -1.2rem;
   padding: 0 1.2rem 2.4rem;
-  text-align: center;
 `;
 
 const StyledSocial = styled.div`
+  text-align: center;
+
   .text_local {
     ${(props) =>
       props.$space &&
@@ -83,11 +62,6 @@ const StyledGroupField = styled.div`
             margin-top: -0.1rem;
           }
         `};
-  text-align: left;
-
-  & + & {
-    margin-top: 1.2rem;
-  }
 
   .text_common {
     margin-top: 1rem;
@@ -131,10 +105,6 @@ const StyledLabelField = styled.label`
           -moz-transform: translateY(-50%);
           -o-transform: translateY(-50%);
           transform: translateY(-50%);
-
-          & + ${StyledBoxField} {
-            margin-top: 0;
-          }
         `
       : css`
           display: inline-block;
@@ -231,7 +201,7 @@ const LoginFormComponent = ({
   formData,
   errorMessage,
   onFieldChange,
-  onLoginSubmit,
+  onOauthSubmit,
   onLayerClose,
 }) => {
   return (
@@ -240,32 +210,17 @@ const LoginFormComponent = ({
         attribute={{ level: 3, title: "로그인", invisible: true }}
       />
 
-      <form onSubmit={onLoginSubmit}>
+      <form onSubmit={onOauthSubmit}>
         <fieldset>
           <legend className="screen_out">로그인 영역</legend>
 
-          <StyledGroupField>
-            <StyledLabelField htmlFor="id" $flexible={true}>
-              아이디
-            </StyledLabelField>
+          <StyledGroupField $standard={true}>
+            <StyledLabelField htmlFor="password">패스워드</StyledLabelField>
 
-            <StyledBoxField>
-              <input
-                type="text"
-                name="id"
-                id="id"
-                className="textfield_local"
-                placeholder="아이디를 입력해 주세요."
-                onChange={onFieldChange}
-                value={formData.id}
-              />
-            </StyledBoxField>
-          </StyledGroupField>
-
-          <StyledGroupField>
-            <StyledLabelField htmlFor="password" $flexible={true}>
-              패스워드
-            </StyledLabelField>
+            <p className="text_common">
+              패스워드는 알파벳 소문자, 숫자, 특수문자를 하나 이상 포함하고
+              6자리 이상 12자리 이하로 입력해 주세요.
+            </p>
 
             <StyledBoxField>
               <input
@@ -276,6 +231,24 @@ const LoginFormComponent = ({
                 placeholder="패스워드를 입력해 주세요."
                 onChange={onFieldChange}
                 value={formData.password}
+              />
+            </StyledBoxField>
+          </StyledGroupField>
+
+          <StyledGroupField $standard={true}>
+            <StyledLabelField htmlFor="password">
+              패스워드 확인
+            </StyledLabelField>
+
+            <StyledBoxField>
+              <input
+                type="password"
+                name="passwordConfirm"
+                id="passwordConfirm"
+                className="textfield_local"
+                placeholder="패스워드를 한 번 더 입력해 주세요."
+                onChange={onFieldChange}
+                value={formData.passwordConfirm}
               />
             </StyledBoxField>
           </StyledGroupField>
@@ -298,43 +271,15 @@ const LoginFormComponent = ({
                 </div>
               </div>
 
-              <StyledDimmed $visible={true} />
+              <div className="dimmed"></div>
             </div>
           )}
 
-          <StyledButtonGravity type="submit" $fill={true}>
-            <span className="text_local">로그인</span>
+          <StyledButtonGravity type="submit">
+            <span className="text_local">패스워드 변경</span>
           </StyledButtonGravity>
         </fieldset>
       </form>
-
-      <StyledListOptions>
-        <StyledItemOptions>
-          <StyledLinkOptions to="/member/findPassword">
-            패스워드 재설정
-          </StyledLinkOptions>
-        </StyledItemOptions>
-        <StyledItemOptions>
-          <StyledLinkOptions to="/member/register">회원가입</StyledLinkOptions>
-        </StyledItemOptions>
-      </StyledListOptions>
-
-      <StyledSocial $space={true}>
-        <p className="text_local">SNS 계정으로 간편하게 회원가입하세요.</p>
-
-        <StyledListSocial>
-          <StyledItemSocial>
-            <StyledLinkSocial to="/">네이버 로그인</StyledLinkSocial>
-          </StyledItemSocial>
-          <StyledItemSocial>
-            <StyledLinkSocial to="/">카카오 로그인</StyledLinkSocial>
-          </StyledItemSocial>
-        </StyledListSocial>
-
-        <StyledStandardLink to="mailto:goo.gl.denver@gmail.com">
-          로그인에 문제가 있으신가요?
-        </StyledStandardLink>
-      </StyledSocial>
     </StyledLogin>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "@/App.css";
 import MainPage from "@/pages/main";
 import LoginPage from "@/pages/login";
@@ -8,6 +8,8 @@ import ProfilePage from "@/pages/profile";
 import ArticleListPage from "@/pages/article";
 import ArticleReadPage from "@/pages/article/read";
 import Error404Page from "@/pages/error/404";
+import OauthPage from "@/pages/oauth";
+import FindPasswordPage from "@/pages/findPassword";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/member/login" element={<LoginPage />} />
         <Route path="/member/register" element={<RegisterPage />} />
         <Route path="/member/profile" element={<ProfilePage />} />
+        <Route path="/member/findPassword" element={<FindPasswordPage />} />
+        <Route path="/oauth/:token" element={<OauthPage />} />
         <Route
           path="/article/:category/list/:number"
           element={<ArticleListPage />}

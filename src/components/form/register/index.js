@@ -3,14 +3,35 @@ import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 import HgroupComponent from "@/components/hgroup";
 
+const StyledDimmed = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  background-color: #000;
+  ${(porps) =>
+    porps.$visible
+      ? css`
+          display: block;
+          opacity: 0.5;
+        `
+      : css`
+          display: none;
+          opacity: 0;
+          pointer-events: none;
+        `}
+  transition: opacity 0.4s;
+`;
+
 const StyledRegister = styled.div`
-  margin-top: -1.2rem;
+  /* margin-top: -1.2rem; */
   padding: 0 1.2rem 2.4rem;
+  text-align: center;
 `;
 
 const StyledSocial = styled.div`
-  text-align: center;
-
   .text_local {
     ${(props) =>
       props.$space &&
@@ -62,13 +83,6 @@ const StyledGroupField = styled.div`
             margin-top: -0.1rem;
           }
         `};
-
-  .text_common {
-    margin-top: 1rem;
-    font-size: 1.2rem;
-    color: #757575;
-  }
-
   ${(props) =>
     props.$confirm &&
     css`
@@ -83,6 +97,13 @@ const StyledGroupField = styled.div`
         margin-top: 0;
       }
     `};
+  text-align: left;
+
+  .text_common {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    color: #757575;
+  }
 
   .inner_common {
     position: relative;
@@ -206,6 +227,7 @@ const RegisterFormComponent = ({
   onNameCheck,
   onEmailCheck,
   onLayerClose,
+  onSendEmail,
 }) => {
   return (
     <StyledRegister>
@@ -225,7 +247,7 @@ const RegisterFormComponent = ({
           </StyledItemSocial>
         </StyledListSocial>
 
-        <StyledStandardLink to="/">
+        <StyledStandardLink to="mailto:goo.gl.denver@gmail.com">
           로그인에 문제가 있으신가요?
         </StyledStandardLink>
       </StyledSocial>
@@ -358,6 +380,12 @@ const RegisterFormComponent = ({
                   <span className="screen_out">이메일</span> 중복검사
                 </span>
               </StyledButtonGravity>
+
+              {/* <StyledButtonGravity type="button" onClick={onSendEmail}>
+                <span className="text_local">
+                  <span className="screen_out">이메일</span> 인증
+                </span>
+              </StyledButtonGravity> */}
             </div>
           </StyledGroupField>
 
@@ -423,22 +451,30 @@ const RegisterFormComponent = ({
                 </div>
               </div>
 
-              <div className="dimmed"></div>
+              <StyledDimmed $visible={true} />
             </div>
           )}
 
           <StyledButtonGravity type="submit" $fill={true}>
             <span className="text_local">회원가입</span>
           </StyledButtonGravity>
-
-          {/* <Link to="/">홈으로</Link> */}
         </fieldset>
       </form>
 
-      {/* <span className="text_global">이미 아이디가 있으신가요?</span>
-        <Link to="/member/login" className="link_global">
-          로그인
-        </Link> */}
+      <StyledStandardLink to="/member/login">
+        이미 아이디가 있으신가요?
+      </StyledStandardLink>
+
+      <StyledListOptions>
+        <StyledItemOptions>
+          <StyledLinkOptions to="/member/findPassword">
+            패스워드 재설정
+          </StyledLinkOptions>
+        </StyledItemOptions>
+        <StyledItemOptions>
+          <StyledLinkOptions to="/member/login">로그인</StyledLinkOptions>
+        </StyledItemOptions>
+      </StyledListOptions>
     </StyledRegister>
   );
 };

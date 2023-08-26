@@ -3,6 +3,7 @@ import { createAction, createSlice } from "@reduxjs/toolkit";
 const CHANGE_FIELD = "form/changeField";
 const INITIAL_LOGIN_FORM = "form/initialLoginForm";
 const INITIAL_REGISTER_FORM = "form/initialRegisterForm";
+const INITIAL_OAUTH_FORM = "form/initialOauthForm";
 
 export const formChangeField = createAction(CHANGE_FIELD, (payload) => ({
   payload,
@@ -16,6 +17,9 @@ export const initialRegisterForm = createAction(
     payload,
   })
 );
+export const initialOauthForm = createAction(INITIAL_OAUTH_FORM, (payload) => ({
+  payload,
+}));
 
 const initialState = {
   register: {
@@ -28,6 +32,11 @@ const initialState = {
   login: {
     id: "",
     password: "",
+  },
+  oauth: {
+    email: "",
+    password: "",
+    passwordConfirm: "",
   },
 };
 
@@ -47,6 +56,10 @@ const formSlice = createSlice({
     },
     initialLoginForm: (state) => {
       state.login = initialState.login;
+      state.error = null;
+    },
+    initialOauthForm: (state) => {
+      state.oauth = initialState.oauth;
       state.error = null;
     },
   },

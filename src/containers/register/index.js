@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { formChangeField } from "@/modules/form";
 import { initialRegisterForm } from "@/modules/form";
 import { idCheck, nameCheck, emailCheck } from "@/library/gateway/auth";
+import { sendEmail } from "@/library/gateway/auth";
 
 const RegisterContainer = () => {
   const [errorMessage, setErrorMessage] = useState(null);
@@ -90,6 +91,12 @@ const RegisterContainer = () => {
     }
   };
 
+  const handleSendEmail = async () => {
+    const { email } = formData;
+
+    const result = await sendEmail({ email });
+  };
+
   const handleLayerClose = () => {
     setErrorMessage(null);
   };
@@ -139,6 +146,7 @@ const RegisterContainer = () => {
         handleDuplicateCheck("emailCheck", emailCheck, "email", "이메일")
       }
       onLayerClose={handleLayerClose}
+      onSendEmail={handleSendEmail}
     />
   );
 };

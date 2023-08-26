@@ -13,16 +13,16 @@ const StyledHeader = styled.header`
   box-sizing: border-box;
 
   ${(props) =>
-    !props.$minimal
+    props.$minimal
       ? css`
+          padding: 4rem 1.2rem;
+          text-align: center;
+        `
+      : css`
           left: 0;
           height: 5rem;
           padding: 0 1.6rem;
           border-bottom: 0.1rem solid #eee;
-          text-align: center;
-        `
-      : css`
-          padding: 4rem 1.2rem;
           text-align: center;
         `};
 `;
@@ -93,7 +93,7 @@ const HeaderComponent = ({ attribute }) => {
   );
 
   return (
-    <StyledHeader $minimal>
+    <StyledHeader $minimal={minimal}>
       <StyledLogotype>
         <StyledLogotypeLink to="/">
           <span className="ir_wa">오늘의 집</span>

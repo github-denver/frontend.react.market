@@ -27,6 +27,78 @@ const StyledDimmed = styled.div`
   transition: opacity 0.4s;
 `;
 
+const StyledButtonDepth = styled.button`
+  display: block;
+  position: relative;
+  width: 100%;
+  padding: 0.8rem 4rem 0.8rem 4.6rem;
+  border: 0 none;
+  border-radius: 0.4rem;
+  box-sizing: border-box;
+  background-color: transparent;
+  text-align: left;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    /* background-color: #f7f9fa; */
+  }
+
+  svg:first-child {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  svg:first-child + .text_local {
+    margin-left: 0.8rem;
+  }
+
+  .text_local {
+    display: inline-block;
+    /* font-weight: 700; */
+    font-size: 1.4rem;
+    vertical-align: middle;
+  }
+
+  .text_local + svg {
+    position: absolute;
+    top: 50%;
+    right: 1.4rem;
+    z-index: 1;
+    margin-top: -0.6rem;
+  }
+`;
+
+const StyledLinkDepth = styled(Link)`
+  display: block;
+  padding: 0.95rem 4rem 0.95rem 4.6rem;
+  font-size: 1.4rem;
+  border-radius: 0.4rem;
+
+  &:hover,
+  &:focus {
+    /* font-weight: 700; */
+    /* background-color: #f7f9fa; */
+  }
+`;
+
+const StyledItemDepth = styled.li`
+  margin-top: 0.4rem;
+
+  &:first-child {
+    margin-top: 0;
+  }
+`;
+
+const StyledListDepth = styled.ul`
+  display: none;
+  margin-top: 0.4rem;
+
+  & & {
+    padding-left: 1rem;
+  }
+`;
+
 const StyledLinkHorizontal = styled(Link)`
   display: inline-block;
   padding: 0.95rem 0.4rem;
@@ -98,7 +170,7 @@ const StyledButtonService = styled.button`
 
   &:hover,
   &:focus {
-    background-color: #f7f9fa;
+    /* background-color: #f7f9fa; */
   }
 
   svg:first-child {
@@ -354,11 +426,11 @@ const UtilityComponent = ({ attribute }) => {
               <SlArrowDown size={12} />
             </StyledButtonService>
 
-            <NavigationComponent
+            {/* <NavigationComponent
               attribute={{
                 type: "vertical",
               }}
-            />
+            /> */}
           </StyledItemService>
           <StyledItemService>
             <StyledButtonService>
@@ -367,93 +439,94 @@ const UtilityComponent = ({ attribute }) => {
               <SlArrowDown size={12} />
             </StyledButtonService>
 
-            <ul>
-              <li>
-                <Link to="/">홈</Link>
-              </li>
-              <li>
-                <button type="button">
-                  <span>카테고리</span>
-                </button>
-                <ul>
-                  <li>
-                    <Link to="/">가구</Link>
-                  </li>
-                  <li>
-                    <Link to="/">패브릭</Link>
-                  </li>
-                  <li>
-                    <Link to="/">가전·디지털</Link>
-                  </li>
-                  <li>
-                    <Link to="/">주방용품</Link>
-                  </li>
-                  <li>
-                    <Link to="/">식품</Link>
-                  </li>
-                  <li>
-                    <Link to="/">데코·식물</Link>
-                  </li>
-                  <li>
-                    <Link to="/">조명</Link>
-                  </li>
-                  <li>
-                    <Link to="/">수납·정리</Link>
-                  </li>
-                  <li>
-                    <Link to="/">생활용품</Link>
-                  </li>
-                  <li>
-                    <Link to="/">생필품</Link>
-                  </li>
-                  <li>
-                    <Link to="/">유아·아동</Link>
-                  </li>
-                  <li>
-                    <Link to="/">반려동물</Link>
-                  </li>
-                  <li>
-                    <Link to="/">캠핑·레저</Link>
-                  </li>
-                  <li>
-                    <Link to="/">공구·DIY</Link>
-                  </li>
-                  <li>
-                    <Link to="/">인테리어 시공</Link>
-                  </li>
-                  <li>
-                    <Link to="/">렌탈</Link>
-                  </li>
-                  <li>
-                    <Link to="/">장보기</Link>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <Link to="/">베스트</Link>
-              </li>
-              <li>
-                <Link to="/">오늘의 딜</Link>
-              </li>
-              <li>
-                <Link to="/">리퍼 마켓</Link>
-              </li>
-              <li>
-                <Link to="/">오!시즌 위크</Link>
-              </li>
-              <li>
-                <Link to="/">빠른 배송</Link>
-              </li>
-              <li>
-                <Link to="/">오!쇼룸</Link>
-              </li>
-              <li>
-                <Link to="/">프리미엄</Link>
-              </li>
-              <li>
-                <Link to="/">기획전</Link>
-              </li>
-            </ul>
+            <StyledListDepth>
+              <StyledItemDepth>
+                <StyledLinkDepth to="/">홈</StyledLinkDepth>
+              </StyledItemDepth>
+              <StyledItemDepth>
+                <StyledButtonDepth>
+                  <span className="text_local">카테고리</span>
+                  <SlArrowDown size={12} />
+                </StyledButtonDepth>
+                <StyledListDepth>
+                  <StyledItemDepth>
+                    <StyledLinkDepth to="/">가구</StyledLinkDepth>
+                  </StyledItemDepth>
+                  <StyledItemDepth>
+                    <StyledLinkDepth to="/">패브릭</StyledLinkDepth>
+                  </StyledItemDepth>
+                  <StyledItemDepth>
+                    <StyledLinkDepth to="/">가전·디지털</StyledLinkDepth>
+                  </StyledItemDepth>
+                  <StyledItemDepth>
+                    <StyledLinkDepth to="/">주방용품</StyledLinkDepth>
+                  </StyledItemDepth>
+                  <StyledItemDepth>
+                    <StyledLinkDepth to="/">식품</StyledLinkDepth>
+                  </StyledItemDepth>
+                  <StyledItemDepth>
+                    <StyledLinkDepth to="/">데코·식물</StyledLinkDepth>
+                  </StyledItemDepth>
+                  <StyledItemDepth>
+                    <StyledLinkDepth to="/">조명</StyledLinkDepth>
+                  </StyledItemDepth>
+                  <StyledItemDepth>
+                    <StyledLinkDepth to="/">수납·정리</StyledLinkDepth>
+                  </StyledItemDepth>
+                  <StyledItemDepth>
+                    <StyledLinkDepth to="/">생활용품</StyledLinkDepth>
+                  </StyledItemDepth>
+                  <StyledItemDepth>
+                    <StyledLinkDepth to="/">생필품</StyledLinkDepth>
+                  </StyledItemDepth>
+                  <StyledItemDepth>
+                    <StyledLinkDepth to="/">유아·아동</StyledLinkDepth>
+                  </StyledItemDepth>
+                  <StyledItemDepth>
+                    <StyledLinkDepth to="/">반려동물</StyledLinkDepth>
+                  </StyledItemDepth>
+                  <StyledItemDepth>
+                    <StyledLinkDepth to="/">캠핑·레저</StyledLinkDepth>
+                  </StyledItemDepth>
+                  <StyledItemDepth>
+                    <StyledLinkDepth to="/">공구·DIY</StyledLinkDepth>
+                  </StyledItemDepth>
+                  <StyledItemDepth>
+                    <StyledLinkDepth to="/">인테리어 시공</StyledLinkDepth>
+                  </StyledItemDepth>
+                  <StyledItemDepth>
+                    <StyledLinkDepth to="/">렌탈</StyledLinkDepth>
+                  </StyledItemDepth>
+                  <StyledItemDepth>
+                    <StyledLinkDepth to="/">장보기</StyledLinkDepth>
+                  </StyledItemDepth>
+                </StyledListDepth>
+              </StyledItemDepth>
+              <StyledItemDepth>
+                <StyledLinkDepth to="/">베스트</StyledLinkDepth>
+              </StyledItemDepth>
+              <StyledItemDepth>
+                <StyledLinkDepth to="/">오늘의 딜</StyledLinkDepth>
+              </StyledItemDepth>
+              <StyledItemDepth>
+                <StyledLinkDepth to="/">리퍼 마켓</StyledLinkDepth>
+              </StyledItemDepth>
+              <StyledItemDepth>
+                <StyledLinkDepth to="/">오!시즌 위크</StyledLinkDepth>
+              </StyledItemDepth>
+              <StyledItemDepth>
+                <StyledLinkDepth to="/">빠른 배송</StyledLinkDepth>
+              </StyledItemDepth>
+              <StyledItemDepth>
+                <StyledLinkDepth to="/">오!쇼룸</StyledLinkDepth>
+              </StyledItemDepth>
+              <StyledItemDepth>
+                <StyledLinkDepth to="/">프리미엄</StyledLinkDepth>
+              </StyledItemDepth>
+              <StyledItemDepth>
+                <StyledLinkDepth to="/">기획전</StyledLinkDepth>
+              </StyledItemDepth>
+            </StyledListDepth>
           </StyledItemService>
           <StyledItemService>
             <StyledButtonService>
@@ -462,32 +535,32 @@ const UtilityComponent = ({ attribute }) => {
               <SlArrowDown size={12} />
             </StyledButtonService>
 
-            <ul>
-              <li>
-                <Link to="/">홈</Link>
-              </li>
-              <li>
-                <Link to="/">주거공간 시공</Link>
-              </li>
-              <li>
-                <Link to="/">상업공간 시공</Link>
-              </li>
-              <li>
-                <Link to="/">아파트 시공사례</Link>
-              </li>
-              <li>
-                <Link to="/">건자재</Link>
-              </li>
-              <li>
-                <Link to="/">설치 수리</Link>
-              </li>
-              <li>
-                <Link to="/">이사</Link>
-              </li>
-              <li>
-                <Link to="/">임장 체크리스트</Link>
-              </li>
-            </ul>
+            <StyledListDepth>
+              <StyledItemDepth>
+                <StyledLinkDepth to="/">홈</StyledLinkDepth>
+              </StyledItemDepth>
+              <StyledItemDepth>
+                <StyledLinkDepth to="/">주거공간 시공</StyledLinkDepth>
+              </StyledItemDepth>
+              <StyledItemDepth>
+                <StyledLinkDepth to="/">상업공간 시공</StyledLinkDepth>
+              </StyledItemDepth>
+              <StyledItemDepth>
+                <StyledLinkDepth to="/">아파트 시공사례</StyledLinkDepth>
+              </StyledItemDepth>
+              <StyledItemDepth>
+                <StyledLinkDepth to="/">건자재</StyledLinkDepth>
+              </StyledItemDepth>
+              <StyledItemDepth>
+                <StyledLinkDepth to="/">설치 수리</StyledLinkDepth>
+              </StyledItemDepth>
+              <StyledItemDepth>
+                <StyledLinkDepth to="/">이사</StyledLinkDepth>
+              </StyledItemDepth>
+              <StyledItemDepth>
+                <StyledLinkDepth to="/">임장 체크리스트</StyledLinkDepth>
+              </StyledItemDepth>
+            </StyledListDepth>
           </StyledItemService>
         </StyledListService>
 
@@ -560,11 +633,13 @@ const UtilityComponent = ({ attribute }) => {
               <span className="text_local">판매자 쇼핑</span>
             </StyledLinkHorizontal>
           </StyledItemHorizontal>
-          <StyledItemHorizontal>
-            <StyledLinkHorizontal to="/">
-              <span className="text_local">로그아웃</span>
-            </StyledLinkHorizontal>
-          </StyledItemHorizontal>
+          {user && (
+            <StyledItemHorizontal>
+              <StyledLinkHorizontal to="/">
+                <span className="text_local">로그아웃</span>
+              </StyledLinkHorizontal>
+            </StyledItemHorizontal>
+          )}
         </StyledListHorizontal>
       </StyledInner>
 

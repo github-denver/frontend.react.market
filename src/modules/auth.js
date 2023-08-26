@@ -8,6 +8,7 @@ const ACCESS_TOKEN_SAVE = "auth/accessTokenSave";
 
 const USER_REGISTER = "auth/register";
 const USER_LOGIN = "auth/login";
+const USER_OAUTH = "auth/oauth";
 const USER_LOGOUT = "auth/singout";
 const USER_PROFILE = "auth/profile";
 
@@ -17,12 +18,14 @@ export const saveAccessToken = createAction(ACCESS_TOKEN_SAVE, (payload) => ({
 
 export const register = createAction(USER_REGISTER, (payload) => ({ payload }));
 export const login = createAction(USER_LOGIN, (payload) => ({ payload }));
+export const oauth = createAction(USER_OAUTH, (payload) => ({ payload }));
 export const singout = createAction(USER_LOGOUT, (payload) => ({ payload }));
 export const profile = createAction(USER_PROFILE, (payload) => ({ payload }));
 
 const registerSaga = createRequestSaga(USER_REGISTER, gateway.register);
 const loginSaga = createRequestSaga(USER_LOGIN, gateway.login);
 const profileSaga = createRequestSaga(USER_PROFILE, gateway.profile);
+const oauthSaga = createRequestSaga(USER_OAUTH, gateway.oauth);
 
 function* singoutSaga() {
   try {
@@ -42,6 +45,7 @@ export function* authSaga() {
   yield takeLatest(USER_LOGIN, loginSaga);
   yield takeLatest(USER_LOGOUT, singoutSaga);
   yield takeLatest(USER_PROFILE, profileSaga);
+  yield takeLatest(USER_OAUTH, oauthSaga);
 }
 
 const initialState = {
@@ -91,6 +95,19 @@ const authSlice = createSlice({
       state.auth = null;
       state.token = null;
       state.error = null;
+    },
+
+    oauthSuccess: (state, action) => {
+      return {
+        ...state,
+        error: action.payload.message,
+      };
+    },
+    oauthFailure: (state, action) => {
+      return {
+        ...state,
+        error: action.payload.message,
+      };
     },
   },
   // 외부 action 및 비동기 action

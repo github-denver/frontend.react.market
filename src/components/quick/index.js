@@ -14,37 +14,14 @@ import {
   FcProcess,
 } from "react-icons/fc";
 
-const StyledQuick = styled.div`
-  /*
-  margin: 2rem;
+const StyledBoxQuick = styled.div`
+  display: block;
+  position: relative;
+  padding-top: 100%;
+  border-radius: 0.8rem;
+  background-color: #f5f5f5;
 
-  .list_quick {
-    margin: -1.2rem 0 0 -1.2rem;
-  }
-
-  .list_quick .item_quick {
-    display: inline-block;
-    width: 20%;
-    margin-top: 1.2rem;
-    padding-left: 1.2rem;
-    box-sizing: border-box;
-    text-align: center;
-    vertical-align: middle;
-  }
-
-  .list_quick .link_quick {
-    display: block;
-  }
-
-  .list_quick .box_quick {
-    display: block;
-    position: relative;
-    padding-top: 100%;
-    border-radius: 0.8rem;
-    background-color: #f5f5f5;
-  }
-
-  .list_quick .box_quick svg {
+  svg {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -56,103 +33,131 @@ const StyledQuick = styled.div`
     transform: translate(-50%, -50%);
   }
 
-  .list_quick .box_quick + .text_quick {
+  & + .text_local {
     margin-top: 0.6rem;
   }
+`;
 
-  .list_quick .text_quick {
+const StyledLinkQuick = styled(Link)`
+  display: block;
+
+  .text_local {
     display: block;
     font-size: 1.1rem;
     letter-spacing: -0.125rem;
   }
+`;
+
+const StyledItemQuick = styled.li`
+  display: inline-block;
+  width: 20%;
+  margin-top: 1.2rem;
+  padding-left: 1.2rem;
+  box-sizing: border-box;
+  text-align: center;
+  vertical-align: middle;
+`;
+
+const StyledListQuick = styled.ul`
+  margin: -1.2rem 0 0 -1.2rem;
+`;
+
+const StyledQuick = styled.div`
+  margin: 2rem;
+  /*
+ 
+  
+
+  .list_quick .box_quick  
+  .list_quick  
   */
 `;
 
 const QuickComponent = () => {
   return (
     <StyledQuick>
-      <ul className="list_quick">
-        <li className="item_quick">
-          <Link to="/" className="link_quick">
-            <span className="box_quick">
+      <StyledListQuick>
+        <StyledItemQuick>
+          <StyledLinkQuick to="/">
+            <StyledBoxQuick>
               <FcShop size={36} />
-            </span>
-            <span className="text_quick">쇼핑하기</span>
-          </Link>
-        </li>
-        <li className="item_quick">
-          <Link to="/" className="link_quick">
-            <span className="box_quick">
+            </StyledBoxQuick>
+            <span className="text_local">쇼핑하기</span>
+          </StyledLinkQuick>
+        </StyledItemQuick>
+        <StyledItemQuick>
+          <StyledLinkQuick to="/">
+            <StyledBoxQuick>
               <FcNegativeDynamic size={36} />
-            </span>
-            <span className="text_quick">오!세일</span>
-          </Link>
-        </li>
-        <li className="item_quick">
-          <Link to="/" className="link_quick">
-            <span className="box_quick">
+            </StyledBoxQuick>
+            <span className="text_local">오!세일</span>
+          </StyledLinkQuick>
+        </StyledItemQuick>
+        <StyledItemQuick>
+          <StyledLinkQuick to="/">
+            <StyledBoxQuick>
               <FcAlarmClock size={36} />
-            </span>
-            <span className="text_quick">오늘의 딜</span>
-          </Link>
-        </li>
-        <li className="item_quick">
-          <Link to="/" className="link_quick">
-            <span className="box_quick">
+            </StyledBoxQuick>
+            <span className="text_local">오늘의 딜</span>
+          </StyledLinkQuick>
+        </StyledItemQuick>
+        <StyledItemQuick>
+          <StyledLinkQuick to="/">
+            <StyledBoxQuick>
               <FcPlanner size={36} />
-            </span>
-            <span className="text_quick">오늘의 발견</span>
-          </Link>
-        </li>
-        <li className="item_quick">
-          <Link to="/" className="link_quick">
-            <span className="box_quick">
+            </StyledBoxQuick>
+            <span className="text_local">오늘의 발견</span>
+          </StyledLinkQuick>
+        </StyledItemQuick>
+        <StyledItemQuick>
+          <StyledLinkQuick to="/">
+            <StyledBoxQuick>
               <FcPaid size={36} />
-            </span>
-            <span className="text_quick">장보기</span>
-          </Link>
-        </li>
-        <li className="item_quick">
-          <Link to="/" className="link_quick">
-            <span className="box_quick">
+            </StyledBoxQuick>
+            <span className="text_local">장보기</span>
+          </StyledLinkQuick>
+        </StyledItemQuick>
+        <StyledItemQuick>
+          <StyledLinkQuick to="/">
+            <StyledBoxQuick>
               <FcHome size={36} />
-            </span>
-            <span className="text_quick">집들이</span>
-          </Link>
-        </li>
-        <li className="item_quick">
-          <Link to="/" className="link_quick">
-            <span className="box_quick">
+            </StyledBoxQuick>
+            <span className="text_local">집들이</span>
+          </StyledLinkQuick>
+        </StyledItemQuick>
+        <StyledItemQuick>
+          <StyledLinkQuick to="/">
+            <StyledBoxQuick>
               <FcLike size={36} />
-            </span>
-            <span className="text_quick">취향의 발견</span>
-          </Link>
-        </li>
-        <li className="item_quick">
-          <Link to="/" className="link_quick">
-            <span className="box_quick">
+            </StyledBoxQuick>
+            <span className="text_local">취향의 발견</span>
+          </StyledLinkQuick>
+        </StyledItemQuick>
+        <StyledItemQuick>
+          <StyledLinkQuick to="/">
+            <StyledBoxQuick>
               <FcFlashOn size={36} />
-            </span>
-            <span className="text_quick">빠른 배송</span>
-          </Link>
-        </li>
-        <li className="item_quick">
-          <Link to="/" className="link_quick">
-            <span className="box_quick">
+            </StyledBoxQuick>
+            <span className="text_local">빠른 배송</span>
+          </StyledLinkQuick>
+        </StyledItemQuick>
+        <StyledItemQuick>
+          <StyledLinkQuick to="/">
+            <StyledBoxQuick>
               <FcShipped size={36} />
-            </span>
-            <span className="text_quick">쉬운 이사</span>
-          </Link>
-        </li>
-        <li className="item_quick">
-          <Link to="/" className="link_quick">
-            <span className="box_quick">
+            </StyledBoxQuick>
+            <span className="text_local">쉬운 이사</span>
+          </StyledLinkQuick>
+        </StyledItemQuick>
+        <StyledItemQuick>
+          <StyledLinkQuick to="/">
+            <StyledBoxQuick>
               <FcProcess size={36} />
-            </span>
-            <span className="text_quick">리모델링</span>
-          </Link>
-        </li>
-      </ul>
+            </StyledBoxQuick>
+            <span className="text_local">리모델링</span>
+          </StyledLinkQuick>
+        </StyledItemQuick>
+      </StyledListQuick>
     </StyledQuick>
   );
 };
