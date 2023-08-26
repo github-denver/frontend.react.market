@@ -2,28 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 import HgroupComponent from "@/components/hgroup";
-
-const StyledDimmed = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-  background-color: #000;
-  ${(porps) =>
-    porps.$visible
-      ? css`
-          display: block;
-          opacity: 0.5;
-        `
-      : css`
-          display: none;
-          opacity: 0;
-          pointer-events: none;
-        `}
-  transition: opacity 0.4s;
-`;
+import DimmedUnit from "@/unit/dimmed";
+import ButtonStandardUnit from "@/unit/button/standard";
 
 const StyledSocial = styled.div`
   text-align: center;
@@ -93,13 +73,13 @@ const StyledGroupField = styled.div`
       ${StyledBoxField} {
       }
 
-      ${StyledButtonGravity} {
+      /* StyledButtonGravity {
         position: absolute;
         top: 0;
         right: 0;
         width: 30%;
         margin-top: 0;
-      }
+      } */
     `};
 
   .inner_common {
@@ -149,38 +129,6 @@ const StyledBoxField = styled.div`
     border: 0 none;
     box-sizing: border-box;
     font-size: 1.4rem;
-  }
-`;
-
-const StyledButtonGravity = styled.button`
-  display: block;
-  width: 100%;
-  margin-top: 2rem;
-  padding: 1.4rem 0;
-  border: 0.1rem solid #35c5f0;
-  border-radius: 0.4rem;
-  box-sizing: border-box;
-  ${(props) =>
-    props.$fill
-      ? css`
-          background-color: #35c5f0;
-
-          .text_local {
-            color: #fff;
-          }
-        `
-      : css`
-          background-color: #fff;
-        `};
-  color: #35c5f0;
-  line-height: 1;
-
-  .text_local {
-    display: inline-block;
-    /* margin: 0; */
-    font-weight: 700;
-    font-size: 1.4rem;
-    vertical-align: middle;
   }
 `;
 
@@ -235,7 +183,7 @@ const FindPasswordFormComponent = ({
   return (
     <StyledLogin>
       <HgroupComponent
-        attribute={{ level: 3, title: "로그인", invisible: true }}
+        attribute={{ level: 3, title: "이메일 확인", invisible: true }}
       />
 
       <form>
@@ -264,9 +212,14 @@ const FindPasswordFormComponent = ({
                 </StyledBoxField>
               </StyledOuterBoxField>
 
-              <StyledButtonGravity type="button">
+              <ButtonStandardUnit
+                attribute={{
+                  type: "button",
+                  confirm: true,
+                }}
+              >
                 <span className="text_local">이메일 확인</span>
-              </StyledButtonGravity>
+              </ButtonStandardUnit>
             </div>
           </StyledGroupField>
 
@@ -277,24 +230,32 @@ const FindPasswordFormComponent = ({
                   <div className="inner_layer">
                     <p className="text_layer">{errorMessage}</p>
 
-                    <StyledButtonGravity
-                      type="button"
-                      $fill={true}
-                      onClick={onLayerClose}
+                    <ButtonStandardUnit
+                      attribute={{
+                        type: "button",
+                        event: onLayerClose,
+                        fill: true,
+                      }}
                     >
                       <span className="text_local">닫기</span>
-                    </StyledButtonGravity>
+                    </ButtonStandardUnit>
                   </div>
                 </div>
               </div>
 
-              <StyledDimmed $visible={true} />
+              <DimmedUnit attribute={{ visible: true }} />
             </div>
           )}
 
-          <StyledButtonGravity type="button" $fill={true} onClick={onSendEmail}>
+          <ButtonStandardUnit
+            attribute={{
+              type: "button",
+              event: onSendEmail,
+              fill: true,
+            }}
+          >
             <span className="text_local">이메일로 인증코드 받기</span>
-          </StyledButtonGravity>
+          </ButtonStandardUnit>
         </fieldset>
       </form>
 

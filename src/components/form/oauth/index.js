@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 import HgroupComponent from "@/components/hgroup";
+import ButtonStandardUnit from "@/unit/button/standard";
 
 const StyledLogin = styled.div`
   margin-top: -1.2rem;
@@ -75,13 +76,13 @@ const StyledGroupField = styled.div`
       ${StyledBoxField} {
       }
 
-      ${StyledButtonGravity} {
+      /* StyledButtonGravity {
         position: absolute;
         top: 0;
         right: 0;
         width: 30%;
         margin-top: 0;
-      }
+      } */
     `};
 
   .inner_common {
@@ -134,38 +135,6 @@ const StyledBoxField = styled.div`
   }
 `;
 
-const StyledButtonGravity = styled.button`
-  display: block;
-  width: 100%;
-  margin-top: 2rem;
-  padding: 1.4rem 0;
-  border: 0.1rem solid #35c5f0;
-  border-radius: 0.4rem;
-  box-sizing: border-box;
-  ${(props) =>
-    props.$fill
-      ? css`
-          background-color: #35c5f0;
-
-          .text_local {
-            color: #fff;
-          }
-        `
-      : css`
-          background-color: #fff;
-        `};
-  color: #35c5f0;
-  line-height: 1;
-
-  .text_local {
-    display: inline-block;
-    /* margin: 0; */
-    font-weight: 700;
-    font-size: 1.4rem;
-    vertical-align: middle;
-  }
-`;
-
 const StyledOuterBoxField = styled.div`
   display: inline-block;
   width: 70%;
@@ -207,12 +176,12 @@ const LoginFormComponent = ({
   return (
     <StyledLogin>
       <HgroupComponent
-        attribute={{ level: 3, title: "로그인", invisible: true }}
+        attribute={{ level: 3, title: "패스워드 재설정", invisible: true }}
       />
 
       <form onSubmit={onOauthSubmit}>
         <fieldset>
-          <legend className="screen_out">로그인 영역</legend>
+          <legend className="screen_out">패스워드 재설정 영역</legend>
 
           <StyledGroupField $standard={true}>
             <StyledLabelField htmlFor="password">패스워드</StyledLabelField>
@@ -260,13 +229,15 @@ const LoginFormComponent = ({
                   <div className="inner_layer">
                     <p className="text_layer">{errorMessage}</p>
 
-                    <StyledButtonGravity
-                      type="button"
-                      $fill={true}
-                      onClick={onLayerClose}
+                    <ButtonStandardUnit
+                      attribute={{
+                        type: "button",
+                        event: onLayerClose,
+                        fill: true,
+                      }}
                     >
                       <span className="text_local">닫기</span>
-                    </StyledButtonGravity>
+                    </ButtonStandardUnit>
                   </div>
                 </div>
               </div>
@@ -275,9 +246,9 @@ const LoginFormComponent = ({
             </div>
           )}
 
-          <StyledButtonGravity type="submit">
+          <ButtonStandardUnit attribute={{ type: "submit", fill: true }}>
             <span className="text_local">패스워드 변경</span>
-          </StyledButtonGravity>
+          </ButtonStandardUnit>
         </fieldset>
       </form>
     </StyledLogin>

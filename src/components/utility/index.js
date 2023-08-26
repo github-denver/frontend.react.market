@@ -4,28 +4,9 @@ import { Link } from "react-router-dom";
 import { SlHome, SlArrowDown, SlHandbag, SlWrench } from "react-icons/sl";
 import NavigationComponent from "@/components/navigation";
 import { MdClose } from "react-icons/md";
-
-const StyledDimmed = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-  background-color: #000;
-  ${(porps) =>
-    porps.$visible
-      ? css`
-          display: block;
-          opacity: 0.5;
-        `
-      : css`
-          display: none;
-          opacity: 0;
-          pointer-events: none;
-        `}
-  transition: opacity 0.4s;
-`;
+import DimmedUnit from "@/unit/dimmed";
+import HalfUnit from "../../unit/half";
+import ButtonStandardUnit from "@/unit/button/standard";
 
 const StyledButtonDepth = styled.button`
   display: block;
@@ -219,68 +200,6 @@ const StyledListService = styled.ul`
   }
 `;
 
-const StyledLinkGravity = styled(Link)`
-  display: block;
-  width: 100%;
-  padding: 1.4rem 0;
-  border: 0.1rem solid #35c5f0;
-  border-radius: 0.4rem;
-  box-sizing: border-box;
-  ${(props) =>
-    props.$fill
-      ? css`
-          background-color: #35c5f0;
-
-          .text_local {
-            color: #fff;
-          }
-        `
-      : css`
-          background-color: #fff;
-        `};
-  color: #35c5f0;
-  line-height: 1;
-  text-align: center;
-
-  .text_local {
-    display: inline-block;
-    font-weight: 700;
-    font-size: 1.4rem;
-    vertical-align: middle;
-  }
-`;
-
-const StyledButtonGravity = styled.button`
-  display: block;
-  width: 100%;
-  padding: 1.4rem 0;
-  border: 0.1rem solid #35c5f0;
-  border-radius: 0.4rem;
-  box-sizing: border-box;
-  ${(props) =>
-    props.$fill
-      ? css`
-          background-color: #35c5f0;
-
-          .text_local {
-            color: #fff;
-          }
-        `
-      : css`
-          background-color: #fff;
-        `};
-  color: #35c5f0;
-  line-height: 1;
-  text-align: center;
-
-  .text_local {
-    display: inline-block;
-    font-weight: 700;
-    font-size: 1.4rem;
-    vertical-align: middle;
-  }
-`;
-
 const StyledButtonClose = styled.button`
   display: inline-block;
   border: 0 none;
@@ -302,21 +221,6 @@ const StyledItemGravity = styled.li`
 
 const StyledListGravity = styled.ul`
   margin: 2rem 0 0 -0.8rem;
-`;
-
-const StyledOuterHalf = styled.div`
-  width: 100%;
-`;
-
-const StyledInnerHalf = styled.div`
-  display: inline-block;
-  width: 50%;
-  text-align: right;
-  vertical-align: middle;
-
-  &:first-child {
-    text-align: left;
-  }
 `;
 
 const StyledLogotype = styled.h1`
@@ -372,47 +276,67 @@ const UtilityComponent = ({ attribute }) => {
     <StyledUtility $visible={visible}>
       <StyledInner>
         <StyledLogotype>
-          <StyledOuterHalf>
-            <StyledInnerHalf>
-              <StyledLogotypeLink to="/">
-                <span className="ir_wa">오늘의 집</span>
-              </StyledLogotypeLink>
-            </StyledInnerHalf>
-
-            <StyledInnerHalf>
-              <StyledButtonClose type="button" onClick={handleUtilityVisible}>
-                <MdClose size={24} />
-                <span className="screen_out">주메뉴 닫기</span>
-              </StyledButtonClose>
-            </StyledInnerHalf>
-          </StyledOuterHalf>
+          <HalfUnit
+            attribute={{
+              firstUnit: (
+                <StyledLogotypeLink to="/">
+                  <span className="ir_wa">오늘의 집</span>
+                </StyledLogotypeLink>
+              ),
+              secondUnit: (
+                <StyledButtonClose type="button" onClick={handleUtilityVisible}>
+                  <MdClose size={24} />
+                  <span className="screen_out">주메뉴 닫기</span>
+                </StyledButtonClose>
+              ),
+            }}
+          />
         </StyledLogotype>
 
         <StyledListGravity>
           {user ? (
             <>
               <StyledItemGravity>
-                <StyledButtonGravity type="button" onClick={handleLogoutClick}>
+                <ButtonStandardUnit
+                  attribute={{ type: "button", event: handleLogoutClick }}
+                >
                   <span className="text_local">로그아웃</span>
-                </StyledButtonGravity>
+                </ButtonStandardUnit>
               </StyledItemGravity>
               <StyledItemGravity>
-                <StyledLinkGravity to="/member/profile" $fill={true}>
+                <ButtonStandardUnit
+                  attribute={{
+                    type: "link",
+                    href: "/member/profile",
+                    fill: true,
+                  }}
+                >
                   <span className="text_local">마이페이지</span>
-                </StyledLinkGravity>
+                </ButtonStandardUnit>
               </StyledItemGravity>
             </>
           ) : (
             <>
               <StyledItemGravity>
-                <StyledLinkGravity to="/member/login">
+                <ButtonStandardUnit
+                  attribute={{
+                    type: "link",
+                    href: "/member/login",
+                  }}
+                >
                   <span className="text_local">로그인</span>
-                </StyledLinkGravity>
+                </ButtonStandardUnit>
               </StyledItemGravity>
               <StyledItemGravity>
-                <StyledLinkGravity to="/member/register" $fill={true}>
+                <ButtonStandardUnit
+                  attribute={{
+                    type: "link",
+                    href: "/member/register",
+                    fill: true,
+                  }}
+                >
                   <span className="text_local">회원가입</span>
-                </StyledLinkGravity>
+                </ButtonStandardUnit>
               </StyledItemGravity>
             </>
           )}
@@ -643,7 +567,7 @@ const UtilityComponent = ({ attribute }) => {
         </StyledListHorizontal>
       </StyledInner>
 
-      <StyledDimmed $visible={visible} />
+      <DimmedUnit attribute={{ visible }} />
     </StyledUtility>
   );
 };

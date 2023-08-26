@@ -2,28 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 import HgroupComponent from "@/components/hgroup";
-
-const StyledDimmed = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-  background-color: #000;
-  ${(porps) =>
-    porps.$visible
-      ? css`
-          display: block;
-          opacity: 0.5;
-        `
-      : css`
-          display: none;
-          opacity: 0;
-          pointer-events: none;
-        `}
-  transition: opacity 0.4s;
-`;
+import DimmedUnit from "@/unit/dimmed";
+import ButtonStandardUnit from "@/unit/button/standard";
 
 const StyledRegister = styled.div`
   /* margin-top: -1.2rem; */
@@ -89,13 +69,13 @@ const StyledGroupField = styled.div`
       ${StyledBoxField} {
       }
 
-      ${StyledButtonGravity} {
+      /* StyledButtonGravity {
         position: absolute;
         top: 0;
         right: 0;
         width: 30%;
         margin-top: 0;
-      }
+      } */
     `};
   text-align: left;
 
@@ -152,38 +132,6 @@ const StyledBoxField = styled.div`
     border: 0 none;
     box-sizing: border-box;
     font-size: 1.4rem;
-  }
-`;
-
-const StyledButtonGravity = styled.button`
-  display: block;
-  width: 100%;
-  margin-top: 2rem;
-  padding: 1.4rem 0;
-  border: 0.1rem solid #35c5f0;
-  border-radius: 0.4rem;
-  box-sizing: border-box;
-  ${(props) =>
-    props.$fill
-      ? css`
-          background-color: #35c5f0;
-
-          .text_local {
-            color: #fff;
-          }
-        `
-      : css`
-          background-color: #fff;
-        `};
-  color: #35c5f0;
-  line-height: 1;
-
-  .text_local {
-    display: inline-block;
-    /* margin: 0; */
-    font-weight: 700;
-    font-size: 1.4rem;
-    vertical-align: middle;
   }
 `;
 
@@ -279,11 +227,17 @@ const RegisterFormComponent = ({
                 </StyledBoxField>
               </StyledOuterBoxField>
 
-              <StyledButtonGravity type="button" onClick={onIdCheck}>
+              <ButtonStandardUnit
+                attribute={{
+                  type: "button",
+                  event: onIdCheck,
+                  confirm: true,
+                }}
+              >
                 <span className="text_local">
                   <span className="screen_out">아이디</span> 중복검사
                 </span>
-              </StyledButtonGravity>
+              </ButtonStandardUnit>
             </div>
           </StyledGroupField>
 
@@ -349,11 +303,17 @@ const RegisterFormComponent = ({
                 </StyledBoxField>
               </StyledOuterBoxField>
 
-              <StyledButtonGravity type="button" onClick={onNameCheck}>
+              <ButtonStandardUnit
+                attribute={{
+                  type: "button",
+                  event: onNameCheck,
+                  confirm: true,
+                }}
+              >
                 <span className="text_local">
                   <span className="screen_out">닉네임</span> 중복검사
                 </span>
-              </StyledButtonGravity>
+              </ButtonStandardUnit>
             </div>
           </StyledGroupField>
 
@@ -375,17 +335,29 @@ const RegisterFormComponent = ({
                 </StyledBoxField>
               </StyledOuterBoxField>
 
-              <StyledButtonGravity type="button" onClick={onEmailCheck}>
+              <ButtonStandardUnit
+                attribute={{
+                  type: "button",
+                  event: onEmailCheck,
+                  confirm: true,
+                }}
+              >
                 <span className="text_local">
                   <span className="screen_out">이메일</span> 중복검사
                 </span>
-              </StyledButtonGravity>
+              </ButtonStandardUnit>
 
-              {/* <StyledButtonGravity type="button" onClick={onSendEmail}>
+              {/* <ButtonStandardUnit
+                attribute={{
+                  type: "button",
+                  event: onSendEmail,
+                  confirm: true,
+                }}
+              >
                 <span className="text_local">
                   <span className="screen_out">이메일</span> 인증
                 </span>
-              </StyledButtonGravity> */}
+              </ButtonStandardUnit> */}
             </div>
           </StyledGroupField>
 
@@ -440,24 +412,26 @@ const RegisterFormComponent = ({
                   <div className="inner_layer">
                     <p className="text_layer">{errorMessage}</p>
 
-                    <StyledButtonGravity
-                      type="button"
-                      $fill={true}
-                      onClick={onLayerClose}
+                    <ButtonStandardUnit
+                      attribute={{
+                        type: "button",
+                        event: onLayerClose,
+                        fill: true,
+                      }}
                     >
                       <span className="text_local">닫기</span>
-                    </StyledButtonGravity>
+                    </ButtonStandardUnit>
                   </div>
                 </div>
               </div>
 
-              <StyledDimmed $visible={true} />
+              <DimmedUnit attribute={{ visible: true }} />
             </div>
           )}
 
-          <StyledButtonGravity type="submit" $fill={true}>
+          <ButtonStandardUnit attribute={{ type: "submit", fill: true }}>
             <span className="text_local">회원가입</span>
-          </StyledButtonGravity>
+          </ButtonStandardUnit>
         </fieldset>
       </form>
 

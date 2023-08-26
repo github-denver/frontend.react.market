@@ -18,7 +18,7 @@ const StyledBoxQuick = styled.div`
   display: block;
   position: relative;
   padding-top: 100%;
-  border-radius: 0.8rem;
+  border-radius: 2rem;
   background-color: #f5f5f5;
 
   svg {
@@ -64,13 +64,6 @@ const StyledListQuick = styled.ul`
 
 const StyledQuick = styled.div`
   margin: 2rem;
-  /*
- 
-  
-
-  .list_quick .box_quick  
-  .list_quick  
-  */
 `;
 
 const QuickComponent = () => {
