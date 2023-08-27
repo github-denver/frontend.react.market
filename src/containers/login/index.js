@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import LoginFormComponent from "@/components/form/login";
+import LoginComponent from "@/components/form/login";
 import { login } from "@/modules/auth";
 import { useNavigate } from "react-router-dom";
 import { userCheck } from "@/modules/user";
@@ -86,7 +86,7 @@ const LoginContainer = () => {
   }, [navigate, accessToken, user]);
 
   return (
-    <LoginFormComponent
+    <LoginComponent
       formData={formData}
       errorMessage={errorMessage}
       onFieldChange={handleFieldChange}

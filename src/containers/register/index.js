@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import FormRegisterComponent from "@/components/form/register";
+import RegisterComponent from "@/components/form/register";
 import { register } from "@/modules/auth";
 import { useNavigate } from "react-router-dom";
 import { formChangeField } from "@/modules/form";
@@ -133,7 +133,7 @@ const RegisterContainer = () => {
   }, [navigate, dispatch, auth, error, user]);
 
   return (
-    <FormRegisterComponent
+    <RegisterComponent
       formData={formData}
       errorMessage={errorMessage}
       onFieldChange={handleFieldChange}

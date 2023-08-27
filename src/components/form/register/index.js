@@ -1,172 +1,42 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import HgroupComponent from "@/components/hgroup";
 import DimmedUnit from "@/unit/dimmed";
 import ButtonStandardUnit from "@/unit/button/standard";
+import SocialComponent from "@/components/social";
+import LinkStandardUnit from "@/unit/link/standard";
+import FieldUnit from "@/unit/field";
+import ListStandardComponent from "@/components/list/standard";
+import CheckboxStandardUnit from "@/unit/checkbox/standard";
+import ListTermsComponent from "@/components/list/terms";
 
 const StyledRegister = styled.div`
-  /* margin-top: -1.2rem; */
-  padding: 0 1.2rem 2.4rem;
+  max-width: 31.2rem;
+  margin: -1.2rem auto 0;
   text-align: center;
-`;
 
-const StyledSocial = styled.div`
-  .text_local {
-    ${(props) =>
-      props.$space &&
-      css`
-        margin-top: 3.5rem;
-      `};
-    font-size: 1.2rem;
-    color: #757575;
+  .button_register {
+    margin-top: 2rem;
+  }
+
+  .group_social {
+    margin-bottom: 3.6rem;
+  }
+
+  .link_standard {
+    margin-top: 2rem;
+  }
+
+  .button_email_confirm {
+    margin-top: 1.2rem;
+  }
+
+  .group_terms {
+    margin-top: 2.4rem;
   }
 `;
 
-const StyledListSocial = styled.ul`
-  margin: -2rem 0 0 -2rem;
-  padding-top: 2rem;
-`;
-
-const StyledItemSocial = styled.li`
-  display: inline-block;
-  margin: 2rem 0 0 2rem;
-  border-radius: 100%;
-  vertical-align: middle;
-`;
-
-const StyledLinkSocial = styled(Link)`
-  display: block;
-  width: 4.8rem;
-  height: 4.8rem;
-  border-radius: 100%;
-  background-color: #f1f1f1;
-`;
-
-const StyledStandardLink = styled(Link)`
-  display: inline-block;
-  margin-top: 2rem;
-  font-size: 1.2rem;
-  color: #999;
-  vertical-align: top;
-`;
-
-const StyledGroupField = styled.div`
-  position: relative;
-  ${(props) =>
-    props.$standard
-      ? css`
-          margin-top: 3rem;
-        `
-      : css`
-          & + & {
-            margin-top: -0.1rem;
-          }
-        `};
-  ${(props) =>
-    props.$confirm &&
-    css`
-      ${StyledBoxField} {
-      }
-
-      /* StyledButtonGravity {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 30%;
-        margin-top: 0;
-      } */
-    `};
-  text-align: left;
-
-  .text_common {
-    margin-top: 1rem;
-    font-size: 1.2rem;
-    color: #757575;
-  }
-
-  .inner_common {
-    position: relative;
-    margin-top: 1rem;
-  }
-`;
-
-const StyledLabelField = styled.label`
-  ${(props) =>
-    props.$flexible
-      ? css`
-          position: absolute;
-          top: 50%;
-          left: 1.4rem;
-          z-index: 1;
-          font-size: 1.4rem;
-          color: #bdbdbd;
-          -webkit-transform: translateY(-50%);
-          -ms-transform: translateY(-50%);
-          -moz-transform: translateY(-50%);
-          -o-transform: translateY(-50%);
-          transform: translateY(-50%);
-        `
-      : css`
-          display: inline-block;
-          font-weight: 700;
-          font-size: 16px;
-          color: #2f3438;
-          vertical-align: middle;
-        `};
-`;
-
-const StyledBoxField = styled.div`
-  /* .text_common + & {
-    margin-top: 1rem;
-  } */
-
-  display: block;
-  margin-top: 1rem;
-  border: 0.1rem solid #bdbdbd;
-  box-sizing: border-box;
-
-  .textfield_local {
-    width: 100%;
-    padding: 1.05rem 1.4rem;
-    border: 0 none;
-    box-sizing: border-box;
-    font-size: 1.4rem;
-  }
-`;
-
-const StyledOuterBoxField = styled.div`
-  display: inline-block;
-  width: 70%;
-  padding-right: 1rem;
-  box-sizing: border-box;
-  vertical-align: middle;
-
-  ${StyledBoxField} {
-    margin-top: 0;
-  }
-`;
-
-const StyledListOptions = styled.ul`
-  margin: -2rem 0 0 -2rem;
-  padding-top: 2rem;
-  text-align: center;
-`;
-
-const StyledItemOptions = styled.li`
-  display: inline-block;
-  margin: 2rem 0 0 2rem;
-  font-size: 1.2rem;
-  color: #424242;
-  vertical-align: middle;
-`;
-
-const StyledLinkOptions = styled(Link)`
-  font-size: 1.2rem;
-  color: #424242;
-`;
-
-const RegisterFormComponent = ({
+const RegisterComponent = ({
   formData,
   errorMessage,
   onFieldChange,
@@ -183,227 +53,283 @@ const RegisterFormComponent = ({
         attribute={{ level: 3, title: "회원가입", invisible: true }}
       />
 
-      <StyledSocial>
-        <p className="text_local">SNS 계정으로 간편하게 회원가입하세요.</p>
-
-        <StyledListSocial>
-          <StyledItemSocial>
-            <StyledLinkSocial to="/">네이버 로그인</StyledLinkSocial>
-          </StyledItemSocial>
-          <StyledItemSocial>
-            <StyledLinkSocial to="/">카카오 로그인</StyledLinkSocial>
-          </StyledItemSocial>
-        </StyledListSocial>
-
-        <StyledStandardLink to="mailto:goo.gl.denver@gmail.com">
-          로그인에 문제가 있으신가요?
-        </StyledStandardLink>
-      </StyledSocial>
+      <SocialComponent
+        attribute={{
+          className: "group_social",
+          guideMessage: "SNS 계정으로 간편하게 회원가입하세요.",
+          list: [
+            {
+              href: "/",
+              text: "네이버 로그인",
+            },
+            {
+              href: "/",
+              text: "카카오 로그인",
+            },
+          ],
+        }}
+      >
+        <LinkStandardUnit
+          attribute={{
+            className: "link_standard",
+            href: "mailto:goo.gl.denver@gmail.com",
+            text: "로그인에 문제가 있으신가요?",
+          }}
+        />
+      </SocialComponent>
 
       <form onSubmit={onRegisterSubmit}>
         <fieldset>
           <legend className="screen_out">회원가입 영역</legend>
 
-          <StyledGroupField $standard={true} $confirm={true}>
-            <StyledLabelField htmlFor="id">아이디</StyledLabelField>
+          <FieldUnit
+            attribute={{
+              className: "group_field",
+              standard: true,
+              confirm: true,
+              label: {
+                htmlFor: "id",
+                text: "아이디",
+              },
+              guideMessage: (
+                <p className="text_field">
+                  아이디는 알파벳 소·대문자, 숫자, - . _만 입력 가능하고 4자리
+                  이상 8자리 이하로 입력해 주세요.
+                </p>
+              ),
+              input: {
+                type: "text",
+                name: "id",
+                id: "id",
+                placeholder: "아이디를 입력해 주세요.",
+                event: onFieldChange,
+                value: formData.id,
+              },
+              confirmButton: (
+                <ButtonStandardUnit
+                  attribute={{
+                    type: "button",
+                    event: onIdCheck,
+                    confirm: true,
+                  }}
+                >
+                  <span className="text_local">
+                    <span className="screen_out">아이디</span> 중복검사
+                  </span>
+                </ButtonStandardUnit>
+              ),
+            }}
+          />
 
-            <p className="text_common">
-              아이디는 알파벳 소·대문자, 숫자, - . _만 입력 가능하고 4자리 이상
-              8자리 이하로 입력해 주세요.
-            </p>
+          <FieldUnit
+            attribute={{
+              className: "group_field",
+              standard: true,
+              label: {
+                htmlFor: "password",
+                text: "패스워드",
+              },
+              guideMessage: (
+                <p className="text_field">
+                  패스워드는 알파벳 소문자, 숫자, 특수문자를 하나 이상 포함하고
+                  6자리 이상 12자리 이하로 입력해 주세요.
+                </p>
+              ),
+              input: {
+                type: "password",
+                name: "password",
+                id: "password",
+                placeholder: "패스워드를 입력해 주세요.",
+                event: onFieldChange,
+                value: formData.password,
+              },
+            }}
+          />
 
-            <div className="inner_common">
-              <StyledOuterBoxField>
-                <StyledBoxField>
-                  <input
-                    type="text"
-                    name="id"
-                    id="id"
-                    className="textfield_local"
-                    placeholder="아이디를 입력해 주세요."
-                    onChange={onFieldChange}
-                    value={formData.id}
-                  />
-                </StyledBoxField>
-              </StyledOuterBoxField>
+          <FieldUnit
+            attribute={{
+              className: "group_field",
+              standard: true,
+              label: {
+                htmlFor: "passwordConfirm",
+                text: "패스워드 확인",
+              },
+              input: {
+                type: "password",
+                name: "passwordConfirm",
+                id: "passwordConfirm",
+                placeholder: "패스워드를 한 번 더 입력해 주세요.",
+                event: onFieldChange,
+                value: formData.passwordConfirm,
+              },
+            }}
+          />
 
-              <ButtonStandardUnit
-                attribute={{
-                  type: "button",
-                  event: onIdCheck,
-                  confirm: true,
-                }}
-              >
-                <span className="text_local">
-                  <span className="screen_out">아이디</span> 중복검사
-                </span>
-              </ButtonStandardUnit>
-            </div>
-          </StyledGroupField>
+          <FieldUnit
+            attribute={{
+              className: "group_field",
+              standard: true,
+              confirm: true,
+              label: {
+                htmlFor: "name",
+                text: "닉네임",
+              },
+              guideMessage: (
+                <p className="text_field">
+                  닉네임은 한글과 알파벳, 숫자만 입력 가능하고 2자리 이상 6자리
+                  이하로 입력해 주세요.
+                </p>
+              ),
+              input: {
+                type: "text",
+                name: "name",
+                id: "name",
+                placeholder: "닉네임을 입력해 주세요.",
+                event: onFieldChange,
+                value: formData.name,
+              },
+              confirmButton: (
+                <ButtonStandardUnit
+                  attribute={{
+                    type: "button",
+                    event: onNameCheck,
+                    confirm: true,
+                  }}
+                >
+                  <span className="text_local">
+                    <span className="screen_out">닉네임</span> 중복검사
+                  </span>
+                </ButtonStandardUnit>
+              ),
+            }}
+          />
 
-          <StyledGroupField $standard={true}>
-            <StyledLabelField htmlFor="password">패스워드</StyledLabelField>
+          <FieldUnit
+            attribute={{
+              className: "group_field",
+              standard: true,
+              confirm: true,
+              label: {
+                htmlFor: "email",
+                text: "이메일",
+              },
+              input: {
+                type: "email",
+                name: "email",
+                id: "email",
+                placeholder: "이메일을 입력해 주세요.",
+                event: onFieldChange,
+                value: formData.email,
+              },
+              confirmButton: (
+                <ButtonStandardUnit
+                  attribute={{
+                    type: "button",
+                    event: onEmailCheck,
+                    confirm: true,
+                  }}
+                >
+                  <span className="text_local">
+                    <span className="screen_out">이메일</span> 중복검사
+                  </span>
+                </ButtonStandardUnit>
+              ),
+            }}
+          />
 
-            <p className="text_common">
-              패스워드는 알파벳 소문자, 숫자, 특수문자를 하나 이상 포함하고
-              6자리 이상 12자리 이하로 입력해 주세요.
-            </p>
+          <ButtonStandardUnit
+            attribute={{
+              type: "button",
+              className: "button_email_confirm",
+              event: onSendEmail,
+            }}
+          >
+            <span className="text_local">이메일 인증</span>
+          </ButtonStandardUnit>
 
-            <StyledBoxField>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                className="textfield_local"
-                placeholder="패스워드를 입력해 주세요."
-                onChange={onFieldChange}
-                value={formData.password}
-              />
-            </StyledBoxField>
-          </StyledGroupField>
+          <ListTermsComponent
+            attribute={{
+              className: "group_terms",
+              firstUnit: (
+                <CheckboxStandardUnit
+                  attribute={{
+                    label: {
+                      htmlFor: "all",
+                      text: "전체 동의",
+                      message: "선택항목에 대한 동의 포함",
+                    },
+                    input: {
+                      name: "terms",
+                      id: "terms",
+                    },
+                  }}
+                />
+              ),
+              secondUnit: [
+                <CheckboxStandardUnit
+                  attribute={{
+                    label: {
+                      htmlFor: "a1",
+                      text: "이용약관",
+                      required: "(필수)",
+                    },
+                    input: {
+                      name: "terms",
+                      id: "terms",
+                    },
+                  }}
+                />,
+                <CheckboxStandardUnit
+                  attribute={{
+                    label: {
+                      htmlFor: "a2",
+                      text: "개인정보수집 및 이용동의",
+                      required: "(필수)",
+                    },
+                    input: {
+                      name: "terms",
+                      id: "terms",
+                    },
+                  }}
+                />,
+                <CheckboxStandardUnit
+                  attribute={{
+                    label: {
+                      htmlFor: "a3",
+                      text: "개인정보 마케팅 활용 동의",
+                      required: "(필수)",
+                    },
+                    input: {
+                      name: "terms",
+                      id: "terms",
+                    },
+                  }}
+                />,
+                <CheckboxStandardUnit
+                  attribute={{
+                    label: {
+                      htmlFor: "a4",
+                      text: "이벤트, 쿠폰, 특가 알림 메일 및 SMS 등 수신",
+                    },
+                    input: {
+                      name: "terms",
+                      id: "terms",
+                    },
+                  }}
+                />,
+              ],
+            }}
+          >
+            <HgroupComponent
+              attribute={{
+                level: "strong",
+                title: "약관 동의",
+                size: "small",
+              }}
+            />
+          </ListTermsComponent>
 
-          <StyledGroupField $standard={true}>
-            <StyledLabelField htmlFor="password">
-              패스워드 확인
-            </StyledLabelField>
-
-            <StyledBoxField>
-              <input
-                type="password"
-                name="passwordConfirm"
-                id="passwordConfirm"
-                className="textfield_local"
-                placeholder="패스워드를 한 번 더 입력해 주세요."
-                onChange={onFieldChange}
-                value={formData.passwordConfirm}
-              />
-            </StyledBoxField>
-          </StyledGroupField>
-
-          <StyledGroupField $standard={true} $confirm={true}>
-            <StyledLabelField htmlFor="name">닉네임</StyledLabelField>
-
-            <p className="text_common">
-              닉네임은 한글과 알파벳, 숫자만 입력 가능하고 2자리 이상 6자리
-              이하로 입력해 주세요.
-            </p>
-
-            <div className="inner_common">
-              <StyledOuterBoxField>
-                <StyledBoxField>
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    className="textfield_local"
-                    placeholder="닉네임을 입력해 주세요."
-                    onChange={onFieldChange}
-                    value={formData.name}
-                  />
-                </StyledBoxField>
-              </StyledOuterBoxField>
-
-              <ButtonStandardUnit
-                attribute={{
-                  type: "button",
-                  event: onNameCheck,
-                  confirm: true,
-                }}
-              >
-                <span className="text_local">
-                  <span className="screen_out">닉네임</span> 중복검사
-                </span>
-              </ButtonStandardUnit>
-            </div>
-          </StyledGroupField>
-
-          <StyledGroupField $standard={true} $confirm={true}>
-            <StyledLabelField htmlFor="email">이메일</StyledLabelField>
-
-            <div className="inner_common">
-              <StyledOuterBoxField>
-                <StyledBoxField>
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    className="textfield_local"
-                    placeholder="이메일을 입력해 주세요."
-                    onChange={onFieldChange}
-                    value={formData.email}
-                  />
-                </StyledBoxField>
-              </StyledOuterBoxField>
-
-              <ButtonStandardUnit
-                attribute={{
-                  type: "button",
-                  event: onEmailCheck,
-                  confirm: true,
-                }}
-              >
-                <span className="text_local">
-                  <span className="screen_out">이메일</span> 중복검사
-                </span>
-              </ButtonStandardUnit>
-
-              {/* <ButtonStandardUnit
-                attribute={{
-                  type: "button",
-                  event: onSendEmail,
-                  confirm: true,
-                }}
-              >
-                <span className="text_local">
-                  <span className="screen_out">이메일</span> 인증
-                </span>
-              </ButtonStandardUnit> */}
-            </div>
-          </StyledGroupField>
-
-          {/* <div>
-              <HgroupComponent
-                attribute={{
-                  level: "strong",
-                  title: "약관 동의",
-                  invisible: true,
-                }}
-              />
-
-              <ul>
-                <li>
-                  <input type="checkbox" name="terms" />
-                  <label htmlFor="terms">전체 동의</label>
-                  <p>선택항목에 대한 동의 포함</p>
-                </li>
-                <li>
-                  <input type="checkbox" name="" />
-                  <label htmlFor="">
-                    이용약관 <em>필수</em>
-                  </label>
-                </li>
-                <li>
-                  <input type="checkbox" name="" />
-                  <label htmlFor="">
-                    개인정보수집 및 이용동의 <em>필수</em>
-                  </label>
-                </li>
-                <li>
-                  <input type="checkbox" name="" />
-                  <label htmlFor="">
-                    개인정보 마케팅 활용 동의 <em>필수</em>
-                  </label>
-                </li>
-                <li>
-                  <input type="checkbox" name="" />
-                  <label htmlFor="">
-                    이벤트, 쿠폰, 특가 알림 메일 및 SMS 등 수신{" "}
-                    <span>선택</span>
-                  </label>
-                </li>
-              </ul>
-              <p>필수 항목에 동의해 주세요.</p>
-            </div> */}
+          {/* <p>필수 항목에 동의해 주세요.</p> */}
 
           {errorMessage && (
             <div className="layer_wrapper">
@@ -429,28 +355,42 @@ const RegisterFormComponent = ({
             </div>
           )}
 
-          <ButtonStandardUnit attribute={{ type: "submit", fill: true }}>
+          <ButtonStandardUnit
+            attribute={{
+              type: "submit",
+              className: "button_register",
+              fill: true,
+            }}
+          >
             <span className="text_local">회원가입</span>
           </ButtonStandardUnit>
         </fieldset>
       </form>
 
-      <StyledStandardLink to="/member/login">
-        이미 아이디가 있으신가요?
-      </StyledStandardLink>
+      <LinkStandardUnit
+        attribute={{
+          className: "link_standard",
+          href: "/member/login",
+          text: "이미 아이디가 있으신가요?",
+        }}
+      />
 
-      <StyledListOptions>
-        <StyledItemOptions>
-          <StyledLinkOptions to="/member/findPassword">
-            패스워드 재설정
-          </StyledLinkOptions>
-        </StyledItemOptions>
-        <StyledItemOptions>
-          <StyledLinkOptions to="/member/login">로그인</StyledLinkOptions>
-        </StyledItemOptions>
-      </StyledListOptions>
+      <ListStandardComponent
+        attribute={{
+          list: [
+            {
+              href: "/member/findPassword",
+              text: "패스워드 재설정",
+            },
+            {
+              href: "/member/register",
+              text: "회원가입",
+            },
+          ],
+        }}
+      />
     </StyledRegister>
   );
 };
 
-export default RegisterFormComponent;
+export default RegisterComponent;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import FindPasswordFormComponent from "@/components/form/findPassword";
+import FindPasswordComponent from "@/components/form/findPassword";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { formChangeField, initialOauthForm } from "@/modules/form";
@@ -70,7 +70,7 @@ const FindPasswordContainer = () => {
   }, [dispatch, error]);
 
   return (
-    <FindPasswordFormComponent
+    <FindPasswordComponent
       formData={formData}
       errorMessage={errorMessage}
       onFieldChange={handleFieldChange}

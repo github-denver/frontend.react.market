@@ -51,15 +51,21 @@ const StyledStandardButton = styled.button`
 `;
 
 const ButtonStandardUnit = ({ children, attribute }) => {
-  const { type, event, href, fill, confirm } = attribute;
+  const { type, className, event, href, fill, confirm } = attribute || {};
 
   return type === "link" ? (
-    <StyledStandardLink to={href} $fill={fill} $confirm={confirm}>
+    <StyledStandardLink
+      to={href}
+      className={className}
+      $fill={fill}
+      $confirm={confirm}
+    >
       {children}
     </StyledStandardLink>
   ) : (
     <StyledStandardButton
       type={type}
+      className={className}
       onClick={event}
       $fill={fill}
       $confirm={confirm}

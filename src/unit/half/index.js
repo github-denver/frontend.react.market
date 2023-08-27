@@ -18,7 +18,7 @@ const StyledOuterHalf = styled.div`
 `;
 
 const HalfUnit = ({ attribute }) => {
-  const { firstUnit, secondUnit } = attribute;
+  const { firstUnit, secondUnit } = attribute || {};
 
   return (
     <StyledOuterHalf>
