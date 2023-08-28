@@ -43,7 +43,7 @@ const FindPasswordComponent = ({
               standard: true,
               confirm: true,
               label: {
-                htmlFor: "emailConfirm",
+                htmlFor: "email",
                 text: "이메일",
               },
               guideMessage: (
@@ -53,9 +53,9 @@ const FindPasswordComponent = ({
               ),
               input: {
                 type: "email",
-                name: "emailConfirm",
-                id: "emailConfirm",
-                placeholder: "아이디를 입력해 주세요.",
+                name: "email",
+                id: "email",
+                placeholder: "이메일을 입력해 주세요.",
                 event: onFieldChange,
                 value: formData.email,
               },
