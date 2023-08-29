@@ -5,8 +5,9 @@ import { SlHome, SlArrowDown, SlHandbag, SlWrench } from "react-icons/sl";
 import NavigationComponent from "@/components/navigation";
 import { MdClose } from "react-icons/md";
 import DimmedUnit from "@/unit/dimmed";
-import HalfUnit from "../../unit/half";
+import HalfUnit from "@/unit/half";
 import ButtonStandardUnit from "@/unit/button/standard";
+import AccordionMenu from "@/unit/menu/accordion";
 
 const StyledButtonDepth = styled.button`
   display: block;
@@ -72,7 +73,7 @@ const StyledItemDepth = styled.li`
 `;
 
 const StyledListDepth = styled.ul`
-  display: none;
+  /* display: none; */
   margin-top: 0.4rem;
 
   & & {
@@ -188,6 +189,7 @@ const StyledItemService = styled.li`
 `;
 
 const StyledListService = styled.ul`
+  display: none;
   margin-top: 2rem;
   padding: 2rem 0;
   border-top: 0.1rem solid #eee;
@@ -342,6 +344,286 @@ const UtilityComponent = ({ attribute }) => {
           )}
         </StyledListGravity>
 
+        <AccordionMenu
+          items={[
+            {
+              icon: <SlHome size={24} />,
+              title: "커뮤니티",
+              arrow: <SlArrowDown size={12} />,
+              subItems: [
+                {
+                  icon: null,
+                  link: "홈",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  link: "추천",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  link: "집들이",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  link: "집사진",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  link: "살림 수납",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  link: "콜렉터블",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  link: "홈스토랑",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  link: "핫플레이스",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  link: "육아",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  link: "플랜테리어",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  link: "반려동물",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  link: "캠핑",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  link: "취미",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  link: "3D 인테리어",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  link: "이벤트",
+                  arrow: null,
+                },
+              ],
+            },
+            {
+              icon: <SlHandbag size={24} />,
+              title: "쇼핑",
+              arrow: <SlArrowDown size={12} />,
+              subItems: [
+                {
+                  icon: null,
+                  link: "홈",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  title: "카테고리",
+                  arrow: <SlArrowDown size={12} />,
+                  subItems: [
+                    {
+                      icon: null,
+                      link: "가구",
+                      arrow: null,
+                    },
+                    {
+                      icon: null,
+                      link: "패브릭",
+                      arrow: null,
+                    },
+                    {
+                      icon: null,
+                      link: "가전·디지털",
+                      arrow: null,
+                    },
+                    {
+                      icon: null,
+                      link: "주방용품",
+                      arrow: null,
+                    },
+                    {
+                      icon: null,
+                      link: "식품",
+                      arrow: null,
+                    },
+                    {
+                      icon: null,
+                      link: "데코·식물",
+                      arrow: null,
+                    },
+                    {
+                      icon: null,
+                      link: "조명",
+                      arrow: null,
+                    },
+                    {
+                      icon: null,
+                      link: "수납·정리",
+                      arrow: null,
+                    },
+                    {
+                      icon: null,
+                      link: "생활용품",
+                      arrow: null,
+                    },
+                    {
+                      icon: null,
+                      link: "생필품",
+                      arrow: null,
+                    },
+                    {
+                      icon: null,
+                      link: "유아·아동",
+                      arrow: null,
+                    },
+                    {
+                      icon: null,
+                      link: "반려동물",
+                      arrow: null,
+                    },
+                    {
+                      icon: null,
+                      link: "캠핑·레저",
+                      arrow: null,
+                    },
+                    {
+                      icon: null,
+                      link: "공구·DIY",
+                      arrow: null,
+                    },
+                    {
+                      icon: null,
+                      link: "인테리어 시공",
+                      arrow: null,
+                    },
+                    {
+                      icon: null,
+                      link: "렌탈",
+                      arrow: null,
+                    },
+                    {
+                      icon: null,
+                      link: "장보기",
+                      arrow: null,
+                    },
+                  ],
+                },
+                {
+                  icon: null,
+                  link: "베스트",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  link: "오늘의 딜",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  link: "리퍼 마켓",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  link: "오!시즌 위크",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  link: "빠른 배송",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  link: "오!쇼룸",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  link: "프리미엄",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  link: "기획전",
+                  arrow: null,
+                },
+              ],
+            },
+
+            {
+              icon: <SlWrench size={24} />,
+              title: "이사/시공/생활",
+              arrow: <SlArrowDown size={12} />,
+              subItems: [
+                {
+                  icon: null,
+                  link: "홈",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  link: "주거공간 시공",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  link: "상업공간 시공",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  link: "아파트 시공사례",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  link: "건자재",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  link: "설치 수리",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  link: "이사",
+                  arrow: null,
+                },
+                {
+                  icon: null,
+                  link: "임장 체크리스트",
+                  arrow: null,
+                },
+              ],
+            },
+          ]}
+          closeOthersOnClick={true}
+        />
+
         <StyledListService>
           <StyledItemService>
             <StyledButtonService>
@@ -350,11 +632,11 @@ const UtilityComponent = ({ attribute }) => {
               <SlArrowDown size={12} />
             </StyledButtonService>
 
-            {/* <NavigationComponent
+            <NavigationComponent
               attribute={{
                 type: "vertical",
               }}
-            /> */}
+            />
           </StyledItemService>
           <StyledItemService>
             <StyledButtonService>
