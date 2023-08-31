@@ -115,8 +115,17 @@ const FieldUnit = ({ attribute }) => {
   } = attribute || {};
 
   const { htmlFor, text, flexible, hideLabel } = label || {};
-  const { type, name, id, placeholder, event, value, defaultValue, disabled } =
-    input || {};
+  const {
+    type,
+    name,
+    id,
+    placeholder,
+    event,
+    value,
+    defaultValue,
+    disabled,
+    autoComplete,
+  } = input || {};
 
   return (
     <StyledField className={className} $standard={standard}>
@@ -144,6 +153,7 @@ const FieldUnit = ({ attribute }) => {
                 defaultValue={defaultValue}
                 value={value}
                 disabled={disabled}
+                autoComplete={autoComplete}
               />
             </StyledBox>
           </div>
@@ -162,6 +172,7 @@ const FieldUnit = ({ attribute }) => {
             defaultValue={defaultValue}
             value={value}
             disabled={disabled}
+            autoComplete={autoComplete}
           />
         </StyledBox>
       )}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
 
 const StyledLinkAccordionMenu = styled(Link)`
   display: block;
@@ -54,14 +54,28 @@ const StyledButtonAccordionMenu = styled.button`
     right: 1.4rem;
     z-index: 1;
     margin-top: -0.6rem;
+    /* -webkit-transition: transform 0.4s;
+    -moz-transition: transform 0.4s;
+    -o-transition: transform 0.4s;
+    transition: transform 0.4s; */
   }
 
-  & & {
-    .text_local {
-      font-weight: normal;
-      font-size: 1.4rem;
-    }
-  }
+  ${(props) =>
+    props.$active
+      ? css`
+          .text_local + svg {
+            -webkit-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -o-transform: rotate(180deg);
+            transform: rotate(180deg);
+          }
+        `
+      : css`
+          & + ul {
+            max-height: 0;
+          }
+        `}
 `;
 
 const StyledItemAccordionMenu = styled.li`
@@ -70,32 +84,49 @@ const StyledItemAccordionMenu = styled.li`
   &:first-child {
     margin-top: 0;
   }
+
+  &.item_children {
+    ${StyledButtonAccordionMenu} {
+      padding: 0.8rem 4rem 0.8rem 4.6rem;
+
+      .text_local {
+        font-weight: normal;
+        font-size: 1.4rem;
+      }
+    }
+  }
 `;
 
 const StyledListAccordionMenu = styled.ul`
+  overflow: hidden;
+  max-height: 100vh;
   margin-top: 2rem;
   padding: 2rem 0;
   border-top: 0.1rem solid #eee;
   border-bottom: 0.1rem solid #eee;
+  box-sizing: border-box;
+  -webkit-transition: max-height 0.4s;
+  -moz-transition: max-height 0.4s;
+  -o-transition: max-height 0.4s;
+  transition: max-height 0.4s;
 
-  & & {
-    margin-top: 0.4rem;
+  & > ${StyledItemAccordionMenu} > & {
+    margin-top: 0;
     padding: 0;
     border-top: 0 none;
     border-bottom: 0 none;
+  }
 
-    /* & & {
-      padding-left: 1rem;
-    } */
+  & > .item_children > & {
+    padding-left: 1rem;
   }
 `;
 
-const AccordionMenu = ({ items, closeOthersOnClick }) => {
+const AccordionMenu = ({ className, items, closeOthersOnClick }) => {
   const [activeIndexes, setActiveIndexes] = useState([]);
 
   const onItemClick = (index) => {
     setActiveIndexes((prevIndexes) => {
-      console.log("closeOthersOnClick: ", closeOthersOnClick);
       if (closeOthersOnClick) {
         if (prevIndexes.includes(index)) {
           return prevIndexes.filter((i) => i !== index); // 이미 열린 메뉴 클릭 시 닫기
@@ -113,25 +144,29 @@ const AccordionMenu = ({ items, closeOthersOnClick }) => {
   };
 
   return (
-    <StyledListAccordionMenu>
-      {items.map((item, index) => (
-        <StyledItemAccordionMenu key={index}>
+    <StyledListAccordionMenu className={className}>
+      {items?.map((item, index) => (
+        <StyledItemAccordionMenu key={index} className={item?.className}>
           {item.link ? (
             <StyledLinkAccordionMenu>{item.link}</StyledLinkAccordionMenu>
           ) : (
-            <StyledButtonAccordionMenu onClick={() => onItemClick(index)}>
+            <StyledButtonAccordionMenu
+              onClick={() => onItemClick(index)}
+              $active={activeIndexes.some((i) => i === index)}
+            >
+              {activeIndexes.some((i) => i === index)}
               {item.icon}
               <span className="text_local">{item.title}</span>
               {item.arrow}
             </StyledButtonAccordionMenu>
           )}
 
-          {activeIndexes.includes(index) && (
-            <AccordionMenu
-              items={item.subItems}
-              closeOthersOnClick={closeOthersOnClick}
-            /> // 중첩된 아코디언 메뉴
-          )}
+          {/* {activeIndexes.includes(index) && ( */}
+          <AccordionMenu
+            items={item.subItems}
+            closeOthersOnClick={closeOthersOnClick}
+          />
+          {/* )} */}
         </StyledItemAccordionMenu>
       ))}
     </StyledListAccordionMenu>

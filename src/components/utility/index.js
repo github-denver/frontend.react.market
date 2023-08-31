@@ -439,6 +439,7 @@ const UtilityComponent = ({ attribute }) => {
                   arrow: null,
                 },
                 {
+                  className: "item_children",
                   icon: null,
                   title: "카테고리",
                   arrow: <SlArrowDown size={12} />,

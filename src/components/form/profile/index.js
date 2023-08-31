@@ -93,6 +93,7 @@ const ProfileFormComponent = ({
                 placeholder: "패스워드를 입력해 주세요.",
                 event: onFieldChange,
                 value: formData.password,
+                autocomplete: "new-password",
               },
             }}
           />
@@ -112,6 +113,7 @@ const ProfileFormComponent = ({
                 placeholder: "패스워드를 한 번 더 입력해 주세요.",
                 event: onFieldChange,
                 value: formData.passwordConfirm,
+                autoComplete: "new-password",
               },
             }}
           />
