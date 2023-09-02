@@ -78,7 +78,7 @@ const QuickComponent = () => {
             <span className="text_local">쇼핑하기</span>
           </StyledLinkQuick>
         </StyledItemQuick>
-        <StyledItemQuick>
+        {/* <StyledItemQuick>
           <StyledLinkQuick to="/">
             <StyledBoxQuick>
               <FcNegativeDynamic size={36} />
@@ -149,7 +149,7 @@ const QuickComponent = () => {
             </StyledBoxQuick>
             <span className="text_local">리모델링</span>
           </StyledLinkQuick>
-        </StyledItemQuick>
+        </StyledItemQuick> */}
       </StyledListQuick>
     </StyledQuick>
   );

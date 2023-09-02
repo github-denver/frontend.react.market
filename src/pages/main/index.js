@@ -12,6 +12,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
+import ListStandardUnit from "@/unit/list/standard";
 
 const MainPage = () => {
   return (
@@ -23,7 +24,7 @@ const MainPage = () => {
 
         <NavigationComponent />
 
-        <div className="___swiper___">
+        <div className="___swiper___" style={{ display: "none" }}>
           <Swiper
             // install Swiper modules
             modules={[Navigation, Pagination, A11y]}
@@ -48,32 +49,56 @@ const MainPage = () => {
 
         <hr className="boundary" />
 
-        <HgroupComponent attribute={{ title: "주간 20평대 집들이 best" }} />
+        <HgroupComponent
+          attribute={{
+            title: "주간 20평대 집들이 best",
+            detail: true,
+            href: "/board/talk/list/1",
+          }}
+        />
 
-        <ul className="list_global">
-          <li className="item_global">
-            <ThumbnailComponent
-              attribute={{
-                label: 1,
-                timer: "00:00:00",
-                bookmark: true,
-                sticker: "<em>오늘만 이 가격!!</em>",
-                title: "<em>따뜻한 26평!</em>홈스타일링 노하우만으로 완성",
-              }}
-            />
-          </li>
-          <li className="item_global">
-            <ThumbnailComponent
-              attribute={{
-                label: 1,
-                timer: "00:00:00",
-                bookmark: true,
-                sticker: "<em>오늘만 이 가격!!</em>",
-                title: "<em>따뜻한 26평!</em>홈스타일링 노하우만으로 완성",
-              }}
-            />
-          </li>
-        </ul>
+        <ListStandardUnit
+          attribute={{
+            list: [
+              <ThumbnailComponent
+                attribute={{
+                  label: 1,
+                  timer: "00:00:00",
+                  bookmark: true,
+                  sticker: "<em>오늘만 이 가격!!</em>",
+                  title: "<em>따뜻한 26평!</em> 홈스타일링 노하우만으로 완성",
+                }}
+              />,
+              // <ThumbnailComponent
+              //   attribute={{
+              //     label: 1,
+              //     timer: "00:00:00",
+              //     bookmark: true,
+              //     sticker: "<em>오늘만 이 가격!!</em>",
+              //     title: "<em>따뜻한 26평!</em> 홈스타일링 노하우만으로 완성",
+              //   }}
+              // />,
+              // <ThumbnailComponent
+              //   attribute={{
+              //     label: 1,
+              //     timer: "00:00:00",
+              //     bookmark: true,
+              //     sticker: "<em>오늘만 이 가격!!</em>",
+              //     title: "<em>따뜻한 26평!</em> 홈스타일링 노하우만으로 완성",
+              //   }}
+              // />,
+              // <ThumbnailComponent
+              //   attribute={{
+              //     label: 1,
+              //     timer: "00:00:00",
+              //     bookmark: true,
+              //     sticker: "<em>오늘만 이 가격!!</em>",
+              //     title: "<em>따뜻한 26평!</em> 홈스타일링 노하우만으로 완성",
+              //   }}
+              // />,
+            ],
+          }}
+        />
       </section>
       <FooterComponent />
     </>

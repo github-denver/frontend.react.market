@@ -34,6 +34,15 @@ const StyledStandard = css`
       margin-top: 0;
     `}
 
+  ${(props) =>
+    props.size === "small" &&
+    css`
+      display: inline-block;
+      width: auto;
+      padding: 1rem 1.6rem;
+      vertical-align: middle;
+    `}
+
   .text_local {
     display: inline-block;
     font-weight: 700;
@@ -51,7 +60,7 @@ const StyledStandardButton = styled.button`
 `;
 
 const ButtonStandardUnit = ({ children, attribute }) => {
-  const { type, className, event, href, fill, confirm } = attribute || {};
+  const { type, className, event, href, fill, confirm, size } = attribute || {};
 
   return type === "link" ? (
     <StyledStandardLink
@@ -59,6 +68,7 @@ const ButtonStandardUnit = ({ children, attribute }) => {
       className={className}
       $fill={fill}
       $confirm={confirm}
+      size={size}
     >
       {children}
     </StyledStandardLink>
@@ -69,6 +79,7 @@ const ButtonStandardUnit = ({ children, attribute }) => {
       onClick={event}
       $fill={fill}
       $confirm={confirm}
+      size={size}
     >
       {children}
     </StyledStandardButton>

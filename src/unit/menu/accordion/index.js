@@ -99,7 +99,7 @@ const StyledItemAccordionMenu = styled.li`
 
 const StyledListAccordionMenu = styled.ul`
   overflow: hidden;
-  max-height: 100vh;
+  max-height: 100%;
   margin-top: 2rem;
   padding: 2rem 0;
   border-top: 0.1rem solid #eee;

@@ -82,7 +82,7 @@ const StyledHgroup = styled.div`
 `;
 
 const HgroupComponent = ({ attribute }) => {
-  const { level, title, invisible, category, navigation, detail, size } =
+  const { level, title, invisible, category, navigation, detail, href, size } =
     attribute;
 
   return (
@@ -96,7 +96,7 @@ const HgroupComponent = ({ attribute }) => {
       </StyledHeading>
 
       {detail && (
-        <StyledDetailLink to="/">
+        <StyledDetailLink to={href}>
           <SlArrowRight size="18" />
           <span className="screen_out">더 보기</span>
         </StyledDetailLink>

@@ -231,7 +231,6 @@ const StyledLogotype = styled.h1`
 
 const StyledLogotypeLink = styled(Link)`
   display: inline-block;
-  width: 7.4rem;
   height: 2.6rem;
   font-size: 1.6rem;
   line-height: 2.6rem;
@@ -282,7 +281,7 @@ const UtilityComponent = ({ attribute }) => {
             attribute={{
               firstUnit: (
                 <StyledLogotypeLink to="/">
-                  <span className="ir_wa">오늘의 집</span>
+                  <span className="ir_wa">오늘의 식탁</span>
                 </StyledLogotypeLink>
               ),
               secondUnit: (
@@ -773,7 +772,7 @@ const UtilityComponent = ({ attribute }) => {
 
         <StyledListMenu>
           <StyledItemMenu>
-            <StyledLinkMenu to="/">
+            <StyledLinkMenu to="/member/profile">
               <span className="text_local">마이페이지</span>
             </StyledLinkMenu>
           </StyledItemMenu>
@@ -798,7 +797,7 @@ const UtilityComponent = ({ attribute }) => {
             </StyledLinkMenu>
           </StyledItemMenu>
           <StyledItemMenu>
-            <StyledLinkMenu to="/">
+            <StyledLinkMenu to="/board/talk/write">
               <span className="text_local">사진 올리기</span>
             </StyledLinkMenu>
           </StyledItemMenu>

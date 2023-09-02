@@ -2,27 +2,41 @@ import React from "react";
 import styled from "styled-components";
 import HeaderContainer from "@/containers/header";
 import HgroupComponent from "@/components/hgroup";
-import ThumbnailComponent from "@/components/thumbnail";
+import NavigationComponent from "@/components/navigation";
 import FooterComponent from "@/components/footer";
+import { useParams } from "react-router-dom";
+import ArticleListContainer from "@/containers/article";
+import SelectStandardUnit from "../../unit/select/standard";
+
+const StyledInnerList = styled.div``;
 
 const StyledList = styled.div`
-  .list_normal {
-    margin-top: -3rem;
+  .text_profile_content {
+    margin-top: -1.2rem;
+  }
+
+  .outer_sort {
+    margin-left: -1.2rem;
     padding: 1.2rem;
   }
 
-  .list_normal .item_normal {
-    margin-top: 3rem;
+  .outer_sort .option_sort {
+    width: 33.33%;
+    min-width: auto;
   }
 `;
 
 const ArticleListPage = () => {
+  const { category } = useParams();
+
   return (
     <StyledList>
       <HeaderContainer />
 
       <section>
         <HgroupComponent attribute={{ title: "본문 영역", invisible: true }} />
+
+        <NavigationComponent />
 
         <HgroupComponent
           attribute={{
@@ -32,62 +46,56 @@ const ArticleListPage = () => {
           }}
         />
 
-        <select defaultValue="인기순">
-          <option value="정렬">정렬</option>
-          <option value="최신순">최신순</option>
-          <option value="인기순">인기순</option>
-        </select>
+        <div className="outer_sort">
+          <SelectStandardUnit
+            attribute={{
+              className: "option_sort",
+              defaultValue: "정렬",
+              options: [
+                { value: "최신순", text: "최신순" },
+                { value: "인기순", text: "인기순" },
+              ],
+            }}
+          />
 
-        <select defaultValue="원룸&amp;오피스텔">
-          <option value="주거형태">주거형태</option>
-          <option value="원룸&amp;오피스텔">원룸&amp;오피스텔</option>
-          <option value="아파트">아파트</option>
-          <option value="빌라&amp;연립">빌라&amp;연립</option>
-          <option value="단독주택">단독주택</option>
-          <option value="사무공간">사무공간</option>
-          <option value="상업공간">상업공간</option>
-        </select>
+          <SelectStandardUnit
+            attribute={{
+              className: "option_sort",
+              defaultValue: "주거형태",
+              options: [
+                { value: "원룸&오피스텔", text: "원룸&오피스텔" },
+                { value: "아파트", text: "아파트" },
+                { value: "빌라&연립", text: "빌라&연립" },
+                { value: "단독주택", text: "단독주택" },
+                { value: "사무공간", text: "사무공간" },
+                { value: "상업공간", text: "상업공간" },
+              ],
+            }}
+          />
 
-        <select defaultValue="10평 이하">
-          <option value="평수">평수</option>
-          <option value="10평 이하">10평 이하</option>
-          <option value="10평대">10평대</option>
-          <option value="20평대">20평대</option>
-          <option value="30평대">30평대</option>
-          <option value="40평대">40평대</option>
-          <option value="50평대">50평대</option>
-          <option value="60평대">60평대</option>
-          <option value="70평대 이상">70평대 이상</option>
-        </select>
+          <SelectStandardUnit
+            attribute={{
+              className: "option_sort",
+              defaultValue: "평수",
+              options: [
+                { value: "10평 이하", text: "10평 이하" },
+                { value: "10평대", text: "10평대" },
+                { value: "20평대", text: "20평대" },
+                { value: "30평대", text: "30평대" },
+                { value: "40평대", text: "40평대" },
+                { value: "50평대", text: "50평대" },
+                { value: "60평대", text: "60평대" },
+                { value: "70평대 이상", text: "70평대 이상" },
+              ],
+            }}
+          />
+        </div>
 
-        <ul className="list_normal">
-          <li className="item_normal">
-            <ThumbnailComponent
-              attribute={{
-                label: "새소식",
-                // timer: "00:00:00",
-                bookmark: true,
-                // sticker: "<em>오늘만 이 가격!!</em>",
-                title: "<em>따뜻한 26평!</em> 홈스타일링 노하우만으로 완성",
-                author: true,
-                options: true,
-              }}
-            />
-          </li>
-          <li className="item_normal">
-            <ThumbnailComponent
-              attribute={{
-                label: "새소식",
-                // timer: "00:00:00",
-                bookmark: true,
-                // sticker: "<em>오늘만 이 가격!!</em>",
-                title: "<em>따뜻한 26평!</em> 홈스타일링 노하우만으로 완성",
-                author: true,
-                options: true,
-              }}
-            />
-          </li>
-        </ul>
+        <hr className="boundary" />
+
+        <StyledInnerList>
+          <ArticleListContainer attribute={{ category: `${category}` }} />
+        </StyledInnerList>
       </section>
       <FooterComponent />
     </StyledList>
