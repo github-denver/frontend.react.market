@@ -34,7 +34,6 @@ const StyledLogotype = styled.h1`
 
 const StyledLogotypeLink = styled(Link)`
   display: inline-block;
-  width: 7.4rem;
   height: 2.6rem;
   font-size: 1.6rem;
   line-height: 2.6rem;
@@ -96,7 +95,7 @@ const HeaderComponent = ({ attribute }) => {
     <StyledHeader $minimal={minimal}>
       <StyledLogotype>
         <StyledLogotypeLink to="/">
-          <span className="ir_wa">오늘의 집</span>
+          <span className="ir_wa">오늘의 식탁</span>
         </StyledLogotypeLink>
 
         {minimal && <></>}

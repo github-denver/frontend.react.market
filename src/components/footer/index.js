@@ -244,19 +244,19 @@ const FooterComponent = ({ children }) => {
         />
         <ul>
           <li>
-            <Link to="/">오늘의 집 유튜브</Link>
+            <Link to="/">오늘의 식탁 유튜브</Link>
           </li>
           <li>
-            <Link to="/">오늘의 집 인스타그램</Link>
+            <Link to="/">오늘의 식탁 인스타그램</Link>
           </li>
           <li>
-            <Link to="/">오늘의 집 페이스북</Link>
+            <Link to="/">오늘의 식탁 페이스북</Link>
           </li>
           <li>
-            <Link to="/">오늘의 집 카카오 스토리</Link>
+            <Link to="/">오늘의 식탁 카카오 스토리</Link>
           </li>
           <li>
-            <Link to="/">오늘의 집 네이버 포스트</Link>
+            <Link to="/">오늘의 식탁 네이버 포스트</Link>
           </li>
         </ul>
 
