@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-// import ThumbnailComponent from "@/components/thumbnail";
+import ThumbnailComponent from "@/components/thumbnail";
 
 const StyledItem = styled.li`
   display: inline-block;
@@ -23,7 +23,7 @@ const ListStandardUnit = ({ attribute }) => {
     <StyledList>
       {list.map((currentValue, index) => (
         <StyledItem key={index}>
-          {/* <ThumbnailComponent
+          <ThumbnailComponent
             attribute={{
               label: 1,
               timer: "00:00:00",
@@ -31,8 +31,9 @@ const ListStandardUnit = ({ attribute }) => {
               sticker: currentValue.content,
               title: currentValue.subject,
               src: currentValue.thumbnail,
+              href: `/board/${currentValue.category}/read/${currentValue.number}`,
             }}
-          /> */}
+          />
         </StyledItem>
       ))}
     </StyledList>

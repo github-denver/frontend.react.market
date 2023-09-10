@@ -134,7 +134,7 @@ const ThumbnailComponent = ({ attribute }) => {
 
       {title && (
         <StyledTitleThumbnail
-          to="/"
+          to={href}
           $space={space}
           dangerouslySetInnerHTML={{ __html: thumbnailDescription }}
         />

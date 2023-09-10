@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
-import ListStandardComponent from "../../../unit/list/standard";
+import ListStandardUnit from "../../../unit/list/standard";
 // import ListStandardComponent from "../../list/standard";
 
 const CardStandardComponent = ({ attribute }) => {
@@ -31,7 +31,7 @@ const CardStandardComponent = ({ attribute }) => {
     return <p>목록이 존재하지 않습니다.</p>;
   }
 
-  return <ListStandardComponent attribute={{ error, loading, list }} />;
+  return <ListStandardUnit attribute={{ error, loading, list }} />;
 };
 
 export default CardStandardComponent;
