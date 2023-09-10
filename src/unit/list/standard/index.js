@@ -8,7 +8,7 @@ const StyledItem = styled.li`
   margin-top: 1.6rem;
   padding-left: 1.6rem;
   box-sizing: border-box;
-  vertical-align: middle;
+  vertical-align: top;
 `;
 
 const StyledList = styled.ul`

@@ -5,14 +5,14 @@ import { SlArrowRight } from "react-icons/sl";
 
 const StyledDetailLink = styled(Link)`
   position: absolute;
-  top: 50%;
   right: 1.6rem;
+  bottom: 2rem;
   z-index: 1;
-  -webkit-transform: translateY(-50%);
+  /* -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   -moz-transform: translateY(-50%);
   -o-transform: translateY(-50%);
-  transform: translateY(-50%);
+  transform: translateY(-50%); */
 
   svg {
     display: block;
@@ -26,7 +26,7 @@ const StyledTagLink = styled(Link)`
 const StyledTag = styled.strong`
   display: inline-block;
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 1.8rem;
   vertical-align: middle;
 `;
 
@@ -43,6 +43,12 @@ const filteredText = (category, navigation) => {
 
   return result;
 };
+
+const StyledDescription = styled.p`
+  display: block;
+  padding-right: 1.2rem;
+  font-size: 1.4rem;
+`;
 
 const StyledHeading = ({ level = 2, size, children }) => {
   const tag = typeof level === "number" ? `h${level}` : level;
@@ -82,8 +88,17 @@ const StyledHgroup = styled.div`
 `;
 
 const HgroupComponent = ({ attribute }) => {
-  const { level, title, invisible, category, navigation, detail, href, size } =
-    attribute;
+  const {
+    level,
+    title,
+    description,
+    invisible,
+    category,
+    navigation,
+    detail,
+    href,
+    size,
+  } = attribute;
 
   return (
     <StyledHgroup
@@ -94,10 +109,11 @@ const HgroupComponent = ({ attribute }) => {
       <StyledHeading level={level}>
         {title ? title : filteredText(category, navigation)}
       </StyledHeading>
+      <StyledDescription>{description}</StyledDescription>
 
       {detail && (
         <StyledDetailLink to={href}>
-          <SlArrowRight size="18" />
+          <SlArrowRight size="12" />
           <span className="screen_out">더 보기</span>
         </StyledDetailLink>
       )}

@@ -26,7 +26,7 @@ const MainPage = () => {
 
         <NavigationComponent />
 
-        <div className="___swiper___" style={{ display: "none" }}>
+        <div className="___swiper___">
           <Swiper
             // install Swiper modules
             modules={[Navigation, Pagination, A11y]}
@@ -53,29 +53,16 @@ const MainPage = () => {
 
         <HgroupComponent
           attribute={{
-            title: "주간 20평대 집들이 best",
+            title: "쉽고 재미있는 초보 베이킹",
+            description: "간단하고 쉬워요!",
             detail: true,
             href: "/board/talk/list/1",
           }}
         />
 
-        <CardStandardContainer attribute={{ category: "talk" }} />
+        <CardStandardContainer attribute={{ category: "talk", limit: 4 }} />
 
-        {/* <ListStandardUnit
-          attribute={{
-            list: [
-              <ThumbnailComponent
-                attribute={{
-                  label: 1,
-                  timer: "00:00:00",
-                  bookmark: true,
-                  sticker: "<em>오늘만 이 가격!!</em>",
-                  title: "<em>따뜻한 26평!</em> 홈스타일링 노하우만으로 완성",
-                }}
-              />,
-            ],
-          }}
-        /> */}
+        <hr className="boundary" />
       </section>
       <FooterComponent />
     </>

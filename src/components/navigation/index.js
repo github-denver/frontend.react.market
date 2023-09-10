@@ -1,8 +1,12 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-const StyledLinkNavigation = styled(Link)``;
+const StyledLinkNavigation = styled(NavLink)`
+  &.active {
+    color: #35c5f0;
+  }
+`;
 
 const StyledItemNavigation = styled.li``;
 
@@ -67,6 +71,7 @@ const StyledNavigation = styled.nav`
           ${StyledLinkNavigation} {
             display: block;
             padding: 0.95rem 0.8rem;
+            font-weight: 700;
             font-size: 1.4rem;
           }
         `}

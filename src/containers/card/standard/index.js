@@ -6,14 +6,14 @@ import { boardList, listInitial } from "@/modules/board/list";
 import CardStandardComponent from "@/components/card/standard";
 
 const CardStandardContainer = ({ attribute }) => {
-  const { category } = attribute || {};
+  const { category, limit = 10 } = attribute || {};
 
   const [errorMessage, setErrorMessage] = useState(null);
 
   const { user, list, pagination, error, loading } = useSelector(
     ({ user, boardList, loading }) => ({
       user: user.user?.user2,
-      list: boardList.data?.list,
+      list: boardList.data?.list.slice(0, limit),
       pagination: boardList.data?.pagination,
       error: boardList.error,
       loading: loading["boardList/list"],

@@ -12,7 +12,28 @@ const StyledInnerList = styled.div``;
 
 const StyledList = styled.div`
   .text_profile_content {
+    overflow: hidden;
+    display: -webkit-box;
+    position: relative;
     margin-top: -1.2rem;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+  }
+
+  .text_profile_content:after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    height: 2.4rem;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(255, 255, 255, 1) 100%
+    );
+    content: "";
   }
 
   .outer_sort {
