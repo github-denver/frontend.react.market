@@ -6,6 +6,7 @@ import user, { userSaga } from "@/modules/user";
 import boardList, { boardListSaga } from "@/modules/board/list";
 import boardRead, { boardReadSaga } from "@/modules/board/read";
 import boardWrite, { boardWriteSaga } from "@/modules/board/write";
+import boardModify, { boardModifySaga } from "@/modules/board/modify";
 import loading from "./loading";
 
 // combineReducers를 사용해서 병합합니다.
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   boardList,
   boardRead,
   boardWrite,
+  boardModify,
 });
 
 export function* rootSaga() {
@@ -28,6 +30,7 @@ export function* rootSaga() {
     boardListSaga(),
     boardReadSaga(),
     boardWriteSaga(),
+    boardModifySaga(),
   ]);
 }
 

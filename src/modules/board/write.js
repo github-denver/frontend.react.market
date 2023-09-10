@@ -61,6 +61,9 @@ const boardWriteSlice = createSlice({
       state.error = action.payload;
     },
     writeInitial: (state, action) => {
+      state.subject = null;
+      state.contents = null;
+      state.thumbnail = null;
       state.data = null;
       state.error = null;
     },

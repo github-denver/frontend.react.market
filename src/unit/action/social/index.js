@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { SlHeart, SlStar, SlBubble, SlShare } from "react-icons/sl";
 
-const StyledBarBookmark = styled.button`
+const StyledButton = styled.button`
   border: 0 none;
   background-color: transparent;
   cursor: pointer;
@@ -25,7 +25,7 @@ const StyledBarBookmark = styled.button`
   }
 `;
 
-const StyledItemSocial = styled.li`
+const StyledItem = styled.li`
   display: inline-block;
   width: 25%;
   padding: 1.2rem 0;
@@ -33,7 +33,7 @@ const StyledItemSocial = styled.li`
   vertical-align: top;
 `;
 
-const StyledActionSocial = styled.ul`
+const StyledList = styled.ul`
   font-size: 0;
   text-align: center;
 `;
@@ -42,32 +42,32 @@ const ActionSocialUnit = ({ attribute }) => {
   const { className } = attribute;
 
   return (
-    <StyledActionSocial className={className}>
-      <StyledItemSocial>
-        <StyledBarBookmark type="button">
+    <StyledList className={className}>
+      <StyledItem>
+        <StyledButton type="button">
           <SlHeart size={24} />
-          <span className="text_local">9999+</span>
-        </StyledBarBookmark>
-      </StyledItemSocial>
-      <StyledItemSocial>
-        <StyledBarBookmark type="button">
+          <span className="text_local">10</span>
+        </StyledButton>
+      </StyledItem>
+      <StyledItem>
+        <StyledButton type="button">
           <SlStar size={24} />
-          <span className="text_local">9999+</span>
-        </StyledBarBookmark>
-      </StyledItemSocial>
-      <StyledItemSocial>
-        <StyledBarBookmark type="button">
+          <span className="text_local">10</span>
+        </StyledButton>
+      </StyledItem>
+      <StyledItem>
+        <StyledButton type="button">
           <SlBubble size={24} />
-          <span className="text_local">9999+</span>
-        </StyledBarBookmark>
-      </StyledItemSocial>
-      <StyledItemSocial>
-        <StyledBarBookmark type="button">
+          <span className="text_local">10</span>
+        </StyledButton>
+      </StyledItem>
+      <StyledItem>
+        <StyledButton type="button">
           <SlShare size={24} />
-          <span className="text_local">9999+</span>
-        </StyledBarBookmark>
-      </StyledItemSocial>
-    </StyledActionSocial>
+          <span className="text_local">10</span>
+        </StyledButton>
+      </StyledItem>
+    </StyledList>
   );
 };
 

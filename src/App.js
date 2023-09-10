@@ -1,37 +1,39 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "@/App.css";
-import MainPage from "@/pages/main";
-import LoginPage from "@/pages/login";
-import RegisterPage from "@/pages/register";
-import ProfilePage from "@/pages/profile";
-import ArticleListPage from "@/pages/article";
-import ArticleReadPage from "@/pages/article/read";
-import ArticleWritePage from "@/pages/article/write";
-import Error404Page from "@/pages/error/404";
-import OauthPage from "@/pages/oauth";
-import FindPasswordPage from "@/pages/findPassword";
+import Main from "@/pages/main";
+import Register from "@/pages/register";
+import Login from "@/pages/login";
+import FindPassword from "@/pages/findPassword";
+import Profile from "@/pages/profile";
+import BoardList from "@/pages/article";
+import BoardView from "@/pages/article/read";
+import BoardWrite from "@/pages/article/write";
+import BoardModify from "@/pages/article/modify";
+import Oauth from "@/pages/oauth";
+import Error from "@/pages/error";
 
 function App() {
+  const routes = [
+    { path: "/", element: <Main /> },
+    { path: "/member/register", element: <Register /> },
+    { path: "/member/login", element: <Login /> },
+    { path: "/member/findPassword", element: <FindPassword /> },
+    { path: "/member/profile", element: <Profile /> },
+    { path: "/board/:category/list/:number", element: <BoardList /> },
+    { path: "/board/:category/read/:number", element: <BoardView /> },
+    { path: "/board/:category/write", element: <BoardWrite /> },
+    { path: "/board/:category/modify/:number", element: <BoardModify /> },
+    { path: "/oauth/:token", element: <Oauth /> },
+    { path: "*", element: <Error /> },
+  ];
+
   return (
     <div className="App">
       <Routes>
-        <Route index element={<MainPage />} />
-        <Route path="/member/login" element={<LoginPage />} />
-        <Route path="/member/register" element={<RegisterPage />} />
-        <Route path="/member/profile" element={<ProfilePage />} />
-        <Route path="/member/findPassword" element={<FindPasswordPage />} />
-        <Route path="/oauth/:token" element={<OauthPage />} />
-        <Route
-          path="/board/:category/list/:number"
-          element={<ArticleListPage />}
-        />
-        <Route
-          path="/board/:category/read/:number"
-          element={<ArticleReadPage />}
-        />
-        <Route path="/board/:category/write" element={<ArticleWritePage />} />
-        <Route path="*" element={<Error404Page />}></Route>
+        {routes.map((route, index) => (
+          <Route key={index} path={route.path} element={route.element} />
+        ))}
       </Routes>
     </div>
   );

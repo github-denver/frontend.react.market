@@ -1,21 +1,26 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import ProfileStandardUnit from "@/unit/profile";
+import ProfileStandardUnit from "@/unit/profile/standard";
 import TextStandardUnit from "@/unit/text/standard";
 import ThumbnailComponent from "@/components/thumbnail";
 import ActionSocialUnit from "@/unit/action/social";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
-import PublishContainer from "../../../containers/publish";
-import ViewFinderUnit from "../../../unit/viewFinder";
+import PublishContainer from "@/containers/publish";
+import ViewFinderUnit from "@/unit/viewFinder";
+import FieldUnit from "@/unit/field";
 
-const StyledArticle = styled.div`
-  .gravity_actionSocial {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
+const StyledArticleWrite = styled.div`
+  padding: 1.2rem;
+
+  .field_subject,
+  .editor_quill,
+  .gravity_publish {
+    margin-top: 1.2rem;
+  }
+
+  .editor_quill .ql-editor {
+    height: 12rem;
   }
 `;
 
@@ -105,14 +110,42 @@ const ArticleWriteComponent = ({ children, attribute }) => {
   };
 
   return (
-    <>
-      <ViewFinderUnit attribute={{ className: "", src: thumbnail?.preview }} />
+    <StyledArticleWrite>
+      <ViewFinderUnit
+        attribute={{
+          src: thumbnail?.preview,
+          event: onChangeThumbnail,
+        }}
+      />
 
-      <input type="text" name="subject" onChange={onChangeSubject} />
-      <div ref={quillElement} />
-      <input type="file" name="thumbnail" onChange={onChangeThumbnail} />
-      <PublishContainer attribute={{ category }} />
-    </>
+      <FieldUnit
+        attribute={{
+          className: "field_subject",
+          standard: true,
+          label: {
+            htmlFor: "subject",
+            text: "제목",
+            flexible: true,
+          },
+          input: {
+            type: "text",
+            name: "subject",
+            id: "subject",
+            placeholder: "제목을 입력해 주세요.",
+            event: onChangeSubject,
+            defaultValue: "",
+          },
+        }}
+      />
+
+      <div className="editor_quill">
+        <div ref={quillElement} />
+      </div>
+
+      <PublishContainer
+        attribute={{ className: "gravity_publish", category }}
+      />
+    </StyledArticleWrite>
   );
 };
 

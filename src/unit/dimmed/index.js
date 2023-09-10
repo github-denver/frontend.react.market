@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const StyledDimmed = styled.div`
   position: fixed;
@@ -9,19 +9,12 @@ const StyledDimmed = styled.div`
   left: 0;
   z-index: 1;
   background-color: #000;
-  ${(porps) =>
-    porps.$visible
-      ? css`
-          opacity: 0.5;
-        `
-      : css`
-          opacity: 0;
-        `}
+  opacity: ${(props) => (props.$visible ? 0.5 : 0)};
   -webkit-transition: opacity 0.4s;
   -moz-transition: opacity 0.4s;
   -o-transition: opacity 0.4s;
   transition: opacity 0.4s;
-  pointer-events: none;
+  pointer-events: ${(props) => (props.$visible ? "auto" : "none")};
 `;
 
 const DimmedUnit = ({ attribute }) => {

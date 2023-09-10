@@ -13,6 +13,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import ListStandardUnit from "@/unit/list/standard";
+import ArticleListContainer from "../../containers/article";
+import CardStandardContainer from "../../containers/card/standard";
 
 const MainPage = () => {
   return (
@@ -57,7 +59,9 @@ const MainPage = () => {
           }}
         />
 
-        <ListStandardUnit
+        <CardStandardContainer attribute={{ category: "talk" }} />
+
+        {/* <ListStandardUnit
           attribute={{
             list: [
               <ThumbnailComponent
@@ -69,36 +73,9 @@ const MainPage = () => {
                   title: "<em>따뜻한 26평!</em> 홈스타일링 노하우만으로 완성",
                 }}
               />,
-              // <ThumbnailComponent
-              //   attribute={{
-              //     label: 1,
-              //     timer: "00:00:00",
-              //     bookmark: true,
-              //     sticker: "<em>오늘만 이 가격!!</em>",
-              //     title: "<em>따뜻한 26평!</em> 홈스타일링 노하우만으로 완성",
-              //   }}
-              // />,
-              // <ThumbnailComponent
-              //   attribute={{
-              //     label: 1,
-              //     timer: "00:00:00",
-              //     bookmark: true,
-              //     sticker: "<em>오늘만 이 가격!!</em>",
-              //     title: "<em>따뜻한 26평!</em> 홈스타일링 노하우만으로 완성",
-              //   }}
-              // />,
-              // <ThumbnailComponent
-              //   attribute={{
-              //     label: 1,
-              //     timer: "00:00:00",
-              //     bookmark: true,
-              //     sticker: "<em>오늘만 이 가격!!</em>",
-              //     title: "<em>따뜻한 26평!</em> 홈스타일링 노하우만으로 완성",
-              //   }}
-              // />,
             ],
           }}
-        />
+        /> */}
       </section>
       <FooterComponent />
     </>

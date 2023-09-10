@@ -1,5 +1,32 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+const StyledTextRegular = css`
+  display: inline-block;
+  font-size: 1.2rem;
+  vertical-align: middle;
+`;
+
+const StyledTextSmall = css`
+  display: inline-block;
+  font-size: 1.1rem;
+  vertical-align: middle;
+`;
+
+const StyledEmphasis = styled.em`
+  ${StyledTextSmall}
+  color: #009fce;
+`;
+
+const StyledDescription = styled.p`
+  ${StyledTextSmall}
+  color: #828c94;
+`;
+
+const StyledText = styled.span`
+  ${StyledTextRegular}
+  color: #2f3438;
+`;
 
 const StyledLabel = styled.label`
   display: inline-block;
@@ -11,41 +38,17 @@ const StyledLabel = styled.label`
   -moz-user-select: none;
   user-select: none;
 
-  .text_local {
-    display: inline-block;
-    font-size: 1.2rem;
-    color: #2f3438;
-    vertical-align: middle;
-  }
-
-  .text_local + .description_local {
+  ${StyledText} + ${StyledDescription} {
     margin-left: 0.6rem;
   }
 
-  .text_local + .emphasis_local {
+  ${StyledText} + ${StyledEmphasis} {
     margin-left: 0.6rem;
   }
 
-  .description_local {
-    display: inline-block;
-    font-size: 1.1rem;
-    color: #828c94;
-    vertical-align: middle;
-  }
-
-  .description_local + .emphasis_local {
+  ${StyledDescription} + ${StyledEmphasis},
+  ${StyledDescription} + ${StyledDescription} {
     padding-left: 0.6rem;
-  }
-
-  .emphasis_local {
-    display: inline-block;
-    font-size: 1.1rem;
-    color: #828c94;
-    vertical-align: middle;
-  }
-
-  em.emphasis_local {
-    color: #009fce;
   }
 `;
 
@@ -53,54 +56,47 @@ const StyledBox = styled.div`
   overflow: hidden;
 `;
 
-const StyledStandard = styled.div`
-  text-align: left;
+const StyledInput = styled.input`
+  float: left;
+  width: 1.6rem;
+  height: 1.6rem;
+  margin-top: 0.1rem;
+  border: 0.1rem solid #bdbdbd;
+  box-sizing: border-box;
 
-  .textfield_local {
-    float: left;
-    width: 1.6rem;
-    height: 1.6rem;
-    margin-top: 0.1rem;
-    border: 0.1rem solid #bdbdbd;
-    box-sizing: border-box;
-  }
-
-  .textfield_local + ${StyledBox} {
+  & + ${StyledBox} {
     padding-left: 0.6rem;
   }
 `;
 
+const StyledCheckbox = styled.div`
+  text-align: left;
+`;
+
 const CheckboxStandardUnit = ({ attribute }) => {
-  const { label, input } = attribute || {};
-  const { htmlFor, text, message, required } = label || {};
+  const { input, label } = attribute || {};
+
   const { name } = input || {};
+  const { htmlFor, text, message, required } = label || {};
 
   return (
-    <StyledStandard>
-      <input
-        type="checkbox"
-        name={name}
-        id={htmlFor}
-        className="textfield_local"
-      />
+    <StyledCheckbox>
+      <StyledInput type="checkbox" name={name} id={htmlFor} />
 
       <StyledBox>
         <StyledLabel htmlFor={htmlFor}>
-          <span
-            dangerouslySetInnerHTML={{ __html: text }}
-            className="text_local"
-          />
+          <StyledText dangerouslySetInnerHTML={{ __html: text }}></StyledText>
 
-          {message && <span className="description_local">{message}</span>}
+          {message && <StyledDescription>{message}</StyledDescription>}
 
           {required ? (
-            <em className="emphasis_local">{required}</em>
+            <StyledEmphasis>{required}</StyledEmphasis>
           ) : (
-            <span className="emphasis_local">(선택)</span>
+            <StyledDescription>(선택)</StyledDescription>
           )}
         </StyledLabel>
       </StyledBox>
-    </StyledStandard>
+    </StyledCheckbox>
   );
 };
 

@@ -148,7 +148,9 @@ const AccordionMenu = ({ className, items, closeOthersOnClick }) => {
       {items?.map((item, index) => (
         <StyledItemAccordionMenu key={index} className={item?.className}>
           {item.link ? (
-            <StyledLinkAccordionMenu>{item.link}</StyledLinkAccordionMenu>
+            <StyledLinkAccordionMenu to={item.to}>
+              {item.link}
+            </StyledLinkAccordionMenu>
           ) : (
             <StyledButtonAccordionMenu
               onClick={() => onItemClick(index)}

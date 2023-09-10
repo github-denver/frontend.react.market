@@ -2,7 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
-const StyledStandard = css`
+const buttonStyles = css`
   display: block;
   width: 100%;
   padding: 1.4rem 0;
@@ -12,6 +12,14 @@ const StyledStandard = css`
   line-height: 1;
   color: #35c5f0;
   text-align: center;
+
+  .text_local {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 1.4rem;
+    vertical-align: middle;
+  }
+
   ${(props) =>
     props.$fill
       ? css`
@@ -24,6 +32,7 @@ const StyledStandard = css`
       : css`
           background-color: #fff;
         `};
+
   ${(props) =>
     props.$confirm &&
     css`
@@ -42,28 +51,21 @@ const StyledStandard = css`
       padding: 1rem 1.6rem;
       vertical-align: middle;
     `}
-
-  .text_local {
-    display: inline-block;
-    font-weight: 700;
-    font-size: 1.4rem;
-    vertical-align: middle;
-  }
 `;
 
-const StyledStandardLink = styled(Link)`
-  ${StyledStandard}
+const StyledLink = styled(Link)`
+  ${buttonStyles}
 `;
 
-const StyledStandardButton = styled.button`
-  ${StyledStandard}
+const StyledButton = styled.button`
+  ${buttonStyles}
 `;
 
 const ButtonStandardUnit = ({ children, attribute }) => {
   const { type, className, event, href, fill, confirm, size } = attribute || {};
 
   return type === "link" ? (
-    <StyledStandardLink
+    <StyledLink
       to={href}
       className={className}
       $fill={fill}
@@ -71,9 +73,9 @@ const ButtonStandardUnit = ({ children, attribute }) => {
       size={size}
     >
       {children}
-    </StyledStandardLink>
+    </StyledLink>
   ) : (
-    <StyledStandardButton
+    <StyledButton
       type={type}
       className={className}
       onClick={event}
@@ -82,7 +84,7 @@ const ButtonStandardUnit = ({ children, attribute }) => {
       size={size}
     >
       {children}
-    </StyledStandardButton>
+    </StyledButton>
   );
 };
 

@@ -353,8 +353,10 @@ const UtilityComponent = ({ attribute }) => {
                 {
                   icon: null,
                   link: "홈",
+                  to: "/",
                   arrow: null,
                 },
+                /*
                 {
                   icon: null,
                   link: "추천",
@@ -365,11 +367,14 @@ const UtilityComponent = ({ attribute }) => {
                   link: "집들이",
                   arrow: null,
                 },
+                */
                 {
                   icon: null,
                   link: "집사진",
+                  to: "/board/talk/list/1",
                   arrow: null,
                 },
+                /*
                 {
                   icon: null,
                   link: "살림 수납",
@@ -425,8 +430,10 @@ const UtilityComponent = ({ attribute }) => {
                   link: "이벤트",
                   arrow: null,
                 },
+                */
               ],
             },
+            /*
             {
               icon: <SlHandbag size={24} />,
               title: "쇼핑",
@@ -572,7 +579,9 @@ const UtilityComponent = ({ attribute }) => {
                 },
               ],
             },
+            */
 
+            /*
             {
               icon: <SlWrench size={24} />,
               title: "이사/시공/생활",
@@ -620,6 +629,7 @@ const UtilityComponent = ({ attribute }) => {
                 },
               ],
             },
+            */
           ]}
           closeOthersOnClick={true}
         />
@@ -776,7 +786,7 @@ const UtilityComponent = ({ attribute }) => {
               <span className="text_local">마이페이지</span>
             </StyledLinkMenu>
           </StyledItemMenu>
-          <StyledItemMenu>
+          {/* <StyledItemMenu>
             <StyledLinkMenu to="/">
               <span className="text_local">나의 쇼핑</span>
             </StyledLinkMenu>
@@ -795,13 +805,13 @@ const UtilityComponent = ({ attribute }) => {
             <StyledLinkMenu to="/">
               <span className="text_local">이벤트</span>
             </StyledLinkMenu>
-          </StyledItemMenu>
+          </StyledItemMenu> */}
           <StyledItemMenu>
             <StyledLinkMenu to="/board/talk/write">
               <span className="text_local">사진 올리기</span>
             </StyledLinkMenu>
           </StyledItemMenu>
-          <StyledItemMenu>
+          {/* <StyledItemMenu>
             <StyledLinkMenu to="/">
               <span className="text_local">집들이 글쓰기</span>
             </StyledLinkMenu>
@@ -825,11 +835,11 @@ const UtilityComponent = ({ attribute }) => {
             <StyledLinkMenu to="/">
               <span className="text_local">고객센터</span>
             </StyledLinkMenu>
-          </StyledItemMenu>
+          </StyledItemMenu> */}
         </StyledListMenu>
 
         <StyledListHorizontal>
-          <StyledItemHorizontal>
+          {/* <StyledItemHorizontal>
             <StyledLinkHorizontal to="/">
               <span className="text_local">전문가 신청</span>
             </StyledLinkHorizontal>
@@ -838,7 +848,7 @@ const UtilityComponent = ({ attribute }) => {
             <StyledLinkHorizontal to="/">
               <span className="text_local">판매자 쇼핑</span>
             </StyledLinkHorizontal>
-          </StyledItemHorizontal>
+          </StyledItemHorizontal> */}
           {user && (
             <StyledItemHorizontal>
               <StyledLinkHorizontal to="/">

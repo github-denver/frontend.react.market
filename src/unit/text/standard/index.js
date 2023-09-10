@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const StyledStandardText = styled.p`
+const StyledText = styled.div`
   padding: 1.2rem;
   font-size: 1.4rem;
 
@@ -11,16 +11,13 @@ const StyledStandardText = styled.p`
   }
 `;
 
-const TextStandardUnit = ({ children, attribute }) => {
+const TextStandardUnit = ({ attribute }) => {
   const { className, text } = attribute || {};
 
-  const __html = `${text}`;
-
   return (
-    <StyledStandardText
-      className={className}
-      dangerouslySetInnerHTML={{ __html }}
-    />
+    <StyledText className={className}>
+      <div dangerouslySetInnerHTML={{ __html: text }} />
+    </StyledText>
   );
 };
 

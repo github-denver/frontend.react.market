@@ -2,7 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import { SlStar } from "react-icons/sl";
-import ProfileStandardUnit from "@/unit/profile";
+import ProfileStandardUnit from "@/unit/profile/standard";
 import ActionSocialUnit from "@/unit/action/social";
 
 const StyledThumbnail = styled.div`
@@ -160,7 +160,7 @@ const ThumbnailComponent = ({ attribute }) => {
         </StyledButtonBookmark>
       )}
 
-      {bar && <ActionSocialUnit attribute={{}} />}
+      {/* {bar && <ActionSocialUnit attribute={{}} />} */}
     </StyledThumbnail>
   );
 };

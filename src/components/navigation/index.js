@@ -82,16 +82,18 @@ const NavigationComponent = ({ attribute = {} }) => {
           <StyledItemNavigation>
             <StyledLinkNavigation to="/">홈</StyledLinkNavigation>
           </StyledItemNavigation>
-          <StyledItemNavigation>
+          {/* <StyledItemNavigation>
             <StyledLinkNavigation to="/">추천</StyledLinkNavigation>
           </StyledItemNavigation>
           <StyledItemNavigation>
             <StyledLinkNavigation to="/">집들이</StyledLinkNavigation>
-          </StyledItemNavigation>
+          </StyledItemNavigation> */}
           <StyledItemNavigation>
-            <StyledLinkNavigation to="/">집사진</StyledLinkNavigation>
+            <StyledLinkNavigation to="/board/talk/list/1">
+              집사진
+            </StyledLinkNavigation>
           </StyledItemNavigation>
-          <StyledItemNavigation>
+          {/* <StyledItemNavigation>
             <StyledLinkNavigation to="/">살림 수납</StyledLinkNavigation>
           </StyledItemNavigation>
           <StyledItemNavigation>
@@ -123,7 +125,7 @@ const NavigationComponent = ({ attribute = {} }) => {
           </StyledItemNavigation>
           <StyledItemNavigation>
             <StyledLinkNavigation to="/">이벤트</StyledLinkNavigation>
-          </StyledItemNavigation>
+          </StyledItemNavigation> */}
         </StyledListNavigation>
       </StyledInnerNavigation>
     </StyledNavigation>

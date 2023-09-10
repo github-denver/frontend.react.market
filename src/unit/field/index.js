@@ -15,43 +15,46 @@ const StyledBox = styled.div`
     box-sizing: border-box;
     background-color: transparent;
     font-size: 1.4rem;
-  }
 
-  .textfield_local:disabled {
-    border-radius: 0.4rem;
-    background-color: #fafafa;
-    cursor: not-allowed;
+    &:disabled {
+      border-radius: 0.4rem;
+      background-color: #fafafa;
+      cursor: not-allowed;
+    }
   }
 `;
 
 const StyledLabel = styled.label`
   ${(props) =>
-    props.$flexible
-      ? css`
-          display: none;
-          position: absolute;
-          top: 50%;
-          left: 1.4rem;
-          z-index: 1;
-          font-size: 1.4rem;
-          color: #bdbdbd;
-          -webkit-transform: translateY(-50%);
-          -ms-transform: translateY(-50%);
-          -moz-transform: translateY(-50%);
-          -o-transform: translateY(-50%);
-          transform: translateY(-50%);
+    props.$flexible &&
+    css`
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 1.4rem;
+      z-index: 1;
+      font-size: 1.4rem;
+      color: #bdbdbd;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      -o-transform: translateY(-50%);
+      transform: translateY(-50%);
 
-          & + ${StyledBox} {
-            margin-top: 0;
-          }
-        `
-      : css`
-          display: inline-block;
-          font-weight: 700;
-          font-size: 16px;
-          color: #2f3438;
-          vertical-align: middle;
-        `};
+      & + ${StyledBox} {
+        margin-top: 0;
+      }
+    `};
+
+  ${(props) =>
+    !props.$flexible &&
+    css`
+      display: inline-block;
+      font-weight: 700;
+      font-size: 16px;
+      color: #2f3438;
+      vertical-align: middle;
+    `};
 `;
 
 const StyledField = styled.div`
@@ -82,25 +85,28 @@ const StyledField = styled.div`
   }
 
   ${(props) =>
-    props.$standard
-      ? css`
-          &.group_field + &.group_field {
-            margin-top: 2.4rem;
-          }
-        `
-      : css`
-          ${StyledBox} {
-            border-radius: 0.4rem 0.4rem 0 0;
-          }
+    props.$standard &&
+    css`
+      &.group_field + &.group_field {
+        margin-top: 2.4rem;
+      }
+    `};
 
-          &.group_field + &.group_field {
-            margin-top: -0.1rem;
+  ${(props) =>
+    !props.$standard &&
+    css`
+      ${StyledBox} {
+        border-radius: 0.4rem 0.4rem 0 0;
+      }
 
-            ${StyledBox} {
-              border-radius: 0 0 0.4rem 0.4rem;
-            }
-          }
-        `};
+      &.group_field + &.group_field {
+        margin-top: -0.1rem;
+
+        ${StyledBox} {
+          border-radius: 0 0 0.4rem 0.4rem;
+        }
+      }
+    `};
 `;
 
 const FieldUnit = ({ attribute }) => {
@@ -121,7 +127,7 @@ const FieldUnit = ({ attribute }) => {
     id,
     placeholder,
     event,
-    value,
+    // value,
     defaultValue,
     disabled,
     autoComplete,
@@ -151,7 +157,7 @@ const FieldUnit = ({ attribute }) => {
                 placeholder={placeholder}
                 onChange={event}
                 defaultValue={defaultValue}
-                value={value}
+                // value={value}
                 disabled={disabled}
                 autoComplete={autoComplete}
               />
@@ -170,7 +176,7 @@ const FieldUnit = ({ attribute }) => {
             placeholder={placeholder}
             onChange={event}
             defaultValue={defaultValue}
-            value={value}
+            // value={value}
             disabled={disabled}
             autoComplete={autoComplete}
           />

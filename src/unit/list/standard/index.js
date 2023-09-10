@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+// import ThumbnailComponent from "@/components/thumbnail";
 
-const StyledStandardItem = styled.li`
+const StyledItem = styled.li`
   display: inline-block;
   width: 50%;
   margin-top: 1.6rem;
@@ -10,20 +11,31 @@ const StyledStandardItem = styled.li`
   vertical-align: middle;
 `;
 
-const StyledStandardList = styled.ul`
+const StyledList = styled.ul`
   margin: -3.2rem 0 0 -1.6rem;
   padding: 1.6rem;
 `;
 
-const ListStandardUnit = ({ children, attribute }) => {
+const ListStandardUnit = ({ attribute }) => {
   const { list } = attribute || {};
 
   return (
-    <StyledStandardList>
+    <StyledList>
       {list.map((currentValue, index) => (
-        <StyledStandardItem key={index}>{currentValue}</StyledStandardItem>
+        <StyledItem key={index}>
+          {/* <ThumbnailComponent
+            attribute={{
+              label: 1,
+              timer: "00:00:00",
+              bookmark: true,
+              sticker: currentValue.content,
+              title: currentValue.subject,
+              src: currentValue.thumbnail,
+            }}
+          /> */}
+        </StyledItem>
       ))}
-    </StyledStandardList>
+    </StyledList>
   );
 };
 

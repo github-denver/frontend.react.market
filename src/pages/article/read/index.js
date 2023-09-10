@@ -6,7 +6,7 @@ import NavigationComponent from "@/components/navigation";
 import ThumbnailComponent from "@/components/thumbnail";
 // import ProfileComponent from "@/components/profile";
 import FooterComponent from "@/components/footer";
-import ProfileStandardUnit from "@/unit/profile";
+import ProfileStandardUnit from "@/unit/profile/standard";
 import TextStandardUnit from "@/unit/text/standard";
 import { styled } from "styled-components";
 import ArticleReadContainer from "@/containers/article/read";

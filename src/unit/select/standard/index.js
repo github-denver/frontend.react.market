@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { SlArrowDown } from "react-icons/sl";
 
-const StyledStandardSelect = styled.select`
+const StyledSelect = styled.select`
   width: 100%;
   height: 3.2rem;
   padding: 1.2rem;
@@ -18,7 +18,16 @@ const StyledStandardSelect = styled.select`
   cursor: pointer;
 `;
 
-const StyledStandardLabel = styled.label`
+const StyledText = styled.span`
+  overflow: hidden;
+  display: block;
+  font-size: 1.2rem;
+  line-height: 3.2rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+const StyledLabel = styled.label`
   position: absolute;
   top: 0;
   right: 0;
@@ -29,15 +38,6 @@ const StyledStandardLabel = styled.label`
   font-size: 0;
   text-align: left;
 
-  .text_local {
-    overflow: hidden;
-    display: block;
-    font-size: 1.2rem;
-    line-height: 3.2rem;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
   svg {
     position: absolute;
     top: 50%;
@@ -46,7 +46,7 @@ const StyledStandardLabel = styled.label`
   }
 `;
 
-const StyledStandardSelectInner = styled.div`
+const StyledInner = styled.div`
   position: relative;
   z-index: 1;
   height: 3.4rem;
@@ -57,45 +57,38 @@ const StyledStandardSelectInner = styled.div`
   background-position: 100% 50%;
 `;
 
-const StyledStandardSelectWrapper = styled.div`
+const StyledWrapper = styled.div`
   display: inline-block;
   padding-left: 1.2rem;
   box-sizing: border-box;
   vertical-align: top;
 `;
 
-const SelectStandardUnit = ({ children, attribute }) => {
+const SelectStandardUnit = ({ attribute }) => {
   const { className, options, defaultValue } = attribute || {};
-
   const [select, setSelect] = useState(defaultValue);
 
   const onChange = (event) => {
-    if (event.target.tagName.toLowerCase() === "select") {
-      setSelect(event.target.options[event.target.selectedIndex].value);
-    }
+    setSelect(event.target.value);
   };
 
   return (
-    <StyledStandardSelectWrapper className={className}>
-      <StyledStandardSelectInner>
-        <StyledStandardLabel htmlFor="search">
-          <span className="text_local">{select}</span>
+    <StyledWrapper className={className}>
+      <StyledInner>
+        <StyledLabel htmlFor="search">
+          <StyledText>{select}</StyledText>
           <SlArrowDown size="10" />
-        </StyledStandardLabel>
+        </StyledLabel>
 
-        <StyledStandardSelect
-          name="search"
-          onChange={onChange}
-          defaultValue={select}
-        >
+        <StyledSelect name="search" onChange={onChange} defaultValue={select}>
           {options.map((currentValue, index) => (
             <option value={currentValue.value} key={index}>
               {currentValue.text}
             </option>
           ))}
-        </StyledStandardSelect>
-      </StyledStandardSelectInner>
-    </StyledStandardSelectWrapper>
+        </StyledSelect>
+      </StyledInner>
+    </StyledWrapper>
   );
 };
 

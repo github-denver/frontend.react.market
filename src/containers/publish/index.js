@@ -8,19 +8,24 @@ import Cookies from "js-cookie";
 import { formChangeField, initialLoginForm } from "@/modules/form";
 import { boardWrite } from "../../modules/board/write";
 import PublishComponent from "../../components/publish";
+import { boardModify } from "../../modules/board/modify";
 
 const PublishContainer = ({ attribute }) => {
-  const { category, proof } = attribute || {};
+  const { category, proof, className } = attribute || {};
+
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const { subject, contents, thumbnail, data, owner, error } = useSelector(
-    ({ boardWrite }) => ({
-      subject: boardWrite?.subject,
-      contents: boardWrite?.contents,
-      thumbnail: boardWrite?.thumbnail,
-      data: boardWrite?.data,
-      owner: proof,
-      error: boardWrite?.error,
-    }),
+    ({ boardWrite, boardModify }) => {
+      return {
+        subject: boardWrite?.subject,
+        contents: boardWrite?.contents,
+        thumbnail: boardWrite?.thumbnail,
+        data: boardWrite?.data,
+        owner: proof,
+        error: boardWrite?.error,
+      };
+    },
     shallowEqual
   );
 
@@ -32,27 +37,34 @@ const PublishContainer = ({ attribute }) => {
 
   const publish = () => {
     const formData = new FormData();
+
     formData.append("category", category);
     formData.append("subject", subject);
     formData.append("content", contents);
-    formData.append("thumbnail", thumbnail);
+
+    if (thumbnail) {
+      formData.append("thumbnail", thumbnail.files);
+    }
 
     if (owner) {
-      // dispatch(
-      //   boardModify({
-      //     category: attribute.category,
-      //     number: number,
-      //     payload: formData,
-      //   })
-      // );
-      // history.push(`/beluga/${attribute.category}/read/${number}`);
+      dispatch(
+        boardModify({
+          category,
+          number,
+          payload: formData,
+        })
+      );
+
+      navigate(`/board/${category}/read/${number}`);
     } else {
       dispatch(boardWrite({ category, payload: formData }));
     }
   };
 
   const cancel = () => {
-    navigate.goBack();
+    // navigate(-1);
+
+    navigate(`/board/${attribute.category}/list/1`);
   };
 
   useEffect(() => {
@@ -65,7 +77,11 @@ const PublishContainer = ({ attribute }) => {
     }
   }, [navigate, data, error]);
 
-  return <PublishComponent attribute={{ owner: !!owner, publish, cancel }} />;
+  return (
+    <PublishComponent
+      attribute={{ className, owner: !!owner, publish, cancel }}
+    />
+  );
 };
 
 export default PublishContainer;

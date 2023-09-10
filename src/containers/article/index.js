@@ -73,12 +73,12 @@ const ArticleListContainer = ({ attribute }) => {
   return (
     <ArticleListComponent
       attribute={{
-        user: user,
-        category: attribute.category,
-        list: list,
-        pagination: pagination,
-        error: error,
-        loading: loading,
+        user,
+        category,
+        list,
+        pagination,
+        error,
+        loading,
         select: prefixed.select,
         keyword: prefixed.keyword,
       }}

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ProfileStandardUnit from "@/unit/profile";
+import ProfileStandardUnit from "@/unit/profile/standard";
 import TextStandardUnit from "@/unit/text/standard";
 import ThumbnailComponent from "@/components/thumbnail";
 

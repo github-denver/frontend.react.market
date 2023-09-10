@@ -1,17 +1,25 @@
 import React from "react";
 import styled from "styled-components";
-import ProfileStandardUnit from "@/unit/profile";
+import ProfileStandardUnit from "@/unit/profile/standard";
 import TextStandardUnit from "@/unit/text/standard";
 import ThumbnailComponent from "@/components/thumbnail";
 import ActionSocialUnit from "@/unit/action/social";
+import HalfUnit from "@/unit/half";
+import ArticleUtilityStandard from "@/unit/article/utility/standard";
+import ButtonStandardUnit from "@/unit/button/standard";
+import ProfileSignatureUnit from "@/unit/profile/signature";
 
 const StyledArticle = styled.div`
-  .gravity_actionSocial {
+  /* .gravity_actionSocial {
     position: fixed;
     right: 0;
     bottom: 0;
     left: 0;
     z-index: 1;
+  } */
+
+  .half_article {
+    padding: 1.2rem;
   }
 `;
 
@@ -75,7 +83,50 @@ const ArticleReadComponent = ({ children, attribute }) => {
             }}
           />
 
-          <ActionSocialUnit attribute={{ className: "gravity_actionSocial" }} />
+          {/* <ArticleUtilityStandard /> */}
+
+          {/* <ActionSocialUnit attribute={{ className: "gravity_actionSocial" }} /> */}
+
+          {/* <hr className="boundary" />
+
+          <HalfUnit
+            attribute={{
+              className: "half_article",
+              firstUnit: (
+                <ButtonStandardUnit
+                  attribute={{
+                    type: "button",
+                    fill: true,
+                  }}
+                >
+                  <span className="text_local">수정</span>
+                </ButtonStandardUnit>
+              ),
+              secondUnit: (
+                <ButtonStandardUnit
+                  attribute={{
+                    type: "button",
+                  }}
+                >
+                  <span className="text_local">삭제</span>
+                </ButtonStandardUnit>
+              ),
+            }}
+          /> */}
+
+          {/* <hr className="boundary" /> */}
+
+          <hr className="thin" />
+
+          <ProfileSignatureUnit
+            attribute={{
+              className: "group_profile",
+              author: currentValue.name,
+              message: "currentValue.message",
+            }}
+          />
+
+          <hr className="boundary" />
         </StyledArticle>
       ))}
     </>

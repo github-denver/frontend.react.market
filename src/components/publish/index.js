@@ -9,6 +9,8 @@ import { formChangeField, initialLoginForm } from "@/modules/form";
 import { boardWrite } from "../../modules/board/write";
 import { styled } from "styled-components";
 import ButtonStandardUnit from "@/unit/button/standard";
+import HalfUnit from "@/unit/half";
+
 const StyledPublish = styled.div`
   .gravity_actionSocial {
     position: fixed;
@@ -20,27 +22,35 @@ const StyledPublish = styled.div`
 `;
 
 const PublishComponent = ({ attribute }) => {
-  const { owner, publish, cancel } = attribute || {};
+  const { className, owner, publish, cancel } = attribute || {};
 
   return (
-    <StyledPublish>
-      <ButtonStandardUnit
+    <StyledPublish className={className}>
+      <HalfUnit
         attribute={{
-          type: "button",
-          event: publish,
+          firstUnit: (
+            <ButtonStandardUnit
+              attribute={{
+                type: "button",
+                event: publish,
+                fill: true,
+              }}
+            >
+              <span className="text_local">{owner ? "수정" : "등록"}</span>
+            </ButtonStandardUnit>
+          ),
+          secondUnit: (
+            <ButtonStandardUnit
+              attribute={{
+                type: "button",
+                event: cancel,
+              }}
+            >
+              <span className="text_local">취소</span>
+            </ButtonStandardUnit>
+          ),
         }}
-      >
-        <span className="text_local">{owner ? "수정" : "등록"}</span>
-      </ButtonStandardUnit>
-
-      <ButtonStandardUnit
-        attribute={{
-          type: "button",
-          event: cancel,
-        }}
-      >
-        <span className="text_local">취소</span>
-      </ButtonStandardUnit>
+      />
     </StyledPublish>
   );
 };

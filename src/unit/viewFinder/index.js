@@ -2,28 +2,79 @@ import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import { SlPlus } from "react-icons/sl";
 import ButtonStandardUnit from "@/unit/button/standard";
+import { SlCamera } from "react-icons/sl";
+import CellUnit from "@/unit/cell";
 
-const StyledViewFinder = styled.div`
-  img {
-    width: 100%;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-    pointer-events: none;
+const StyledViewFinderUploads = styled.input`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  cursor: pointer;
+  opacity: 1;
+`;
+
+const StyledViewFinderThumbnail = styled.img`
+  width: 100%;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  pointer-events: none;
+`;
+
+const StyledViewFinderThumbnailGuide = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  text-align: center;
+
+  svg {
+    display: block;
+    margin: 0 auto;
   }
 
+  svg + .emphasis_local {
+    margin-top: 1.2rem;
+  }
+
+  .emphasis_local {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: #828c94;
+    vertical-align: top;
+  }
+
+  .text_local {
+    font-size: 1.4rem;
+    color: #828c94;
+  }
+`;
+
+const StyledViewFinder = styled.div`
   position: relative;
-
-  ${(props) =>
-    !props.$image &&
-    css`
-      padding-top: 100%;
-    `}
-
   background-color: #f7f9fa;
 
-  .draggable-button {
+  .button_common {
+    position: absolute;
+    bottom: 1.2rem;
+    left: 50%;
+    z-index: 1;
+    border-radius: 3.6rem;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+
+  .button_hashtag {
     position: absolute;
     width: 2rem;
     height: 2rem;
@@ -43,22 +94,15 @@ const StyledViewFinder = styled.div`
     }
   }
 
-  .button_product_tag {
-    position: absolute;
-    bottom: 1.2rem;
-    left: 50%;
-    z-index: 1;
-    border-radius: 3.6rem;
-    -webkit-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    -o-transform: translateX(-50%);
-    transform: translateX(-50%);
-  }
+  ${(props) =>
+    !props.$image &&
+    css`
+      padding-top: 100%;
+    `}
 `;
 
 const ViewFinderUnit = ({ children, attribute }) => {
-  const { className, src } = attribute || {};
+  const { className, src, event, url } = attribute || {};
 
   const [buttons, setButtons] = useState([]);
   const [draggingButton, setDraggingButton] = useState(null);
@@ -115,14 +159,33 @@ const ViewFinderUnit = ({ children, attribute }) => {
       className={className}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
-      $image={src}
+      $image={src || url}
     >
-      <img src={src} alt="" />
+      {src ? (
+        <StyledViewFinderThumbnail src={src} alt="" />
+      ) : (
+        <>
+          {url ? (
+            <StyledViewFinderThumbnail
+              src={`http://localhost:5000/uploads/${url}`}
+              alt=""
+            />
+          ) : (
+            <StyledViewFinderThumbnailGuide>
+              <CellUnit>
+                <SlCamera size="24" />
+                <em className="emphasis_local">사진 올리기</em>
+                <p className="text_local">이미지는 한 장만 올릴 수 있어요!</p>
+              </CellUnit>
+            </StyledViewFinderThumbnailGuide>
+          )}
+        </>
+      )}
 
       {buttons.map((button) => (
         <div
           key={button.id}
-          className="draggable-button"
+          className="button_hashtag"
           style={{
             top: `${button.y}px`,
             left: `${button.x}px`,
@@ -144,7 +207,7 @@ const ViewFinderUnit = ({ children, attribute }) => {
       {src && (
         <ButtonStandardUnit
           attribute={{
-            className: "button_product_tag",
+            className: "button_common",
             type: "button",
             event: addDraggableButton,
             fill: true,
@@ -153,6 +216,14 @@ const ViewFinderUnit = ({ children, attribute }) => {
         >
           <span className="text_local">상품 태그 추가</span>
         </ButtonStandardUnit>
+      )}
+
+      {(!src || !url) && (
+        <StyledViewFinderUploads
+          type="file"
+          name="thumbnail"
+          onChange={event}
+        />
       )}
     </StyledViewFinder>
   );

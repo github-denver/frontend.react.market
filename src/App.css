@@ -168,6 +168,14 @@ img {
   background-color: #f7f9fa;
 }
 
+.thin {
+  margin: 0;
+  padding: 0;
+  height: 0.1rem;
+  border: 0 none;
+  background-color: #f7f9fa;
+}
+
 /* .outer_half {
   width: 100%;
 }
