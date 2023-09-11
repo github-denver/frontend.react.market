@@ -1,13 +1,13 @@
-import React from "react";
-import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
-import { SlHome, SlArrowDown, SlHandbag, SlWrench } from "react-icons/sl";
-import NavigationComponent from "@/components/navigation";
-import { MdClose } from "react-icons/md";
-import DimmedUnit from "@/unit/dimmed";
-import HalfUnit from "@/unit/half";
-import ButtonStandardUnit from "@/unit/button/standard";
-import AccordionMenu from "@/unit/menu/accordion";
+import React from 'react'
+import styled, { css } from 'styled-components'
+import { Link } from 'react-router-dom'
+import { SlHome, SlArrowDown, SlHandbag, SlWrench } from 'react-icons/sl'
+import NavigationComponent from '@/components/navigation'
+import { MdClose } from 'react-icons/md'
+import DimmedUnit from '@/unit/dimmed'
+import HalfUnit from '@/unit/half'
+import ButtonStandardUnit from '@/unit/button/standard'
+import AccordionMenu from '@/unit/menu/accordion'
 
 const StyledButtonDepth = styled.button`
   display: block;
@@ -37,7 +37,7 @@ const StyledButtonDepth = styled.button`
 
   .text_local {
     display: inline-block;
-    /* font-weight: 700; */
+    /* font-weight: 500; */
     font-size: 1.4rem;
     vertical-align: middle;
   }
@@ -49,7 +49,7 @@ const StyledButtonDepth = styled.button`
     z-index: 1;
     margin-top: -0.6rem;
   }
-`;
+`
 
 const StyledLinkDepth = styled(Link)`
   display: block;
@@ -59,10 +59,10 @@ const StyledLinkDepth = styled(Link)`
 
   &:hover,
   &:focus {
-    /* font-weight: 700; */
+    /* font-weight: 500; */
     /* background-color: #f7f9fa; */
   }
-`;
+`
 
 const StyledItemDepth = styled.li`
   margin-top: 0.4rem;
@@ -70,7 +70,7 @@ const StyledItemDepth = styled.li`
   &:first-child {
     margin-top: 0;
   }
-`;
+`
 
 const StyledListDepth = styled.ul`
   /* display: none; */
@@ -79,7 +79,7 @@ const StyledListDepth = styled.ul`
   & & {
     padding-left: 1rem;
   }
-`;
+`
 
 const StyledLinkHorizontal = styled(Link)`
   display: inline-block;
@@ -91,13 +91,13 @@ const StyledLinkHorizontal = styled(Link)`
     font-size: 1.4rem;
     vertical-align: middle;
   }
-`;
+`
 
 const StyledItemHorizontal = styled.li`
   display: inline-block;
   margin: 0.4rem 0 0 0.4rem;
   vertical-align: middle;
-`;
+`
 
 const StyledListHorizontal = styled.ul`
   overflow: auto;
@@ -106,7 +106,7 @@ const StyledListHorizontal = styled.ul`
   border-top: 0.1rem solid #eee;
   border-bottom: 0.1rem solid #eee;
   white-space: nowrap;
-`;
+`
 
 const StyledLinkMenu = styled(Link)`
   display: inline-block;
@@ -118,7 +118,7 @@ const StyledLinkMenu = styled(Link)`
     font-size: 1.4rem;
     vertical-align: middle;
   }
-`;
+`
 
 const StyledItemMenu = styled.li`
   margin-top: 0.4rem;
@@ -126,7 +126,7 @@ const StyledItemMenu = styled.li`
   &:first-child {
     margin-top: 0;
   }
-`;
+`
 
 const StyledListMenu = styled.ul`
   padding: 2rem 0;
@@ -136,7 +136,7 @@ const StyledListMenu = styled.ul`
   & + ${StyledListHorizontal} {
     border-top: 0 none;
   }
-`;
+`
 
 const StyledButtonService = styled.button`
   display: block;
@@ -166,7 +166,7 @@ const StyledButtonService = styled.button`
 
   .text_local {
     display: inline-block;
-    font-weight: 700;
+    font-weight: 500;
     font-size: 1.6rem;
     vertical-align: middle;
   }
@@ -178,7 +178,7 @@ const StyledButtonService = styled.button`
     z-index: 1;
     margin-top: -0.6rem;
   }
-`;
+`
 
 const StyledItemService = styled.li`
   margin-top: 0.4rem;
@@ -186,7 +186,7 @@ const StyledItemService = styled.li`
   &:first-child {
     margin-top: 0;
   }
-`;
+`
 
 const StyledListService = styled.ul`
   display: none;
@@ -200,7 +200,7 @@ const StyledListService = styled.ul`
       margin-top: -0.1rem;
     }
   }
-`;
+`
 
 const StyledButtonClose = styled.button`
   display: inline-block;
@@ -211,7 +211,7 @@ const StyledButtonClose = styled.button`
   svg {
     display: block;
   }
-`;
+`
 
 const StyledItemGravity = styled.li`
   display: inline-block;
@@ -219,24 +219,25 @@ const StyledItemGravity = styled.li`
   padding-left: 0.8rem;
   box-sizing: border-box;
   vertical-align: middle;
-`;
+`
 
 const StyledListGravity = styled.ul`
   margin: 2rem 0 0 -0.8rem;
-`;
+`
 
 const StyledLogotype = styled.h1`
   display: block;
-`;
+`
 
 const StyledLogotypeLink = styled(Link)`
   display: inline-block;
   height: 2.6rem;
+  font-weight: 500;
   font-size: 1.6rem;
   line-height: 2.6rem;
   vertical-align: middle;
   text-align: center;
-`;
+`
 
 const StyledInner = styled.div`
   overflow: auto;
@@ -250,7 +251,7 @@ const StyledInner = styled.div`
   padding: 2.6rem 1.6rem;
   box-sizing: border-box;
   background-color: #fff;
-`;
+`
 
 const StyledUtility = styled.div`
   position: fixed;
@@ -258,8 +259,8 @@ const StyledUtility = styled.div`
   bottom: 0;
   ${(porps) => {
     return css`
-      left: ${porps.$visible ? 0 : "-100%"};
-    `;
+      left: ${porps.$visible ? 0 : '-100%'};
+    `
   }}
   z-index: 100;
   width: 100%;
@@ -268,10 +269,10 @@ const StyledUtility = styled.div`
   -moz-transition: left 0.4s;
   -o-transition: left 0.4s;
   transition: left 0.4s;
-`;
+`
 
 const UtilityComponent = ({ attribute }) => {
-  const { user, handleLogoutClick, visible, handleUtilityVisible } = attribute;
+  const { user, handleLogoutClick, visible, handleUtilityVisible } = attribute
 
   return (
     <StyledUtility $visible={visible}>
@@ -289,7 +290,7 @@ const UtilityComponent = ({ attribute }) => {
                   <MdClose size={24} />
                   <span className="screen_out">주메뉴 닫기</span>
                 </StyledButtonClose>
-              ),
+              )
             }}
           />
         </StyledLogotype>
@@ -298,20 +299,17 @@ const UtilityComponent = ({ attribute }) => {
           {user ? (
             <>
               <StyledItemGravity>
-                <ButtonStandardUnit
-                  attribute={{ type: "button", event: handleLogoutClick }}
-                >
+                <ButtonStandardUnit attribute={{ type: 'button', event: handleLogoutClick }}>
                   <span className="text_local">로그아웃</span>
                 </ButtonStandardUnit>
               </StyledItemGravity>
               <StyledItemGravity>
                 <ButtonStandardUnit
                   attribute={{
-                    type: "link",
-                    href: "/member/profile",
-                    fill: true,
-                  }}
-                >
+                    type: 'link',
+                    href: '/member/profile',
+                    fill: true
+                  }}>
                   <span className="text_local">마이페이지</span>
                 </ButtonStandardUnit>
               </StyledItemGravity>
@@ -321,21 +319,19 @@ const UtilityComponent = ({ attribute }) => {
               <StyledItemGravity>
                 <ButtonStandardUnit
                   attribute={{
-                    type: "link",
-                    href: "/member/login",
-                  }}
-                >
+                    type: 'link',
+                    href: '/member/login'
+                  }}>
                   <span className="text_local">로그인</span>
                 </ButtonStandardUnit>
               </StyledItemGravity>
               <StyledItemGravity>
                 <ButtonStandardUnit
                   attribute={{
-                    type: "link",
-                    href: "/member/register",
-                    fill: true,
-                  }}
-                >
+                    type: 'link',
+                    href: '/member/register',
+                    fill: true
+                  }}>
                   <span className="text_local">회원가입</span>
                 </ButtonStandardUnit>
               </StyledItemGravity>
@@ -347,14 +343,14 @@ const UtilityComponent = ({ attribute }) => {
           items={[
             {
               icon: <SlHome size={24} />,
-              title: "커뮤니티",
+              title: '커뮤니티',
               arrow: <SlArrowDown size={12} />,
               subItems: [
                 {
                   icon: null,
-                  link: "홈",
-                  to: "/",
-                  arrow: null,
+                  link: '홈',
+                  to: '/',
+                  arrow: null
                 },
                 /*
                 {
@@ -370,10 +366,10 @@ const UtilityComponent = ({ attribute }) => {
                 */
                 {
                   icon: null,
-                  link: "집사진",
-                  to: "/board/talk/list/1",
-                  arrow: null,
-                },
+                  link: '집사진',
+                  to: '/board/talk/list/1',
+                  arrow: null
+                }
                 /*
                 {
                   icon: null,
@@ -431,8 +427,8 @@ const UtilityComponent = ({ attribute }) => {
                   arrow: null,
                 },
                 */
-              ],
-            },
+              ]
+            }
             /*
             {
               icon: <SlHandbag size={24} />,
@@ -644,7 +640,7 @@ const UtilityComponent = ({ attribute }) => {
 
             <NavigationComponent
               attribute={{
-                type: "vertical",
+                type: 'vertical'
               }}
             />
           </StyledItemService>
@@ -861,7 +857,7 @@ const UtilityComponent = ({ attribute }) => {
 
       <DimmedUnit attribute={{ visible }} />
     </StyledUtility>
-  );
-};
+  )
+}
 
-export default UtilityComponent;
+export default UtilityComponent

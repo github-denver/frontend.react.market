@@ -1,7 +1,7 @@
-import React from "react";
-import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
-import { SlArrowRight } from "react-icons/sl";
+import React from 'react'
+import styled, { css } from 'styled-components'
+import { Link } from 'react-router-dom'
+import { SlArrowRight } from 'react-icons/sl'
 
 const StyledDetailLink = styled(Link)`
   position: absolute;
@@ -17,48 +17,48 @@ const StyledDetailLink = styled(Link)`
   svg {
     display: block;
   }
-`;
+`
 
 const StyledTagLink = styled(Link)`
   display: block;
-`;
+`
 
 const StyledTag = styled.strong`
   display: inline-block;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 1.8rem;
   vertical-align: middle;
-`;
+`
 
 const filteredText = (category, navigation) => {
-  let result = [];
+  let result = []
 
   for (let i in navigation) {
     if (navigation[i].category === category) {
-      result = navigation[i].text;
+      result = navigation[i].text
 
-      break;
+      break
     }
   }
 
-  return result;
-};
+  return result
+}
 
 const StyledDescription = styled.p`
   display: block;
   padding-right: 1.2rem;
   font-size: 1.4rem;
-`;
+`
 
 const StyledHeading = ({ level = 2, size, children }) => {
-  const tag = typeof level === "number" ? `h${level}` : level;
+  const tag = typeof level === 'number' ? `h${level}` : level
 
   return (
     <StyledTag as={tag} size={size}>
       {size ? <StyledTagLink to="/">{children}</StyledTagLink> : children}
     </StyledTag>
-  );
-};
+  )
+}
 
 const StyledHgroup = styled.div`
   ${(props) =>
@@ -70,7 +70,7 @@ const StyledHgroup = styled.div`
       : css``};
 
   ${(props) =>
-    props.size !== "small"
+    props.size !== 'small'
       ? css``
       : css`
           margin-bottom: 1rem;
@@ -85,30 +85,14 @@ const StyledHgroup = styled.div`
             right: 0;
           }
         `};
-`;
+`
 
 const HgroupComponent = ({ attribute }) => {
-  const {
-    level,
-    title,
-    description,
-    invisible,
-    category,
-    navigation,
-    detail,
-    href,
-    size,
-  } = attribute;
+  const { level, title, description, invisible, category, navigation, detail, href, size } = attribute
 
   return (
-    <StyledHgroup
-      $invisible={invisible}
-      size={size}
-      className={invisible && "screen_out"}
-    >
-      <StyledHeading level={level}>
-        {title ? title : filteredText(category, navigation)}
-      </StyledHeading>
+    <StyledHgroup $invisible={invisible} size={size} className={invisible && 'screen_out'}>
+      <StyledHeading level={level}>{title ? title : filteredText(category, navigation)}</StyledHeading>
       <StyledDescription>{description}</StyledDescription>
 
       {detail && (
@@ -118,7 +102,7 @@ const HgroupComponent = ({ attribute }) => {
         </StyledDetailLink>
       )}
     </StyledHgroup>
-  );
-};
+  )
+}
 
-export default HgroupComponent;
+export default HgroupComponent

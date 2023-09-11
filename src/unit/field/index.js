@@ -1,5 +1,5 @@
-import React from "react";
-import styled, { css } from "styled-components";
+import React from 'react'
+import styled, { css } from 'styled-components'
 
 const StyledBox = styled.div`
   display: block;
@@ -22,7 +22,7 @@ const StyledBox = styled.div`
       cursor: not-allowed;
     }
   }
-`;
+`
 
 const StyledLabel = styled.label`
   ${(props) =>
@@ -50,12 +50,12 @@ const StyledLabel = styled.label`
     !props.$flexible &&
     css`
       display: inline-block;
-      font-weight: 700;
+      font-weight: 500;
       font-size: 16px;
       color: #2f3438;
       vertical-align: middle;
     `};
-`;
+`
 
 const StyledField = styled.div`
   position: relative;
@@ -107,20 +107,12 @@ const StyledField = styled.div`
         }
       }
     `};
-`;
+`
 
 const FieldUnit = ({ attribute }) => {
-  const {
-    className,
-    standard,
-    confirm,
-    guideMessage,
-    confirmButton,
-    label,
-    input,
-  } = attribute || {};
+  const { className, standard, confirm, guideMessage, confirmButton, label, input } = attribute || {}
 
-  const { htmlFor, text, flexible, hideLabel } = label || {};
+  const { htmlFor, text, flexible, hideLabel } = label || {}
   const {
     type,
     name,
@@ -130,16 +122,12 @@ const FieldUnit = ({ attribute }) => {
     // value,
     defaultValue,
     disabled,
-    autoComplete,
-  } = input || {};
+    autoComplete
+  } = input || {}
 
   return (
     <StyledField className={className} $standard={standard}>
-      <StyledLabel
-        htmlFor={htmlFor}
-        $flexible={flexible}
-        $hideLabel={hideLabel}
-      >
+      <StyledLabel htmlFor={htmlFor} $flexible={flexible} $hideLabel={hideLabel}>
         {text}
       </StyledLabel>
 
@@ -183,7 +171,7 @@ const FieldUnit = ({ attribute }) => {
         </StyledBox>
       )}
     </StyledField>
-  );
-};
+  )
+}
 
-export default FieldUnit;
+export default FieldUnit

@@ -1,8 +1,8 @@
-import React, { useCallback, useState } from "react";
-import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
-import { SlMenu, SlMagnifier, SlBasket } from "react-icons/sl";
-import UtilityComponent from "@/components/utility";
+import React, { useCallback, useState } from 'react'
+import styled, { css } from 'styled-components'
+import { Link } from 'react-router-dom'
+import { SlMenu, SlMagnifier, SlBasket } from 'react-icons/sl'
+import UtilityComponent from '@/components/utility'
 
 const StyledHeader = styled.header`
   display: table;
@@ -25,38 +25,39 @@ const StyledHeader = styled.header`
           border-bottom: 0.1rem solid #eee;
           text-align: center;
         `};
-`;
+`
 
 const StyledLogotype = styled.h1`
   display: table-cell;
   vertical-align: middle;
-`;
+`
 
 const StyledLogotypeLink = styled(Link)`
   display: inline-block;
   height: 2.6rem;
+  font-weight: 500;
   font-size: 1.6rem;
   line-height: 2.6rem;
   vertical-align: middle;
-`;
+`
 
 const StyledButton = styled.button`
   position: absolute;
   top: 50%;
 
   ${(props) => {
-    if (props.$direction === "basket") {
+    if (props.$direction === 'basket') {
       return `
         right: 1rem;
-      `;
-    } else if (props.$direction === "search") {
+      `
+    } else if (props.$direction === 'search') {
       return `
         right: 4.9rem;
-      `;
-    } else if (props.$direction === "hamburger") {
+      `
+    } else if (props.$direction === 'hamburger') {
       return `
         left: 1rem;
-      `;
+      `
     }
   }}
   z-index: 1;
@@ -71,25 +72,25 @@ const StyledButton = styled.button`
     display: inline-block;
     vertical-align: middle;
   }
-`;
+`
 
 const HeaderComponent = ({ attribute }) => {
-  const { minimal, user, handleLogoutClick } = attribute;
+  const { minimal, user, handleLogoutClick } = attribute
 
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(false)
 
   const handleUtilityVisible = useCallback(
     (event) => {
-      event.preventDefault();
+      event.preventDefault()
 
       if (!visible) {
-        setVisible(true);
+        setVisible(true)
       } else {
-        setVisible(false);
+        setVisible(false)
       }
     },
     [visible]
-  );
+  )
 
   return (
     <StyledHeader $minimal={minimal}>
@@ -115,7 +116,7 @@ const HeaderComponent = ({ attribute }) => {
               user,
               handleLogoutClick,
               visible,
-              handleUtilityVisible,
+              handleUtilityVisible
             }}
           />
 
@@ -131,7 +132,7 @@ const HeaderComponent = ({ attribute }) => {
         </>
       )}
     </StyledHeader>
-  );
-};
+  )
+}
 
-export default HeaderComponent;
+export default HeaderComponent

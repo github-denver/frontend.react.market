@@ -1,6 +1,6 @@
-import React from "react";
-import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
+import React from 'react'
+import styled, { css } from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const buttonStyles = css`
   display: block;
@@ -15,7 +15,7 @@ const buttonStyles = css`
 
   .text_local {
     display: inline-block;
-    font-weight: 700;
+    font-weight: 500;
     font-size: 1.4rem;
     vertical-align: middle;
   }
@@ -44,48 +44,35 @@ const buttonStyles = css`
     `}
 
   ${(props) =>
-    props.size === "small" &&
+    props.size === 'small' &&
     css`
       display: inline-block;
       width: auto;
       padding: 1rem 1.6rem;
       vertical-align: middle;
     `}
-`;
+`
 
 const StyledLink = styled(Link)`
   ${buttonStyles}
-`;
+`
 
 const StyledButton = styled.button`
   ${buttonStyles}
-`;
+`
 
 const ButtonStandardUnit = ({ children, attribute }) => {
-  const { type, className, event, href, fill, confirm, size } = attribute || {};
+  const { type, className, event, href, fill, confirm, size } = attribute || {}
 
-  return type === "link" ? (
-    <StyledLink
-      to={href}
-      className={className}
-      $fill={fill}
-      $confirm={confirm}
-      size={size}
-    >
+  return type === 'link' ? (
+    <StyledLink to={href} className={className} $fill={fill} $confirm={confirm} size={size}>
       {children}
     </StyledLink>
   ) : (
-    <StyledButton
-      type={type}
-      className={className}
-      onClick={event}
-      $fill={fill}
-      $confirm={confirm}
-      size={size}
-    >
+    <StyledButton type={type} className={className} onClick={event} $fill={fill} $confirm={confirm} size={size}>
       {children}
     </StyledButton>
-  );
-};
+  )
+}
 
-export default ButtonStandardUnit;
+export default ButtonStandardUnit

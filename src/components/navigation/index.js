@@ -1,22 +1,22 @@
-import React from "react";
-import styled, { css } from "styled-components";
-import { NavLink } from "react-router-dom";
+import React from 'react'
+import styled, { css } from 'styled-components'
+import { NavLink } from 'react-router-dom'
 
 const StyledLinkNavigation = styled(NavLink)`
   &.active {
     color: #35c5f0;
   }
-`;
+`
 
-const StyledItemNavigation = styled.li``;
+const StyledItemNavigation = styled.li``
 
-const StyledListNavigation = styled.ul``;
+const StyledListNavigation = styled.ul``
 
-const StyledInnerNavigation = styled.div``;
+const StyledInnerNavigation = styled.div``
 
 const StyledNavigation = styled.nav`
   ${(props) =>
-    props.$type === "vertical"
+    props.$type === 'vertical'
       ? css`
           ${StyledListNavigation} {
             margin-top: 0.4rem;
@@ -38,7 +38,7 @@ const StyledNavigation = styled.nav`
 
             &:hover,
             &:focus {
-              /* font-weight: 700; */
+              /* font-weight: 500; */
               /* background-color: #f7f9fa; */
             }
           }
@@ -71,14 +71,14 @@ const StyledNavigation = styled.nav`
           ${StyledLinkNavigation} {
             display: block;
             padding: 0.95rem 0.8rem;
-            font-weight: 700;
+            font-weight: 500;
             font-size: 1.4rem;
           }
         `}
-`;
+`
 
 const NavigationComponent = ({ attribute = {} }) => {
-  const { type } = attribute;
+  const { type } = attribute
 
   return (
     <StyledNavigation $type={type}>
@@ -94,9 +94,7 @@ const NavigationComponent = ({ attribute = {} }) => {
             <StyledLinkNavigation to="/">집들이</StyledLinkNavigation>
           </StyledItemNavigation> */}
           <StyledItemNavigation>
-            <StyledLinkNavigation to="/board/talk/list/1">
-              집사진
-            </StyledLinkNavigation>
+            <StyledLinkNavigation to="/board/talk/list/1">집사진</StyledLinkNavigation>
           </StyledItemNavigation>
           {/* <StyledItemNavigation>
             <StyledLinkNavigation to="/">살림 수납</StyledLinkNavigation>
@@ -134,7 +132,7 @@ const NavigationComponent = ({ attribute = {} }) => {
         </StyledListNavigation>
       </StyledInnerNavigation>
     </StyledNavigation>
-  );
-};
+  )
+}
 
-export default NavigationComponent;
+export default NavigationComponent

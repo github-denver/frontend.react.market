@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import styled, { css } from "styled-components";
-import { SlPlus } from "react-icons/sl";
-import ButtonStandardUnit from "@/unit/button/standard";
-import { SlCamera } from "react-icons/sl";
-import CellUnit from "@/unit/cell";
+import React, { useState } from 'react'
+import styled, { css } from 'styled-components'
+import { SlPlus } from 'react-icons/sl'
+import ButtonStandardUnit from '@/unit/button/standard'
+import { SlCamera } from 'react-icons/sl'
+import CellUnit from '@/unit/cell'
 
 const StyledViewFinderUploads = styled.input`
   position: absolute;
@@ -14,7 +14,7 @@ const StyledViewFinderUploads = styled.input`
   z-index: 1;
   cursor: pointer;
   opacity: 1;
-`;
+`
 
 const StyledViewFinderThumbnail = styled.img`
   width: 100%;
@@ -23,7 +23,7 @@ const StyledViewFinderThumbnail = styled.img`
   -moz-user-select: none;
   user-select: none;
   pointer-events: none;
-`;
+`
 
 const StyledViewFinderThumbnailGuide = styled.div`
   position: absolute;
@@ -45,7 +45,7 @@ const StyledViewFinderThumbnailGuide = styled.div`
 
   .emphasis_local {
     display: inline-block;
-    font-weight: 700;
+    font-weight: 500;
     font-size: 1.6rem;
     color: #828c94;
     vertical-align: top;
@@ -55,7 +55,7 @@ const StyledViewFinderThumbnailGuide = styled.div`
     font-size: 1.4rem;
     color: #828c94;
   }
-`;
+`
 
 const StyledViewFinder = styled.div`
   position: relative;
@@ -99,77 +99,69 @@ const StyledViewFinder = styled.div`
     css`
       padding-top: 100%;
     `}
-`;
+`
 
 const ViewFinderUnit = ({ children, attribute }) => {
-  const { className, src, event, url } = attribute || {};
+  const { className, src, event, url } = attribute || {}
 
-  const [buttons, setButtons] = useState([]);
-  const [draggingButton, setDraggingButton] = useState(null);
-  const [isDragging, setIsDragging] = useState(false);
+  const [buttons, setButtons] = useState([])
+  const [draggingButton, setDraggingButton] = useState(null)
+  const [isDragging, setIsDragging] = useState(false)
 
   const handleMouseDown = (e, button) => {
-    setDraggingButton(button);
-    setIsDragging(false);
-  };
+    setDraggingButton(button)
+    setIsDragging(false)
+  }
 
   const handleMouseMove = (e) => {
-    if (!draggingButton) return;
+    if (!draggingButton) return
 
     const updatedButtons = buttons.map((button) => {
       if (button.id === draggingButton.id) {
-        const dx = e.clientX - draggingButton.startX;
-        const dy = e.clientY - draggingButton.startY;
+        const dx = e.clientX - draggingButton.startX
+        const dy = e.clientY - draggingButton.startY
 
-        setIsDragging(true);
+        setIsDragging(true)
 
         return {
           ...button,
           x: dx,
-          y: dy,
-        };
+          y: dy
+        }
       }
-      return button;
-    });
+      return button
+    })
 
-    setButtons(updatedButtons);
-  };
+    setButtons(updatedButtons)
+  }
 
   const handleMouseUp = () => {
-    setDraggingButton(null);
-  };
+    setDraggingButton(null)
+  }
 
   const handleClick = (button) => {
     if (!isDragging && !draggingButton) {
-      alert(`Button ${button.id} clicked!`);
+      alert(`Button ${button.id} clicked!`)
     }
-  };
+  }
 
   const addDraggableButton = () => {
     const newButton = {
       id: new Date().getTime(),
       x: 0,
-      y: 0,
-    };
-    setButtons([...buttons, newButton]);
-  };
+      y: 0
+    }
+    setButtons([...buttons, newButton])
+  }
 
   return (
-    <StyledViewFinder
-      className={className}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      $image={src || url}
-    >
+    <StyledViewFinder className={className} onMouseMove={handleMouseMove} onMouseUp={handleMouseUp} $image={src || url}>
       {src ? (
         <StyledViewFinderThumbnail src={src} alt="" />
       ) : (
         <>
           {url ? (
-            <StyledViewFinderThumbnail
-              src={`http://localhost:5000/uploads/${url}`}
-              alt=""
-            />
+            <StyledViewFinderThumbnail src={`http://localhost:5000/uploads/${url}`} alt="" />
           ) : (
             <StyledViewFinderThumbnailGuide>
               <CellUnit>
@@ -188,17 +180,16 @@ const ViewFinderUnit = ({ children, attribute }) => {
           className="button_hashtag"
           style={{
             top: `${button.y}px`,
-            left: `${button.x}px`,
+            left: `${button.x}px`
           }}
           onMouseDown={(e) =>
             handleMouseDown(e, {
               id: button.id,
               startX: e.clientX - button.x,
-              startY: e.clientY - button.y,
+              startY: e.clientY - button.y
             })
           }
-          onClick={() => handleClick(button)}
-        >
+          onClick={() => handleClick(button)}>
           Button {button.id}
           <SlPlus size={20} />
         </div>
@@ -207,26 +198,19 @@ const ViewFinderUnit = ({ children, attribute }) => {
       {src && (
         <ButtonStandardUnit
           attribute={{
-            className: "button_common",
-            type: "button",
+            className: 'button_common',
+            type: 'button',
             event: addDraggableButton,
             fill: true,
-            size: "small",
-          }}
-        >
+            size: 'small'
+          }}>
           <span className="text_local">상품 태그 추가</span>
         </ButtonStandardUnit>
       )}
 
-      {(!src || !url) && (
-        <StyledViewFinderUploads
-          type="file"
-          name="thumbnail"
-          onChange={event}
-        />
-      )}
+      {(!src || !url) && <StyledViewFinderUploads type="file" name="thumbnail" onChange={event} />}
     </StyledViewFinder>
-  );
-};
+  )
+}
 
-export default ViewFinderUnit;
+export default ViewFinderUnit

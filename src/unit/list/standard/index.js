@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ThumbnailComponent from "@/components/thumbnail";
+import ThumbnailUnit from "@/unit/thumbnail";
 
 const StyledItem = styled.li`
   display: inline-block;
@@ -23,7 +23,7 @@ const ListStandardUnit = ({ attribute }) => {
     <StyledList>
       {list.map((currentValue, index) => (
         <StyledItem key={index}>
-          <ThumbnailComponent
+          <ThumbnailUnit
             attribute={{
               label: 1,
               timer: "00:00:00",
