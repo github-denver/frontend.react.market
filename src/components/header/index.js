@@ -1,65 +1,12 @@
-import React, { useCallback, useState } from 'react'
-import styled, { css } from 'styled-components'
-import { Link } from 'react-router-dom'
-import { SlMenu, SlMagnifier, SlBasket } from 'react-icons/sl'
-import UtilityComponent from '@/components/utility'
+import React, { useCallback, useState } from 'react';
+import { Link } from 'react-router-dom';
+import styled, { css } from 'styled-components';
+import { SlMenu, SlMagnifier, SlBasket } from 'react-icons/sl';
+import Utility from '@/components/utility';
 
-const StyledHeader = styled.header`
-  display: table;
-  position: relative;
-  top: 0;
-  z-index: 100;
-  width: 100%;
-  box-sizing: border-box;
-
-  ${(props) =>
-    props.$minimal
-      ? css`
-          padding: 4rem 1.2rem;
-          text-align: center;
-        `
-      : css`
-          left: 0;
-          height: 5rem;
-          padding: 0 1.6rem;
-          border-bottom: 0.1rem solid #eee;
-          text-align: center;
-        `};
-`
-
-const StyledLogotype = styled.h1`
-  display: table-cell;
-  vertical-align: middle;
-`
-
-const StyledLogotypeLink = styled(Link)`
-  display: inline-block;
-  height: 2.6rem;
-  font-weight: 500;
-  font-size: 1.6rem;
-  line-height: 2.6rem;
-  vertical-align: middle;
-`
-
-const StyledButton = styled.button`
+const commonStyles = css`
   position: absolute;
   top: 50%;
-
-  ${(props) => {
-    if (props.$direction === 'basket') {
-      return `
-        right: 1rem;
-      `
-    } else if (props.$direction === 'search') {
-      return `
-        right: 4.9rem;
-      `
-    } else if (props.$direction === 'hamburger') {
-      return `
-        left: 1rem;
-      `
-    }
-  }}
   z-index: 1;
   width: 3.6rem;
   height: 3.6rem;
@@ -72,67 +19,118 @@ const StyledButton = styled.button`
     display: inline-block;
     vertical-align: middle;
   }
-`
+`;
 
-const HeaderComponent = ({ attribute }) => {
-  const { minimal, user, handleLogoutClick } = attribute
+const StyledBasket = styled.button`
+  ${commonStyles}
 
-  const [visible, setVisible] = useState(false)
+  right: 1rem;
+`;
 
-  const handleUtilityVisible = useCallback(
+const StyledSearch = styled.button`
+  ${commonStyles}
+
+  right: 4.9rem;
+`;
+
+const StyledHamburger = styled.button`
+  ${commonStyles}
+
+  left: 1rem;
+`;
+
+const StyledLink = styled(Link)`
+  display: inline-block;
+  height: 2.6rem;
+  font-weight: 500;
+  font-size: 1.6rem;
+  line-height: 2.6rem;
+  vertical-align: middle;
+`;
+
+const StyledLogo = styled.h1`
+  display: table-cell;
+  vertical-align: middle;
+`;
+
+const StyledHeader = styled.header`
+  display: table;
+  position: relative;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  box-sizing: border-box;
+
+  ${({ $minimal }) =>
+    $minimal
+      ? css`
+          padding: 4rem 1.2rem;
+          text-align: center;
+        `
+      : css`
+          left: 0;
+          height: 5rem;
+          padding: 0 1.6rem;
+          border-bottom: 0.1rem solid #eee;
+          text-align: center;
+        `};
+`;
+
+const Header = ({ attributes }) => {
+  const { minimal, user, handleLogout } = attributes || {};
+
+  const [visible, setVisible] = useState(false);
+
+  const handleVisible = useCallback(
     (event) => {
-      event.preventDefault()
+      event.preventDefault();
 
       if (!visible) {
-        setVisible(true)
+        setVisible(true);
       } else {
-        setVisible(false)
+        setVisible(false);
       }
     },
     [visible]
-  )
+  );
 
   return (
     <StyledHeader $minimal={minimal}>
-      <StyledLogotype>
-        <StyledLogotypeLink to="/">
+      <StyledLogo>
+        <StyledLink to="/">
           <span className="ir_wa">오늘의 식탁</span>
-        </StyledLogotypeLink>
-
-        {minimal && <></>}
-      </StyledLogotype>
-
-      {minimal && <></>}
+        </StyledLink>
+      </StyledLogo>
 
       {!minimal && (
         <>
-          <StyledButton $direction="hamburger" onClick={handleUtilityVisible}>
+          <StyledHamburger onClick={handleVisible}>
             <SlMenu size={24} />
             <span className="screen_out">주메뉴 열기</span>
-          </StyledButton>
+          </StyledHamburger>
 
-          <UtilityComponent
-            attribute={{
+          <Utility
+            attributes={{
               user,
-              handleLogoutClick,
               visible,
-              handleUtilityVisible
+              handleVisible,
+              handleLogout
             }}
           />
 
-          <StyledButton $direction="search">
+          {/* <StyledSearch>
             <SlMagnifier size={24} />
             <span className="screen_out">통합 검색창 열기</span>
-          </StyledButton>
+          </StyledSearch>
 
-          <StyledButton $direction="basket">
+          <StyledBasket>
             <SlBasket size={24} />
             <span className="screen_out">장바구니 열기</span>
-          </StyledButton>
+          </StyledBasket> */}
         </>
       )}
     </StyledHeader>
-  )
-}
+  );
+};
 
-export default HeaderComponent
+export default Header;

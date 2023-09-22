@@ -1,12 +1,5 @@
-import { call, put } from "redux-saga/effects";
-import { loadingStart, loadingFinish } from "../modules/loading";
-
-export const createRequestActionTypes = (type) => {
-  const success = `${type}/success`;
-  const failure = `${type}/failure`;
-
-  return [type, success, failure];
-};
+import { call, put } from 'redux-saga/effects';
+import { loadingStart, loadingFinish } from '@/modules/loading';
 
 /*
   예를 들어, Action 객체가 생성되면 createRequestSaga를 수행합니다.
@@ -17,8 +10,15 @@ export const createRequestActionTypes = (type) => {
   이때, success, failure라는 Action 객체가 생성되는데 export function* Saga()를 보면 success, failure라는 Action 객체에 대한 행동이 없기 때문에 곧바로 Reducer로 이동합니다.
   */
 export default function createRequestSaga(type, request) {
+  console.group('export default function createRequestSaga(type, request) { .. }');
+  console.log('type: ', type);
+
   const success = `${type}Success`;
+  console.log('success: ', success);
+
   const failure = `${type}Failure`;
+  console.log('failure: ', failure);
+  console.groupEnd();
 
   return function* (action) {
     yield put(loadingStart(type));
@@ -26,17 +26,9 @@ export default function createRequestSaga(type, request) {
     try {
       const response = yield call(request, action.payload);
 
-      yield put({
-        type: success,
-        payload: response.data,
-        meta: response,
-      });
+      yield put({ type: success, payload: response.data, meta: response });
     } catch (error) {
-      yield put({
-        type: failure,
-        payload: error,
-        error: true,
-      });
+      yield put({ type: failure, payload: error, error: true });
     }
 
     yield put(loadingFinish(type));

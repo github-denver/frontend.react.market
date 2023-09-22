@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const StyledLink = styled(Link)`
   display: inline-block;
@@ -9,8 +9,8 @@ const StyledLink = styled(Link)`
   vertical-align: top;
 `;
 
-const LinkStandardUnit = ({ attribute }) => {
-  const { className, href, text } = attribute || {};
+const HyperLink = ({ className, attributes }) => {
+  const { href, text } = attributes || {};
 
   return (
     <StyledLink to={href} className={className}>
@@ -19,4 +19,4 @@ const LinkStandardUnit = ({ attribute }) => {
   );
 };
 
-export default LinkStandardUnit;
+export default HyperLink;

@@ -1,9 +1,11 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 
-const buttonStyles = css`
+const commonStyles = css`
   display: block;
+  position: relative;
+  z-index: 1;
   width: 100%;
   padding: 1.4rem 0;
   border: 0.1rem solid #35c5f0;
@@ -20,8 +22,27 @@ const buttonStyles = css`
     vertical-align: middle;
   }
 
-  ${(props) =>
-    props.$fill
+  ${({ size }) =>
+    size === 'small' &&
+    css`
+      display: inline-block;
+      width: auto;
+      padding: 1rem 1.6rem;
+      vertical-align: middle;
+    `}
+
+  ${({ $confirm }) =>
+    $confirm &&
+    css`
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 30%;
+      margin-top: 0;
+    `}
+
+    ${({ $fill }) =>
+    $fill
       ? css`
           background-color: #35c5f0;
 
@@ -32,47 +53,28 @@ const buttonStyles = css`
       : css`
           background-color: #fff;
         `};
-
-  ${(props) =>
-    props.$confirm &&
-    css`
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 30%;
-      margin-top: 0;
-    `}
-
-  ${(props) =>
-    props.size === 'small' &&
-    css`
-      display: inline-block;
-      width: auto;
-      padding: 1rem 1.6rem;
-      vertical-align: middle;
-    `}
-`
+`;
 
 const StyledLink = styled(Link)`
-  ${buttonStyles}
-`
+  ${commonStyles}
+`;
 
 const StyledButton = styled.button`
-  ${buttonStyles}
-`
+  ${commonStyles}
+`;
 
-const ButtonStandardUnit = ({ children, attribute }) => {
-  const { type, className, event, href, fill, confirm, size } = attribute || {}
+const Button = ({ className, attributes, children }) => {
+  const { type, href, size, confirm, fill, event } = attributes || {};
 
   return type === 'link' ? (
-    <StyledLink to={href} className={className} $fill={fill} $confirm={confirm} size={size}>
+    <StyledLink to={href} className={className} size={size} $confirm={confirm} $fill={fill}>
       {children}
     </StyledLink>
   ) : (
-    <StyledButton type={type} className={className} onClick={event} $fill={fill} $confirm={confirm} size={size}>
+    <StyledButton type={type} className={className} size={size} $confirm={confirm} $fill={fill} onClick={event}>
       {children}
     </StyledButton>
-  )
-}
+  );
+};
 
-export default ButtonStandardUnit
+export default Button;

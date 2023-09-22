@@ -1,25 +1,19 @@
-import React from "react";
-import HeaderContainer from "@/containers/header";
-import HgroupComponent from "@/components/hgroup";
-import LoginContainer from "@/containers/login";
+import React from 'react';
+import Header from '@/containers/header';
+import Hgroup from '@/unit/hgroup/standard';
+import Login from '@/containers/login';
 
-const LoginPage = () => {
-  return (
-    <>
-      <HeaderContainer attribute={{ minimal: true }} />
+const Page = () => (
+  <>
+    <Header attributes={{ minimal: true }} />
 
-      <section className="container">
-        <HgroupComponent attribute={{ title: "본문 영역", invisible: true }} />
-        <LoginContainer />
-      </section>
+    <section className="container">
+      <Hgroup attributes={{ title: '본문 영역', invisible: true }} />
+      <Login />
+    </section>
 
-      <footer className="footer_minimal">
-        <small className="text_copyright_minimal">
-          Copyright 2014. bucketplace, Co., Ltd. All rights reserved.
-        </small>
-      </footer>
-    </>
-  );
-};
+    <footer></footer>
+  </>
+);
 
-export default LoginPage;
+export default Page;

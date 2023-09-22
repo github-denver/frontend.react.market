@@ -1,7 +1,11 @@
-import React from "react";
+import React from 'react';
 
-const Error404Page = () => {
-  return <>error</>;
-};
+const Error = () => (
+  <>
+    <header></header>
+    <section> </section>
+    <footer> </footer>
+  </>
+);
 
-export default Error404Page;
+export default Error;

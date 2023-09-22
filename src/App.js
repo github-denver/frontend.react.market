@@ -1,17 +1,14 @@
-import React from 'react'
-import { Route, Routes } from 'react-router-dom'
-import '@/App.css'
-import Main from '@/pages/main'
-import Register from '@/pages/register'
-import Login from '@/pages/login'
-import FindPassword from '@/pages/findPassword'
-import Profile from '@/pages/profile'
-import BoardList from '@/pages/board'
-import BoardView from '@/pages/board/read'
-import BoardWrite from '@/pages/board/write'
-import BoardModify from '@/pages/board/modify'
-import Oauth from '@/pages/oauth'
-import Error from '@/pages/error'
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import '@/App.css';
+import Main from '@/pages/main';
+import Register from '@/pages/register';
+import Login from '@/pages/login';
+import FindPassword from '@/pages/findPassword';
+import ModifyPassword from '@/pages/modifyPassword';
+import BoardList from '@/pages/board/list';
+import BoardRead from '@/pages/board/read';
+import Error from '@/pages/error';
 
 function App() {
   const routes = [
@@ -19,14 +16,11 @@ function App() {
     { path: '/member/register', element: <Register /> },
     { path: '/member/login', element: <Login /> },
     { path: '/member/findPassword', element: <FindPassword /> },
-    { path: '/member/profile', element: <Profile /> },
+    { path: '/oauth/:token', element: <ModifyPassword /> },
     { path: '/board/:category/list/:number', element: <BoardList /> },
-    { path: '/board/:category/read/:number', element: <BoardView /> },
-    { path: '/board/:category/write', element: <BoardWrite /> },
-    { path: '/board/:category/modify/:number', element: <BoardModify /> },
-    { path: '/oauth/:token', element: <Oauth /> },
+    { path: '/board/:category/read/:number', element: <BoardRead /> },
     { path: '*', element: <Error /> }
-  ]
+  ];
 
   return (
     <div className="App">
@@ -36,7 +30,7 @@ function App() {
         ))}
       </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,20 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import {
-  FcShop,
-  FcNegativeDynamic,
-  FcAlarmClock,
-  FcPlanner,
-  FcPaid,
-  FcHome,
-  FcLike,
-  FcFlashOn,
-  FcShipped,
-  FcProcess,
-} from "react-icons/fc";
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { FcShop, FcNegativeDynamic, FcAlarmClock, FcPlanner, FcPaid, FcHome, FcLike, FcFlashOn, FcShipped, FcProcess } from 'react-icons/fc';
 
-const StyledBoxQuick = styled.div`
+const StyledBox = styled.div`
   display: block;
   position: relative;
   padding-top: 100%;
@@ -38,7 +27,7 @@ const StyledBoxQuick = styled.div`
   }
 `;
 
-const StyledLinkQuick = styled(Link)`
+const StyledLink = styled(Link)`
   display: block;
 
   .text_local {
@@ -48,7 +37,7 @@ const StyledLinkQuick = styled(Link)`
   }
 `;
 
-const StyledItemQuick = styled.li`
+const StyledItem = styled.li`
   display: inline-block;
   width: 20%;
   margin-top: 1.2rem;
@@ -58,7 +47,7 @@ const StyledItemQuick = styled.li`
   vertical-align: middle;
 `;
 
-const StyledListQuick = styled.ul`
+const StyledList = styled.ul`
   margin: -1.2rem 0 0 -1.2rem;
 `;
 
@@ -66,93 +55,24 @@ const StyledQuick = styled.div`
   margin: 2rem;
 `;
 
-const QuickComponent = () => {
+const Quick = ({ attributes }) => {
+  const { href } = attributes || {};
+
   return (
     <StyledQuick>
-      <StyledListQuick>
-        <StyledItemQuick>
-          <StyledLinkQuick to="/">
-            <StyledBoxQuick>
-              <FcShop size={36} />
-            </StyledBoxQuick>
-            <span className="text_local">쇼핑하기</span>
-          </StyledLinkQuick>
-        </StyledItemQuick>
-        <StyledItemQuick>
-          <StyledLinkQuick to="/">
-            <StyledBoxQuick>
+      <StyledList>
+        <StyledItem>
+          <StyledLink to={href}>
+            <StyledBox>
               <FcNegativeDynamic size={36} />
-            </StyledBoxQuick>
-            <span className="text_local">오!세일</span>
-          </StyledLinkQuick>
-        </StyledItemQuick>
-        <StyledItemQuick>
-          <StyledLinkQuick to="/">
-            <StyledBoxQuick>
-              <FcAlarmClock size={36} />
-            </StyledBoxQuick>
-            <span className="text_local">오늘의 딜</span>
-          </StyledLinkQuick>
-        </StyledItemQuick>
-        <StyledItemQuick>
-          <StyledLinkQuick to="/">
-            <StyledBoxQuick>
-              <FcPlanner size={36} />
-            </StyledBoxQuick>
-            <span className="text_local">오늘의 발견</span>
-          </StyledLinkQuick>
-        </StyledItemQuick>
-        <StyledItemQuick>
-          <StyledLinkQuick to="/">
-            <StyledBoxQuick>
-              <FcPaid size={36} />
-            </StyledBoxQuick>
-            <span className="text_local">장보기</span>
-          </StyledLinkQuick>
-        </StyledItemQuick>
-        {/* <StyledItemQuick>
-          <StyledLinkQuick to="/">
-            <StyledBoxQuick>
-              <FcHome size={36} />
-            </StyledBoxQuick>
-            <span className="text_local">집들이</span>
-          </StyledLinkQuick>
-        </StyledItemQuick>
-        <StyledItemQuick>
-          <StyledLinkQuick to="/">
-            <StyledBoxQuick>
-              <FcLike size={36} />
-            </StyledBoxQuick>
-            <span className="text_local">취향의 발견</span>
-          </StyledLinkQuick>
-        </StyledItemQuick>
-        <StyledItemQuick>
-          <StyledLinkQuick to="/">
-            <StyledBoxQuick>
-              <FcFlashOn size={36} />
-            </StyledBoxQuick>
-            <span className="text_local">빠른 배송</span>
-          </StyledLinkQuick>
-        </StyledItemQuick>
-        <StyledItemQuick>
-          <StyledLinkQuick to="/">
-            <StyledBoxQuick>
-              <FcShipped size={36} />
-            </StyledBoxQuick>
-            <span className="text_local">쉬운 이사</span>
-          </StyledLinkQuick>
-        </StyledItemQuick>
-        <StyledItemQuick>
-          <StyledLinkQuick to="/">
-            <StyledBoxQuick>
-              <FcProcess size={36} />
-            </StyledBoxQuick>
-            <span className="text_local">리모델링</span>
-          </StyledLinkQuick>
-        </StyledItemQuick> */}
-      </StyledListQuick>
+            </StyledBox>
+
+            <span className="text_local">베이킹</span>
+          </StyledLink>
+        </StyledItem>
+      </StyledList>
     </StyledQuick>
   );
 };
 
-export default QuickComponent;
+export default Quick;

@@ -1,34 +1,31 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
-import { Provider } from "react-redux";
-import { store } from "./app/store";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import "./index.css";
-import { BrowserRouter } from "react-router-dom";
-import Cookies from "js-cookie";
-// import { savedUserCheck } from "./modules/user";
-import { userCheck } from "./modules/user";
-import { saveAccessToken } from "./modules/auth";
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import Cookies from 'js-cookie';
+import { Provider } from 'react-redux';
+import { store } from '@/app/store';
+import { BrowserRouter } from 'react-router-dom';
+import App from '@/App';
+import reportWebVitals from '@/reportWebVitals';
+import '@/index.css';
+import { setAccessToken, setUser } from '@/modules/user';
 
-const container = document.getElementById("root");
+const container = document.getElementById('root');
 const root = createRoot(container);
 
-function user() {
+(function () {
   try {
-    // const user = localStorage.getItem("user");
-    const accessToken = Cookies.get("accessToken");
-    if (typeof accessToken === "undefined") return;
+    const user = localStorage.getItem('user');
 
-    // store.dispatch(savedUserCheck(user));
-    store.dispatch(saveAccessToken(accessToken));
-    store.dispatch(userCheck(accessToken));
+    const accessToken = Cookies.get('accessToken');
+
+    if (typeof accessToken === 'undefined') return;
+
+    store.dispatch(setAccessToken(accessToken));
+    store.dispatch(setUser(user));
   } catch (error) {
     console.error(error);
   }
-}
-
-user();
+})();
 
 root.render(
   // <React.StrictMode>

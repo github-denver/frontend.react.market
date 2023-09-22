@@ -1,67 +1,71 @@
-import React from 'react'
-import HeaderContainer from '@/containers/header'
-import HgroupComponent from '@/components/hgroup'
-import NavigationComponent from '@/components/navigation'
-import QuickComponent from '@/components/quick'
-import ThumbnailUnit from '@/unit/thumbnail'
-import FooterComponent from '@/components/footer'
+import React from 'react';
+import styled from 'styled-components';
+import Header from '@/containers/header';
+import Hgroup from '@/unit/hgroup/standard';
+import Navigation from '@/components/navigation';
 
 // import Swiper core and required modules
-import { Navigation, Pagination, A11y } from 'swiper'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation as SwiperNavigation, Pagination as SwiperPagination, A11y } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
-import 'swiper/css'
-import ListStandardUnit from '@/unit/list/standard'
-import ArticleListContainer from '@/containers/board'
-import GalleryListContainer from '../../containers/gallery'
+import Quick from '@/components/quick';
+import Boundary from '@/unit/boundary/standard';
+import GalleryList from '@/containers/gallery/list';
 
-const MainPage = () => {
-  return (
-    <>
-      <HeaderContainer />
+const StyledSwiperImage = styled.img`
+  width: 100%;
+`;
 
-      <section>
-        <HgroupComponent attribute={{ title: '본문 영역', invisible: true }} />
+const StyledSwiperSlide = styled(SwiperSlide)`
+  overflow: hidden;
+  border-radius: 0.8rem;
+`;
 
-        <NavigationComponent />
+const StyledSwiper = styled(Swiper)`
+  overflow: hidden;
+  margin: 2rem;
+  border-radius: 0.8rem;
+`;
 
-        <div className="___swiper___">
-          <Swiper
-            // install Swiper modules
-            modules={[Navigation, Pagination, A11y]}
-            navigation
-            pagination={{ clickable: true }}
-            spaceBetween={16}
-            onSwiper={(swiper) => {}}
-            onSlideChange={() => {}}>
-            <SwiperSlide>
-              <img className="image_common" src="/swiper_mobile_2.jpg" alt="매월 5일은 오!데이딜 인기상품 1DAY 특가" />
-              {/* <img src="/swiper.jpg" alt="매월 5일은 오!데이딜 인기상품 1DAY 특가" /> */}
-            </SwiperSlide>
-          </Swiper>
-        </div>
+const Page = () => (
+  <>
+    <Header />
 
-        <QuickComponent />
+    <section className="container">
+      <Hgroup attributes={{ title: '본문 영역', invisible: true }} />
 
-        <hr className="boundary" />
+      <Navigation />
 
-        <HgroupComponent
-          attribute={{
-            title: '쉽고 재미있는 초보 베이킹',
-            description: '간단하고 쉬워요!',
-            detail: true,
-            href: '/board/talk/list/1'
-          }}
-        />
+      <StyledSwiper
+        // install Swiper modules
+        modules={[SwiperNavigation, SwiperPagination, A11y]}
+        navigation
+        pagination={{ clickable: true }}
+        spaceBetween={16}
+        onSwiper={(swiper) => {}}
+        onSlideChange={() => {}}>
+        <StyledSwiperSlide>
+          <StyledSwiperImage src="/swiper_mobile_2.jpg" alt="매월 5일은 오!데이딜 인기상품 1DAY 특가" />
+        </StyledSwiperSlide>
+      </StyledSwiper>
 
-        <GalleryListContainer attribute={{ horizon: false, category: 'talk', limit: 4 }} />
+      <Quick attributes={{ href: '/' }} />
 
-        <hr className="boundary" />
-      </section>
-      <FooterComponent />
-    </>
-  )
-}
+      <Boundary />
 
-export default MainPage
+      <Hgroup
+        attributes={{
+          title: '쉽고 재미있는 초보 베이킹',
+          description: '간단하고 쉬워요!',
+          href: '/board/talk/list/1'
+        }}
+      />
+
+      <GalleryList attributes={{ horizon: false, category: 'talk', limit: 4 }} />
+    </section>
+
+    <footer></footer>
+  </>
+);
+
+export default Page;

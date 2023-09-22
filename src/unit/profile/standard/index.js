@@ -1,31 +1,32 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
-import ButtonStandardUnit from '@/unit/button/standard'
-import HalfUnit from '@/unit/half'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import Half from '@/unit/half/standard';
+import Button from '@/unit/button/standard';
 
-import moment from 'moment'
-import 'moment/locale/ko'
-moment.locale('ko')
+import moment from 'moment';
+import 'moment/locale/ko';
+
+moment.locale('ko');
 
 const StyledDate = styled.span`
   display: block;
   font-size: 1.2rem;
   color: #666;
-`
+`;
 
 const StyledAuthor = styled.span`
   display: block;
   font-weight: 500;
   font-size: 1.4rem;
   color: #222;
-`
+`;
 
-const StyledBox = styled.p`
+const StyledBox = styled.div`
   display: inline-block;
   padding: 0 1.2rem;
   vertical-align: middle;
-`
+`;
 
 const StyledImage = styled.img`
   display: inline-block;
@@ -34,12 +35,12 @@ const StyledImage = styled.img`
   height: 3.6rem;
   border-radius: 100%;
   vertical-align: middle;
-`
+`;
 
 const StyledLink = styled(Link)`
   display: inline-block;
   vertical-align: middle;
-`
+`;
 
 const StyledProfile = styled.div`
   display: block;
@@ -59,16 +60,16 @@ const StyledProfile = styled.div`
     display: inline-block;
     vertical-align: middle;
   }
-`
+`;
 
-const ProfileStandardUnit = ({ attribute }) => {
-  const { className, visible, author, date } = attribute || {}
+const Profile = ({ attributes }) => {
+  const { className, visible, author, date } = attributes || {};
 
   return (
     <StyledProfile className={className}>
-      <HalfUnit
-        attribute={{
-          firstUnit: (
+      <Half
+        attributes={{
+          first: (
             <StyledLink to="/">
               <StyledImage src="/profile.png" alt="" />
 
@@ -78,21 +79,20 @@ const ProfileStandardUnit = ({ attribute }) => {
               </StyledBox>
             </StyledLink>
           ),
-          secondUnit: (
-            <ButtonStandardUnit
-              attribute={{
-                className: 'button_follow',
+          second: (
+            <Button
+              attributes={{
                 type: 'button',
-                fill: true,
-                size: 'small'
+                size: 'small',
+                fill: true
               }}>
               <span className="text_local">팔로우</span>
-            </ButtonStandardUnit>
+            </Button>
           )
         }}
       />
     </StyledProfile>
-  )
-}
+  );
+};
 
-export default ProfileStandardUnit
+export default Profile;

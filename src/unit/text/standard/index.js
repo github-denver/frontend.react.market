@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const StyledText = styled.div`
   padding: 1.2rem;
@@ -11,14 +11,10 @@ const StyledText = styled.div`
   }
 `;
 
-const TextStandardUnit = ({ attribute }) => {
-  const { className, text } = attribute || {};
+const Text = ({ className, attributes }) => {
+  const { text } = attributes || {};
 
-  return (
-    <StyledText className={className}>
-      <div dangerouslySetInnerHTML={{ __html: text }} />
-    </StyledText>
-  );
+  return <StyledText className={className} dangerouslySetInnerHTML={{ __html: text }} />;
 };
 
-export default TextStandardUnit;
+export default Text;

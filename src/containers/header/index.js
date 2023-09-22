@@ -1,29 +1,20 @@
-import React from "react";
-import { useSelector, useDispatch, shallowEqual } from "react-redux";
-import HeaderComponent from "@/components/header";
-import { singout } from "@/modules/auth";
-import { logout } from "@/modules/user";
+import React from 'react';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { userLogout } from '@/modules/user';
+import Header from '@/components/header';
 
-const HeaderContainer = (props) => {
-  const { attribute } = props;
+const Wrapper = ({ attributes }) => {
+  const minimal = attributes?.minimal;
 
-  const minimal = attribute?.minimal;
-
-  const { user } = useSelector(
-    ({ user }) => ({
-      user: user.user?.user2,
-    }),
-    shallowEqual
-  );
+  const { user } = useSelector(({ user }) => ({ user: user.user?.user2 }), shallowEqual);
 
   const dispatch = useDispatch();
 
-  const handleLogoutClick = () => {
-    dispatch(singout());
-    dispatch(logout());
+  const handleLogout = () => {
+    dispatch(userLogout());
   };
 
-  return <HeaderComponent attribute={{ minimal, user, handleLogoutClick }} />;
+  return <Header attributes={{ minimal, user, handleLogout }} />;
 };
 
-export default HeaderContainer;
+export default Wrapper;

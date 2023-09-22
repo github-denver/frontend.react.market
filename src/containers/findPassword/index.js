@@ -1,55 +1,117 @@
-import React, { useEffect, useState } from "react";
-import FindPasswordComponent from "@/components/form/findPassword";
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
-import { formChangeField, initialOauthForm } from "@/modules/form";
-import { oauth } from "@/modules/auth";
-import { sendEmail } from "@/library/gateway/auth";
+import React, { useEffect, useState } from 'react';
+import { useSelector, shallowEqual, useDispatch } from 'react-redux';
+import { changeField, initialForm } from '@/modules/form';
+import Form from '@/components/form/findPassword';
+import { emailCheck, sendEmail } from '@/library/gateway/auth';
 
-const FindPasswordContainer = () => {
-  const { token } = useParams();
-
+const FindPassword = () => {
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const { formData, accessToken, error, user } = useSelector(
-    ({ form, auth, user }) => ({
-      formData: form.oauth,
-      accessToken: auth.auth?.accessToken,
-      error: auth.error,
-      user: user.user?.user2,
+  const [visibleLayer, setVisibleLayer] = useState(false);
+
+  const [duplicateChecks, setDuplicateChecks] = useState({
+    emailCheck: false
+  });
+
+  const { error, formData } = useSelector(
+    ({ form }) => ({
+      error: null,
+      formData: form.modifyPassword
     }),
     shallowEqual
   );
 
   const dispatch = useDispatch();
 
-  const handleFieldChange = (event) => {
-    const { value, name } = event.target;
-
-    dispatch(formChangeField({ form: "oauth", key: name, value }));
-  };
-
   const handleSendEmail = async (event) => {
     event.preventDefault();
 
     const { email } = formData;
 
-    if (!email.trim()) {
-      setErrorMessage("이메일을 입력해 주세요.");
+    if (![email].every(Boolean)) {
+      setErrorMessage('필수 정보를 입력해 주세요.');
+
+      setVisibleLayer(true);
+
       return;
     }
 
-    const result = await sendEmail({ email });
+    if (!duplicateChecks.emailCheck) {
+      setErrorMessage('이메일 확인을 진행해 주세요.');
+
+      setVisibleLayer(true);
+
+      return;
+    }
+
+    if (!email.trim()) {
+      setErrorMessage('이메일을 입력해 주세요.');
+
+      setVisibleLayer(true);
+
+      return;
+    }
+
+    try {
+      const result = await sendEmail({ email });
+      console.log('* result: ', result);
+
+      setErrorMessage('메일이 발송되었습니다.');
+
+      setVisibleLayer(true);
+    } catch (error) {
+      setErrorMessage(`메일이 발송이 실패되었습니다. ${error}`);
+
+      setVisibleLayer(true);
+    }
   };
 
-  const handleLayerClose = () => {
-    setErrorMessage(null);
+  const handleChangeField = (event) => {
+    const { value, name } = event.target;
+
+    dispatch(changeField({ form: 'modifyPassword', key: name, value }));
+  };
+
+  const handleCloseLayer = () => {
+    setVisibleLayer(false);
+  };
+
+  const handleDuplicateCheck = async (type, checkFunction, fieldName, labelName) => {
+    const { [fieldName]: fieldValue } = formData;
+
+    if (![fieldValue].every(Boolean)) {
+      setErrorMessage(`${labelName}을(를) 입력해 주세요.`);
+
+      setVisibleLayer(true);
+
+      return;
+    }
+
+    const result = await checkFunction({ [fieldName]: fieldValue });
+
+    if (result.data.length === 0) {
+      setDuplicateChecks((prevChecks) => ({ ...prevChecks, [type]: false }));
+
+      // setErrorMessage(`사용 불가능한 ${labelName}입니다.`);
+
+      setErrorMessage(`${labelName}이(가) 존재하지 않습니다.`);
+
+      setVisibleLayer(true);
+    } else {
+      setDuplicateChecks((prevChecks) => ({ ...prevChecks, [type]: true }));
+
+      // setErrorMessage(`사용 가능한 ${labelName}입니다.`);
+
+      setErrorMessage(`${labelName}이(가) 확인되었습니다.`);
+
+      setVisibleLayer(true);
+    }
   };
 
   useEffect(() => {
-    console.log("패스워드 재설정 양식을 초기화합니다.");
+    console.log('이메일 인증 양식을 초기화합니다.');
 
-    dispatch(initialOauthForm());
+    dispatch(initialForm());
   }, [dispatch]);
 
   useEffect(() => {
@@ -58,26 +120,19 @@ const FindPasswordContainer = () => {
 
       if (error) {
         setErrorMessage(error);
+
+        setVisibleLayer(true);
       }
     }
 
     return () => {
-      console.log(
-        "언마운트 될 때 리덕스에서 패스워드 재설정 데이터를 삭제합니다."
-      );
-      dispatch(initialOauthForm());
+      console.log('언마운트 될 때 리덕스에서 이메일 인증 양식을 초기화합니다.');
+
+      dispatch(initialForm());
     };
   }, [dispatch, error]);
 
-  return (
-    <FindPasswordComponent
-      formData={formData}
-      errorMessage={errorMessage}
-      onFieldChange={handleFieldChange}
-      onLayerClose={handleLayerClose}
-      onSendEmail={handleSendEmail}
-    />
-  );
+  return <Form formData={formData} errorMessage={errorMessage} onSendEmail={handleSendEmail} onChangeField={handleChangeField} onCloseLayer={handleCloseLayer} visibleLayer={visibleLayer} onEmailCheck={() => handleDuplicateCheck('emailCheck', emailCheck, 'email', '이메일')} />;
 };
 
-export default FindPasswordContainer;
+export default FindPassword;
