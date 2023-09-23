@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import Header from '@/containers/header';
 import Hgroup from '@/unit/hgroup/standard';
 import Navigation from '@/components/navigation';
+import Quick from '@/components/quick';
+import Boundary from '@/unit/boundary/standard';
+import GalleryList from '@/containers/gallery/list';
+import Footer from '@/components/footer';
 
 // import Swiper core and required modules
 import { Navigation as SwiperNavigation, Pagination as SwiperPagination, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-import Quick from '@/components/quick';
-import Boundary from '@/unit/boundary/standard';
-import GalleryList from '@/containers/gallery/list';
 
 const StyledSwiperImage = styled.img`
   width: 100%;
@@ -64,7 +64,7 @@ const Page = () => (
       <GalleryList attributes={{ horizon: false, category: 'talk', limit: 4 }} />
     </section>
 
-    <footer></footer>
+    <Footer />
   </>
 );
 

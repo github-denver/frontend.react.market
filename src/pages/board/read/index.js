@@ -5,6 +5,7 @@ import Header from '@/containers/header';
 import Hgroup from '@/unit/hgroup/standard';
 import Navigation from '@/components/navigation';
 import BoardRead from '@/containers/board/read';
+import Footer from '@/components/footer';
 
 const Page = () => {
   const { category } = useParams();
@@ -29,7 +30,7 @@ const Page = () => {
         <BoardRead attributes={{ category: `${category}` }} />
       </section>
 
-      <footer></footer>
+      <Footer />
     </>
   );
 };

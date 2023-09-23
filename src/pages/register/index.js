@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '@/containers/header';
 import Hgroup from '@/unit/hgroup/standard';
 import Register from '@/containers/register';
+import Footer from '@/components/footer';
 
 const Page = () => (
   <>
@@ -12,7 +13,7 @@ const Page = () => (
       <Register />
     </section>
 
-    <footer></footer>
+    <Footer />
   </>
 );
 

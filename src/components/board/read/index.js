@@ -10,8 +10,8 @@ import List from '@/unit/list/standard';
 import { Link } from 'react-router-dom';
 
 const StyledList = styled(List)`
-  margin-top: -4rem;
-  margin-bottom: 1.2rem;
+  margin-top: -4rem !important;
+  margin-bottom: 1.2rem !important;
 `;
 
 const StyledImageProducts = styled.img`
