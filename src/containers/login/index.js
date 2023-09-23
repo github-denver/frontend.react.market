@@ -13,10 +13,10 @@ const Login = () => {
 
   const { user, accessToken, error, formData } = useSelector(
     ({ form, user }) => ({
+      formData: form.login,
       user: user.user?.user2,
       accessToken: user.auth?.accessToken,
-      error: user.error,
-      formData: form.login
+      error: user.error
     }),
     shallowEqual
   );

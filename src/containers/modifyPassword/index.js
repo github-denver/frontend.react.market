@@ -16,8 +16,8 @@ const ModifyPassword = () => {
 
   const { error, formData } = useSelector(
     ({ form, user }) => ({
-      error: user.error,
-      formData: form.modifyPassword
+      formData: form.modifyPassword,
+      error: user.error
     }),
     shallowEqual
   );

@@ -147,7 +147,7 @@ const Utility = ({ attributes }) => {
                   <span className="ir_wa">오늘의 식탁</span>
                 </StyledLink>
               ),
-              secondUnit: (
+              second: (
                 <StyledClose type="button" onClick={handleVisible}>
                   <MdClose size={24} />
                   <span className="screen_out">주메뉴 닫기</span>
@@ -204,7 +204,7 @@ const Utility = ({ attributes }) => {
                 },
                 {
                   icon: null,
-                  link: 'board/talk 게시판 001',
+                  link: '초보자',
                   to: '/board/talk/list/1',
                   arrow: null
                 }

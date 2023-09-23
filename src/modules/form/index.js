@@ -17,6 +17,13 @@ const initialState = {
     password: '',
     passwordConfirm: ''
   },
+  boardWrite: {
+    subject: null,
+    contents: null,
+    thumbnail: null,
+    tags: null,
+    error: null
+  },
   error: null
 };
 
@@ -30,10 +37,26 @@ const formSlice = createSlice({
 
       state[form][key] = value;
     },
+    changeThumbnail: (state, action) => {
+      console.group('changeThumbnail: (state, action) => { .. }');
+      console.log('action.payload: ', action.payload);
+      console.groupEnd();
+
+      const { key, value } = action.payload;
+
+      state.boardWrite[key] = {
+        files: value.files,
+        preview: value.preview
+      };
+    },
+    insertTag: (state, action) => {
+      state.boardWrite.tags = action.payload;
+    },
     initialForm: (state) => {
       state.register = initialState.register;
       state.login = initialState.login;
       state.modifyPassword = initialState.modifyPassword;
+      state.boardWrite = initialState.boardWrite;
       state.error = null;
     }
   },
@@ -46,6 +69,6 @@ const formSlice = createSlice({
   }
 });
 
-export const { changeField, initialForm } = formSlice.actions;
+export const { changeField, changeThumbnail, insertTag, initialForm } = formSlice.actions;
 
 export default formSlice.reducer;

@@ -43,7 +43,7 @@ const Form = ({ formData, errorMessage, onSubmitLogin, onChangeField, onCloseLay
                 name: 'id',
                 id: 'id',
                 placeholder: '아이디를 입력해 주세요.',
-                defaultValue: formData.id,
+                value: formData.id,
                 event: onChangeField
               }
             }}
@@ -61,7 +61,7 @@ const Form = ({ formData, errorMessage, onSubmitLogin, onChangeField, onCloseLay
                 name: 'password',
                 id: 'password',
                 placeholder: '패스워드를 입력해 주세요.',
-                defaultValue: formData.password,
+                value: formData.password,
                 event: onChangeField
               }
             }}

@@ -1,6 +1,6 @@
 import { createAction, createSlice } from '@reduxjs/toolkit';
 import { takeLatest } from 'redux-saga/effects';
-import * as gateway from '@/library/gateway/read';
+import * as gateway from '@/library/gateway/board';
 import createRequestSaga from '@/library/createRequestSaga';
 
 const BOARD_READ = 'board/read';

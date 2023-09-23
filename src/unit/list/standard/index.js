@@ -23,13 +23,29 @@ const StyledList = styled.ul`
 `;
 
 const List = ({ className, attributes }) => {
-  const { list } = attributes || {};
+  const { list, event } = attributes || {};
+
+  const onEvent = (event) => {
+    console.log('const onRemove = (event) => { .. }');
+    console.log('event: ', event);
+    event();
+  };
 
   return (
     <StyledList className={className}>
       {list.map((currentValue, index) => (
         <StyledItem key={index}>
-          <StyledLink to={currentValue.href}>{currentValue.text}</StyledLink>
+          {event ? (
+            <StyledLink to={currentValue.href}>{currentValue.text}</StyledLink>
+          ) : (
+            <button
+              type="button"
+              onClick={() => {
+                onEvent(currentValue.event);
+              }}>
+              {currentValue.text}
+            </button>
+          )}
         </StyledItem>
       ))}
     </StyledList>

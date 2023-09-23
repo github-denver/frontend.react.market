@@ -117,7 +117,9 @@ const Field = ({ className, attributes }) => {
   const { label, input, standard, guideMessage, confirm, confirmButton } = attributes || {};
 
   const { htmlFor, flexible, text } = label || {};
-  const { type, name, id, placeholder, defaultValue, disabled, event, autoComplete } = input || {};
+  const { type, name, id, placeholder, defaultValue, value, disabled, event, autoComplete } = input || {};
+  console.log('defaultValue: ', defaultValue);
+  console.log('value: ', value);
 
   return (
     <StyledField className={className} $standard={standard}>
@@ -132,17 +134,13 @@ const Field = ({ className, attributes }) => {
       {confirm ? (
         <StyledOuter>
           <StyledInner>
-            <StyledBox>
-              <StyledInput type={type} name={name} id={id} placeholder={placeholder} defaultValue={defaultValue} disabled={disabled} onChange={event} autoComplete={autoComplete} />
-            </StyledBox>
+            <StyledBox>{defaultValue ? <StyledInput type={type} name={name} id={id} placeholder={placeholder} defaultValue={defaultValue || ''} disabled={disabled} onChange={event} autoComplete={autoComplete} /> : <StyledInput type={type} name={name} id={id} placeholder={placeholder} value={value || ''} disabled={disabled} onChange={event} autoComplete={autoComplete} />}</StyledBox>
           </StyledInner>
 
           {confirmButton}
         </StyledOuter>
       ) : (
-        <StyledBox>
-          <StyledInput type={type} name={name} id={id} placeholder={placeholder} defaultValue={defaultValue} disabled={disabled} onChange={event} autoComplete={autoComplete} />
-        </StyledBox>
+        <StyledBox>{defaultValue ? <StyledInput type={type} name={name} id={id} placeholder={placeholder} defaultValue={defaultValue || ''} disabled={disabled} onChange={event} autoComplete={autoComplete} /> : <StyledInput type={type} name={name} id={id} placeholder={placeholder} value={value || ''} disabled={disabled} onChange={event} autoComplete={autoComplete} />}</StyledBox>
       )}
     </StyledField>
   );

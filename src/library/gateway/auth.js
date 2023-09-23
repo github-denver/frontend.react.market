@@ -1,11 +1,16 @@
 import axios from '@/library/gateway/axios';
 
-export const userCheck = (token) =>
-  axios.get('/api/me', {
+export const userCheck = (token) => {
+  console.group('export const userCheck = (token) => { .. }');
+  console.log('token: ', token);
+  console.groupEnd();
+
+  return axios.get('/api/me', {
     params: {
       accessToken: token
     }
   });
+};
 
 export const register = ({ id, name, password, email }) => axios.post('/api/register', { id, name, password, email });
 
@@ -19,7 +24,7 @@ export const userLogin = ({ id, password }) => axios.post('/api/login', { id, pa
 
 export const userLogout = () => axios.get('/api/logout');
 
-export const profile = ({ id, name, password, email, picture }) => axios.post('/api/profile', { id, name, password, email, picture });
+export const userProfileModify = ({ id, name, password, email, picture }) => axios.post('/api/profile', { id, name, password, email, picture });
 
 export const sendEmail = ({ email }) => axios.post('/api/mail/authentication', { email });
 

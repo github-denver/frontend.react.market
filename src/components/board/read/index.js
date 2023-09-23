@@ -6,6 +6,13 @@ import Thumbnail from '@/unit/thumbnail/rectangle/read';
 import Text from '@/unit/text/standard';
 import Thin from '@/unit/thin/standard';
 import Signature from '@/unit/profile/signature';
+import List from '@/unit/list/standard';
+import { Link } from 'react-router-dom';
+
+const StyledList = styled(List)`
+  margin-top: -4rem;
+  margin-bottom: 1.2rem;
+`;
 
 const StyledImageProducts = styled.img`
   max-width: 100%;
@@ -43,7 +50,7 @@ const StyledText = styled(Text)`
 `;
 
 const BoardRead = ({ attributes }) => {
-  const { read, error, loading } = attributes || {};
+  const { category, number, read, error, loading, owner, edit, remove } = attributes || {};
 
   const [showProductId, setShowProductId] = useState(null);
 
@@ -83,30 +90,30 @@ const BoardRead = ({ attributes }) => {
             author: true,
             date: true
           },
-          author: read[0].name,
-          date: read[0].regdate
+          author: read.name,
+          date: read.regdate
         }}
       />
 
       <Thumbnail
         attributes={{
-          href: `/board/${read[0].category}/read/${read[0].number}`,
+          href: `/board/${read.category}/read/${read.number}`,
           radius: false,
-          image: read[0].thumbnail,
-          subject: read[0].subject,
-          level: read[0].level,
-          time: read[0].time,
-          author: read[0].name,
-          count: read[0].count,
-          tags: read[0].tags,
-          products: read[0].products,
+          image: read.thumbnail,
+          subject: read.subject,
+          level: read.level,
+          time: read.time,
+          author: read.name,
+          count: read.count,
+          tags: read.tags,
+          products: read.products,
           showProductId
         }}
       />
 
       <StyledProducts>
         <StyledListProducts>
-          {read[0].products.map((currentValue, index) => (
+          {read.products.map((currentValue, index) => (
             <StyledItemProducts key={index} onMouseOver={() => handle111Click(currentValue.productId)} onMouseOut={() => setShowProductId(null)}>
               <StyledBoxProducts>
                 <StyledImageProducts src={`/uploads/${currentValue.thumbnail}`} alt={currentValue.name} />
@@ -118,15 +125,34 @@ const BoardRead = ({ attributes }) => {
 
       <StyledText
         attributes={{
-          text: read[0].content
+          text: read.content
         }}
       />
+
+      {owner && (
+        <StyledList
+          attributes={{
+            list: [
+              {
+                // href: `/board/${category}/modify/${number}`,
+                text: '글 수정',
+                event: edit
+              },
+              {
+                // href: `/board/${category}/modify/${number}`,
+                text: '글 삭제',
+                event: remove
+              }
+            ]
+          }}
+        />
+      )}
 
       <Thin />
 
       <Signature
         attributes={{
-          author: read[0].name,
+          author: read.name,
           message: '메시지를 입력해 주세요.'
         }}
       />

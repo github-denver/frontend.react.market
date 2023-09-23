@@ -4,6 +4,7 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { boardRead, initialRead } from '@/modules/board/read';
 import Read from '@/components/board/read';
+import { boardRemove } from '@/library/gateway/board';
 
 const BoardRead = ({ attributes }) => {
   const { category } = attributes || {};
@@ -11,7 +12,7 @@ const BoardRead = ({ attributes }) => {
   const { user, read, error, loading } = useSelector(
     ({ user, boardRead, loading }) => ({
       user: user.user?.user2,
-      read: boardRead.data?.result,
+      read: boardRead.data?.result[0],
       error: boardRead.error,
       loading: loading['board/read']
     }),
@@ -32,20 +33,23 @@ const BoardRead = ({ attributes }) => {
   }
 
   const edit = () => {
-    dispatch();
-
     navigate(`/board/${category}/modify/${read.number}`);
   };
 
   const remove = async () => {
+    console.log('const remove = async () => { .. }');
+
     try {
-      navigate(`/board/${category}/list`);
+      await boardRemove({ category, number });
+      // navigate(`/board/${category}/list/1`);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const owner = (() => (user && user.id) === (read && read.id))();
+  const owner = (() => {
+    return (user && user.id) === (read && read.id);
+  })();
 
   useEffect(() => {
     dispatch(boardRead({ category, number }));
@@ -61,10 +65,13 @@ const BoardRead = ({ attributes }) => {
     <Read
       attributes={{
         category,
-        user,
+        number,
         read,
         error,
-        loading
+        loading,
+        owner,
+        edit,
+        remove
       }}
     />
   );

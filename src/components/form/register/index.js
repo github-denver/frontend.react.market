@@ -44,7 +44,7 @@ const Form = ({ formData, errorMessage, onSubmitRegister, onChangeField, onClose
                 name: 'id',
                 id: 'id',
                 placeholder: '아이디를 입력해 주세요.',
-                defaultValue: formData.id,
+                value: formData.id,
                 event: onChangeField
               },
               standard: true,
@@ -76,8 +76,9 @@ const Form = ({ formData, errorMessage, onSubmitRegister, onChangeField, onClose
                 name: 'password',
                 id: 'password',
                 placeholder: '패스워드를 입력해 주세요.',
-                defaultValue: formData.password,
-                event: onChangeField
+                value: formData.password,
+                event: onChangeField,
+                autoComplete: 'new-password'
               },
               standard: true,
               guideMessage: <p className="text_field">패스워드는 알파벳 소문자, 숫자, 특수문자를 하나 이상 포함하고 6자리 이상 12자리 이하로 입력해 주세요.</p>
@@ -95,8 +96,9 @@ const Form = ({ formData, errorMessage, onSubmitRegister, onChangeField, onClose
                 name: 'passwordConfirm',
                 id: 'passwordConfirm',
                 placeholder: '패스워드를 한 번 더 입력해 주세요.',
-                defaultValue: formData.passwordConfirm,
-                event: onChangeField
+                value: formData.passwordConfirm,
+                event: onChangeField,
+                autoComplete: 'new-password'
               },
               standard: true
             }}
@@ -113,7 +115,7 @@ const Form = ({ formData, errorMessage, onSubmitRegister, onChangeField, onClose
                 name: 'name',
                 id: 'name',
                 placeholder: '닉네임을 입력해 주세요.',
-                defaultValue: formData.name,
+                value: formData.name,
                 event: onChangeField
               },
               standard: true,
@@ -145,7 +147,7 @@ const Form = ({ formData, errorMessage, onSubmitRegister, onChangeField, onClose
                 name: 'email',
                 id: 'email',
                 placeholder: '이메일을 입력해 주세요.',
-                defaultValue: formData.email,
+                value: formData.email,
                 event: onChangeField
               },
               standard: true,
@@ -179,7 +181,7 @@ const Form = ({ formData, errorMessage, onSubmitRegister, onChangeField, onClose
                 name: 'emailConfirm',
                 id: 'emailConfirm',
                 placeholder: '인증번호를 입력해 주세요.',
-                defaultValue: ''
+                value: ''
               },
               standard: true,
               confirm: true,
@@ -220,8 +222,6 @@ const Form = ({ formData, errorMessage, onSubmitRegister, onChangeField, onClose
           ]
         }}
       />
-
-      <Layer attributes={{ visibleLayer, errorMessage, onCloseLayer }} />
     </StyledForm>
   );
 };

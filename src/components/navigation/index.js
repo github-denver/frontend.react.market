@@ -86,7 +86,7 @@ const Navigation = ({ attributes }) => {
           </StyledItem>
 
           <StyledItem>
-            <StyledLink to="/board/talk/list/1">게시판01</StyledLink>
+            <StyledLink to="/board/talk/list/1">초보자</StyledLink>
           </StyledItem>
         </StyledList>
       </StyledInner>

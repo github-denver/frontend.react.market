@@ -19,10 +19,10 @@ const Register = () => {
 
   const { user, message, error, formData } = useSelector(
     ({ form, user }) => ({
+      formData: form.register,
       user: user.user?.user2,
       message: user.auth?.message,
-      error: user.error,
-      formData: form.register
+      error: user.error
     }),
     shallowEqual
   );
@@ -135,7 +135,6 @@ const Register = () => {
       }
     }
 
-    //
     /*
     return () => {
       console.log('언마운트 될 때 리덕스에서 회원가입 양식을 초기화합니다.');

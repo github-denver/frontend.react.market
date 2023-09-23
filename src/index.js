@@ -15,7 +15,6 @@ const root = createRoot(container);
 (function () {
   try {
     const user = localStorage.getItem('user');
-
     const accessToken = Cookies.get('accessToken');
 
     if (typeof accessToken === 'undefined') return;

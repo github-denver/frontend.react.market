@@ -10,15 +10,8 @@ import { loadingStart, loadingFinish } from '@/modules/loading';
   이때, success, failure라는 Action 객체가 생성되는데 export function* Saga()를 보면 success, failure라는 Action 객체에 대한 행동이 없기 때문에 곧바로 Reducer로 이동합니다.
   */
 export default function createRequestSaga(type, request) {
-  console.group('export default function createRequestSaga(type, request) { .. }');
-  console.log('type: ', type);
-
   const success = `${type}Success`;
-  console.log('success: ', success);
-
   const failure = `${type}Failure`;
-  console.log('failure: ', failure);
-  console.groupEnd();
 
   return function* (action) {
     yield put(loadingStart(type));

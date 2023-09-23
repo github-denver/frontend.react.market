@@ -15,8 +15,8 @@ const FindPassword = () => {
 
   const { error, formData } = useSelector(
     ({ form }) => ({
-      error: null,
-      formData: form.modifyPassword
+      formData: form.modifyPassword,
+      error: null
     }),
     shallowEqual
   );
@@ -54,7 +54,7 @@ const FindPassword = () => {
 
     try {
       const result = await sendEmail({ email });
-      console.log('* result: ', result);
+      console.log('(containers → findPassword → 2) result: ', result);
 
       setErrorMessage('메일이 발송되었습니다.');
 

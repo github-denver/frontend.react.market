@@ -8,6 +8,7 @@ const USER_REGISTER = 'user/register';
 const USER_CHECK = 'user/check';
 const USER_LOGIN = 'user/login';
 const USER_LOGOUT = 'user/logout';
+const USER_PROFILE = 'user/profile';
 
 const initialState = {
   user: {
@@ -61,6 +62,19 @@ const userSlice = createSlice({
       state.user = initialState.user;
       state.auth = initialState.auth;
       state.error = null;
+    },
+    profileSuccess: (state, action) => {
+      console.group('profileSuccess: (state, action) => { .. }');
+      console.log('action.payload: ', action.payload);
+      console.groupEnd();
+
+      state.user.user2.name = action.payload.user.name;
+      state.user.user2.email = action.payload.user.email;
+    },
+    profileFailure: (state, action) => {
+      console.group('profileFailure: (state, action) => { .. }');
+      console.log('action: ', action);
+      console.groupEnd();
     }
   },
   // 외부 action 및 비동기 action
@@ -92,11 +106,18 @@ export const userLogin = createAction(USER_LOGIN, (payload) => {
   return { payload: { id, password } };
 });
 
+export const userLogout = createAction(USER_LOGOUT);
+
+export const userProfileModify = createAction(USER_PROFILE, (payload) => {
+  const { id, name, password, email } = payload;
+
+  return { payload: { id, name, password, email } }; // picture
+});
+
 const registerSaga = createRequestSaga(USER_REGISTER, gateway.register);
 const userCheckSaga = createRequestSaga(USER_CHECK, gateway.userCheck);
 const userLoginSaga = createRequestSaga(USER_LOGIN, gateway.userLogin);
-
-export const userLogout = createAction(USER_LOGOUT);
+const userProfileModifySaga = createRequestSaga(USER_PROFILE, gateway.userProfileModify);
 
 function* userLogoutSaga() {
   try {
@@ -116,4 +137,5 @@ export function* userSaga() {
   yield takeLatest(USER_CHECK, userCheckSaga);
   yield takeLatest(USER_LOGIN, userLoginSaga);
   yield takeLatest(USER_LOGOUT, userLogoutSaga);
+  yield takeLatest(USER_PROFILE, userProfileModifySaga);
 }

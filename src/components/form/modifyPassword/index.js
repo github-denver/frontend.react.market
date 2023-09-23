@@ -36,8 +36,9 @@ const ModifyPassword = ({ formData, errorMessage, onModifyPassword, onChangeFiel
                 name: 'password',
                 id: 'password',
                 placeholder: '패스워드를 입력해 주세요.',
+                value: formData.password,
                 event: onChangeField,
-                value: formData.password
+                autoComplete: 'new-password'
               },
               standard: true,
               guideMessage: <p className="text_field">패스워드는 알파벳 소문자, 숫자, 특수문자를 하나 이상 포함하고 6자리 이상 12자리 이하로 입력해 주세요.</p>
@@ -55,8 +56,9 @@ const ModifyPassword = ({ formData, errorMessage, onModifyPassword, onChangeFiel
                 name: 'passwordConfirm',
                 id: 'passwordConfirm',
                 placeholder: '패스워드를 한 번 더 입력해 주세요.',
+                value: formData.passwordConfirm,
                 event: onChangeField,
-                value: formData.passwordConfirm
+                autoComplete: 'new-password'
               },
               standard: true
             }}
