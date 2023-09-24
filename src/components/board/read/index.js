@@ -156,6 +156,8 @@ const BoardRead = ({ attributes }) => {
           message: '메시지를 입력해 주세요.'
         }}
       />
+
+      <Thin />
     </>
   );
 };

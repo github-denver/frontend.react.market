@@ -74,11 +74,11 @@ const StyledNavigation = styled.nav`
         `}
 `;
 
-const Navigation = ({ attributes }) => {
+const Navigation = ({ className, attributes }) => {
   const { direction } = attributes || {};
 
   return (
-    <StyledNavigation direction={direction}>
+    <StyledNavigation className={className} direction={direction}>
       <StyledInner>
         <StyledList>
           <StyledItem>

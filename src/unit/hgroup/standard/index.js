@@ -95,7 +95,7 @@ const Hgroup = ({ className, attributes }) => {
   const { level, title, description, href, category, navigation, size, invisible } = attributes || {};
 
   return (
-    <StyledHgroup className={invisible && 'screen_out'} size={size} $invisible={invisible}>
+    <StyledHgroup className={`${className} ${invisible && 'screen_out'}`} size={size} $invisible={invisible}>
       <StyledHeading level={level}>{title ? title : filteredText(category, navigation)}</StyledHeading>
       {description && <StyledDescription>{description}</StyledDescription>}
 

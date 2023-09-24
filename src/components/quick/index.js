@@ -7,7 +7,7 @@ const StyledBox = styled.div`
   display: block;
   position: relative;
   padding-top: 100%;
-  border-radius: 2rem;
+  border-radius: 0.8rem;
   background-color: #f5f5f5;
 
   svg {
@@ -68,6 +68,46 @@ const Quick = ({ attributes }) => {
             </StyledBox>
 
             <span className="text_local">베이킹</span>
+          </StyledLink>
+        </StyledItem>
+
+        <StyledItem>
+          <StyledLink to={href}>
+            <StyledBox>
+              <FcNegativeDynamic size={36} />
+            </StyledBox>
+
+            <span className="text_local">간식</span>
+          </StyledLink>
+        </StyledItem>
+
+        <StyledItem>
+          <StyledLink to={href}>
+            <StyledBox>
+              <FcNegativeDynamic size={36} />
+            </StyledBox>
+
+            <span className="text_local">채식</span>
+          </StyledLink>
+        </StyledItem>
+
+        <StyledItem>
+          <StyledLink to={href}>
+            <StyledBox>
+              <FcNegativeDynamic size={36} />
+            </StyledBox>
+
+            <span className="text_local">도시락</span>
+          </StyledLink>
+        </StyledItem>
+
+        <StyledItem>
+          <StyledLink to={href}>
+            <StyledBox>
+              <FcNegativeDynamic size={36} />
+            </StyledBox>
+
+            <span className="text_local">초대요리</span>
           </StyledLink>
         </StyledItem>
       </StyledList>

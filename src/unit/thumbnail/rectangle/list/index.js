@@ -65,7 +65,7 @@ const StyledFrame = styled.div`
   position: relative;
   z-index: 1;
   padding-top: 100%;
-  border-radius: 0;
+  border-radius: 0.8rem;
 
   ${({ $radius }) =>
     $radius &&
@@ -91,8 +91,8 @@ const Thumbnail = ({ className, attributes }) => {
         </StyledFrame>
 
         {subject && <StyledSubject dangerouslySetInnerHTML={{ __html: subject }} />}
-        {level && <StyledText>{level}</StyledText>}
-        {time && <StyledText>{time}</StyledText>}
+        {/* {level && <StyledText>{level}</StyledText>}
+        {time && <StyledText>{time}</StyledText>} */}
       </StyledLink>
     </StyledThumbnail>
   );
