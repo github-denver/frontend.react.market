@@ -3,9 +3,9 @@ import React, { useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { freshList, initialList } from '@/modules/fresh/list';
-import List from '@/components/baking/list';
+import List from '@/components/card/list';
 
-const BakingList = ({ attributes }) => {
+const FreshList = ({ attributes }) => {
   const { horizon, category } = attributes || {};
 
   const { user, list, pagination, error, loading } = useSelector(
@@ -74,4 +74,4 @@ const BakingList = ({ attributes }) => {
   );
 };
 
-export default BakingList;
+export default FreshList;

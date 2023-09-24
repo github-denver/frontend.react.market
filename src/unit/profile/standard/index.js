@@ -71,7 +71,7 @@ const Profile = ({ attributes }) => {
         attributes={{
           first: (
             <StyledLink to="/">
-              <StyledImage src="/profile.png" alt="" />
+              <StyledImage src="about:blank" alt="" />
 
               <StyledBox>
                 {visible?.author && <StyledAuthor>{author}</StyledAuthor>}

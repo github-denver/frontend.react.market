@@ -204,8 +204,8 @@ const Utility = ({ attributes }) => {
                 },
                 {
                   icon: null,
-                  link: '초보자',
-                  to: '/board/talk/list/1',
+                  link: '베이킹',
+                  to: '/board/baking/list/1',
                   arrow: null
                 }
               ]

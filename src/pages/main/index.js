@@ -8,6 +8,9 @@ import Boundary from '@/unit/boundary/standard';
 import BakingList from '@/containers/baking/list';
 import DessertList from '@/containers/dessert/list';
 import FreshList from '@/containers/fresh/list';
+import SpicyList from '@/containers/spicy/list';
+import PopularList from '@/containers/popular/list';
+import SoupList from '@/containers/soup/list';
 import Footer from '@/components/footer';
 
 // import Swiper core and required modules
@@ -106,9 +109,10 @@ const Page = () => (
         attributes={{
           title: '내 식탁을 부탁해!',
           description: 'SNS에서 핫한 요리 모음',
-          href: '/board/talk/list/1'
+          href: '/board/popular/list/1'
         }}
       />
+      <PopularList attributes={{ horizon: false, category: 'popular' }} />
 
       <StyledHgroup
         attributes={{
@@ -132,17 +136,19 @@ const Page = () => (
         attributes={{
           title: '스트레스 풀리는 매운맛',
           description: '',
-          href: '/board/talk/list/1'
+          href: '/board/spicy/list/1'
         }}
       />
+      <SpicyList attributes={{ horizon: false, category: 'spicy' }} />
 
       <StyledHgroup
         attributes={{
-          title: '가을의 맛 뜨끈한 국물요리',
+          title: '뜨끈한 국물요리',
           description: '',
-          href: '/board/talk/list/1'
+          href: '/board/soup/list/1'
         }}
       />
+      <SoupList attributes={{ horizon: false, category: 'soup' }} />
     </section>
 
     <Footer />

@@ -7,7 +7,6 @@ import Text from '@/unit/text/standard';
 import Thin from '@/unit/thin/standard';
 import Signature from '@/unit/profile/signature';
 import List from '@/unit/list/standard';
-import { Link } from 'react-router-dom';
 
 const StyledList = styled(List)`
   margin-top: -4rem !important;

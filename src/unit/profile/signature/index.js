@@ -68,7 +68,7 @@ const Profile = ({ className, attributes }) => {
   return (
     <StyledProfile className={className}>
       <StyledLink to="/">
-        <StyledImage src="/profile.png" alt="" />
+        <StyledImage src="about:blank" alt="" />
       </StyledLink>
 
       <StyledInner>

@@ -9,6 +9,7 @@ import Footer from '@/components/footer';
 
 const Page = () => {
   const { category } = useParams();
+  console.log('category: ', category);
 
   return (
     <>
@@ -22,7 +23,7 @@ const Page = () => {
         <Hgroup
           attributes={{
             level: 3,
-            title: '집들이',
+            title: '집사진',
             invisible: true
           }}
         />

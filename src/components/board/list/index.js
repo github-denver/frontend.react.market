@@ -3,11 +3,8 @@ import styled, { css } from 'styled-components';
 import Profile from '@/unit/profile/standard';
 import Thumbnail from '@/unit/thumbnail/rectangle/list';
 import Text from '@/unit/text/standard';
-// import Boundary from '@/unit/boundary/standard';
 
-const StyledThumbnail = styled(Thumbnail)`
-  /* padding-bottom: 3.6rem; */
-`;
+const StyledThumbnail = styled(Thumbnail)``;
 
 const StyledText = styled(Text)`
   overflow: hidden;

@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { bakingList, initialList } from '@/modules/baking/list';
-import List from '@/components/baking/list';
+import List from '@/components/card/list';
 
 const BakingList = ({ attributes }) => {
   const { horizon, category } = attributes || {};

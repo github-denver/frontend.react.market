@@ -35,7 +35,7 @@ const Wrapper = ({ className, attributes }) => {
     console.log('(containers → publish) category: ', category);
     console.log('(containers → publish) subject: ', subject);
     console.log('(containers → publish) !subject: ', !subject);
-    console.log('(containers → publish) content: ', contents);
+    console.log('(containers → publish) contents: ', contents);
     console.log('(containers → publish) tags: ', tags);
 
     formData.append('category', category);
@@ -44,7 +44,7 @@ const Wrapper = ({ className, attributes }) => {
     } else {
       formData.append('subject', subject);
     }
-    if (!subject) {
+    if (!contents) {
       formData.append('content', read.content);
     } else {
       formData.append('content', contents);
@@ -57,7 +57,8 @@ const Wrapper = ({ className, attributes }) => {
     console.log('owner: ', owner);
     if (owner) {
       dispatch(boardModify({ category, number, payload: formData }));
-      // navigate(`/board/${category}/read/${number}`);
+
+      navigate(`/board/${category}/read/${number}`);
     } else {
       dispatch(boardWrite({ category, payload: formData }));
     }

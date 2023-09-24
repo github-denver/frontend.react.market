@@ -5,6 +5,139 @@ import Hgroup from '@/unit/hgroup/standard';
 import { SlArrowRight } from 'react-icons/sl';
 import Text from '@/unit/text/standard';
 
+const StyledCopyright = styled.small`
+  display: block;
+  margin-top: 1.2rem;
+  font-size: 1.1rem;
+  color: #828c94;
+`;
+
+const StyledSocialLink = styled(Link)`
+  display: block;
+  width: 3.6rem;
+  height: 3.6rem;
+  border-radius: 100%;
+  color: transparent;
+  background-color: #828c94;
+`;
+
+const StyledSocialItem = styled.li`
+  display: inline-block;
+  margin: 1.2rem 0 0 1.2rem;
+  vertical-align: middle;
+`;
+
+const StyledSocial = styled.ul`
+  margin: -1.2rem 0 0 -1.2rem;
+  padding-top: 1.2rem;
+`;
+
+const StyledCompanyLink = styled(Link)`
+  font-size: 1.2rem;
+`;
+
+const StyledCompanyItem = styled.li`
+  display: inline-block;
+  margin: 1.2rem 0 0 1.2rem;
+  vertical-align: middle;
+`;
+
+const StyledCompany = styled.ul`
+  margin: -1.2rem 0 0 -1.2rem;
+`;
+
+const StyledCompanyGroup = styled.div`
+  margin-top: 2.4rem;
+  padding-top: 2.4rem;
+  border-top: 0.1rem solid #dadde0;
+`;
+
+const StyledCounselingLink = styled(Link)`
+  display: block;
+  padding: 0.35rem 0.8rem;
+  border: 0.1rem solid #dadde0;
+  font-size: 1.4rem;
+`;
+
+const StyledCounselingItem = styled.li`
+  display: inline-block;
+  margin-left: 1.2rem;
+  vertical-align: middle;
+`;
+
+const StyledCounseling = styled.ul`
+  margin: 1.2rem 0 0 -1.2rem;
+`;
+
+const StyledHourDescription = styled.dd`
+  overflow: hidden;
+  margin-top: 0.6rem;
+  padding-left: 0.4rem;
+  font-size: 1.2rem;
+`;
+
+const StyledHourTitle = styled.dt`
+  float: left;
+  margin-top: 0.6rem;
+  font-weight: 500;
+  font-size: 1.2rem;
+
+  &:first-child,
+  &:first-child + ${StyledHourDescription} {
+    margin-top: 0;
+  }
+`;
+
+const StyledHour = styled.ul`
+  margin-top: 0.8rem;
+`;
+
+const StyledHelpTime = styled.span`
+  font-size: 1.4rem;
+`;
+
+const StyledHelpTel = styled(Link)`
+  display: block;
+  font-weight: 500;
+  font-size: 1.6rem;
+`;
+
+const StyledHelpText = styled.span`
+  display: inline-block;
+  font-weight: 500;
+  font-size: 1.8rem;
+  vertical-align: middle;
+`;
+
+const StyledHelpLink = styled(Link)`
+  display: inline-block;
+  font-size: 0;
+  vertical-align: middle;
+
+  svg {
+    display: inline-block;
+    margin-left: 0.2rem;
+    vertical-align: middle;
+  }
+`;
+
+const StyledHelpItem = styled.li`
+  display: inline-block;
+  margin: 1.2rem 0 0 0.6rem;
+  vertical-align: middle;
+
+  &:first-child {
+    display: block;
+    margin: 0;
+  }
+
+  &:first-child + & {
+    margin-left: 0;
+  }
+`;
+
+const StyledHelp = styled.ul``;
+
 const StyledText = styled(Text)`
   margin-top: 2.4rem;
   padding: 2.4rem 0 0;
@@ -18,137 +151,7 @@ const StyledFooter = styled.footer`
   padding: 3rem 1.6rem;
   background-color: #f7f9fa;
 
-  .list_help {
-  }
-
-  .item_help {
-    display: inline-block;
-    margin: 1.2rem 0 0 0.6rem;
-    vertical-align: middle;
-  }
-
-  .item_help:first-child {
-    display: block;
-    margin: 0;
-  }
-
-  .item_help:first-child + .item_help {
-    margin-left: 0;
-  }
-
-  .link_help {
-    display: inline-block;
-    font-size: 0;
-    vertical-align: middle;
-
-    .text_local {
-      display: inline-block;
-      font-weight: 500;
-      font-size: 1.8rem;
-      vertical-align: middle;
-    }
-
-    svg {
-      display: inline-block;
-      margin-left: 0.2rem;
-      vertical-align: middle;
-    }
-  }
-
-  .tel_help {
-    display: block;
-    font-weight: 500;
-    font-size: 1.6rem;
-  }
-
-  .text_time {
-    font-size: 1.4rem;
-  }
-
-  .list_hour {
-    margin-top: 0.8rem;
-    dt {
-      float: left;
-      margin-top: 0.6rem;
-      font-weight: 500;
-      font-size: 1.2rem;
-    }
-
-    dt:first-child,
-    dt:first-child + dd {
-      margin-top: 0;
-    }
-
-    dd {
-      overflow: hidden;
-      margin-top: 0.6rem;
-      padding-left: 0.4rem;
-      font-size: 1.2rem;
-    }
-  }
-
-  .list_counseling {
-    margin: 1.2rem 0 0 -1.2rem;
-  }
-
-  .item_counseling {
-    display: inline-block;
-    margin-left: 1.2rem;
-    vertical-align: middle;
-  }
-
-  .link_counseling {
-    display: block;
-    padding: 0.35rem 0.8rem;
-    border: 0.1rem solid #dadde0;
-    font-size: 1.4rem;
-  }
-
-  .group_company {
-    margin-top: 2.4rem;
-    padding-top: 2.4rem;
-    border-top: 0.1rem solid #dadde0;
-  }
-
-  .list_company {
-    margin: -1.2rem 0 0 -1.2rem;
-  }
-
-  .item_company {
-    display: inline-block;
-    margin: 1.2rem 0 0 1.2rem;
-    vertical-align: middle;
-  }
-
-  .link_company {
-    font-size: 1.2rem;
-  }
-
-  .list_social {
-    margin: -1.2rem 0 0 -1.2rem;
-    padding-top: 1.2rem;
-
-    li {
-      display: inline-block;
-      margin: 1.2rem 0 0 1.2rem;
-      vertical-align: middle;
-
-      .link_social {
-        display: block;
-        width: 3.6rem;
-        height: 3.6rem;
-        border-radius: 100%;
-        color: transparent;
-        background-color: #828c94;
-      }
-    }
-  }
-
   small {
-    display: block;
-    margin-top: 1.2rem;
-    font-size: 1.1rem;
-    color: #828c94;
   }
 `;
 
@@ -165,46 +168,42 @@ const Footer = ({ children, attributes }) => {
         }}
       />
 
-      <ul className="list_help">
-        <li className="item_help">
-          <Link to="/" className="link_help">
-            <span className="text_local">
+      <StyledHelp>
+        <StyledHelpItem>
+          <StyledHelpLink>
+            <StyledHelpText>
               고객센터 <span className="screen_out">바로 가기</span>
-            </span>
+            </StyledHelpText>
             <SlArrowRight size="10" />
-          </Link>
-        </li>
-        <li className="item_help">
+          </StyledHelpLink>
+        </StyledHelpItem>
+
+        <StyledHelpItem>
           <span className="screen_out">고객센터 전화번호</span>
-          <Link to="tel:1670-0876" className="tel_help">
-            1670-0876
-          </Link>
-        </li>
-        <li className="item_help">
+          <StyledHelpTel to="tel:1670-0876">1670-0876</StyledHelpTel>
+        </StyledHelpItem>
+
+        <StyledHelpItem>
           <span className="screen_out">고객센터 운영시간</span>
-          <span className="text_time">09:00~18:00</span>
-        </li>
-      </ul>
+          <StyledHelpTime>09:00~18:00</StyledHelpTime>
+        </StyledHelpItem>
+      </StyledHelp>
 
-      <dl className="list_hour">
-        <dt>평일</dt>
-        <dd>모든 문의 상담 가능</dd>
-        <dt>주말, 공휴일</dt>
-        <dd>직접 배송, 이사/시공/수리 문의 상담 가능</dd>
-      </dl>
+      <StyledHour>
+        <StyledHourTitle>평일</StyledHourTitle>
+        <StyledHourDescription>모든 문의 상담 가능</StyledHourDescription>
+        <StyledHourTitle>주말, 공휴일</StyledHourTitle>
+        <StyledHourDescription>직접 배송, 이사/시공/수리 문의 상담 가능</StyledHourDescription>
+      </StyledHour>
 
-      <ul className="list_counseling">
-        <li className="item_counseling">
-          <Link to="/" className="link_counseling">
-            카카오톡 상담 (평일 09:00~18:00)
-          </Link>
-        </li>
-        <li className="item_counseling">
-          <Link to="/" className="link_counseling">
-            이메일 문의
-          </Link>
-        </li>
-      </ul>
+      <StyledCounseling>
+        <StyledCounselingItem>
+          <StyledCounselingLink to="/">카카오톡 상담 (평일 09:00~18:00)</StyledCounselingLink>
+        </StyledCounselingItem>
+        <StyledCounselingItem>
+          <StyledCounselingLink to="/">이메일 문의</StyledCounselingLink>
+        </StyledCounselingItem>
+      </StyledCounseling>
 
       <Hgroup
         attributes={{
@@ -213,70 +212,57 @@ const Footer = ({ children, attributes }) => {
           invisible: true
         }}
       />
-      <div className="group_company">
-        <ul className="list_company">
-          <li className="item_company">
-            <Link to="/" className="link_company">
-              회사소개
-            </Link>
-          </li>
-          <li className="item_company">
-            <Link to="/" className="link_company">
-              채용정보
-            </Link>
-          </li>
-          <li className="item_company">
-            <Link to="/" className="link_company">
-              이용약관
-            </Link>
-          </li>
-          <li className="item_company">
-            <Link to="/" className="link_company">
-              개인정보처리 방침
-            </Link>
-          </li>
-          <li className="item_company">
-            <Link to="/" className="link_company">
-              공지사항
-            </Link>
-          </li>
-          <li className="item_company">
-            <Link to="/" className="link_company">
-              안전거래센터
-            </Link>
-          </li>
-          <li className="item_company">
-            <Link to="/" className="link_company">
-              입점 신청
-            </Link>
-          </li>
-          <li className="item_company">
-            <Link to="/" className="link_company">
-              제휴/광고문의
-            </Link>
-          </li>
-          <li className="item_company">
-            <Link to="/" className="link_company">
-              사업자 구매 회원
-            </Link>
-          </li>
-          <li className="item_company">
-            <Link to="/" className="link_company">
-              시공 파트너 안내
-            </Link>
-          </li>
-          <li className="item_company">
-            <Link to="/" className="link_company">
-              상품광고 소개
-            </Link>
-          </li>
-          <li className="item_company">
-            <Link to="/" className="link_company">
-              고객의 소리
-            </Link>
-          </li>
-        </ul>
-      </div>
+      <StyledCompanyGroup>
+        <StyledCompany>
+          <StyledCompanyItem>
+            <StyledCompanyLink to="/">회사소개</StyledCompanyLink>
+          </StyledCompanyItem>
+
+          <StyledCompanyItem>
+            <StyledCompanyLink to="/">채용정보</StyledCompanyLink>
+          </StyledCompanyItem>
+
+          <StyledCompanyItem>
+            <StyledCompanyLink to="/">이용약관</StyledCompanyLink>
+          </StyledCompanyItem>
+
+          <StyledCompanyItem>
+            <StyledCompanyLink to="/">개인정보처리 방침</StyledCompanyLink>
+          </StyledCompanyItem>
+
+          <StyledCompanyItem>
+            <StyledCompanyLink to="/">공지사항</StyledCompanyLink>
+          </StyledCompanyItem>
+
+          <StyledCompanyItem>
+            <StyledCompanyLink to="/">안전거래센터</StyledCompanyLink>
+          </StyledCompanyItem>
+
+          <StyledCompanyItem>
+            <StyledCompanyLink to="/">입점 신청</StyledCompanyLink>
+          </StyledCompanyItem>
+
+          <StyledCompanyItem>
+            <StyledCompanyLink to="/">제휴/광고문의</StyledCompanyLink>
+          </StyledCompanyItem>
+
+          <StyledCompanyItem>
+            <StyledCompanyLink to="/">사업자 구매 회원</StyledCompanyLink>
+          </StyledCompanyItem>
+
+          <StyledCompanyItem>
+            <StyledCompanyLink to="/">시공 파트너 안내</StyledCompanyLink>
+          </StyledCompanyItem>
+
+          <StyledCompanyItem>
+            <StyledCompanyLink to="/">상품광고 소개</StyledCompanyLink>
+          </StyledCompanyItem>
+
+          <StyledCompanyItem>
+            <StyledCompanyLink to="/">고객의 소리</StyledCompanyLink>
+          </StyledCompanyItem>
+        </StyledCompany>
+      </StyledCompanyGroup>
 
       <Hgroup
         attributes={{
@@ -299,35 +285,29 @@ const Footer = ({ children, attributes }) => {
           invisible: true
         }}
       />
-      <ul className="list_social">
-        <li>
-          <Link to="/" className="link_social">
-            오늘의 식탁 유튜브
-          </Link>
-        </li>
-        <li>
-          <Link to="/" className="link_social">
-            오늘의 식탁 인스타그램
-          </Link>
-        </li>
-        <li>
-          <Link to="/" className="link_social">
-            오늘의 식탁 페이스북
-          </Link>
-        </li>
-        <li>
-          <Link to="/" className="link_social">
-            오늘의 식탁 카카오 스토리
-          </Link>
-        </li>
-        <li>
-          <Link to="/" className="link_social">
-            오늘의 식탁 네이버 포스트
-          </Link>
-        </li>
-      </ul>
+      <StyledSocial>
+        <StyledSocialItem>
+          <StyledSocialLink to="/">오늘의 식탁 유튜브</StyledSocialLink>
+        </StyledSocialItem>
 
-      <small>Copyright 2014. bucketplace, Co., Ltd. All rights reserved.</small>
+        <StyledSocialItem>
+          <StyledSocialLink to="/">오늘의 식탁 인스타그램</StyledSocialLink>
+        </StyledSocialItem>
+
+        <StyledSocialItem>
+          <StyledSocialLink to="/">오늘의 식탁 페이스북</StyledSocialLink>
+        </StyledSocialItem>
+
+        <StyledSocialItem>
+          <StyledSocialLink to="/">오늘의 식탁 카카오 스토리</StyledSocialLink>
+        </StyledSocialItem>
+
+        <StyledSocialItem>
+          <StyledSocialLink to="/">오늘의 식탁 네이버 포스트</StyledSocialLink>
+        </StyledSocialItem>
+      </StyledSocial>
+
+      <StyledCopyright>Copyright 2014. bucketplace, Co., Ltd. All rights reserved.</StyledCopyright>
     </StyledFooter>
   );
 };
