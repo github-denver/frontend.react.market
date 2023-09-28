@@ -1,10 +1,6 @@
 import axios from '@/library/gateway/axios';
 
 export const userCheck = (token) => {
-  console.group('export const userCheck = (token) => { .. }');
-  console.log('token: ', token);
-  console.groupEnd();
-
   return axios.get('/api/me', {
     params: {
       accessToken: token

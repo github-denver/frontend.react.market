@@ -40,9 +40,28 @@ const StyledSubject = styled.strong`
   margin-top: 0.8rem;
   font-weight: 500;
   font-size: 1.4rem;
-  color: #000;
+  color: #343434;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+`;
+
+const StyledInformation = styled.div`
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 50%;
+  z-index: 1;
+  padding-left: 1rem;
+
+  ${StyledSubject} {
+    margin-top: 0;
+  }
+
+  ${StyledText} {
+    margin-top: 1rem;
+  }
 `;
 
 const StyledImage = styled.img`
@@ -64,8 +83,49 @@ const StyledFrame = styled.div`
   overflow: hidden;
   position: relative;
   z-index: 1;
-  padding-top: 100%;
   border-radius: 0.8rem;
+
+  /*
+  ${({ $flicking, $grid, $square }) =>
+    $square
+      ? $grid
+        ? css`
+            padding-top: 100%;
+          `
+        : css`
+            ${({ $flicking }) =>
+              $flicking
+                ? css`
+                    display: block;
+                    padding-top: 100%;
+                  `
+                : css`
+                    display: inline-block;
+                    width: 50%;
+                    padding-top: 50%;
+                    vertical-align: top;
+                  `}
+          `
+      : $grid
+      ? css`
+          padding-top: 100%;
+        `
+      : css`
+          ${({ $flicking }) =>
+            $flicking
+              ? css`
+                  display: block;
+                `
+              : css`
+                  display: inline-block;
+                  width: 50%;
+                  vertical-align: top;
+                `}
+          padding-top: 150%;
+        `}
+  */
+
+  padding-top: 150%;
 
   ${({ $radius }) =>
     $radius &&
@@ -76,21 +136,45 @@ const StyledFrame = styled.div`
 
 const StyledLink = styled(Link)`
   display: block;
+  position: relative;
+
+  &:after {
+    display: block;
+    clear: both;
+    content: '';
+  }
 `;
 
 const StyledThumbnail = styled.div``;
 
 const Thumbnail = ({ className, attributes }) => {
-  const { href, radius, image, subject, level, time } = attributes || {};
+  const { flicking, grid, square, href, radius, image, subject, content, level, time } = attributes || {};
 
   return (
     <StyledThumbnail className={className}>
       <StyledLink to={href}>
-        <StyledFrame $radius={radius}>
+        <StyledFrame $flicking={flicking} $grid={grid} $square={square} $radius={radius}>
           <StyledImage src={`/uploads/${image}`} alt="" />
         </StyledFrame>
 
-        {subject && <StyledSubject dangerouslySetInnerHTML={{ __html: subject }} />}
+        {flicking ? (
+          <>{subject && <StyledSubject dangerouslySetInnerHTML={{ __html: subject }} />}</>
+        ) : (
+          <>
+            {grid ? (
+              <> {subject && <StyledSubject dangerouslySetInnerHTML={{ __html: subject }} />}</>
+            ) : (
+              <>
+                <StyledInformation>
+                  {subject && <StyledSubject dangerouslySetInnerHTML={{ __html: subject }} />}
+
+                  {!grid && content && <StyledText dangerouslySetInnerHTML={{ __html: content }} />}
+                </StyledInformation>
+              </>
+            )}
+          </>
+        )}
+
         {/* {level && <StyledText>{level}</StyledText>}
         {time && <StyledText>{time}</StyledText>} */}
       </StyledLink>

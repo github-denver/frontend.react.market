@@ -3,10 +3,10 @@ import React, { useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { bakingList, initialList } from '@/modules/baking/list';
-import List from '@/components/card/list';
+import FlickingList from '@/components/flicking/list';
 
 const BakingList = ({ attributes }) => {
-  const { horizon, category } = attributes || {};
+  const { flicking, grid, square, category } = attributes || {};
 
   const { user, list, pagination, error, loading } = useSelector(
     ({ user, bakingList, loading }) => ({
@@ -58,9 +58,11 @@ const BakingList = ({ attributes }) => {
   }, [dispatch, location.pathname, category, number, prefixed.select, prefixed.keyword]);
 
   return (
-    <List
+    <FlickingList
       attributes={{
-        horizon,
+        flicking: true,
+        grid,
+        square,
         category,
         user,
         list,

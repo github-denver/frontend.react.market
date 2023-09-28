@@ -8,7 +8,7 @@ const StyledDimmed = styled.div`
   bottom: 0;
   left: 0;
   z-index: 1;
-  background-color: #000;
+  background-color: #343434;
   opacity: ${({ $visible }) => ($visible ? 0.5 : 0)};
   -webkit-transition: opacity 0.4s;
   -moz-transition: opacity 0.4s;

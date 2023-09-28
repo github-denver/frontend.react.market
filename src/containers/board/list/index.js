@@ -4,6 +4,7 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { boardList, initialList } from '@/modules/board/list';
 import List from '@/components/board/list';
+import { boardRemove, userFollows } from '@/library/gateway/board';
 
 const BoardList = ({ attributes }) => {
   const { category } = attributes || {};
@@ -40,6 +41,14 @@ const BoardList = ({ attributes }) => {
     number = 1;
   }
 
+  const follows = async (userNumber) => {
+    try {
+      await userFollows({ follower_id: user.userNumber, following_id: userNumber });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     dispatch(
       boardList({
@@ -67,7 +76,8 @@ const BoardList = ({ attributes }) => {
         error,
         loading,
         select: prefixed.select,
-        keyword: prefixed.keyword
+        keyword: prefixed.keyword,
+        follows
       }}
     />
   );

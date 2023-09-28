@@ -32,7 +32,6 @@ const StyledList = styled.ul`
 
 const List = ({ className, attributes }) => {
   const { list } = attributes || {};
-  console.log('list.event: ', list.event);
 
   const onEvent = (event) => {
     event();

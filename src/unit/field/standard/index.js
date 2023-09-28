@@ -118,8 +118,6 @@ const Field = ({ className, attributes }) => {
 
   const { htmlFor, flexible, text } = label || {};
   const { type, name, id, placeholder, defaultValue, value, disabled, event, autoComplete } = input || {};
-  console.log('defaultValue: ', defaultValue);
-  console.log('value: ', value);
 
   return (
     <StyledField className={className} $standard={standard}>

@@ -21,7 +21,6 @@ const Wrapper = ({ className, attributes }) => {
     }),
     shallowEqual
   );
-  console.log('(containers → publish → 1) data: ', data);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -31,12 +30,6 @@ const Wrapper = ({ className, attributes }) => {
 
   const publish = () => {
     const formData = new FormData();
-
-    console.log('(containers → publish) category: ', category);
-    console.log('(containers → publish) subject: ', subject);
-    console.log('(containers → publish) !subject: ', !subject);
-    console.log('(containers → publish) contents: ', contents);
-    console.log('(containers → publish) tags: ', tags);
 
     formData.append('category', category);
     if (!subject) {
@@ -51,10 +44,8 @@ const Wrapper = ({ className, attributes }) => {
     }
     formData.append('tags', JSON.stringify(tags));
 
-    console.log('thumbnail: ', thumbnail);
     if (thumbnail) formData.append('thumbnail', thumbnail.files);
 
-    console.log('owner: ', owner);
     if (owner) {
       dispatch(boardModify({ category, number, payload: formData }));
 
@@ -69,7 +60,6 @@ const Wrapper = ({ className, attributes }) => {
   };
 
   useEffect(() => {
-    console.log('(containers → publish → 2) data: ', data);
     if (data) {
       navigate(`/board/${data.service}/read/${data.number}`);
     }

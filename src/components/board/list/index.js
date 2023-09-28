@@ -10,21 +10,9 @@ const StyledText = styled(Text)`
   overflow: hidden;
   display: -webkit-box;
   position: relative;
-  margin-top: -1.2rem;
+  margin-top: 0 !important;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
-
-  &:after {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
-    height: 2.4rem;
-    background: rgb(0, 0, 0);
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 1) 100%);
-    content: '';
-  }
 `;
 
 const StyledItem = styled.li``;
@@ -32,7 +20,7 @@ const StyledItem = styled.li``;
 const StyledList = styled.ul``;
 
 const BoardList = ({ attributes }) => {
-  const { category, user, list, pagination, error, loading, select, keyword } = attributes || {};
+  const { category, user, list, pagination, error, loading, select, keyword, follows } = attributes || {};
 
   if (error) {
     if (error.response && error.response.status === 404) {
@@ -68,8 +56,11 @@ const BoardList = ({ attributes }) => {
                 author: true,
                 date: true
               },
+              userNumber: currentValue.userNumber,
+              id: currentValue.id,
               author: currentValue.name,
-              date: currentValue.regdate
+              date: currentValue.regdate,
+              event: follows
             }}
           />
 

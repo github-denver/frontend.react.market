@@ -8,14 +8,14 @@ const StyledItem = styled.li`
   box-sizing: border-box;
   vertical-align: top;
 
-  ${({ $horizon }) =>
-    $horizon
+  ${({ $grid }) =>
+    $grid
       ? css`
-          display: block;
-        `
-      : css`
           display: inline-block;
           width: 50%;
+        `
+      : css`
+          display: block;
         `}
 `;
 
@@ -26,7 +26,7 @@ const StyledList = styled.ul`
 `;
 
 const CardList = ({ attributes }) => {
-  const { horizon, list, error, loading } = attributes || {};
+  const { grid, square, list, error, loading } = attributes || {};
 
   if (error) {
     if (error.response && error.response.status === 404) {
@@ -55,18 +55,8 @@ const CardList = ({ attributes }) => {
   return (
     <StyledList>
       {list.map((currentValue, index) => (
-        <StyledItem key={index} $horizon={horizon}>
-          <Thumbnail
-            attributes={{
-              href: `/board/${currentValue.category}/read/${currentValue.number}`,
-              image: currentValue.thumbnail,
-              subject: currentValue.subject,
-              level: currentValue.level,
-              time: currentValue.time,
-              author: currentValue.name,
-              count: currentValue.count
-            }}
-          />
+        <StyledItem key={index} $grid={grid}>
+          <Thumbnail attributes={{ grid, square, href: `/board/${currentValue.category}/read/${currentValue.number}`, image: currentValue.thumbnail, subject: currentValue.subject, content: currentValue.content, level: currentValue.level, time: currentValue.time, author: currentValue.name, count: currentValue.count }} />
         </StyledItem>
       ))}
     </StyledList>

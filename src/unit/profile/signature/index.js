@@ -17,7 +17,7 @@ const StyledButton = styled.button`
   display: inline-block;
   font-weight: 500;
   font-size: 1.4rem;
-  color: #35c5f0;
+  color: #fe4362;
   border: 0 none;
   background-color: transparent;
   vertical-align: middle;
@@ -26,7 +26,7 @@ const StyledButton = styled.button`
 const StyledDot = styled.span`
   display: inline-block;
   padding: 0 0.6rem;
-  color: #000;
+  color: #343434;
   vertical-align: middle;
 `;
 
@@ -68,7 +68,7 @@ const Profile = ({ className, attributes }) => {
   return (
     <StyledProfile className={className}>
       <StyledLink to="/">
-        <StyledImage src="about:blank" alt="" />
+        <StyledImage src="/images/default_picture.png" alt="" />
       </StyledLink>
 
       <StyledInner>

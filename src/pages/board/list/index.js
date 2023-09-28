@@ -9,7 +9,6 @@ import Footer from '@/components/footer';
 
 const Page = () => {
   const { category } = useParams();
-  console.log('category: ', category);
 
   return (
     <>

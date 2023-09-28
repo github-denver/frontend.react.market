@@ -274,7 +274,7 @@ const Footer = ({ children, attributes }) => {
 
       <StyledText
         attributes={{
-          text: '오늘의 식탁은 링크 제공 사이트입니다. 이 웹 사이트에는 음악, 비디오, 멀티미디어 파일을 저장하지 않습니다. 또한 이 사이트에서 제공되는 콘텐츠는 링크 된 콘텐츠이므로 저작권, 적법성, 정확성, 규정 준수 또는 기타 측면에 대해 오늘의 식탁은 책임이 없습니다. 저작권 등 법적 문제가 있는 경우 적절한 미디어 파일 소유자 또는 호스팅 업체에 문의해 주세요. '
+          text: 'hey&rdquo; bread은 링크 제공 사이트입니다. 이 웹 사이트에는 음악, 비디오, 멀티미디어 파일을 저장하지 않습니다. 또한 이 사이트에서 제공되는 콘텐츠는 링크 된 콘텐츠이므로 저작권, 적법성, 정확성, 규정 준수 또는 기타 측면에 대해 hey&rdquo; bread은 책임이 없습니다. 저작권 등 법적 문제가 있는 경우 적절한 미디어 파일 소유자 또는 호스팅 업체에 문의해 주세요. '
         }}
       />
 
@@ -287,23 +287,23 @@ const Footer = ({ children, attributes }) => {
       />
       <StyledSocial>
         <StyledSocialItem>
-          <StyledSocialLink to="/">오늘의 식탁 유튜브</StyledSocialLink>
+          <StyledSocialLink to="/">hey&rdquo; bread 유튜브</StyledSocialLink>
         </StyledSocialItem>
 
         <StyledSocialItem>
-          <StyledSocialLink to="/">오늘의 식탁 인스타그램</StyledSocialLink>
+          <StyledSocialLink to="/">hey&rdquo; bread 인스타그램</StyledSocialLink>
         </StyledSocialItem>
 
         <StyledSocialItem>
-          <StyledSocialLink to="/">오늘의 식탁 페이스북</StyledSocialLink>
+          <StyledSocialLink to="/">hey&rdquo; bread 페이스북</StyledSocialLink>
         </StyledSocialItem>
 
         <StyledSocialItem>
-          <StyledSocialLink to="/">오늘의 식탁 카카오 스토리</StyledSocialLink>
+          <StyledSocialLink to="/">hey&rdquo; bread 카카오 스토리</StyledSocialLink>
         </StyledSocialItem>
 
         <StyledSocialItem>
-          <StyledSocialLink to="/">오늘의 식탁 네이버 포스트</StyledSocialLink>
+          <StyledSocialLink to="/">hey&rdquo; bread 네이버 포스트</StyledSocialLink>
         </StyledSocialItem>
       </StyledSocial>
 

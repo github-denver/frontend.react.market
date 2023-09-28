@@ -3,12 +3,27 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FcShop, FcNegativeDynamic, FcAlarmClock, FcPlanner, FcPaid, FcHome, FcLike, FcFlashOn, FcShipped, FcProcess } from 'react-icons/fc';
 
+const StyledIcon = styled.img`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  width: 100%;
+  padding: 0.8rem;
+  box-sizing: border-box;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+`;
+
 const StyledBox = styled.div`
   display: block;
   position: relative;
   padding-top: 100%;
   border-radius: 0.8rem;
-  background-color: #f5f5f5;
+  /* background-color: #f5f5f5; */
 
   svg {
     position: absolute;
@@ -64,10 +79,55 @@ const Quick = ({ attributes }) => {
         <StyledItem>
           <StyledLink to={href}>
             <StyledBox>
-              <FcNegativeDynamic size={36} />
+              {/* <FcNegativeDynamic size={36} /> */}
+              <StyledIcon src="./icons/icon_cake.png" alt="" />
             </StyledBox>
 
-            <span className="text_local">베이킹</span>
+            <span className="text_local">케이크</span>
+          </StyledLink>
+        </StyledItem>
+
+        {/* <StyledItem>
+          <StyledLink to={href}>
+            <StyledBox>
+              <FcNegativeDynamic size={36} />
+              <StyledIcon src="./icons/icon_cooking.png" alt="" />
+            </StyledBox>
+
+            <span className="text_local">요리</span>
+          </StyledLink>
+        </StyledItem> */}
+
+        <StyledItem>
+          <StyledLink to={href}>
+            <StyledBox>
+              {/* <FcNegativeDynamic size={36} /> */}
+              <StyledIcon src="./icons/icon_salad.png" alt="" />
+            </StyledBox>
+
+            <span className="text_local">샐러드</span>
+          </StyledLink>
+        </StyledItem>
+
+        <StyledItem>
+          <StyledLink to={href}>
+            <StyledBox>
+              {/* <FcNegativeDynamic size={36} /> */}
+              <StyledIcon src="./icons/icon_dessert.png" alt="" />
+            </StyledBox>
+
+            <span className="text_local">디저트</span>
+          </StyledLink>
+        </StyledItem>
+
+        {/* <StyledItem>
+          <StyledLink to={href}>
+            <StyledBox>
+              <FcNegativeDynamic size={36} />
+              <StyledIcon src="./icons/icon_spicy.png" alt="" />
+            </StyledBox>
+
+            <span className="text_local">매운 요리</span>
           </StyledLink>
         </StyledItem>
 
@@ -75,41 +135,12 @@ const Quick = ({ attributes }) => {
           <StyledLink to={href}>
             <StyledBox>
               <FcNegativeDynamic size={36} />
+              <StyledIcon src="./icons/icon_soup.png" alt="" />
             </StyledBox>
 
-            <span className="text_local">간식</span>
+            <span className="text_local">국물요리</span>
           </StyledLink>
-        </StyledItem>
-
-        <StyledItem>
-          <StyledLink to={href}>
-            <StyledBox>
-              <FcNegativeDynamic size={36} />
-            </StyledBox>
-
-            <span className="text_local">채식</span>
-          </StyledLink>
-        </StyledItem>
-
-        <StyledItem>
-          <StyledLink to={href}>
-            <StyledBox>
-              <FcNegativeDynamic size={36} />
-            </StyledBox>
-
-            <span className="text_local">도시락</span>
-          </StyledLink>
-        </StyledItem>
-
-        <StyledItem>
-          <StyledLink to={href}>
-            <StyledBox>
-              <FcNegativeDynamic size={36} />
-            </StyledBox>
-
-            <span className="text_local">초대요리</span>
-          </StyledLink>
-        </StyledItem>
+        </StyledItem> */}
       </StyledList>
     </StyledQuick>
   );

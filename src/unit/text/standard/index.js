@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledText = styled.div`
-  padding: 1.2rem;
+  margin: 1.2rem;
   font-size: 1.4rem;
 
   img {

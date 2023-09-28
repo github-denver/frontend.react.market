@@ -38,8 +38,6 @@ const BoardWrite = ({ children, attributes }) => {
   let location = useLocation();
 
   useEffect(() => {
-    console.log('1. useEffect(() => { .. })');
-
     quillInstance.current = new Quill(quillElement.current, {
       theme: 'snow',
       placeholder: '내용을 입력해 주세요.',
@@ -59,12 +57,7 @@ const BoardWrite = ({ children, attributes }) => {
   }, [field]);
 
   useEffect(() => {
-    console.log('2. useEffect(() => { .. })');
-
-    console.log('location: ', location.pathname.indexOf('write'));
-
     if (location.pathname.indexOf('write') > 0) {
-      console.log('변경!!!!');
       quillInstance.current.root.innerHTML = formData.contents;
     }
 
@@ -72,8 +65,6 @@ const BoardWrite = ({ children, attributes }) => {
   }, [location, formData, number]);
 
   useEffect(() => {
-    console.log('3. useEffect(() => { .. })');
-
     if (read && !mounted.current) {
       mounted.current = true;
 

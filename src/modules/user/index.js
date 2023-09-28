@@ -64,18 +64,10 @@ const userSlice = createSlice({
       state.error = null;
     },
     profileSuccess: (state, action) => {
-      console.group('profileSuccess: (state, action) => { .. }');
-      console.log('action.payload: ', action.payload);
-      console.groupEnd();
-
       state.user.user2.name = action.payload.user.name;
       state.user.user2.email = action.payload.user.email;
     },
-    profileFailure: (state, action) => {
-      console.group('profileFailure: (state, action) => { .. }');
-      console.log('action: ', action);
-      console.groupEnd();
-    }
+    profileFailure: (state, action) => {}
   },
   // 외부 action 및 비동기 action
   extraReducers: (builder) => {

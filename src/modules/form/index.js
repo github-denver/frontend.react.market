@@ -38,10 +38,6 @@ const formSlice = createSlice({
       state[form][key] = value;
     },
     changeThumbnail: (state, action) => {
-      console.group('changeThumbnail: (state, action) => { .. }');
-      console.log('action.payload: ', action.payload);
-      console.groupEnd();
-
       const { key, value } = action.payload;
 
       state.boardWrite[key] = {

@@ -49,7 +49,7 @@ const StyledText = styled(Text)`
 `;
 
 const BoardRead = ({ attributes }) => {
-  const { category, number, read, error, loading, owner, edit, remove } = attributes || {};
+  const { category, number, read, error, loading, owner, edit, remove, follows } = attributes || {};
 
   const [showProductId, setShowProductId] = useState(null);
 
@@ -89,8 +89,10 @@ const BoardRead = ({ attributes }) => {
             author: true,
             date: true
           },
+          id: read.id,
           author: read.name,
-          date: read.regdate
+          date: read.regdate,
+          event: follows
         }}
       />
 

@@ -37,11 +37,18 @@ const BoardRead = ({ attributes }) => {
   };
 
   const remove = async () => {
-    console.log('const remove = async () => { .. }');
-
     try {
       await boardRemove({ category, number });
-      // navigate(`/board/${category}/list/1`);
+
+      navigate(`/board/${category}/list/1`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const follows = async (id) => {
+    try {
+      await follows(id);
     } catch (error) {
       console.error(error);
     }
@@ -71,7 +78,8 @@ const BoardRead = ({ attributes }) => {
         loading,
         owner,
         edit,
-        remove
+        remove,
+        follows
       }}
     />
   );

@@ -33,7 +33,7 @@ const StyledDiscount = styled.em`
   margin-top: 0.4rem;
   font-weight: 700;
   font-size: 1.6rem;
-  color: #35c5f0;
+  color: #fe4362;
 
   & + ${StyledPrice} {
     margin-left: 0.6rem;
@@ -45,7 +45,7 @@ const StyledName = styled.span`
 
   display: block;
   font-size: 1.4rem;
-  color: #000;
+  color: #343434;
 `;
 
 const StyledBrand = styled.span`
@@ -143,7 +143,7 @@ const StyledSubject = styled.strong`
   display: -webkit-box;
   font-weight: 500;
   font-size: 2.4rem;
-  color: #000;
+  color: #343434;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 `;

@@ -41,7 +41,7 @@ const StyledSwiper = styled(Swiper)`
   }
 
   .swiper-pagination-bullet-active {
-    background-color: #35c5f0;
+    background-color: #fe4362;
   }
 `;
 
@@ -68,78 +68,55 @@ const Page = () => (
 
       <StyledNavigation />
 
-      <StyledSwiper
-        // install Swiper modules
-        modules={[SwiperNavigation, SwiperPagination, A11y]}
-        navigation
-        pagination={{ clickable: true }}
-        spaceBetween={20}
-        onSwiper={(swiper) => {}}
-        onSlideChange={() => {}}
-        slidesPerView={'auto'}
-        centeredSlides={true}
-        loop={true}>
-        <StyledSwiperSlide>
-          <StyledSwiperImage src="#" alt="" />
-        </StyledSwiperSlide>
-
-        <StyledSwiperSlide>
-          <StyledSwiperImage src="#" alt="" />
-        </StyledSwiperSlide>
-
-        <StyledSwiperSlide>
-          <StyledSwiperImage src="#" alt="" />
-        </StyledSwiperSlide>
-      </StyledSwiper>
-
       <Quick attributes={{ href: '/' }} />
 
       <StyledBoundary />
 
       <StyledHgroup
         attributes={{
-          title: '쉽고 재미있는 초보 베이킹',
-          description: '간단하고 쉬워요!',
+          // title: '쉽고 재미있는 초보 베이킹',
+          // description: '간단하고 쉬워요!',
+          title: '케이크',
           href: '/board/baking/list/1'
         }}
       />
-      <BakingList attributes={{ horizon: false, category: 'baking' }} />
+      <BakingList attributes={{ flicking: true, square: false, category: 'baking' }} />
 
       <StyledHgroup
         attributes={{
-          title: '내 식탁을 부탁해!',
-          description: 'SNS에서 핫한 요리 모음',
-          href: '/board/popular/list/1'
-        }}
-      />
-      <PopularList attributes={{ horizon: false, category: 'popular' }} />
-
-      <StyledHgroup
-        attributes={{
-          title: '기분전환 디저트',
+          title: '디저트',
           description: '',
           href: '/board/dessert/list/1'
         }}
       />
-      <DessertList attributes={{ horizon: false, category: 'dessert' }} />
+      <DessertList attributes={{ flicking: true, square: false, category: 'dessert' }} />
+
+      {/* <StyledHgroup
+        attributes={{
+          title: '내 식탁을 부탁해!',
+          description: 'hey&rdquo; bread만의 레시피로 맛있는 식탁을 차려보세요!',
+          href: '/board/popular/list/1'
+        }}
+      />
+      <PopularList attributes={{ flicking: true, square: false, category: 'popular' }} /> */}
 
       <StyledHgroup
         attributes={{
-          title: '산뜻한 신선함',
+          title: '샐러드',
           description: '',
           href: '/board/fresh/list/1'
         }}
       />
-      <FreshList attributes={{ horizon: false, category: 'fresh' }} />
+      <FreshList attributes={{ flicking: true, square: false, category: 'fresh' }} />
 
-      <StyledHgroup
+      {/* <StyledHgroup
         attributes={{
           title: '스트레스 풀리는 매운맛',
           description: '',
           href: '/board/spicy/list/1'
         }}
       />
-      <SpicyList attributes={{ horizon: false, category: 'spicy' }} />
+      <SpicyList attributes={{ flicking: true, square: false, category: 'spicy' }} />
 
       <StyledHgroup
         attributes={{
@@ -148,7 +125,7 @@ const Page = () => (
           href: '/board/soup/list/1'
         }}
       />
-      <SoupList attributes={{ horizon: false, category: 'soup' }} />
+      <SoupList attributes={{ flicking: true, square: false, category: 'soup' }} /> */}
     </section>
 
     <Footer />

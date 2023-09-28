@@ -63,7 +63,11 @@ const StyledProfile = styled.div`
 `;
 
 const Profile = ({ attributes }) => {
-  const { className, visible, author, date } = attributes || {};
+  const { className, visible, userNumber, author, date, event } = attributes || {};
+
+  const onEvent = (userNumber) => {
+    event(userNumber);
+  };
 
   return (
     <StyledProfile className={className}>
@@ -71,7 +75,7 @@ const Profile = ({ attributes }) => {
         attributes={{
           first: (
             <StyledLink to="/">
-              <StyledImage src="about:blank" alt="" />
+              <StyledImage src="/images/default_picture.png" alt="" />
 
               <StyledBox>
                 {visible?.author && <StyledAuthor>{author}</StyledAuthor>}
@@ -84,7 +88,10 @@ const Profile = ({ attributes }) => {
               attributes={{
                 type: 'button',
                 size: 'small',
-                fill: true
+                fill: true,
+                event: () => {
+                  onEvent(userNumber);
+                }
               }}>
               <span className="text_local">팔로우</span>
             </Button>

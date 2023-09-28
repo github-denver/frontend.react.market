@@ -80,6 +80,7 @@ const StyledListGravity = styled.ul`
 const StyledClose = styled.button`
   display: inline-block;
   border: 0 none;
+  color: #fe4362;
   background-color: transparent;
   vertical-align: middle;
 
@@ -93,6 +94,7 @@ const StyledLink = styled(Link)`
   height: 2.6rem;
   font-weight: 500;
   font-size: 1.6rem;
+  color: #fe4362;
   line-height: 2.6rem;
   vertical-align: middle;
   text-align: center;
@@ -144,7 +146,7 @@ const Utility = ({ attributes }) => {
             attributes={{
               first: (
                 <StyledLink to="/">
-                  <span className="ir_wa">오늘의 식탁</span>
+                  <span className="ir_wa">hey&rdquo; bread</span>
                 </StyledLink>
               ),
               second: (
@@ -167,7 +169,7 @@ const Utility = ({ attributes }) => {
               </StyledItemGravity>
 
               <StyledItemGravity>
-                <Button attributes={{ type: 'link', href: '/member/profile', fill: true }}>
+                <Button attributes={{ type: 'link', href: '/member/follow', fill: true }}>
                   <span className="text_local">마이페이지</span>
                 </Button>
               </StyledItemGravity>
@@ -204,10 +206,45 @@ const Utility = ({ attributes }) => {
                 },
                 {
                   icon: null,
-                  link: '베이킹',
+                  link: '케이크',
                   to: '/board/baking/list/1',
                   arrow: null
+                },
+                /*
+                {
+                  icon: null,
+                  link: '요리',
+                  to: '/board/baking/list/1',
+                  arrow: null
+                },
+                */
+                {
+                  icon: null,
+                  link: '샐러드',
+                  to: '/board/fresh/list/1',
+                  arrow: null
+                },
+                {
+                  icon: null,
+                  link: '디저트',
+                  to: '/board/dessert/list/1',
+                  arrow: null
                 }
+
+                /*
+                {
+                  icon: null,
+                  link: '매운 요리',
+                  to: '/board/spicy/list/1',
+                  arrow: null
+                },
+                {
+                  icon: null,
+                  link: '국물요리',
+                  to: '/board/soup/list/1',
+                  arrow: null
+                }
+                */
               ]
             }
           ]}
@@ -216,16 +253,46 @@ const Utility = ({ attributes }) => {
 
         <StyledListSecond>
           <StyledItemSecond>
-            <StyledLinkSecond to="/member/profile">
+            <StyledLinkSecond to="/member/follow">
               <span className="text_local">마이페이지</span>
             </StyledLinkSecond>
           </StyledItemSecond>
 
           <StyledItemSecond>
-            <StyledLinkSecond to="/board/talk/write">
-              <span className="text_local">게시판 올리기</span>
+            <StyledLinkSecond to="/board/baking/write">
+              <span className="text_local">케이크 올리기</span>
             </StyledLinkSecond>
           </StyledItemSecond>
+
+          {/* <StyledItemSecond>
+            <StyledLinkSecond to="/board/popular/write">
+              <span className="text_local">요리 올리기</span>
+            </StyledLinkSecond>
+          </StyledItemSecond> */}
+
+          <StyledItemSecond>
+            <StyledLinkSecond to="/board/fresh/write">
+              <span className="text_local">샐러드 올리기</span>
+            </StyledLinkSecond>
+          </StyledItemSecond>
+
+          <StyledItemSecond>
+            <StyledLinkSecond to="/board/dessert/write">
+              <span className="text_local">디저트 올리기</span>
+            </StyledLinkSecond>
+          </StyledItemSecond>
+
+          {/* <StyledItemSecond>
+            <StyledLinkSecond to="/board/spicy/write">
+              <span className="text_local">매운 요리 올리기</span>
+            </StyledLinkSecond>
+          </StyledItemSecond>
+
+          <StyledItemSecond>
+            <StyledLinkSecond to="/board/soup/write">
+              <span className="text_local">국물요리 올리기</span>
+            </StyledLinkSecond>
+          </StyledItemSecond> */}
         </StyledListSecond>
 
         {user && (

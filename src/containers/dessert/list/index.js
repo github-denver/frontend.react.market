@@ -3,10 +3,10 @@ import React, { useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { dessertList, initialList } from '@/modules/dessert/list';
-import List from '@/components/card/list';
+import FlickingList from '@/components/flicking/list';
 
 const DessertList = ({ attributes }) => {
-  const { horizon, category } = attributes || {};
+  const { flicking, grid, square, category } = attributes || {};
 
   const { user, list, pagination, error, loading } = useSelector(
     ({ user, dessertList, loading }) => ({
@@ -58,9 +58,10 @@ const DessertList = ({ attributes }) => {
   }, [dispatch, location.pathname, category, number, prefixed.select, prefixed.keyword]);
 
   return (
-    <List
+    <FlickingList
       attributes={{
-        horizon,
+        grid,
+        square,
         category,
         user,
         list,

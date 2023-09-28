@@ -3,10 +3,11 @@ import React, { useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { popularList, initialList } from '@/modules/popular/list';
-import List from '@/components/card/list';
+import FlickingList from '@/components/flicking/list';
+import CardList from '@/components/card/list';
 
 const PopularList = ({ attributes }) => {
-  const { horizon, category } = attributes || {};
+  const { flicking, grid, square, category } = attributes || {};
 
   const { user, list, pagination, error, loading } = useSelector(
     ({ user, popularList, loading }) => ({
@@ -58,19 +59,39 @@ const PopularList = ({ attributes }) => {
   }, [dispatch, location.pathname, category, number, prefixed.select, prefixed.keyword]);
 
   return (
-    <List
-      attributes={{
-        horizon,
-        category,
-        user,
-        list,
-        pagination,
-        error,
-        loading,
-        select: prefixed.select,
-        keyword: prefixed.keyword
-      }}
-    />
+    <>
+      {flicking ? (
+        <FlickingList
+          attributes={{
+            grid,
+            square,
+            category,
+            user,
+            list,
+            pagination,
+            error,
+            loading,
+            select: prefixed.select,
+            keyword: prefixed.keyword
+          }}
+        />
+      ) : (
+        <CardList
+          attributes={{
+            grid,
+            square,
+            category,
+            user,
+            list,
+            pagination,
+            error,
+            loading,
+            select: prefixed.select,
+            keyword: prefixed.keyword
+          }}
+        />
+      )}
+    </>
   );
 };
 

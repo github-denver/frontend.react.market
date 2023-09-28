@@ -16,12 +16,8 @@ const boardModifySlice = createSlice({
   // 내부 action 및 동기 action
   reducers: {
     modifySuccess: (state, action) => {
-      console.group('modifySuccess: (state, action) => { .. }');
-      console.log('action.payload: ', action.payload);
-
       state.data = action.payload;
       state.error = null;
-      console.groupEnd();
     },
     modifyFailure: (state, action) => {
       state.data = null;
@@ -49,7 +45,5 @@ export const boardModify = createAction(BOARD_MODIFY, (payload) => ({ payload })
 
 // Main Saga
 export function* boardModifySaga() {
-  console.log('export function* boardModifySaga() { .. }');
-
   yield takeLatest(BOARD_MODIFY, createRequestSaga(BOARD_MODIFY, gateway.modify));
 }
