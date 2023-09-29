@@ -52,7 +52,7 @@ const PopularList = ({ attributes }) => {
     );
 
     return () => {
-      console.log('board/list 언 마운트 될 때 리덕스에서 데이터를 삭제합니다.');
+      console.log('unmount: popular/list');
 
       dispatch(initialList());
     };

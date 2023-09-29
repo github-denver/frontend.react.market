@@ -22,17 +22,7 @@ export const modify = ({ category, number, payload }) => {
 
 export const boardRemove = ({ category, number }) => axios.get(`/api/board/${category}/delete/${number}`);
 
-export const userFollows = ({ follower_id, following_id }) => {
-  return axios.post(`/api/board/follows`, {
-    follower_id,
-    following_id
-  });
-};
-
-export const userFollowing = ({ following_id }) => {
-  return axios.get(`/api/board/following/${following_id}`);
-};
-
-export const userFollower = ({ follower_id }) => {
-  return axios.get(`/api/board/follower/${follower_id}`);
-};
+export const follow = ({ following_id }) => axios.post(`/api/board/follow`, { following_id });
+export const unfollow = ({ following_id }) => axios.get(`/api/board/unfollow/${following_id}`);
+export const following = () => axios.get(`/api/board/following`);
+export const follower = () => axios.get(`/api/board/follower`);

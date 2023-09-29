@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import Component from '@/components/follow';
-import { following, follower } from '../../modules/follow';
+import { following, follower } from '@/modules/follow';
 import { useNavigate } from 'react-router-dom';
+import { follow, unfollow } from '../../library/gateway/board';
 
 const Follow = ({ attributes }) => {
   const { category } = attributes || {};
@@ -27,6 +28,21 @@ const Follow = ({ attributes }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const handleUnfollow = async (userNumber) => {
+    try {
+      /*
+       * @param following_id 상대방 식별자
+       */
+      const following_id = userNumber;
+
+      await unfollow({ following_id });
+
+      dispatch(following());
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     if (error) {
       console.error(error);
@@ -42,19 +58,17 @@ const Follow = ({ attributes }) => {
 
         navigate('/member/login');
       } else {
-        const { userNumber } = user;
-
-        dispatch(following({ following_id: userNumber }));
-        dispatch(follower({ follower_id: userNumber }));
+        dispatch(following());
+        dispatch(follower());
       }
     }
 
     return () => {
-      console.log('follow 언 마운트 될 때 리덕스에서 데이터를 삭제합니다.');
+      console.log('unmount: follow');
     };
   }, [dispatch, navigate, user, accessToken, error]);
 
-  return <Component attributes={{ user, followings, followers, error, loadingFollowing, loadingFollower }} />;
+  return <Component attributes={{ user, followings, followers, error, loadingFollowing, loadingFollower, handleUnfollow }} />;
 };
 
 export default Follow;

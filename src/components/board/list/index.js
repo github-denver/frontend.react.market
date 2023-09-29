@@ -20,7 +20,7 @@ const StyledItem = styled.li``;
 const StyledList = styled.ul``;
 
 const BoardList = ({ attributes }) => {
-  const { category, user, list, pagination, error, loading, select, keyword, follows } = attributes || {};
+  const { category, list, pagination, error, loading, select, keyword, handleLogin, handleFollow, handleUnfollow, followings } = attributes || {};
 
   if (error) {
     if (error.response && error.response.status === 404) {
@@ -60,7 +60,8 @@ const BoardList = ({ attributes }) => {
               id: currentValue.id,
               author: currentValue.name,
               date: currentValue.regdate,
-              event: follows
+              event: [handleLogin, handleFollow, handleUnfollow],
+              followings
             }}
           />
 

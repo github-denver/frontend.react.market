@@ -2,6 +2,7 @@ import React from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { userLogout } from '@/modules/user';
 import Header from '@/components/header';
+import { initialFollow } from '@/modules/follow';
 
 const Wrapper = ({ attributes }) => {
   const minimal = attributes?.minimal;
@@ -12,6 +13,7 @@ const Wrapper = ({ attributes }) => {
 
   const handleLogout = () => {
     dispatch(userLogout());
+    dispatch(initialFollow());
   };
 
   return <Header attributes={{ minimal, user, handleLogout }} />;

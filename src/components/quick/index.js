@@ -77,7 +77,7 @@ const Quick = ({ attributes }) => {
     <StyledQuick>
       <StyledList>
         <StyledItem>
-          <StyledLink to={href}>
+          <StyledLink to="/board/baking/list/1">
             <StyledBox>
               {/* <FcNegativeDynamic size={36} /> */}
               <StyledIcon src="./icons/icon_cake.png" alt="" />
@@ -99,7 +99,7 @@ const Quick = ({ attributes }) => {
         </StyledItem> */}
 
         <StyledItem>
-          <StyledLink to={href}>
+          <StyledLink to="/board/fresh/list/1">
             <StyledBox>
               {/* <FcNegativeDynamic size={36} /> */}
               <StyledIcon src="./icons/icon_salad.png" alt="" />
@@ -110,7 +110,7 @@ const Quick = ({ attributes }) => {
         </StyledItem>
 
         <StyledItem>
-          <StyledLink to={href}>
+          <StyledLink to="/board/dessert/list/1">
             <StyledBox>
               {/* <FcNegativeDynamic size={36} /> */}
               <StyledIcon src="./icons/icon_dessert.png" alt="" />

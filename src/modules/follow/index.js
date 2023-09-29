@@ -23,7 +23,9 @@ const followSlice = createSlice({
   initialState,
   // 내부 action 및 동기 action
   reducers: {
-    initialError: (state) => {
+    initialFollow: (state) => {
+      state.following = null;
+      state.follower = null;
       state.error = null;
     },
     followingSuccess: (state, action) => {
@@ -45,24 +47,15 @@ const followSlice = createSlice({
   }
 });
 
-export const { initialError } = followSlice.actions;
+export const { initialFollow } = followSlice.actions;
 
 export default followSlice.reducer;
 
-export const following = createAction(FOLLOWING, (payload) => {
-  const { following_id } = payload;
+export const following = createAction(FOLLOWING);
+export const follower = createAction(FOLLOWER);
 
-  return { payload: { following_id } };
-});
-
-export const follower = createAction(FOLLOWER, (payload) => {
-  const { follower_id } = payload;
-
-  return { payload: { follower_id } };
-});
-
-const followingSaga = createRequestSaga(FOLLOWING, gateway.userFollowing);
-const followerSaga = createRequestSaga(FOLLOWER, gateway.userFollower);
+const followingSaga = createRequestSaga(FOLLOWING, gateway.following);
+const followerSaga = createRequestSaga(FOLLOWER, gateway.follower);
 
 // Main Saga
 export function* followSaga() {

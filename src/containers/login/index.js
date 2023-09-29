@@ -96,7 +96,7 @@ const Login = () => {
     }
 
     return () => {
-      console.log('언마운트 될 때 리덕스에서 로그인 양식을 초기화합니다.');
+      console.log('unmount: login');
 
       dispatch(initialForm());
     };

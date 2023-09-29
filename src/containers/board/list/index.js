@@ -1,19 +1,21 @@
 import qs from 'qs';
 import React, { useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { boardList, initialList } from '@/modules/board/list';
 import List from '@/components/board/list';
-import { boardRemove, userFollows } from '@/library/gateway/board';
+import { follow, unfollow } from '@/library/gateway/board';
+import { following } from '@/modules/follow';
 
 const BoardList = ({ attributes }) => {
   const { category } = attributes || {};
 
-  const { user, list, pagination, error, loading } = useSelector(
-    ({ user, boardList, loading }) => ({
+  const { user, list, pagination, followings, error, loading } = useSelector(
+    ({ user, boardList, follow, loading }) => ({
       user: user.user?.user2,
       list: boardList.data?.list,
       pagination: boardList.data?.pagination,
+      followings: follow.following?.result,
       error: boardList.error,
       loading: loading['board/list']
     }),
@@ -21,6 +23,7 @@ const BoardList = ({ attributes }) => {
   );
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const location = useLocation();
 
   const prefixed = qs.parse(location.search, {
@@ -41,30 +44,53 @@ const BoardList = ({ attributes }) => {
     number = 1;
   }
 
-  const follows = async (userNumber) => {
+  const handleLogin = () => {
+    navigate(`/member/login`);
+  };
+
+  const handleFollow = async (userNumber) => {
     try {
-      await userFollows({ follower_id: user.userNumber, following_id: userNumber });
+      /*
+       * @param following_id 상대방 식별자
+       */
+      const following_id = userNumber;
+
+      await follow({ following_id });
+
+      dispatch(following());
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleUnfollow = async (userNumber) => {
+    try {
+      /*
+       * @param following_id 상대방 식별자
+       */
+      const following_id = userNumber;
+
+      await unfollow({ following_id });
+
+      dispatch(following());
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    dispatch(
-      boardList({
-        category,
-        number,
-        select: prefixed.select,
-        keyword: prefixed.keyword
-      })
-    );
+    dispatch(boardList({ category, number, select: prefixed.select, keyword: prefixed.keyword }));
 
     return () => {
-      console.log('board/list 언 마운트 될 때 리덕스에서 데이터를 삭제합니다.');
+      console.log('unmount: board/list');
 
       dispatch(initialList());
     };
   }, [dispatch, location.pathname, category, number, prefixed.select, prefixed.keyword]);
+
+  useEffect(() => {
+    if (user) dispatch(following());
+  }, [dispatch, user]);
 
   return (
     <List
@@ -77,7 +103,10 @@ const BoardList = ({ attributes }) => {
         loading,
         select: prefixed.select,
         keyword: prefixed.keyword,
-        follows
+        handleLogin,
+        handleFollow,
+        handleUnfollow,
+        followings
       }}
     />
   );

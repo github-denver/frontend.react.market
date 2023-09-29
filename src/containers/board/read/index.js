@@ -62,7 +62,7 @@ const BoardRead = ({ attributes }) => {
     dispatch(boardRead({ category, number }));
 
     return () => {
-      console.log('board/read 언 마운트 될 때 리덕스에서 데이터를 삭제합니다.');
+      console.log('unmount: board/read');
 
       dispatch(initialRead());
     };

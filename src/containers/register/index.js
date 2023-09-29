@@ -135,13 +135,11 @@ const Register = () => {
       }
     }
 
-    /*
     return () => {
-      console.log('언마운트 될 때 리덕스에서 회원가입 양식을 초기화합니다.');
+      console.log('* unmount: register');
 
-      dispatch(initialForm());
+      // dispatch(initialForm());
     };
-    */
   }, [dispatch, navigate, user, message, error]);
 
   return <Form formData={formData} errorMessage={errorMessage} onSubmitRegister={handleSubmitRegister} onChangeField={handleChangeField} onCloseLayer={handleCloseLayer} visibleLayer={visibleLayer} onIdCheck={() => handleDuplicateCheck('idCheck', idCheck, 'id', '아이디')} onNameCheck={() => handleDuplicateCheck('nameCheck', nameCheck, 'name', '닉네임')} onEmailCheck={() => handleDuplicateCheck('emailCheck', emailCheck, 'email', '이메일')} />;

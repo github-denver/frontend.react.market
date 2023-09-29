@@ -53,7 +53,7 @@ const BoardWrite = ({ attributes }) => {
     }
 
     return () => {
-      console.log('boardWrite/write 언 마운트 될 때 리덕스에서 데이터를 삭제합니다.');
+      console.log('unmount: board/write');
 
       dispatch(initialForm());
       dispatch(initialRead());

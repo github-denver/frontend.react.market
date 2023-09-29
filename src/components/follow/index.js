@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Half from '@/unit/half/standard';
@@ -88,7 +88,7 @@ const StyledProfile = styled.div`
 `;
 
 const Follow = ({ attributes }) => {
-  const { user, followings, followers, error, loadingFollowing, loadingFollower } = attributes || {};
+  const { user, followings, followers, error, loadingFollowing, loadingFollower, handleUnfollow } = attributes || {};
 
   if (error) {
     if (error.response && error.response.status === 404) {
@@ -144,9 +144,10 @@ const Follow = ({ attributes }) => {
                   <Button
                     attributes={{
                       type: 'button',
-                      size: 'small'
+                      size: 'small',
+                      event: () => handleUnfollow(currentValue.userNumber)
                     }}>
-                    <span className="text_local">팔로잉</span>
+                    <span className="text_local">언팔로우</span>
                   </Button>
                 )
               }}
@@ -169,15 +170,7 @@ const Follow = ({ attributes }) => {
                     <StyledFollowerText>{currentValue.name}</StyledFollowerText>
                   </>
                 ),
-                second: (
-                  <Button
-                    attributes={{
-                      type: 'button',
-                      size: 'small'
-                    }}>
-                    <span className="text_local">팔로잉</span>
-                  </Button>
-                )
+                second: null
               }}
             />
           </StyledFollowerItem>

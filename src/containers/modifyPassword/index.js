@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { changeField, initialForm } from '@/modules/form';
 import Form from '@/components/form/modifyPassword';
 import { initialError } from '@/modules/user';
-import { userModifyPassword } from '../../library/gateway/auth';
+import { userModifyPassword } from '@/library/gateway/auth';
 
 const ModifyPassword = () => {
   const { token } = useParams();
@@ -105,7 +105,7 @@ const ModifyPassword = () => {
     }
 
     return () => {
-      console.log('언마운트 될 때 리덕스에서 패스워드 재설정 양식을 초기화합니다.');
+      console.log('unmount: modifyPassword');
 
       dispatch(initialForm());
     };
