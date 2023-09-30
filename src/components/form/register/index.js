@@ -222,6 +222,8 @@ const Form = ({ formData, errorMessage, onSubmitRegister, onChangeField, onClose
           ]
         }}
       />
+
+      <Layer attributes={{ visibleLayer, errorMessage, onCloseLayer }} />
     </StyledForm>
   );
 };

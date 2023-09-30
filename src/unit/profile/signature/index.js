@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import moment from 'moment';
 import 'moment/locale/ko';
+import { shallowEqual, useSelector } from 'react-redux';
 
 moment.locale('ko');
 
@@ -63,7 +64,27 @@ const StyledProfile = styled.div`
 `;
 
 const Profile = ({ className, attributes }) => {
-  const { author, message } = attributes || {};
+  const { userNumber, author, message, event, followings } = attributes || {};
+
+  const [follow, setFollow] = useState(false);
+
+  const { user } = useSelector(({ user }) => ({ user: user.user?.user2 }), shallowEqual);
+
+  useEffect(() => {
+    setFollow(() => followings?.some((currentValue, index) => currentValue.userNumber === userNumber));
+  }, [followings, userNumber]);
+
+  const onEvent = () => {
+    if (!user) {
+      event[0](); // login
+    } else {
+      if (!follow) {
+        event[1](userNumber); // follow
+      } else {
+        event[2](userNumber); // unfollow
+      }
+    }
+  };
 
   return (
     <StyledProfile className={className}>
@@ -77,11 +98,15 @@ const Profile = ({ className, attributes }) => {
             <span className="text_local">{author}</span>
           </StyledLink>
 
-          <StyledDot aria-hidden="true">·</StyledDot>
+          {user?.userNumber !== userNumber && (
+            <>
+              <StyledDot aria-hidden="true">·</StyledDot>
 
-          <StyledButton type="button">
-            <span className="text_local">팔로우</span>
-          </StyledButton>
+              <StyledButton type="button" onClick={() => onEvent()}>
+                <span className="text_local">{follow ? '팔로잉' : '팔로우'}</span>
+              </StyledButton>
+            </>
+          )}
         </StyledBox>
 
         <StyledMessage>{message}</StyledMessage>

@@ -63,8 +63,8 @@ const StyledProfile = styled.div`
   }
 `;
 
-const Profile = ({ attributes }) => {
-  const { className, visible, userNumber, author, date, event, followings } = attributes || {};
+const Profile = ({ className, attributes }) => {
+  const { visible, userNumber, href, author, date, event, followings } = attributes || {};
 
   const [follow, setFollow] = useState(false);
 
@@ -72,7 +72,6 @@ const Profile = ({ attributes }) => {
 
   useEffect(() => {
     setFollow(() => followings?.some((currentValue, index) => currentValue.userNumber === userNumber));
-    console.groupEnd();
   }, [followings, userNumber]);
 
   const onEvent = () => {
@@ -93,7 +92,7 @@ const Profile = ({ attributes }) => {
         attributes={{
           first: (
             <StyledLink to="/">
-              <StyledImage src="/images/default_picture.png" alt="" />
+              {href ? <StyledImage src={`/uploads/${href}`} alt="" /> : <StyledImage src="/images/default_picture.png" alt="" />}
 
               <StyledBox>
                 {visible?.author && <StyledAuthor>{author}</StyledAuthor>}
@@ -102,15 +101,19 @@ const Profile = ({ attributes }) => {
             </StyledLink>
           ),
           second: (
-            <Button
-              attributes={{
-                type: 'button',
-                size: 'small',
-                fill: !follow,
-                event: () => onEvent()
-              }}>
-              <span className="text_local">{follow ? '팔로잉' : '팔로우'}</span>
-            </Button>
+            <>
+              {visible?.follow && user?.userNumber !== userNumber && (
+                <Button
+                  attributes={{
+                    type: 'button',
+                    size: 'small',
+                    fill: !follow,
+                    event: () => onEvent()
+                  }}>
+                  <span className="text_local">{follow ? '팔로잉' : '팔로우'}</span>
+                </Button>
+              )}
+            </>
           )
         }}
       />

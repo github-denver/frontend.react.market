@@ -79,6 +79,10 @@ const BoardList = ({ attributes }) => {
   };
 
   useEffect(() => {
+    if (user) dispatch(following());
+  }, [dispatch, user]);
+
+  useEffect(() => {
     dispatch(boardList({ category, number, select: prefixed.select, keyword: prefixed.keyword }));
 
     return () => {
@@ -87,10 +91,6 @@ const BoardList = ({ attributes }) => {
       dispatch(initialList());
     };
   }, [dispatch, location.pathname, category, number, prefixed.select, prefixed.keyword]);
-
-  useEffect(() => {
-    if (user) dispatch(following());
-  }, [dispatch, user]);
 
   return (
     <List

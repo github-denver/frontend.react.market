@@ -1,12 +1,23 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import Hgroup from '@/unit/hgroup/standard';
 import Profile from '@/unit/profile/standard';
-// import Boundary from '@/unit/boundary/standard';
+import Boundary from '@/unit/boundary/standard';
 import Thumbnail from '@/unit/thumbnail/rectangle/read';
 import Text from '@/unit/text/standard';
 import Thin from '@/unit/thin/standard';
 import Signature from '@/unit/profile/signature';
 import List from '@/unit/list/standard';
+import { Link } from 'react-router-dom';
+import Field from '@/unit/field/standard';
+import Button from '@/unit/button/standard';
+import Half from '@/unit/half/standard';
+import Cell from '@/unit/cell/standard';
+
+import moment from 'moment';
+import 'moment/locale/ko';
+
+moment.locale('ko');
 
 const StyledList = styled(List)`
   margin-top: -4rem !important;
@@ -44,12 +55,56 @@ const StyledProducts = styled.div`
   padding: 1.2rem 0 1.2rem 1.2rem;
 `;
 
-const StyledText = styled(Text)`
-  margin-top: -1.2rem;
+const StyledText = styled(Text)``;
+
+const StyledCommentOptionItem = styled.li`
+  display: inline-block;
+  margin-left: 1rem;
+  font-size: 1.2rem;
+  vertical-align: middle;
 `;
 
+const StyledCommentOptionList = styled.ul`
+  margin: 1rem 0 0 -1rem;
+  padding: 0 0 0 0;
+  font-size: 0;
+`;
+
+const StyledCommentProfile = styled(Profile)`
+  margin: 0 -1.2rem;
+`;
+
+const StyledCommentItem = styled.li`
+  margin-top: 1.2rem;
+
+  ${StyledText} {
+    margin-right: 0;
+    margin-left: 0;
+  }
+`;
+
+const StyledCommentList = styled.ul`
+  margin-top: -1.2rem;
+  padding: 1.6rem 1.6rem 0;
+`;
+
+const StyledProfileImage = styled.img`
+  width: 3.6rem;
+`;
+
+const StyledHalf = styled(Half)``;
+
+const StyledCommentWrite = styled.div`
+  ${StyledHalf} {
+    position: relative;
+    padding: 0 1.6rem;
+  }
+`;
+
+const StyledComments = styled.div``;
+
 const BoardRead = ({ attributes }) => {
-  const { category, number, read, error, loading, owner, edit, remove, follows } = attributes || {};
+  const { category, user, number, read, error, loading, owner, edit, remove, handleLogin, handleFollow, handleUnfollow, followings, comment } = attributes || {};
 
   const [showProductId, setShowProductId] = useState(null);
 
@@ -87,12 +142,14 @@ const BoardRead = ({ attributes }) => {
         attributes={{
           visible: {
             author: true,
-            date: true
+            date: true,
+            follow: true
           },
-          id: read.id,
+          userNumber: read.userNumber,
           author: read.name,
           date: read.regdate,
-          event: follows
+          event: [handleLogin, handleFollow, handleUnfollow],
+          followings
         }}
       />
 
@@ -153,12 +210,223 @@ const BoardRead = ({ attributes }) => {
 
       <Signature
         attributes={{
+          userNumber: read.userNumber,
           author: read.name,
-          message: '메시지를 입력해 주세요.'
+          message: '메시지를 입력해 주세요.',
+          event: [handleLogin, handleFollow, handleUnfollow],
+          followings
         }}
       />
 
-      <Thin />
+      <Boundary />
+
+      <StyledComments>
+        <Hgroup attributes={{ level: 'strong', title: '댓글' }} />
+
+        <StyledCommentWrite>
+          <StyledHalf
+            attributes={{
+              styles: {
+                first: {
+                  position: 'absolute',
+                  top: 0,
+                  bottom: 0,
+                  float: 'left',
+                  width: 'auto'
+                },
+                second: {
+                  overflow: 'hidden',
+                  display: 'block',
+                  width: 'auto',
+                  paddingLeft: '5.6rem'
+                }
+              },
+              first: (
+                <Cell>
+                  <StyledProfileImage src="/images/default_picture.png" alt="" />
+                </Cell>
+              ),
+              second: (
+                <Field
+                  attributes={{
+                    input: {
+                      type: 'text',
+                      name: 'comment',
+                      id: 'comment',
+                      placeholder: '칭찬의 댓글은 작성자에게 큰 힘이 됩니다.',
+                      // value: formData.email,
+                      value: '',
+                      // event: onChangeField,
+                      fake: {
+                        // state: fakeFields.emailField,
+                        state: !user,
+                        input: {
+                          // value: user.email,
+                          value: '로그인 후 작성 가능합니다.',
+                          event: () => handleLogin()
+                        }
+
+                        /*
+                        confirmButton: (
+                          <Button
+                            attributes={{
+                              type: 'button',
+                              // fill: true,
+                              confirm: true
+                              // event: onClickFakeField('name')
+                            }}>
+                            <span className="text_local">등록</span>
+                          </Button>
+                        )
+                        */
+                      }
+                    },
+                    standard: true,
+                    confirm: true,
+                    confirmButton: (
+                      <Button
+                        attributes={{
+                          type: 'button',
+                          confirm: true
+                          // event: onEmailCheck
+                        }}>
+                        <span className="text_local">등록</span>
+                      </Button>
+                    )
+                  }}
+                />
+              )
+            }}
+          />
+        </StyledCommentWrite>
+
+        <StyledCommentList>
+          {comment?.map((currentValue) => (
+            <StyledCommentItem key={currentValue.commentId}>
+              <Thin />
+
+              <StyledCommentProfile
+                attributes={{
+                  visible: {
+                    author: true,
+                    date: false,
+                    follow: true
+                  },
+                  href: currentValue.picture,
+                  userNumber: currentValue.userNumber,
+                  id: currentValue.username,
+                  author: currentValue.author_name,
+                  date: currentValue.author_regdate,
+                  event: [handleLogin, handleFollow, handleUnfollow],
+                  followings
+                }}
+              />
+
+              <StyledText
+                attributes={{
+                  text: currentValue.content
+                }}
+              />
+
+              <StyledCommentOptionList>
+                <StyledCommentOptionItem>
+                  <span className="screen_out">등록일</span>
+                  {moment(currentValue.createdAt).format('YYYY-MM-DD')}
+                </StyledCommentOptionItem>
+
+                <StyledCommentOptionItem>
+                  <span className="screen_out">공감</span> 9999
+                </StyledCommentOptionItem>
+
+                <StyledCommentOptionItem>
+                  <button type="button">댓글 달기</button>
+                </StyledCommentOptionItem>
+              </StyledCommentOptionList>
+
+              {/* <StyledHalf
+                attributes={{
+                  styles: {
+                    first: {
+                      float: 'left',
+                      width: 'auto',
+                      marginTop: '1.4rem'
+                    },
+                    second: {
+                      overflow: 'hidden',
+                      display: 'block',
+                      width: 'auto'
+                    }
+                  },
+                  first: <StyledProfileImage src="/images/default_picture.png" alt="" />,
+                  second: (
+                    <Field
+                      attributes={{
+                        input: {
+                          type: 'text',
+                          name: 'comment',
+                          id: 'comment',
+                          placeholder: '',
+                          value: ''
+                        },
+                        standard: true,
+                        confirm: true,
+                        confirmButton: (
+                          <Button
+                            attributes={{
+                              type: 'button',
+                              confirm: true
+                            }}>
+                            <span className="text_local">등록</span>
+                          </Button>
+                        )
+                      }}
+                    />
+                  )
+                }}
+              /> */}
+            </StyledCommentItem>
+          ))}
+        </StyledCommentList>
+
+        <ul className="paging">
+          <li>
+            <Link to="/">이전</Link>
+          </li>
+          <li>
+            <Link to="/">1</Link>
+          </li>
+          <li>
+            <Link to="/">2</Link>
+          </li>
+          <li>
+            <Link to="/">3</Link>
+          </li>
+          <li>
+            <Link to="/">4</Link>
+          </li>
+          <li>
+            <Link to="/">5</Link>
+          </li>
+          <li>
+            <Link to="/">6</Link>
+          </li>
+          <li>
+            <Link to="/">7</Link>
+          </li>
+          <li>
+            <Link to="/">8</Link>
+          </li>
+          <li>
+            <Link to="/">9</Link>
+          </li>
+          <li>
+            <Link to="/">10</Link>
+          </li>
+          <li>
+            <Link to="/">다음</Link>
+          </li>
+        </ul>
+      </StyledComments>
     </>
   );
 };

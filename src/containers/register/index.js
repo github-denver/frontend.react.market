@@ -60,6 +60,9 @@ const Register = () => {
     }
 
     dispatch(userRegister({ id, name, password, email }));
+
+    console.log('로그인 화면으로 이동합니다.');
+    navigate('/member/login');
   };
 
   const handleChangeField = (event) => {
@@ -128,17 +131,20 @@ const Register = () => {
         navigate('/');
       }
 
+      /*
+      console.log('message: ', message);
       if (message) {
         console.log('로그인 화면으로 이동합니다.');
 
         navigate('/member/login');
       }
+      */
     }
 
     return () => {
-      console.log('* unmount: register');
+      console.log('unmount: register');
 
-      // dispatch(initialForm());
+      dispatch(initialForm());
     };
   }, [dispatch, navigate, user, message, error]);
 

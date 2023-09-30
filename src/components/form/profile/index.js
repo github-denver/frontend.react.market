@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import Hgroup from '@/unit/hgroup/standard';
 import Button from '@/unit/button/standard';
 import Field from '@/unit/field/standard';
-import List from '@/unit/list/standard';
+// import List from '@/unit/list/standard';
 import Layer from '@/unit/layer/standard';
+import Half from '@/unit/half/standard';
 
 const StyledSubmit = styled(Button)`
   margin-top: 2rem;
@@ -24,7 +25,7 @@ const StyledForm = styled.div`
   text-align: center;
 `;
 
-const Profile = ({ formData, errorMessage, user, error, loading, onSubmitProfileModify, onChangeField, onCloseLayer, visibleLayer, onNameCheck, onEmailCheck, onSendEmail }) => {
+const Profile = ({ formData, errorMessage, user, error, loading, onSubmitProfileModify, onChangeField, onCloseLayer, visibleLayer, onNameCheck, onEmailCheck, onSendEmail, fakeFields, onClickFakeField }) => {
   if (error) {
     if (error.response && error.response.status === 404) {
       console.log('존재하지 않는 데이터입니다.');
@@ -124,8 +125,29 @@ const Profile = ({ formData, errorMessage, user, error, loading, onSubmitProfile
                 name: 'name',
                 id: 'name',
                 placeholder: '닉네임을 입력해 주세요.',
-                value: formData.name ? formData.name : user.name,
-                event: onChangeField
+                value: formData.name,
+                event: onChangeField,
+                fake: {
+                  state: fakeFields.nameField,
+                  input: {
+                    value: user.name,
+                    event: () => onClickFakeField('name')
+                  }
+                  /*
+                  confirmButton: (
+                    <Button
+                      attributes={{
+                        type: 'button',
+                        confirm: true,
+                        event: onClickFakeField('name')
+                      }}>
+                      <span className="text_local">
+                        <span className="screen_out">닉네임</span> 중복검사
+                      </span>
+                    </Button>
+                  )
+                  */
+                }
               },
               standard: true,
               guideMessage: <p className="text_field">닉네임은 한글과 알파벳, 숫자만 입력 가능하고 2자리 이상 6자리 이하로 입력해 주세요.</p>,
@@ -156,8 +178,15 @@ const Profile = ({ formData, errorMessage, user, error, loading, onSubmitProfile
                 name: 'email',
                 id: 'email',
                 placeholder: '이메일을 입력해 주세요.',
-                value: formData.email ? formData.email : user.email,
-                event: onChangeField
+                value: formData.email,
+                event: onChangeField,
+                fake: {
+                  state: fakeFields.emailField,
+                  input: {
+                    value: user.email,
+                    event: () => onClickFakeField('email')
+                  }
+                }
               },
               standard: true,
               confirm: true,

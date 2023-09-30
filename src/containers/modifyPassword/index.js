@@ -12,7 +12,6 @@ const ModifyPassword = () => {
   const [errorMessage, setErrorMessage] = useState(null);
 
   const [visibleLayer, setVisibleLayer] = useState(false);
-  const [visibleLayerMessage, setVisibleLayerMessage] = useState(null);
 
   const { error, formData } = useSelector(
     ({ form, user }) => ({
@@ -111,7 +110,7 @@ const ModifyPassword = () => {
     };
   }, [dispatch, error]);
 
-  return <Form formData={formData} errorMessage={errorMessage} onModifyPassword={handleModifyPassword} onChangeField={handleChangeField} onCloseLayer={handleCloseLayer} visibleLayer={visibleLayer} visibleLayerMessage={visibleLayerMessage} />;
+  return <Form formData={formData} errorMessage={errorMessage} onModifyPassword={handleModifyPassword} onChangeField={handleChangeField} onCloseLayer={handleCloseLayer} visibleLayer={visibleLayer} />;
 };
 
 export default ModifyPassword;

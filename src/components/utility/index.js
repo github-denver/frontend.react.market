@@ -7,6 +7,7 @@ import Button from '@/unit/button/standard';
 import Accordion from '@/unit/menu/accordion/standard';
 import { SlHome, SlArrowDown, SlHandbag, SlWrench } from 'react-icons/sl';
 import Dimmed from '@/unit/dimmed/standard';
+import Text from '@/unit/text/standard';
 
 const StyledLinkThird = styled(Link)`
   display: inline-block;
@@ -80,7 +81,7 @@ const StyledListGravity = styled.ul`
 const StyledClose = styled.button`
   display: inline-block;
   border: 0 none;
-  color: #fe4362;
+  /* color: #fe4362; */
   background-color: transparent;
   vertical-align: middle;
 
@@ -98,6 +99,11 @@ const StyledLink = styled(Link)`
   line-height: 2.6rem;
   vertical-align: middle;
   text-align: center;
+`;
+
+const StyledText = styled(Text)`
+  margin: 1rem 0 0;
+  font-weight: 500;
 `;
 
 const StyledLogo = styled.h1`
@@ -158,6 +164,8 @@ const Utility = ({ attributes }) => {
             }}
           />
         </StyledLogo>
+
+        {user?.name && <StyledText attributes={{ text: user.name }} />}
 
         <StyledListGravity>
           {user ? (

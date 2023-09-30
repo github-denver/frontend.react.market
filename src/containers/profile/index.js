@@ -5,11 +5,22 @@ import { changeField, initialForm } from '@/modules/form';
 import Form from '@/components/form/profile';
 import { userProfileModify, initialError } from '@/modules/user';
 import Cookies from 'js-cookie';
+import { nameCheck, emailCheck } from '@/library/gateway/auth';
 
 const Profile = () => {
   const [errorMessage, setErrorMessage] = useState(null);
 
   const [visibleLayer, setVisibleLayer] = useState(false);
+
+  const [duplicateChecks, setDuplicateChecks] = useState({
+    nameCheck: true,
+    emailCheck: true
+  });
+
+  const [fakeFields, setFakeFields] = useState({
+    nameField: true,
+    emailField: true
+  });
 
   const { user, accessToken, error, loading, formData } = useSelector(
     ({ form, user, loading }) => ({
@@ -34,6 +45,12 @@ const Profile = () => {
     if (name === '') name = user.name;
     if (email === '') email = user.email;
 
+    console.log('id: ', id);
+    console.log('name: ', name);
+    console.log('password: ', password);
+    console.log('passwordConfirm: ', passwordConfirm);
+    console.log('email: ', email);
+
     if (password === '') {
       setErrorMessage('패스워드를 입력해 주세요.');
 
@@ -50,7 +67,15 @@ const Profile = () => {
       return;
     }
 
-    dispatch(userProfileModify({ id, name, password, email }));
+    if (!duplicateChecks.nameCheck || !duplicateChecks.emailCheck) {
+      setErrorMessage('중복검사를 진행해 주세요.');
+
+      setVisibleLayer(true);
+
+      return;
+    }
+
+    // dispatch(userProfileModify({ id, name, password, email }));
   };
 
   const handleChangeField = (event) => {
@@ -63,6 +88,39 @@ const Profile = () => {
     setVisibleLayer(false);
 
     dispatch(initialError());
+  };
+
+  const handleDuplicateCheck = async (type, checkFunction, fieldName, labelName) => {
+    const { [fieldName]: fieldValue } = formData;
+
+    if (![fieldValue].every(Boolean)) {
+      setErrorMessage(`${labelName}을(를) 입력해 주세요.`);
+
+      setVisibleLayer(true);
+
+      return;
+    }
+
+    const result = await checkFunction({ [fieldName]: fieldValue });
+
+    if (result.data.length > 0) {
+      setDuplicateChecks((prevChecks) => ({ ...prevChecks, [type]: false }));
+
+      setErrorMessage(`사용 불가능한 ${labelName}입니다.`);
+
+      setVisibleLayer(true);
+    } else {
+      setDuplicateChecks((prevChecks) => ({ ...prevChecks, [type]: true }));
+
+      setErrorMessage(`사용 가능한 ${labelName}입니다.`);
+
+      setVisibleLayer(true);
+    }
+  };
+
+  const handleClickFakeField = (type) => {
+    setDuplicateChecks((prevChecks) => ({ ...prevChecks, [`${type}Check`]: false }));
+    setFakeFields((prevFields) => ({ ...prevFields, [`${type}Field`]: false }));
   };
 
   useEffect(() => {
@@ -107,7 +165,7 @@ const Profile = () => {
     };
   }, [navigate, user, accessToken, error]);
 
-  return <Form formData={formData} errorMessage={errorMessage} user={user} error={error} loading={loading} onSubmitProfileModify={handleSubmitProfileModify} onChangeField={handleChangeField} onCloseLayer={handleCloseLayer} visibleLayer={visibleLayer} />;
+  return <Form formData={formData} errorMessage={errorMessage} user={user} error={error} loading={loading} onSubmitProfileModify={handleSubmitProfileModify} onChangeField={handleChangeField} onCloseLayer={handleCloseLayer} visibleLayer={visibleLayer} onNameCheck={() => handleDuplicateCheck('nameCheck', nameCheck, 'name', '닉네임')} onEmailCheck={() => handleDuplicateCheck('emailCheck', emailCheck, 'email', '이메일')} fakeFields={fakeFields} onClickFakeField={handleClickFakeField} />;
 };
 
 export default Profile;

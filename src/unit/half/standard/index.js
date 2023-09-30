@@ -20,12 +20,12 @@ const StyledOuter = styled.div`
 `;
 
 const Half = ({ className, attributes }) => {
-  const { first, second } = attributes || {};
+  const { styles, first, second } = attributes || {};
 
   return (
     <StyledOuter className={className}>
-      <StyledInner>{first}</StyledInner>
-      <StyledInner>{second}</StyledInner>
+      <StyledInner style={{ ...styles?.first }}>{first}</StyledInner>
+      <StyledInner style={{ ...styles?.second }}>{second}</StyledInner>
     </StyledOuter>
   );
 };

@@ -16,7 +16,7 @@ const StyledModifyPassword = styled.div`
   text-align: center;
 `;
 
-const ModifyPassword = ({ formData, errorMessage, onModifyPassword, onChangeField, onCloseLayer, visibleLayer, visibleLayerMessage }) => {
+const ModifyPassword = ({ formData, errorMessage, onModifyPassword, onChangeField, onCloseLayer, visibleLayer }) => {
   return (
     <StyledModifyPassword>
       <Hgroup attributes={{ level: 3, title: '패스워드 재설정', invisible: true }} />
@@ -90,7 +90,7 @@ const ModifyPassword = ({ formData, errorMessage, onModifyPassword, onChangeFiel
         }}
       />
 
-      <Layer attributes={{ visibleLayer, errorMessage: errorMessage ? errorMessage : visibleLayerMessage, onCloseLayer }} />
+      <Layer attributes={{ visibleLayer, errorMessage, onCloseLayer }} />
     </StyledModifyPassword>
   );
 };

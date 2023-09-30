@@ -147,7 +147,7 @@ const Follow = ({ attributes }) => {
                       size: 'small',
                       event: () => handleUnfollow(currentValue.userNumber)
                     }}>
-                    <span className="text_local">언팔로우</span>
+                    <span className="text_local">팔로잉</span>
                   </Button>
                 )
               }}

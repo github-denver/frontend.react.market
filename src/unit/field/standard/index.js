@@ -1,6 +1,18 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
+const StyledFakeField = styled.button`
+  width: 100%;
+  min-height: 4.2rem;
+  padding: 1.05rem 1.4rem;
+  border: 0 none;
+  box-sizing: border-box;
+  background-color: transparent;
+  font-size: 1.4rem;
+  text-align: left;
+  cursor: text;
+`;
+
 const StyledInput = styled.input`
   width: 100%;
   padding: 1.05rem 1.4rem;
@@ -42,7 +54,15 @@ const StyledInner = styled.div`
 
 const StyledOuter = styled.div`
   position: relative;
-  margin-top: 1rem;
+
+  ${({ $label }) =>
+    $label
+      ? css`
+          margin-top: 0;
+        `
+      : css`
+          margin-top: 1rem;
+        `}
 `;
 
 const StyledLabel = styled.label`
@@ -113,11 +133,11 @@ const StyledField = styled.div`
         `};
 `;
 
-const Field = ({ className, attributes }) => {
+const Field = ({ children, className, attributes }) => {
   const { label, input, standard, guideMessage, confirm, confirmButton } = attributes || {};
 
   const { htmlFor, flexible, text } = label || {};
-  const { type, name, id, placeholder, defaultValue, value, disabled, event, autoComplete } = input || {};
+  const { type, name, id, placeholder, defaultValue, value, disabled, event, fake, autoComplete } = input || {};
 
   return (
     <StyledField className={className} $standard={standard}>
@@ -129,16 +149,46 @@ const Field = ({ className, attributes }) => {
 
       {guideMessage}
 
-      {confirm ? (
-        <StyledOuter>
-          <StyledInner>
-            <StyledBox>{defaultValue ? <StyledInput type={type} name={name} id={id} placeholder={placeholder} defaultValue={defaultValue || ''} disabled={disabled} onChange={event} autoComplete={autoComplete} /> : <StyledInput type={type} name={name} id={id} placeholder={placeholder} value={value || ''} disabled={disabled} onChange={event} autoComplete={autoComplete} />}</StyledBox>
-          </StyledInner>
+      {fake?.state ? (
+        <>
+          {fake.confirmButton ? (
+            <>
+              <StyledOuter $label={!label}>
+                <StyledInner>
+                  <StyledBox>
+                    <StyledFakeField type="button" onClick={fake.input.event}>
+                      {fake.input.value}
+                    </StyledFakeField>
+                  </StyledBox>
+                </StyledInner>
 
-          {confirmButton}
-        </StyledOuter>
+                {fake.confirmButton}
+              </StyledOuter>
+            </>
+          ) : (
+            <>
+              <StyledBox>
+                <StyledFakeField type="button" onClick={fake.input.event}>
+                  {fake.input.value}
+                </StyledFakeField>
+              </StyledBox>
+            </>
+          )}
+        </>
       ) : (
-        <StyledBox>{defaultValue ? <StyledInput type={type} name={name} id={id} placeholder={placeholder} defaultValue={defaultValue || ''} disabled={disabled} onChange={event} autoComplete={autoComplete} /> : <StyledInput type={type} name={name} id={id} placeholder={placeholder} value={value || ''} disabled={disabled} onChange={event} autoComplete={autoComplete} />}</StyledBox>
+        <>
+          {confirm ? (
+            <StyledOuter $label={!label}>
+              <StyledInner>
+                <StyledBox>{defaultValue ? <StyledInput type={type} name={name} id={id} placeholder={placeholder} defaultValue={defaultValue || ''} disabled={disabled} onChange={event} autoComplete={autoComplete} /> : <StyledInput type={type} name={name} id={id} placeholder={placeholder} value={value || ''} disabled={disabled} onChange={event} autoComplete={autoComplete} />}</StyledBox>
+              </StyledInner>
+
+              {confirmButton}
+            </StyledOuter>
+          ) : (
+            <StyledBox>{defaultValue ? <StyledInput type={type} name={name} id={id} placeholder={placeholder} defaultValue={defaultValue || ''} disabled={disabled} onChange={event} autoComplete={autoComplete} /> : <StyledInput type={type} name={name} id={id} placeholder={placeholder} value={value || ''} disabled={disabled} onChange={event} autoComplete={autoComplete} />}</StyledBox>
+          )}
+        </>
       )}
     </StyledField>
   );

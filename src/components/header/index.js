@@ -17,7 +17,7 @@ const commonStyles = css`
 
   svg {
     display: inline-block;
-    color: #fe4362;
+    /* color: #fe4362; */
     vertical-align: middle;
   }
 `;

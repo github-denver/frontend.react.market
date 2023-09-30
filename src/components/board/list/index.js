@@ -54,7 +54,8 @@ const BoardList = ({ attributes }) => {
             attributes={{
               visible: {
                 author: true,
-                date: true
+                date: true,
+                follow: true
               },
               userNumber: currentValue.userNumber,
               id: currentValue.id,

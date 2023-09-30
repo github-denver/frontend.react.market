@@ -5,14 +5,19 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { boardRead, initialRead } from '@/modules/board/read';
 import Read from '@/components/board/read';
 import { boardRemove } from '@/library/gateway/board';
+import { follow, unfollow } from '@/library/gateway/board';
+import { following } from '@/modules/follow';
+import { commentList } from '@/modules/comment';
 
 const BoardRead = ({ attributes }) => {
   const { category } = attributes || {};
 
-  const { user, read, error, loading } = useSelector(
-    ({ user, boardRead, loading }) => ({
+  const { user, read, followings, comment, error, loading } = useSelector(
+    ({ user, boardRead, follow, comment, loading }) => ({
       user: user.user?.user2,
       read: boardRead.data?.result[0],
+      followings: follow.following?.result,
+      comment: comment.data?.result,
       error: boardRead.error,
       loading: loading['board/read']
     }),
@@ -46,17 +51,51 @@ const BoardRead = ({ attributes }) => {
     }
   };
 
-  const follows = async (id) => {
+  const owner = (() => {
+    return (user && user.id) === (read && read.id);
+  })();
+
+  const handleLogin = () => {
+    navigate(`/member/login`);
+  };
+
+  const handleFollow = async (userNumber) => {
     try {
-      await follows(id);
+      /*
+       * @param following_id 상대방 식별자
+       */
+      const following_id = userNumber;
+
+      await follow({ following_id });
+
+      dispatch(following());
     } catch (error) {
       console.error(error);
     }
   };
 
-  const owner = (() => {
-    return (user && user.id) === (read && read.id);
-  })();
+  const handleUnfollow = async (userNumber) => {
+    try {
+      /*
+       * @param following_id 상대방 식별자
+       */
+      const following_id = userNumber;
+
+      await unfollow({ following_id });
+
+      dispatch(following());
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (user) dispatch(following());
+  }, [dispatch, user]);
+
+  useEffect(() => {
+    if (read?.number) dispatch(commentList({ postId: read.number }));
+  }, [dispatch, read]);
 
   useEffect(() => {
     dispatch(boardRead({ category, number }));
@@ -72,6 +111,7 @@ const BoardRead = ({ attributes }) => {
     <Read
       attributes={{
         category,
+        user,
         number,
         read,
         error,
@@ -79,7 +119,11 @@ const BoardRead = ({ attributes }) => {
         owner,
         edit,
         remove,
-        follows
+        handleLogin,
+        handleFollow,
+        handleUnfollow,
+        followings,
+        comment
       }}
     />
   );
