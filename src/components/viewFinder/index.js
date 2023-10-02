@@ -193,7 +193,7 @@ const StyledIcon = styled.button`
   border-radius: 100%;
   font-size: 0.1rem;
   color: transparent;
-  background-color: #3498db;
+  background-color: #fe4362;
   vertical-align: top;
   cursor: pointer;
 
@@ -321,7 +321,7 @@ const StyledViewFinder = styled.div`
     border-radius: 100%;
     font-size: 0.1rem;
     color: transparent;
-    background-color: #3498db;
+    background-color: #fe4362;
 
     svg {
       position: absolute;
