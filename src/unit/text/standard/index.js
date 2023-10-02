@@ -9,6 +9,10 @@ const StyledText = styled.div`
     width: 100%;
     margin-bottom: 1.2rem;
   }
+
+  a {
+    color: #828c94;
+  }
 `;
 
 const Text = ({ className, attributes }) => {

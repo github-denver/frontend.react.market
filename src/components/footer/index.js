@@ -139,9 +139,10 @@ const StyledHelpItem = styled.li`
 const StyledHelp = styled.ul``;
 
 const StyledText = styled(Text)`
-  margin-top: 2.4rem;
-  padding: 2.4rem 0 0;
-  border-top: 0.1rem solid #dadde0;
+  margin: 0;
+  /* margin: 2.4rem 0 0; */
+  /* padding: 2.4rem 0 0; */
+  /* border-top: 0.1rem solid #dadde0; */
   font-size: 1.1rem;
   color: #828c94;
 `;
@@ -160,15 +161,15 @@ const Footer = ({ children, attributes }) => {
     <StyledFooter>
       <Hgroup attributes={{ title: '회사소개 및 이용안내', invisible: true }} />
 
-      <Hgroup
+      {/* <Hgroup
         attributes={{
           level: 'strong',
           title: '고객센터 전화번호 및 운영시간',
           invisible: true
         }}
-      />
+      /> */}
 
-      <StyledHelp>
+      {/* <StyledHelp>
         <StyledHelpItem>
           <StyledHelpLink>
             <StyledHelpText>
@@ -187,25 +188,25 @@ const Footer = ({ children, attributes }) => {
           <span className="screen_out">고객센터 운영시간</span>
           <StyledHelpTime>09:00~18:00</StyledHelpTime>
         </StyledHelpItem>
-      </StyledHelp>
+      </StyledHelp> */}
 
-      <StyledHour>
+      {/* <StyledHour>
         <StyledHourTitle>평일</StyledHourTitle>
         <StyledHourDescription>모든 문의 상담 가능</StyledHourDescription>
         <StyledHourTitle>주말, 공휴일</StyledHourTitle>
         <StyledHourDescription>직접 배송, 이사/시공/수리 문의 상담 가능</StyledHourDescription>
-      </StyledHour>
+      </StyledHour> */}
 
-      <StyledCounseling>
+      {/* <StyledCounseling>
         <StyledCounselingItem>
           <StyledCounselingLink to="/">카카오톡 상담 (평일 09:00~18:00)</StyledCounselingLink>
         </StyledCounselingItem>
         <StyledCounselingItem>
           <StyledCounselingLink to="/">이메일 문의</StyledCounselingLink>
         </StyledCounselingItem>
-      </StyledCounseling>
+      </StyledCounseling> */}
 
-      <Hgroup
+      {/* <Hgroup
         attributes={{
           level: 'strong',
           title: '회사소개',
@@ -262,7 +263,7 @@ const Footer = ({ children, attributes }) => {
             <StyledCompanyLink to="/">고객의 소리</StyledCompanyLink>
           </StyledCompanyItem>
         </StyledCompany>
-      </StyledCompanyGroup>
+      </StyledCompanyGroup> */}
 
       <Hgroup
         attributes={{
@@ -274,11 +275,11 @@ const Footer = ({ children, attributes }) => {
 
       <StyledText
         attributes={{
-          text: 'hey&rdquo; bread은 링크 제공 사이트입니다. 이 웹 사이트에는 음악, 비디오, 멀티미디어 파일을 저장하지 않습니다. 또한 이 사이트에서 제공되는 콘텐츠는 링크 된 콘텐츠이므로 저작권, 적법성, 정확성, 규정 준수 또는 기타 측면에 대해 hey&rdquo; bread은 책임이 없습니다. 저작권 등 법적 문제가 있는 경우 적절한 미디어 파일 소유자 또는 호스팅 업체에 문의해 주세요. '
+          text: 'hey&rdquo; bread의 콘텐츠에 저작권 문제가 있는 경우 <a href="mailto:goo.gl.denver@gmail.com">이메일</a>로 문의해 주세요.'
         }}
       />
 
-      <Hgroup
+      {/* <Hgroup
         attributes={{
           level: 'strong',
           title: '소셜 네트워크 서비스',
@@ -305,9 +306,9 @@ const Footer = ({ children, attributes }) => {
         <StyledSocialItem>
           <StyledSocialLink to="/">hey&rdquo; bread 네이버 포스트</StyledSocialLink>
         </StyledSocialItem>
-      </StyledSocial>
+      </StyledSocial> */}
 
-      <StyledCopyright>Copyright 2014. bucketplace, Co., Ltd. All rights reserved.</StyledCopyright>
+      <StyledCopyright>Copyright 2024. hey&rdquo; bread, Co., Ltd. All rights reserved.</StyledCopyright>
     </StyledFooter>
   );
 };
