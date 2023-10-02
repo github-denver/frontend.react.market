@@ -275,7 +275,7 @@ const Footer = ({ children, attributes }) => {
 
       <StyledText
         attributes={{
-          text: 'hey&rdquo; bread의 콘텐츠에 저작권 문제가 있는 경우 <a href="mailto:goo.gl.denver@gmail.com">이메일</a>로 문의해 주세요.'
+          text: 'hey&rdquo; bread의 콘텐츠에 저작권 문제가 있을 경우 <a href="mailto:goo.gl.denver@gmail.com">이메일</a>로 문의해 주세요.'
         }}
       />
 
