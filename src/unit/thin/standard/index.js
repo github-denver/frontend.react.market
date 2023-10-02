@@ -7,6 +7,7 @@ const StyledThin = styled.hr`
   height: 0.1rem;
   border: 0 none;
   background-color: #f7f9fa;
+  /* background-color: orange; */
 `;
 
 const Thin = ({ className, attributes }) => {

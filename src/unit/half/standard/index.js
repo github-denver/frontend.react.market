@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const StyledInner = styled.div`
   display: inline-block;
   width: 50%;
-  padding-left: 1rem;
+  padding-left: 1.2rem;
   box-sizing: border-box;
   text-align: right;
   vertical-align: middle;
@@ -15,7 +15,7 @@ const StyledInner = styled.div`
 `;
 
 const StyledOuter = styled.div`
-  margin-left: -1rem;
+  margin-left: -1.2rem;
   font-size: 0;
 `;
 

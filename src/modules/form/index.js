@@ -24,6 +24,12 @@ const initialState = {
     tags: null,
     error: null
   },
+  comment: {
+    postId: null,
+    parentCommentId: null,
+    content: '',
+    modifyContent: ''
+  },
   error: null
 };
 

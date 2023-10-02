@@ -4,6 +4,7 @@ import * as gateway from '@/library/gateway/comment';
 import { takeLatest } from 'redux-saga/effects';
 
 const COMMENT = 'comment/list';
+const COMMENT_WRITE = 'comment/write';
 
 const initialState = {
   data: null,
@@ -41,13 +42,11 @@ export const { initialComment } = commentSlice.actions;
 
 export default commentSlice.reducer;
 
-export const commentList = createAction(COMMENT, (payload) => {
-  const { postId } = payload;
-
-  return { payload: { postId } };
-});
+export const commentList = createAction(COMMENT, (payload) => ({ payload })); // postId
+export const commentWrite = createAction(COMMENT_WRITE, (payload) => ({ payload })); // postId, parentCommentId, content
 
 // Main Saga
 export function* commentSaga() {
   yield takeLatest(COMMENT, createRequestSaga(COMMENT, gateway.list));
+  yield takeLatest(COMMENT_WRITE, createRequestSaga(COMMENT_WRITE, gateway.write));
 }

@@ -34,6 +34,7 @@ const StyledBox = styled.div`
   border: 0.1rem solid #bdbdbd;
   border-radius: 0.4rem;
   box-sizing: border-box;
+  background-color: #fff;
 
   &:first-child {
     margin-top: 0;

@@ -12,9 +12,9 @@ const StyledOuter = styled.div`
   height: 100%;
 `;
 
-const Cell = ({ children }) => {
+const Cell = ({ children, className }) => {
   return (
-    <StyledOuter>
+    <StyledOuter className={className}>
       <StyledInner>{children}</StyledInner>
     </StyledOuter>
   );

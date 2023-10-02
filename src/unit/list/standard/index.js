@@ -27,6 +27,7 @@ const StyledItem = styled.li`
 const StyledList = styled.ul`
   margin: -2rem 0 0 -2rem;
   padding-top: 2rem;
+  font-size: 0;
   text-align: center;
 `;
 
@@ -47,10 +48,20 @@ const List = ({ className, attributes }) => {
               onClick={() => {
                 onEvent(currentValue.event);
               }}>
+              {currentValue.screenOut && <span className="screen_out">{currentValue.screenOut}</span>}
               {currentValue.text}
             </StyledButton>
           ) : (
-            <StyledLink to={currentValue.href}>{currentValue.text}</StyledLink>
+            <>
+              {currentValue.href ? (
+                <StyledLink to={currentValue.href}>{currentValue.text}</StyledLink>
+              ) : (
+                <>
+                  {currentValue.screenOut && <span className="screen_out">{currentValue.screenOut}</span>}
+                  {currentValue.text}
+                </>
+              )}
+            </>
           )}
         </StyledItem>
       ))}

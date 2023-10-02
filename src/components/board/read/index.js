@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Hgroup from '@/unit/hgroup/standard';
 import Profile from '@/unit/profile/standard';
 import Boundary from '@/unit/boundary/standard';
@@ -57,54 +57,83 @@ const StyledProducts = styled.div`
 
 const StyledText = styled(Text)``;
 
-const StyledCommentOptionItem = styled.li`
-  display: inline-block;
-  margin-left: 1rem;
-  font-size: 1.2rem;
-  vertical-align: middle;
-`;
-
-const StyledCommentOptionList = styled.ul`
-  margin: 1rem 0 0 -1rem;
-  padding: 0 0 0 0;
-  font-size: 0;
+const StyledOptions = styled(List)`
+  margin: -2rem 0 0 -2rem;
+  padding: 0 1.2rem;
+  text-align: left;
 `;
 
 const StyledCommentProfile = styled(Profile)`
-  margin: 0 -1.2rem;
+  /* margin-left: -1.2rem;
+  background-color: skyblue; */
 `;
 
 const StyledCommentItem = styled.li`
-  margin-top: 1.2rem;
+  position: relative;
+  margin-top: 1rem;
 
-  ${StyledText} {
-    margin-right: 0;
-    margin-left: 0;
-  }
-`;
-
-const StyledCommentList = styled.ul`
-  margin-top: -1.2rem;
-  padding: 1.6rem 1.6rem 0;
+  ${({ $parentCommentId }) =>
+    $parentCommentId &&
+    css`
+      // margin-left: ${({ $parentCommentId }) => (12 * $parentCommentId) / 10}rem;
+      margin-left: 1rem;
+      padding-bottom: 1rem;
+      /* border: 0.1rem solid #bdbdbd;
+      border: 0.1rem solid #f7f9fa; */
+      border-radius: 0.8rem;
+      background-color: #f7f9fa;
+      /* background-color: orange; */
+    `}
 `;
 
 const StyledProfileImage = styled.img`
   width: 3.6rem;
 `;
 
-const StyledHalf = styled(Half)``;
+const StyledCell = styled(Cell)``;
+
+const StyledHalf = styled(Half)`
+  ${StyledCell} {
+  }
+`;
 
 const StyledCommentWrite = styled.div`
+  padding: 0 1.6rem 1.6rem;
+
   ${StyledHalf} {
     position: relative;
-    padding: 0 1.6rem;
+    margin-left: 0;
+
+    & > div {
+      overflow: hidden;
+      display: block;
+      width: auto;
+    }
+
+    & > div:first-child {
+      float: left;
+      height: 4.4rem;
+    }
   }
 `;
 
 const StyledComments = styled.div``;
 
+const StyledCommentList = styled.ul`
+  margin-top: -1rem;
+  padding: 1.6rem 1.6rem 0;
+
+  ${StyledCommentWrite} {
+    padding: 0 1.2rem 1.2rem 1.2rem;
+
+    ${StyledHalf} {
+      margin-left: -1.2rem;
+    }
+  }
+`;
+
 const BoardRead = ({ attributes }) => {
-  const { category, user, number, read, error, loading, owner, edit, remove, handleLogin, handleFollow, handleUnfollow, followings, comment } = attributes || {};
+  const { category, formData, user, number, read, error, loading, owner, edit, remove, handleLogin, handleFollow, handleUnfollow, followings, comment, onChangeField, handleCommentSubmit, handleCommentModifyVisible, commentModifyVisible, handleCommentModify, handleCommentRemove } = attributes || {};
 
   const [showProductId, setShowProductId] = useState(null);
 
@@ -227,58 +256,30 @@ const BoardRead = ({ attributes }) => {
           <StyledHalf
             attributes={{
               styles: {
-                first: {
-                  position: 'absolute',
-                  top: 0,
-                  bottom: 0,
-                  float: 'left',
-                  width: 'auto'
-                },
-                second: {
-                  overflow: 'hidden',
-                  display: 'block',
-                  width: 'auto',
-                  paddingLeft: '5.6rem'
-                }
+                first: {},
+                second: {}
               },
               first: (
-                <Cell>
+                <StyledCell>
                   <StyledProfileImage src="/images/default_picture.png" alt="" />
-                </Cell>
+                </StyledCell>
               ),
               second: (
                 <Field
                   attributes={{
                     input: {
                       type: 'text',
-                      name: 'comment',
-                      id: 'comment',
+                      name: 'content',
+                      id: 'content',
                       placeholder: '칭찬의 댓글은 작성자에게 큰 힘이 됩니다.',
-                      // value: formData.email,
-                      value: '',
-                      // event: onChangeField,
+                      value: formData.comment.content,
+                      event: onChangeField,
                       fake: {
-                        // state: fakeFields.emailField,
                         state: !user,
                         input: {
-                          // value: user.email,
                           value: '로그인 후 작성 가능합니다.',
                           event: () => handleLogin()
                         }
-
-                        /*
-                        confirmButton: (
-                          <Button
-                            attributes={{
-                              type: 'button',
-                              // fill: true,
-                              confirm: true
-                              // event: onClickFakeField('name')
-                            }}>
-                            <span className="text_local">등록</span>
-                          </Button>
-                        )
-                        */
                       }
                     },
                     standard: true,
@@ -287,8 +288,8 @@ const BoardRead = ({ attributes }) => {
                       <Button
                         attributes={{
                           type: 'button',
-                          confirm: true
-                          // event: onEmailCheck
+                          confirm: true,
+                          event: () => handleCommentSubmit({ postId: read.number, parentCommentId: null })
                         }}>
                         <span className="text_local">등록</span>
                       </Button>
@@ -300,11 +301,11 @@ const BoardRead = ({ attributes }) => {
           />
         </StyledCommentWrite>
 
+        <Thin />
+
         <StyledCommentList>
           {comment?.map((currentValue) => (
-            <StyledCommentItem key={currentValue.commentId}>
-              <Thin />
-
+            <StyledCommentItem key={currentValue.commentId} $parentCommentId={currentValue.parentCommentId}>
               <StyledCommentProfile
                 attributes={{
                   visible: {
@@ -322,110 +323,99 @@ const BoardRead = ({ attributes }) => {
                 }}
               />
 
-              <StyledText
-                attributes={{
-                  text: currentValue.content
-                }}
-              />
+              {commentModifyVisible !== currentValue.commentId ? (
+                <StyledText
+                  attributes={{
+                    text: currentValue.content
+                  }}
+                />
+              ) : (
+                <StyledCommentWrite>
+                  <Field
+                    attributes={{
+                      input: {
+                        type: 'text',
+                        name: 'modifyContent',
+                        id: 'modifyContent',
+                        placeholder: '칭찬의 댓글은 작성자에게 큰 힘이 됩니다.',
+                        defaultValue: currentValue.content,
+                        value: formData.comment.modifyContent,
+                        event: onChangeField,
+                        fake: {
+                          state: !user,
+                          input: {
+                            value: '로그인 후 작성 가능합니다.',
+                            event: () => handleLogin()
+                          }
+                        }
+                      },
+                      standard: true,
+                      confirm: true,
+                      confirmButton: (
+                        <Button
+                          attributes={{
+                            type: 'button',
+                            confirm: true,
+                            event: () => handleCommentModify({ commentId: currentValue.commentId })
+                          }}>
+                          <span className="text_local">수정</span>
+                        </Button>
+                      )
+                    }}
+                  />
+                </StyledCommentWrite>
+              )}
 
-              <StyledCommentOptionList>
-                <StyledCommentOptionItem>
-                  <span className="screen_out">등록일</span>
-                  {moment(currentValue.createdAt).format('YYYY-MM-DD')}
-                </StyledCommentOptionItem>
-
-                <StyledCommentOptionItem>
-                  <span className="screen_out">공감</span> 9999
-                </StyledCommentOptionItem>
-
-                <StyledCommentOptionItem>
-                  <button type="button">댓글 달기</button>
-                </StyledCommentOptionItem>
-              </StyledCommentOptionList>
-
-              {/* <StyledHalf
-                attributes={{
-                  styles: {
-                    first: {
-                      float: 'left',
-                      width: 'auto',
-                      marginTop: '1.4rem'
-                    },
-                    second: {
-                      overflow: 'hidden',
-                      display: 'block',
-                      width: 'auto'
-                    }
-                  },
-                  first: <StyledProfileImage src="/images/default_picture.png" alt="" />,
-                  second: (
-                    <Field
-                      attributes={{
-                        input: {
-                          type: 'text',
-                          name: 'comment',
-                          id: 'comment',
-                          placeholder: '',
-                          value: ''
-                        },
-                        standard: true,
-                        confirm: true,
-                        confirmButton: (
-                          <Button
-                            attributes={{
-                              type: 'button',
-                              confirm: true
-                            }}>
-                            <span className="text_local">등록</span>
-                          </Button>
-                        )
-                      }}
-                    />
-                  )
-                }}
-              /> */}
+              {user?.userNumber === currentValue.userNumber ? (
+                <StyledOptions
+                  attributes={{
+                    list: [
+                      {
+                        screenOut: '등록일',
+                        text: moment(currentValue.createdAt).format('YYYY-MM-DD')
+                      },
+                      {
+                        screenOut: '공감',
+                        text: 9999
+                      },
+                      {
+                        text: '댓글 수정',
+                        event: () => {
+                          handleCommentModifyVisible({ commentId: currentValue.commentId });
+                        }
+                      },
+                      {
+                        text: '댓글 삭제',
+                        event: () => {
+                          handleCommentRemove({ commentId: currentValue.commentId });
+                        }
+                      }
+                      // {
+                      //   text: '댓글 달기',
+                      //   event: () => {}
+                      // }
+                    ]
+                  }}
+                />
+              ) : (
+                <StyledOptions
+                  attributes={{
+                    list: [
+                      {
+                        screenOut: '등록일',
+                        text: moment(currentValue.createdAt).format('YYYY-MM-DD')
+                      },
+                      {
+                        screenOut: '공감',
+                        text: 9999
+                      }
+                    ]
+                  }}
+                />
+              )}
             </StyledCommentItem>
           ))}
         </StyledCommentList>
-
-        <ul className="paging">
-          <li>
-            <Link to="/">이전</Link>
-          </li>
-          <li>
-            <Link to="/">1</Link>
-          </li>
-          <li>
-            <Link to="/">2</Link>
-          </li>
-          <li>
-            <Link to="/">3</Link>
-          </li>
-          <li>
-            <Link to="/">4</Link>
-          </li>
-          <li>
-            <Link to="/">5</Link>
-          </li>
-          <li>
-            <Link to="/">6</Link>
-          </li>
-          <li>
-            <Link to="/">7</Link>
-          </li>
-          <li>
-            <Link to="/">8</Link>
-          </li>
-          <li>
-            <Link to="/">9</Link>
-          </li>
-          <li>
-            <Link to="/">10</Link>
-          </li>
-          <li>
-            <Link to="/">다음</Link>
-          </li>
-        </ul>
       </StyledComments>
     </>
   );

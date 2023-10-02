@@ -1,5 +1,5 @@
 import qs from 'qs';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { boardRead, initialRead } from '@/modules/board/read';
@@ -8,12 +8,19 @@ import { boardRemove } from '@/library/gateway/board';
 import { follow, unfollow } from '@/library/gateway/board';
 import { following } from '@/modules/follow';
 import { commentList } from '@/modules/comment';
+import { changeField } from '@/modules/form';
+import { commentWrite } from '@/modules/comment';
+import { commentRemove } from '@/library/gateway/comment';
+import { commentModify } from '../../../library/gateway/comment';
 
 const BoardRead = ({ attributes }) => {
   const { category } = attributes || {};
 
-  const { user, read, followings, comment, error, loading } = useSelector(
-    ({ user, boardRead, follow, comment, loading }) => ({
+  const [commentModifyVisible, setCommentModifyVisible] = useState(null);
+
+  const { user, read, followings, comment, error, loading, formData } = useSelector(
+    ({ form, user, boardRead, follow, comment, loading }) => ({
+      formData: form,
       user: user.user?.user2,
       read: boardRead.data?.result[0],
       followings: follow.following?.result,
@@ -89,16 +96,65 @@ const BoardRead = ({ attributes }) => {
     }
   };
 
-  useEffect(() => {
-    if (user) dispatch(following());
-  }, [dispatch, user]);
+  const handleChangeField = (event) => {
+    const { value, name } = event.target;
+
+    dispatch(changeField({ form: 'comment', key: name, value }));
+  };
+
+  const handleCommentSubmit = (payload) => {
+    const { postId, parentCommentId } = payload;
+
+    const { content } = formData.comment;
+
+    dispatch(commentWrite({ postId, parentCommentId, content }));
+    dispatch(commentList({ postId: read.number }));
+  };
+
+  const handleCommentModifyVisible = (payload) => {
+    const { commentId } = payload;
+
+    setCommentModifyVisible(() => commentId);
+  };
+
+  const handleCommentModify = async (payload) => {
+    const { commentId } = payload;
+
+    const { modifyContent } = formData.comment;
+
+    try {
+      await commentModify({ commentId, modifyContent });
+
+      dispatch(commentList({ postId: read.number }));
+
+      setCommentModifyVisible(() => null);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleCommentRemove = async (payload) => {
+    const { commentId } = payload;
+
+    try {
+      await commentRemove({ commentId });
+
+      dispatch(commentList({ postId: read.number }));
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
-    if (read?.number) dispatch(commentList({ postId: read.number }));
-  }, [dispatch, read]);
+    if (user && read) {
+      dispatch(following());
+    }
+  }, [dispatch, user, read]);
 
   useEffect(() => {
     dispatch(boardRead({ category, number }));
+
+    dispatch(commentList({ postId: number }));
 
     return () => {
       console.log('unmount: board/read');
@@ -111,11 +167,13 @@ const BoardRead = ({ attributes }) => {
     <Read
       attributes={{
         category,
+        formData,
         user,
         number,
         read,
         error,
         loading,
+        onChangeField: handleChangeField,
         owner,
         edit,
         remove,
@@ -123,7 +181,12 @@ const BoardRead = ({ attributes }) => {
         handleFollow,
         handleUnfollow,
         followings,
-        comment
+        comment,
+        handleCommentSubmit,
+        handleCommentModifyVisible,
+        commentModifyVisible,
+        handleCommentModify,
+        handleCommentRemove
       }}
     />
   );

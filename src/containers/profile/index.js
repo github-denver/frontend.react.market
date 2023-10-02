@@ -45,12 +45,6 @@ const Profile = () => {
     if (name === '') name = user.name;
     if (email === '') email = user.email;
 
-    console.log('id: ', id);
-    console.log('name: ', name);
-    console.log('password: ', password);
-    console.log('passwordConfirm: ', passwordConfirm);
-    console.log('email: ', email);
-
     if (password === '') {
       setErrorMessage('패스워드를 입력해 주세요.');
 
