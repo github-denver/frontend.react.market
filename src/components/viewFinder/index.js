@@ -441,43 +441,44 @@ const ViewFinder = ({ children, className, attributes }) => {
             <>
               <StyledThumbnail src={`http://localhost:5000/uploads/${url}`} alt="2" />
 
-              {tags.map((currentValue, index) => {
-                return (
-                  <StyledHashtag key={index} style={{ top: currentValue.y + 12, left: currentValue.x + 12, zIndex: currentValue.index }} onMouseOver={() => setIsHovering(index)} onMouseOut={() => setIsHovering(null)}>
-                    <StyledIcon $arrow={isHovering === index || showProductId === currentValue.productId ? true : false}>
-                      {currentValue.id}
+              {products.length > 0 &&
+                tags.map((currentValue, index) => {
+                  return (
+                    <StyledHashtag key={index} style={{ top: currentValue.y + 12, left: currentValue.x + 12, zIndex: currentValue.index }} onMouseOver={() => setIsHovering(index)} onMouseOut={() => setIsHovering(null)}>
+                      <StyledIcon $arrow={isHovering === index || showProductId === currentValue.productId ? true : false}>
+                        {currentValue.id}
 
-                      <SlPlus size={20} />
-                    </StyledIcon>
+                        <SlPlus size={20} />
+                      </StyledIcon>
 
-                    {(isHovering === index || showProductId === currentValue.productId) && (
-                      <StyledProductLayer style={{ transform: `translate(-${currentValue.x}px, 0)` }}>
-                        <StyledProductOuter>
-                          <StyledProductInner>
-                            <StyledProductImage src={`/uploads/${products[index].thumbnail}`} alt={products[index].name} />
+                      {(isHovering === index || showProductId === currentValue.productId) && (
+                        <StyledProductLayer style={{ transform: `translate(-${currentValue.x}px, 0)` }}>
+                          <StyledProductOuter>
+                            <StyledProductInner>
+                              <StyledProductImage src={`/uploads/${products[index].thumbnail}`} alt={products[index].name} />
 
-                            <StyledDetail>
-                              <StyledBrand>{products[index].brand}</StyledBrand>
-                              <StyledName>{products[index].name}</StyledName>
-                              <StyledDiscount>{products[index].discount}%</StyledDiscount>
-                              <StyledPrice>{products[index].price}</StyledPrice>
-                            </StyledDetail>
-                          </StyledProductInner>
+                              <StyledDetail>
+                                <StyledBrand>{products[index].brand}</StyledBrand>
+                                <StyledName>{products[index].name}</StyledName>
+                                <StyledDiscount>{products[index].discount}%</StyledDiscount>
+                                <StyledPrice>{products[index].price}</StyledPrice>
+                              </StyledDetail>
+                            </StyledProductInner>
 
-                          <StyledButton2
-                            attributes={{
-                              type: 'link',
-                              href: products[index].url,
-                              fill: true
-                            }}>
-                            <span className="text_local">구매</span>
-                          </StyledButton2>
-                        </StyledProductOuter>
-                      </StyledProductLayer>
-                    )}
-                  </StyledHashtag>
-                );
-              })}
+                            <StyledButton2
+                              attributes={{
+                                type: 'link',
+                                href: products[index].url,
+                                fill: true
+                              }}>
+                              <span className="text_local">구매</span>
+                            </StyledButton2>
+                          </StyledProductOuter>
+                        </StyledProductLayer>
+                      )}
+                    </StyledHashtag>
+                  );
+                })}
             </>
           ) : (
             <StyledGuide>

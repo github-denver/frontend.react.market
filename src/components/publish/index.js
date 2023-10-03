@@ -2,10 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import Half from '@/unit/half/standard';
 import Button from '@/unit/button/standard';
+import Layer from '@/unit/layer/standard';
 
 const StyledPublish = styled.div``;
 
-const Publish = ({ className, attributes }) => {
+const Publish = ({ className, attributes, errorMessage, onCloseLayer, visibleLayer }) => {
   const { publish, cancel, owner } = attributes || {};
 
   return (
@@ -33,6 +34,8 @@ const Publish = ({ className, attributes }) => {
           )
         }}
       />
+
+      <Layer attributes={{ visibleLayer, errorMessage, onCloseLayer }} />
     </StyledPublish>
   );
 };

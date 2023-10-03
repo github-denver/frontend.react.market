@@ -7,6 +7,10 @@ import Publish from '@/containers/publish';
 import ViewFinder from '@/components/viewFinder';
 import { useLocation, useParams } from 'react-router-dom';
 
+const StyledPublish = styled(Publish)`
+  margin: 2.4rem 0 -1.2rem;
+`;
+
 const StyledField = styled(Field)`
   margin-top: 1.2rem;
 `;
@@ -56,13 +60,11 @@ const BoardWrite = ({ children, attributes }) => {
     });
   }, [field]);
 
-  useEffect(() => {
-    if (location.pathname.indexOf('write') > 0) {
-      quillInstance.current.root.innerHTML = formData.contents;
-    }
-
-    //
-  }, [location, formData, number]);
+  // useEffect(() => {
+  //   if (location.pathname.indexOf('write') > 0) {
+  //     quillInstance.current.root.innerHTML = formData.contents;
+  //   }
+  // }, [location, formData, number]);
 
   useEffect(() => {
     if (read && !mounted.current) {
@@ -157,7 +159,7 @@ const BoardWrite = ({ children, attributes }) => {
         <div ref={quillElement} />
       </div>
 
-      <Publish attributes={{ category, owner }} />
+      <StyledPublish attributes={{ category, owner }} />
     </StyledWrite>
   );
 };

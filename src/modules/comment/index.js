@@ -47,6 +47,6 @@ export const commentWrite = createAction(COMMENT_WRITE, (payload) => ({ payload 
 
 // Main Saga
 export function* commentSaga() {
-  yield takeLatest(COMMENT, createRequestSaga(COMMENT, gateway.list));
-  yield takeLatest(COMMENT_WRITE, createRequestSaga(COMMENT_WRITE, gateway.write));
+  yield takeLatest(COMMENT, createRequestSaga(COMMENT, gateway.commentList));
+  yield takeLatest(COMMENT_WRITE, createRequestSaga(COMMENT_WRITE, gateway.commentWrite));
 }

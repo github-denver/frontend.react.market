@@ -1,6 +1,6 @@
 import axios from '@/library/gateway/axios';
 
-export const list = ({ postId }) => axios.get(`/api/board/comments?postId=${postId}`);
-export const write = ({ postId, parentCommentId, content }) => axios.post(`/api/board/comments`, { postId, parentCommentId, content });
-export const commentRemove = ({ commentId }) => axios.get(`/api/board/comments/delete1/${commentId}`);
-export const commentModify = ({ commentId, modifyContent }) => axios.post(`/api/board/comments/modify1/${commentId}`, { content: modifyContent });
+export const commentList = ({ category, postId }) => axios.get(`/api/board/comments/${category}?postId=${postId}`);
+export const commentWrite = ({ postId, parentCommentId, category, content }) => axios.post(`/api/board/comments/${category}`, { postId, parentCommentId, category, content });
+export const commentModify = ({ commentId, category, modifyContent }) => axios.post(`/api/board/comments/${category}/modify1/${commentId}`, { category, content: modifyContent });
+export const commentRemove = ({ commentId, category }) => axios.get(`/api/board/comments/${category}/delete1/${commentId}`);

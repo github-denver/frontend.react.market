@@ -19,6 +19,11 @@ import 'moment/locale/ko';
 
 moment.locale('ko');
 
+const StyledSystemMessage = styled(Text)`
+  margin: 2.4rem 1.6rem 0;
+  font-size: 1.2rem;
+`;
+
 const StyledList = styled(List)`
   margin-top: -4rem !important;
   margin-bottom: 1.2rem !important;
@@ -29,12 +34,14 @@ const StyledImageProducts = styled.img`
 `;
 
 const StyledBoxProducts = styled.div`
+  display: table-cell;
   width: 7.2rem;
   height: 7.2rem;
   padding: 0.6rem;
   border: 0.1rem solid #e3e3e3;
   border-radius: 2.4rem;
   box-sizing: border-box;
+  vertical-align: middle;
   cursor: pointer;
 `;
 
@@ -55,7 +62,10 @@ const StyledProducts = styled.div`
   padding: 1.2rem 0 1.2rem 1.2rem;
 `;
 
-const StyledText = styled(Text)``;
+const StyledText = styled(Text)`
+  position: relative;
+  z-index: 1;
+`;
 
 const StyledOptions = styled(List)`
   margin: -2rem 0 0 -2rem;
@@ -120,8 +130,8 @@ const StyledCommentWrite = styled.div`
 const StyledComments = styled.div``;
 
 const StyledCommentList = styled.ul`
-  margin-top: -1rem;
-  padding: 1.6rem 1.6rem 0;
+  /* margin-top: -1rem;
+  padding: 1.6rem 1.6rem 0; */
 
   ${StyledCommentWrite} {
     padding: 0 1.2rem 1.2rem 1.2rem;
@@ -143,26 +153,44 @@ const BoardRead = ({ attributes }) => {
 
   if (error) {
     if (error.response && error.response.status === 404) {
-      console.log('존재하지 않는 데이터입니다.');
+      console.log('존재하지 않는 글입니다.');
 
-      return <p>존재하지 않는 데이터입니다.</p>;
+      return (
+        <StyledSystemMessage
+          attributes={{
+            text: '존재하지 않는 글입니다.'
+          }}
+        />
+      );
     }
 
-    console.log('에러가 발생했습니다.');
+    console.log('문제가 발생했습니다.');
 
-    return <p>에러가 발생했습니다.</p>;
+    return (
+      <StyledSystemMessage
+        attributes={{
+          text: '문제가 발생했습니다.'
+        }}
+      />
+    );
   }
 
   if (loading || !read) {
-    console.log('읽어들이는 중이거나 아직 데이터가 존재하지 않습니다.');
+    console.log('읽어들이는 중입니다.');
 
-    return <p>읽어들이는 중이거나 아직 데이터가 존재하지 않습니다.</p>;
+    return <p>읽어들이는 중입니다.</p>;
   }
 
   if (!read) {
-    console.log('목록이 존재하지 않습니다.');
+    console.log('등록된 글이 없습니다.');
 
-    return <p>목록이 존재하지 않습니다.</p>;
+    return (
+      <StyledSystemMessage
+        attributes={{
+          text: '등록된 글이 없습니다.'
+        }}
+      />
+    );
   }
 
   return (
@@ -198,17 +226,19 @@ const BoardRead = ({ attributes }) => {
         }}
       />
 
-      <StyledProducts>
-        <StyledListProducts>
-          {read.products.map((currentValue, index) => (
-            <StyledItemProducts key={index} onMouseOver={() => handle111Click(currentValue.productId)} onMouseOut={() => setShowProductId(null)}>
-              <StyledBoxProducts>
-                <StyledImageProducts src={`/uploads/${currentValue.thumbnail}`} alt={currentValue.name} />
-              </StyledBoxProducts>
-            </StyledItemProducts>
-          ))}
-        </StyledListProducts>
-      </StyledProducts>
+      {read.products.length > 0 && (
+        <StyledProducts>
+          <StyledListProducts>
+            {read.products.map((currentValue, index) => (
+              <StyledItemProducts key={index} onMouseOver={() => handle111Click(currentValue.productId)} onMouseOut={() => setShowProductId(null)}>
+                <StyledBoxProducts>
+                  <StyledImageProducts src={`/uploads/${currentValue.thumbnail}`} alt={currentValue.name} />
+                </StyledBoxProducts>
+              </StyledItemProducts>
+            ))}
+          </StyledListProducts>
+        </StyledProducts>
+      )}
 
       <StyledText
         attributes={{
@@ -289,7 +319,7 @@ const BoardRead = ({ attributes }) => {
                         attributes={{
                           type: 'button',
                           confirm: true,
-                          event: () => handleCommentSubmit({ postId: read.number, parentCommentId: null })
+                          event: () => handleCommentSubmit({ postId: read.number, parentCommentId: null, category })
                         }}>
                         <span className="text_local">등록</span>
                       </Button>
@@ -375,10 +405,6 @@ const BoardRead = ({ attributes }) => {
                         text: moment(currentValue.createdAt).format('YYYY-MM-DD')
                       },
                       {
-                        screenOut: '공감',
-                        text: 9999
-                      },
-                      {
                         text: '댓글 수정',
                         event: () => {
                           handleCommentModifyVisible({ commentId: currentValue.commentId });
@@ -390,10 +416,6 @@ const BoardRead = ({ attributes }) => {
                           handleCommentRemove({ commentId: currentValue.commentId });
                         }
                       }
-                      // {
-                      //   text: '댓글 달기',
-                      //   event: () => {}
-                      // }
                     ]
                   }}
                 />
@@ -404,10 +426,6 @@ const BoardRead = ({ attributes }) => {
                       {
                         screenOut: '등록일',
                         text: moment(currentValue.createdAt).format('YYYY-MM-DD')
-                      },
-                      {
-                        screenOut: '공감',
-                        text: 9999
                       }
                     ]
                   }}

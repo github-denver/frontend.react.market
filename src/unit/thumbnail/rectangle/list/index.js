@@ -83,7 +83,13 @@ const StyledFrame = styled.div`
   overflow: hidden;
   position: relative;
   z-index: 1;
-  border-radius: 0.8rem;
+  border-radius: 0;
+
+  ${({ $radius }) =>
+    $radius &&
+    css`
+      border-radius: 0.8rem;
+    `}
 
   /*
   ${({ $flicking, $grid, $square }) =>

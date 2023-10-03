@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Hgroup from '@/unit/hgroup/standard';
 import { SlArrowRight } from 'react-icons/sl';
 import Text from '@/unit/text/standard';
+import Boundary from '@/unit/boundary/standard';
 
 const StyledCopyright = styled.small`
   display: block;

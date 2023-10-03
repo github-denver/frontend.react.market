@@ -132,7 +132,6 @@ const Register = () => {
       }
 
       /*
-      console.log('message: ', message);
       if (message) {
         console.log('로그인 화면으로 이동합니다.');
 

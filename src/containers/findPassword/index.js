@@ -54,7 +54,7 @@ const FindPassword = () => {
 
     try {
       const result = await sendEmail({ email });
-      console.log('(containers → findPassword → 2) result: ', result);
+      console.log('result: ', result);
 
       setErrorMessage('메일이 발송되었습니다.');
 

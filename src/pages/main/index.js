@@ -84,6 +84,15 @@ const Page = () => (
 
       <StyledHgroup
         attributes={{
+          title: '샐러드',
+          description: '',
+          href: '/board/fresh/list/1'
+        }}
+      />
+      <FreshList attributes={{ flicking: true, square: false, category: 'fresh' }} />
+
+      <StyledHgroup
+        attributes={{
           title: '디저트',
           description: '',
           href: '/board/dessert/list/1'
@@ -99,15 +108,6 @@ const Page = () => (
         }}
       />
       <PopularList attributes={{ flicking: true, square: false, category: 'popular' }} /> */}
-
-      <StyledHgroup
-        attributes={{
-          title: '샐러드',
-          description: '',
-          href: '/board/fresh/list/1'
-        }}
-      />
-      <FreshList attributes={{ flicking: true, square: false, category: 'fresh' }} />
 
       {/* <StyledHgroup
         attributes={{

@@ -15,6 +15,11 @@ const StyledText = styled(Text)`
   -webkit-line-clamp: 4;
 `;
 
+const StyledSystemMessage = styled(Text)`
+  margin: 2.4rem 1.6rem 0;
+  font-size: 1.2rem;
+`;
+
 const StyledItem = styled.li``;
 
 const StyledList = styled.ul``;
@@ -24,26 +29,50 @@ const BoardList = ({ attributes }) => {
 
   if (error) {
     if (error.response && error.response.status === 404) {
-      console.log('존재하지 않는 데이터입니다.');
+      console.log('존재하지 않는 글입니다.');
 
-      return <p>존재하지 않는 데이터입니다.</p>;
+      return (
+        <StyledSystemMessage
+          attributes={{
+            text: '존재하지 않는 글입니다.'
+          }}
+        />
+      );
     }
 
-    console.log('에러가 발생했습니다.');
+    console.log('문제가 발생했습니다.');
 
-    return <p>에러가 발생했습니다.</p>;
+    return (
+      <StyledSystemMessage
+        attributes={{
+          text: '문제가 발생했습니다.'
+        }}
+      />
+    );
   }
 
   if (loading || !list) {
-    console.log('읽어들이는 중이거나 아직 데이터가 존재하지 않습니다.');
+    console.log('읽어들이는 중입니다.');
 
-    return <p>읽어들이는 중이거나 아직 데이터가 존재하지 않습니다.</p>;
+    return (
+      <StyledSystemMessage
+        attributes={{
+          text: '읽어들이는 중입니다.'
+        }}
+      />
+    );
   }
 
-  if (!list) {
-    console.log('목록이 존재하지 않습니다.');
+  if (list.length === 0) {
+    console.log('등록된 글이 없습니다.');
 
-    return <p>목록이 존재하지 않습니다.</p>;
+    return (
+      <StyledSystemMessage
+        attributes={{
+          text: '등록된 글이 없습니다.'
+        }}
+      />
+    );
   }
 
   return (

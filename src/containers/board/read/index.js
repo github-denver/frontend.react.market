@@ -11,7 +11,7 @@ import { commentList } from '@/modules/comment';
 import { changeField } from '@/modules/form';
 import { commentWrite } from '@/modules/comment';
 import { commentRemove } from '@/library/gateway/comment';
-import { commentModify } from '../../../library/gateway/comment';
+import { commentModify } from '@/library/gateway/comment';
 
 const BoardRead = ({ attributes }) => {
   const { category } = attributes || {};
@@ -103,12 +103,13 @@ const BoardRead = ({ attributes }) => {
   };
 
   const handleCommentSubmit = (payload) => {
-    const { postId, parentCommentId } = payload;
+    const { postId, parentCommentId, category } = payload;
 
     const { content } = formData.comment;
 
-    dispatch(commentWrite({ postId, parentCommentId, content }));
-    dispatch(commentList({ postId: read.number }));
+    dispatch(commentWrite({ postId, parentCommentId, category, content }));
+
+    dispatch(commentList({ postId: read.number, category }));
   };
 
   const handleCommentModifyVisible = (payload) => {
@@ -125,7 +126,7 @@ const BoardRead = ({ attributes }) => {
     try {
       await commentModify({ commentId, modifyContent });
 
-      dispatch(commentList({ postId: read.number }));
+      dispatch(commentList({ postId: read.number, category }));
 
       setCommentModifyVisible(() => null);
     } catch (error) {
@@ -139,7 +140,7 @@ const BoardRead = ({ attributes }) => {
     try {
       await commentRemove({ commentId });
 
-      dispatch(commentList({ postId: read.number }));
+      dispatch(commentList({ postId: read.number, category }));
     } catch (error) {
       console.error(error);
     }
@@ -154,7 +155,7 @@ const BoardRead = ({ attributes }) => {
   useEffect(() => {
     dispatch(boardRead({ category, number }));
 
-    dispatch(commentList({ postId: number }));
+    dispatch(commentList({ postId: number, category }));
 
     return () => {
       console.log('unmount: board/read');
