@@ -256,9 +256,10 @@ const StyledUploads = styled.div`
   z-index: 1;
   width: 3.6rem;
   height: 3.6rem;
-  border: 0.1rem solid #fe4362;
+  /* border: 0.1rem solid #fe4362; */
   border-radius: 0.4rem;
-  background-color: #fff;
+  box-sizing: border-box;
+  background-color: #fe4362;
 
   input[type='file'] {
     width: 3.6rem;
@@ -273,7 +274,7 @@ const StyledUploads = styled.div`
     bottom: 0;
     left: 50%;
     z-index: 1;
-    color: #fe4362;
+    color: #fff;
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
@@ -292,6 +293,11 @@ const StyledUploads = styled.div`
       width: auto;
       height: auto;
       opacity: 0;
+
+      input[type='file'] {
+        width: 100%;
+        height: 100%;
+      }
     `}
 `;
 
@@ -558,8 +564,8 @@ const ViewFinder = ({ children, className, attributes }) => {
         </StyledButton>
       )}
 
-      <StyledUploads>
-        <input type="file" name="thumbnail" onChange={event} $fill={typeof src === 'undefined' && typeof url === 'undefined' ? true : false} />
+      <StyledUploads $fill={typeof src === 'undefined' && typeof url === 'undefined' ? true : false}>
+        <input type="file" name="thumbnail" onChange={event} />
 
         <TbPhoto size={20} />
       </StyledUploads>

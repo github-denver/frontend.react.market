@@ -57,11 +57,12 @@ const StyledLogo = styled.h1`
 
 const StyledHeader = styled.header`
   display: table;
-  position: relative;
+  position: fixed;
   top: 0;
   z-index: 100;
   width: 100%;
   box-sizing: border-box;
+  background-color: #fff;
 
   ${({ $minimal }) =>
     $minimal

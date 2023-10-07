@@ -43,7 +43,13 @@ const StyledNavigation = styled.nav`
           }
         `
       : css`
+          position: fixed;
+          top: 5rem;
+          right: 0;
+          left: 0;
+          z-index: 10;
           border-bottom: 0.1rem solid #eee;
+          background-color: #fff;
 
           ${StyledInner} {
             overflow: auto;
