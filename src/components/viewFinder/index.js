@@ -6,6 +6,7 @@ import { SlCamera } from 'react-icons/sl';
 import Cell from '@/unit/cell/standard';
 import { insertTag } from '@/modules/form';
 import { useDispatch } from 'react-redux';
+import { TbPhoto } from 'react-icons/tb';
 
 const commonStyles = css`
   display: inline-block;
@@ -240,23 +241,46 @@ const StyledButton = styled(Button)`
   bottom: 1.2rem;
   left: 50%;
   z-index: 10;
-  border-radius: 3.6rem;
-  -webkit-transform: translateX(-50%);
+  /* border-radius: 3.6rem; */
+  -webkit-transform: translateX(-50%, -50%);
   -ms-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
   -o-transform: translateX(-50%);
   transform: translateX(-50%);
 `;
 
-const StyledUploads = styled.input`
+const StyledUploads = styled.div`
   position: absolute;
   top: 1.2rem;
   right: 1.2rem;
   z-index: 1;
   width: 3.6rem;
   height: 3.6rem;
-  opacity: 1;
-  // cursor: pointer;
+  border: 0.1rem solid #fe4362;
+  border-radius: 0.4rem;
+  background-color: #fff;
+
+  input[type='file'] {
+    width: 3.6rem;
+    height: 3.6rem;
+    opacity: 0;
+  }
+
+  svg {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    bottom: 0;
+    left: 50%;
+    z-index: 1;
+    color: #fe4362;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
 
   ${({ $fill }) =>
     $fill &&
@@ -313,6 +337,8 @@ const StyledGuide = styled.div`
 
 const StyledViewFinder = styled.div`
   position: relative;
+  width: 36rem;
+  margin: 0 auto;
   background-color: #f7f9fa;
 
   .button_hashtag {
@@ -322,6 +348,10 @@ const StyledViewFinder = styled.div`
     font-size: 0.1rem;
     color: transparent;
     background-color: #fe4362;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
 
     svg {
       position: absolute;
@@ -528,7 +558,11 @@ const ViewFinder = ({ children, className, attributes }) => {
         </StyledButton>
       )}
 
-      <StyledUploads type="file" name="thumbnail" onChange={event} $fill={typeof src === 'undefined' && typeof url === 'undefined' ? true : false} />
+      <StyledUploads>
+        <input type="file" name="thumbnail" onChange={event} $fill={typeof src === 'undefined' && typeof url === 'undefined' ? true : false} />
+
+        <TbPhoto size={20} />
+      </StyledUploads>
     </StyledViewFinder>
   );
 };

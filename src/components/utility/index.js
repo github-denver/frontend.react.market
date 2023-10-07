@@ -8,6 +8,8 @@ import Accordion from '@/unit/menu/accordion/standard';
 import { SlHome, SlArrowDown, SlHandbag, SlWrench } from 'react-icons/sl';
 import Dimmed from '@/unit/dimmed/standard';
 import Text from '@/unit/text/standard';
+import { TbChefHat } from 'react-icons/tb';
+import { LuHome } from 'react-icons/lu';
 
 const StyledLinkThird = styled(Link)`
   display: inline-block;
@@ -202,13 +204,13 @@ const Utility = ({ attributes }) => {
         <Accordion
           items={[
             {
-              icon: <SlHome size={24} />,
+              icon: <LuHome size={24} />,
               title: '홈',
               arrow: null,
               subItems: []
             },
             {
-              icon: <SlHome size={24} />,
+              icon: <TbChefHat size={24} />,
               title: '레시피',
               arrow: <SlArrowDown size={12} />,
               subItems: [
