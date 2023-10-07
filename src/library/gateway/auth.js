@@ -20,8 +20,8 @@ export const userLogin = ({ id, password }) => axios.post('/api/login', { id, pa
 
 export const userLogout = () => axios.get('/api/logout');
 
-export const userProfileModify = ({ id, name, password, email, picture }) => axios.post('/api/profile', { id, name, password, email, picture });
+export const userModifyProfile = ({ id, name, password, email, picture }) => axios.post('/api/profile', { id, name, password, email, picture });
 
 export const sendEmail = ({ email }) => axios.post('/api/mail/authentication', { email });
 
-export const userProfile = ({ token, password, passwordConfirm }) => axios.post('/api/mail/verification', { token, password, passwordConfirm });
+export const userPasswordModify = ({ token, password, passwordConfirm }) => axios.post('/api/mail/verification', { token, password, passwordConfirm });
