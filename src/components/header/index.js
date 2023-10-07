@@ -1,8 +1,7 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
-import { SlMenu, SlMagnifier, SlBasket } from 'react-icons/sl';
-import Utility from '@/components/utility';
+import { SlMenu } from 'react-icons/sl';
 
 const commonStyles = css`
   position: absolute;
@@ -22,18 +21,6 @@ const commonStyles = css`
   }
 `;
 
-const StyledBasket = styled.button`
-  ${commonStyles}
-
-  right: 1rem;
-`;
-
-const StyledSearch = styled.button`
-  ${commonStyles}
-
-  right: 4.9rem;
-`;
-
 const StyledHamburger = styled.button`
   ${commonStyles}
 
@@ -50,11 +37,6 @@ const StyledLink = styled(Link)`
   vertical-align: middle;
 `;
 
-const StyledLogo = styled.h1`
-  display: table-cell;
-  vertical-align: middle;
-`;
-
 const StyledHeader = styled.header`
   display: table;
   position: relative;
@@ -62,6 +44,11 @@ const StyledHeader = styled.header`
   z-index: 100;
   width: 100%;
   box-sizing: border-box;
+
+  h1 {
+    display: table-cell;
+    vertical-align: middle;
+  }
 
   ${({ $minimal }) =>
     $minimal
@@ -79,56 +66,22 @@ const StyledHeader = styled.header`
 `;
 
 const Header = ({ attributes }) => {
-  const { minimal, user, handleLogout } = attributes || {};
-
-  const [visible, setVisible] = useState(false);
-
-  const handleVisible = useCallback(
-    (event) => {
-      event.preventDefault();
-
-      if (!visible) {
-        setVisible(true);
-      } else {
-        setVisible(false);
-      }
-    },
-    [visible]
-  );
+  const { minimal, user, visible, onVisible, onLogout } = attributes || {};
 
   return (
     <StyledHeader $minimal={minimal}>
-      <StyledLogo>
+      <h1>
         <StyledLink to="/">
           <span className="ir_wa">hey&rdquo; bread</span>
         </StyledLink>
-      </StyledLogo>
+      </h1>
 
       {!minimal && (
         <>
-          <StyledHamburger onClick={handleVisible}>
+          <StyledHamburger onClick={onVisible}>
             <SlMenu size={24} />
             <span className="screen_out">주메뉴 열기</span>
           </StyledHamburger>
-
-          <Utility
-            attributes={{
-              user,
-              visible,
-              handleVisible,
-              handleLogout
-            }}
-          />
-
-          {/* <StyledSearch>
-            <SlMagnifier size={24} />
-            <span className="screen_out">통합 검색창 열기</span>
-          </StyledSearch>
-
-          <StyledBasket>
-            <SlBasket size={24} />
-            <span className="screen_out">장바구니 열기</span>
-          </StyledBasket> */}
         </>
       )}
     </StyledHeader>

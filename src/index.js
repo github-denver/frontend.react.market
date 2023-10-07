@@ -8,7 +8,6 @@ import App from '@/App';
 import reportWebVitals from '@/reportWebVitals';
 import '@/index.css';
 import { setAccessToken, setUser } from '@/modules/user';
-import { following, follower } from '@/modules/follow';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -20,12 +19,8 @@ const root = createRoot(container);
 
     if (typeof accessToken === 'undefined') return;
 
-    const { userNumber } = JSON.parse(user);
-
     store.dispatch(setAccessToken(accessToken));
     store.dispatch(setUser(user));
-    // store.dispatch(following({ following_id: userNumber }));
-    // store.dispatch(follower({ follower_id: userNumber }));
   } catch (error) {
     console.error(error);
   }

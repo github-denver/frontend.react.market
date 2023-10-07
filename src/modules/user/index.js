@@ -4,12 +4,27 @@ import * as gateway from '@/library/gateway/auth';
 import Cookies from 'js-cookie';
 import { call, takeLatest } from 'redux-saga/effects';
 
-const USER_REGISTER = 'user/register';
-const USER_CHECK = 'user/check';
-const USER_LOGIN = 'user/login';
-const USER_LOGOUT = 'user/logout';
-const USER_PROFILE = 'user/profile';
+// Action Types
+const SET_ACCESS_TOKEN = 'SET_ACCESS_TOKEN';
+const SET_USER = 'SET_USER';
 
+const USER_REGISTER = 'USER_REGISTER';
+const USER_CHECK = 'USER_CHECK';
+const USER_LOGIN = 'USER_LOGIN';
+const USER_LOGOUT = 'USER_LOGOUT';
+const USER_PROFILE = 'USER_PROFILE';
+
+// Action Creators
+export const setAccessToken = createAction(SET_ACCESS_TOKEN, (accessToken) => ({ accessToken }));
+export const setUser = createAction(SET_USER, (accessToken) => ({ accessToken }));
+
+export const userRegister = createAction(USER_REGISTER, (payload) => ({ payload })); // payload: { id, name, password, email }
+export const userCheck = createAction(USER_CHECK, (accessToken) => ({ accessToken })); // payload: accessToken
+export const userLogin = createAction(USER_LOGIN, (payload) => ({ payload })); // payload: { id, password }
+export const userLogout = createAction(USER_LOGOUT);
+export const userProfile = createAction(USER_PROFILE, (payload) => ({ payload })); // payload: { id, name, password, email } // picture
+
+// initial State
 const initialState = {
   user: {
     user2: null,
@@ -22,94 +37,32 @@ const initialState = {
   error: null
 };
 
+// Reducers
 const userSlice = createSlice({
   name: 'user',
   initialState,
   // 내부 action 및 동기 action
-  reducers: {
-    initialError: (state) => {
-      state.error = null;
-    },
-    setAccessToken: (state, action) => {
-      state.auth.accessToken = action.payload;
-      state.auth.message = null;
-    },
-    setUser: (state, action) => {
-      state.user.user2 = JSON.parse(action.payload);
-      state.error = null;
-    },
-    registerSuccess: (state, action) => {
-      state.error = null;
-    },
-    registerFailure: (state, action) => {
-      state.error = action.payload.response.data.message;
-    },
-    checkSuccess: (state, action) => {
-      state.user = action.payload;
-      state.error = null;
-    },
-    checkFailure: (state, action) => {
-      state.error = action.payload;
-    },
-    loginSuccess: (state, action) => {
-      state.auth = action.payload;
-      state.error = null;
-    },
-    loginFailure: (state, action) => {
-      state.error = action.payload.response.data.message;
-    },
-    logout: (state) => {
-      state.user = initialState.user;
-      state.auth = initialState.auth;
-      state.error = null;
-    },
-    profileSuccess: (state, action) => {
-      state.user.user2.name = action.payload.user.name;
-      state.user.user2.email = action.payload.user.email;
-    },
-    profileFailure: (state, action) => {}
-  },
+  reducers: {},
   // 외부 action 및 비동기 action
   extraReducers: (builder) => {
-    builder.addMatcher(
-      (action) => {},
-      (state, action) => {}
-    );
+    builder
+      .addCase(setAccessToken, (state, action) => {
+        console.group('builder.addCase(setAccessToken, (state, action) => { .. })');
+        console.groupEnd();
+      })
+      .addCase(setUser, (state, action) => {
+        console.group('builder.addCase(setUser, (state, action) => { .. })');
+        console.groupEnd();
+      });
   }
 });
 
-export const { setAccessToken, setUser, initialError } = userSlice.actions;
-
 export default userSlice.reducer;
 
-export const userRegister = createAction(USER_REGISTER, (payload) => {
-  const { id, name, password, email } = payload;
-
-  return { payload: { id, name, password, email } };
-});
-
-export const userCheck = createAction(USER_CHECK, (accessToken) => {
-  return { payload: accessToken };
-});
-
-export const userLogin = createAction(USER_LOGIN, (payload) => {
-  const { id, password } = payload;
-
-  return { payload: { id, password } };
-});
-
-export const userLogout = createAction(USER_LOGOUT);
-
-export const userProfileModify = createAction(USER_PROFILE, (payload) => {
-  const { id, name, password, email } = payload;
-
-  return { payload: { id, name, password, email } }; // picture
-});
-
-const registerSaga = createRequestSaga(USER_REGISTER, gateway.register);
+// Saga
+const userRegisterSaga = createRequestSaga(USER_REGISTER, gateway.userRegister);
 const userCheckSaga = createRequestSaga(USER_CHECK, gateway.userCheck);
 const userLoginSaga = createRequestSaga(USER_LOGIN, gateway.userLogin);
-const userProfileModifySaga = createRequestSaga(USER_PROFILE, gateway.userProfileModify);
 
 function* userLogoutSaga() {
   try {
@@ -123,11 +76,12 @@ function* userLogoutSaga() {
   }
 }
 
-// Main Saga
+const userProfileSaga = createRequestSaga(USER_PROFILE, gateway.userProfile);
+
 export function* userSaga() {
-  yield takeLatest(USER_REGISTER, registerSaga);
+  yield takeLatest(USER_REGISTER, userRegisterSaga);
   yield takeLatest(USER_CHECK, userCheckSaga);
   yield takeLatest(USER_LOGIN, userLoginSaga);
   yield takeLatest(USER_LOGOUT, userLogoutSaga);
-  yield takeLatest(USER_PROFILE, userProfileModifySaga);
+  yield takeLatest(USER_PROFILE, userProfileSaga);
 }

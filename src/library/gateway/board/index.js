@@ -1,6 +1,6 @@
 import axios from '@/library/gateway/axios';
 
-export const list = ({ category, number, select, keyword }) => {
+export const posts = ({ category, number, select, keyword }) => {
   let url = `/api/board/${category}/list/${number}`;
 
   if (typeof select !== 'undefined' && typeof keyword !== 'undefined') {
@@ -14,7 +14,7 @@ export const write = ({ category, payload }) => {
   return axios.post(`/api/board/${category}/write`, payload);
 };
 
-export const read = ({ category, number }) => axios.get(`/api/board/${category}/read/${number}`);
+export const post = ({ category, number }) => axios.get(`/api/board/${category}/read/${number}`);
 
 export const modify = ({ category, number, payload }) => {
   return axios.post(`/api/board/${category}/modify/${number}`, payload);

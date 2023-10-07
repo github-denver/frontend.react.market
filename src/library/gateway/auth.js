@@ -8,7 +8,7 @@ export const userCheck = (token) => {
   });
 };
 
-export const register = ({ id, name, password, email }) => axios.post('/api/register', { id, name, password, email });
+export const userRegister = ({ id, name, password, email }) => axios.post('/api/register', { id, name, password, email });
 
 export const idCheck = ({ id }) => axios.get(`/api/idCheck?id=${id}`);
 
@@ -24,4 +24,4 @@ export const userProfileModify = ({ id, name, password, email, picture }) => axi
 
 export const sendEmail = ({ email }) => axios.post('/api/mail/authentication', { email });
 
-export const userModifyPassword = ({ token, password, passwordConfirm }) => axios.post('/api/mail/verification', { token, password, passwordConfirm });
+export const userProfile = ({ token, password, passwordConfirm }) => axios.post('/api/mail/verification', { token, password, passwordConfirm });

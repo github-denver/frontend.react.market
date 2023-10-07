@@ -1,22 +1,47 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { userLogout } from '@/modules/user';
 import Header from '@/components/header';
-import { initialFollow } from '@/modules/follow';
 
-const Wrapper = ({ attributes }) => {
+const Containers = ({ attributes }) => {
   const minimal = attributes?.minimal;
 
-  const { user } = useSelector(({ user }) => ({ user: user.user?.user2 }), shallowEqual);
+  const [visible, setVisible] = useState(false);
+
+  const { user } = useSelector(
+    ({ user }) => ({
+      user: user.user?.user2
+    }),
+    shallowEqual
+  );
 
   const dispatch = useDispatch();
 
-  const handleLogout = () => {
-    dispatch(userLogout());
-    dispatch(initialFollow());
-  };
+  const handleVisible = useCallback(
+    (event) => {
+      event.preventDefault();
 
-  return <Header attributes={{ minimal, user, handleLogout }} />;
+      if (!visible) {
+        setVisible(true);
+      } else {
+        setVisible(false);
+      }
+    },
+    [visible]
+  );
+
+  const handleLogout = () => {};
+
+  return (
+    <Header
+      attributes={{
+        minimal,
+        user,
+        visible,
+        onVisible: handleVisible,
+        onLogout: handleLogout
+      }}
+    />
+  );
 };
 
-export default Wrapper;
+export default Containers;

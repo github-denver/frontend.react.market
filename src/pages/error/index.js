@@ -1,11 +1,5 @@
 import React from 'react';
 
-const Error = () => (
-  <>
-    <header></header>
-    <section> </section>
-    <footer> </footer>
-  </>
-);
+const Error = () => <></>;
 
 export default Error;
