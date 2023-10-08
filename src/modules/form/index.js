@@ -18,6 +18,9 @@ const initialState = {
     passwordConfirm: ''
   },
   postWrite: {
+    category: null,
+    level: null,
+    time: null,
     subject: null,
     contents: null,
     thumbnail: null,

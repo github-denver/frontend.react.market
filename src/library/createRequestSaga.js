@@ -3,10 +3,7 @@ import { loadingStart, loadingFinish } from '@/modules/loading';
 
 export const createRequestActionTypes = (type) => {
   const SUCCESS = `${type}_SUCCESS`;
-  // console.log('SUCCESS: ', SUCCESS);
-
   const FAILURE = `${type}_FAILURE`;
-  // console.log('FAILURE: ', FAILURE);
 
   return [type, SUCCESS, FAILURE];
 };
@@ -21,10 +18,7 @@ export const createRequestActionTypes = (type) => {
   */
 export default function createRequestSaga(type, request) {
   const SUCCESS = `${type}_SUCCESS`;
-  // console.log('SUCCESS: ', SUCCESS);
-
   const FAILURE = `${type}_FAILURE`;
-  // console.log('FAILURE: ', FAILURE);
 
   return function* (action) {
     yield put(loadingStart(type));

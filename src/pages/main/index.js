@@ -71,9 +71,13 @@ const Page = () => (
 
     <section className="container">
       <StyledHgroup attributes={{ title: '본문 영역', invisible: true }} />
+
       <StyledNavigation />
+
       <Quick attributes={{ href: '/' }} />
+
       <StyledBoundary />
+
       <StyledHgroup
         attributes={{
           title: '찌개',
@@ -81,7 +85,7 @@ const Page = () => (
           href: '/board/stew/list/1'
         }}
       />
-      <Stew attributes={{ flicking: true, square: false, category: 'stew' }} />
+      <Stew attributes={{ flicking: true, square: true, category: 'stew' }} />
 
       <StyledHgroup
         attributes={{
@@ -90,7 +94,7 @@ const Page = () => (
           href: '/board/noodle/list/1'
         }}
       />
-      <Noodle attributes={{ flicking: true, square: false, category: 'noodle' }} />
+      <Noodle attributes={{ flicking: true, square: true, category: 'noodle' }} />
 
       <StyledHgroup
         attributes={{
@@ -99,7 +103,7 @@ const Page = () => (
           href: '/board/curry/list/1'
         }}
       />
-      <Curry attributes={{ flicking: true, square: false, category: 'curry' }} />
+      <Curry attributes={{ flicking: true, square: true, category: 'curry' }} />
 
       <StyledHgroup
         attributes={{
@@ -108,7 +112,7 @@ const Page = () => (
           href: '/board/steak/list/1'
         }}
       />
-      <Steak attributes={{ flicking: true, square: false, category: 'steak' }} />
+      <Steak attributes={{ flicking: true, square: true, category: 'steak' }} />
 
       <StyledHgroup
         attributes={{
@@ -117,7 +121,7 @@ const Page = () => (
           href: '/board/soup/list/1'
         }}
       />
-      <Soup attributes={{ flicking: true, square: false, category: 'soup' }} />
+      <Soup attributes={{ flicking: true, square: true, category: 'soup' }} />
 
       <StyledHgroup
         attributes={{
@@ -126,7 +130,7 @@ const Page = () => (
           href: '/board/salad/list/1'
         }}
       />
-      <Salad attributes={{ flicking: true, square: false, category: 'salad' }} />
+      <Salad attributes={{ flicking: true, square: true, category: 'salad' }} />
 
       <StyledHgroup
         attributes={{
@@ -135,7 +139,7 @@ const Page = () => (
           href: '/board/baking/list/1'
         }}
       />
-      <Baking attributes={{ flicking: true, square: false, category: 'baking' }} />
+      <Baking attributes={{ flicking: true, square: true, category: 'baking' }} />
 
       <StyledHgroup
         attributes={{
@@ -144,7 +148,7 @@ const Page = () => (
           href: '/board/cake/list/1'
         }}
       />
-      <Cake attributes={{ flicking: true, square: false, category: 'cake' }} />
+      <Cake attributes={{ flicking: true, square: true, category: 'cake' }} />
 
       <StyledHgroup
         attributes={{
@@ -153,7 +157,7 @@ const Page = () => (
           href: '/board/dessert/list/1'
         }}
       />
-      <Dessert attributes={{ flicking: true, square: false, category: 'dessert' }} />
+      <Dessert attributes={{ flicking: true, square: true, category: 'dessert' }} />
 
       <StyledHgroup
         attributes={{
@@ -162,7 +166,7 @@ const Page = () => (
           href: '/board/drink/list/1'
         }}
       />
-      <Drink attributes={{ flicking: true, square: false, category: 'drink' }} />
+      <Drink attributes={{ flicking: true, square: true, category: 'drink' }} />
     </section>
 
     <Footer />

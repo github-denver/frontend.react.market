@@ -18,29 +18,21 @@ export default createReducer(initialState, (builder) => {
   builder
     .addCase(LOADING_INITIAL, (state) => {
       console.group('[LOADING_INITIAL]: (state) => { .. }');
-      console.log('state: ', state);
       console.groupEnd();
     })
     .addCase(LOADING_START, (state, action) => {
       console.group('[LOADING_START]: (state, action) => { .. }');
-      console.log('action.type: ', action.type);
-      console.log('action.payload: ', action.payload);
 
       state[action.payload] = true;
       console.groupEnd();
     })
     .addCase(LOADING_FINISH, (state, action) => {
       console.group('[LOADING_FINISH]: (state, action) => { .. }');
-      console.log('action.type: ', action.type);
-      console.log('action.payload: ', action.payload);
-
       state[action.payload] = false;
       console.groupEnd();
     });
   // .addDefaultCase((state, action) => {
   //   console.group('[LOADING_FINISH]: addDefaultCase((state, action) => { .. })');
-  //   console.log('action.type: ', action.type);
-  //   console.log('action.payload: ', action.payload);
   //   console.groupEnd();
   // });
 });

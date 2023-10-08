@@ -300,7 +300,7 @@ const Utility = ({ attributes }) => {
           </StyledItemSecond>
 
           <StyledItemSecond>
-            <StyledLinkSecond to="/board/baking/write">
+            <StyledLinkSecond to="/board/write">
               <span className="text_local">레시피 올리기</span>
             </StyledLinkSecond>
           </StyledItemSecond>

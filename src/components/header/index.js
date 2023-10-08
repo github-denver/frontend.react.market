@@ -67,6 +67,7 @@ const StyledHeader = styled.header`
   ${({ $minimal }) =>
     $minimal
       ? css`
+          position: static;
           padding: 4rem 1.2rem;
           text-align: center;
         `

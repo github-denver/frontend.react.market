@@ -142,52 +142,88 @@ const Field = ({ children, className, attributes }) => {
 
   return (
     <StyledField className={className} $standard={standard}>
-      {label && (
-        <StyledLabel htmlFor={htmlFor} $flexible={flexible}>
-          {text}
-        </StyledLabel>
-      )}
-
-      {guideMessage}
-
-      {fake?.state ? (
+      {type === 'etc' ? (
         <>
-          {fake.confirmButton ? (
+          {fake?.state ? (
             <>
-              <StyledOuter $label={!label}>
-                <StyledInner>
+              {fake.confirmButton ? (
+                <>
+                  <StyledOuter $label={!label}>
+                    <StyledInner>
+                      <StyledBox>
+                        <StyledFakeField type="button" onClick={fake.input.event}>
+                          {fake.input.value}
+                        </StyledFakeField>
+                      </StyledBox>
+                    </StyledInner>
+
+                    {fake.confirmButton}
+                  </StyledOuter>
+                </>
+              ) : (
+                <>
                   <StyledBox>
                     <StyledFakeField type="button" onClick={fake.input.event}>
                       {fake.input.value}
                     </StyledFakeField>
                   </StyledBox>
-                </StyledInner>
-
-                {fake.confirmButton}
-              </StyledOuter>
+                </>
+              )}
             </>
           ) : (
-            <>
-              <StyledBox>
-                <StyledFakeField type="button" onClick={fake.input.event}>
-                  {fake.input.value}
-                </StyledFakeField>
-              </StyledBox>
-            </>
+            <> {children}</>
           )}
         </>
       ) : (
         <>
-          {confirm ? (
-            <StyledOuter $label={!label}>
-              <StyledInner>
-                <StyledBox>{defaultValue ? <StyledInput type={type} name={name} id={id} placeholder={placeholder} defaultValue={defaultValue || ''} disabled={disabled} onChange={event} autoComplete={autoComplete} /> : <StyledInput type={type} name={name} id={id} placeholder={placeholder} value={value || ''} disabled={disabled} onChange={event} autoComplete={autoComplete} />}</StyledBox>
-              </StyledInner>
+          {label && (
+            <StyledLabel htmlFor={htmlFor} $flexible={flexible}>
+              {text}
+            </StyledLabel>
+          )}
 
-              {confirmButton}
-            </StyledOuter>
+          {guideMessage}
+
+          {fake?.state ? (
+            <>
+              {fake.confirmButton ? (
+                <>
+                  <StyledOuter $label={!label}>
+                    <StyledInner>
+                      <StyledBox>
+                        <StyledFakeField type="button" onClick={fake.input.event}>
+                          {fake.input.value}
+                        </StyledFakeField>
+                      </StyledBox>
+                    </StyledInner>
+
+                    {fake.confirmButton}
+                  </StyledOuter>
+                </>
+              ) : (
+                <>
+                  <StyledBox>
+                    <StyledFakeField type="button" onClick={fake.input.event}>
+                      {fake.input.value}
+                    </StyledFakeField>
+                  </StyledBox>
+                </>
+              )}
+            </>
           ) : (
-            <StyledBox>{defaultValue ? <StyledInput type={type} name={name} id={id} placeholder={placeholder} defaultValue={defaultValue || ''} disabled={disabled} onChange={event} autoComplete={autoComplete} /> : <StyledInput type={type} name={name} id={id} placeholder={placeholder} value={value || ''} disabled={disabled} onChange={event} autoComplete={autoComplete} />}</StyledBox>
+            <>
+              {confirm ? (
+                <StyledOuter $label={!label}>
+                  <StyledInner>
+                    <StyledBox>{defaultValue ? <StyledInput type={type} name={name} id={id} placeholder={placeholder} defaultValue={defaultValue || ''} disabled={disabled} onChange={event} autoComplete={autoComplete} /> : <StyledInput type={type} name={name} id={id} placeholder={placeholder} value={value || ''} disabled={disabled} onChange={event} autoComplete={autoComplete} />}</StyledBox>
+                  </StyledInner>
+
+                  {confirmButton}
+                </StyledOuter>
+              ) : (
+                <StyledBox>{defaultValue ? <StyledInput type={type} name={name} id={id} placeholder={placeholder} defaultValue={defaultValue || ''} disabled={disabled} onChange={event} autoComplete={autoComplete} /> : <StyledInput type={type} name={name} id={id} placeholder={placeholder} value={value || ''} disabled={disabled} onChange={event} autoComplete={autoComplete} />}</StyledBox>
+              )}
+            </>
           )}
         </>
       )}

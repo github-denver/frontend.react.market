@@ -7,6 +7,12 @@ import Publish from '@/containers/publish';
 import ViewFinder from '@/components/viewFinder';
 import Half from '@/unit/half/standard';
 import Text from '@/unit/text/standard';
+import QuillEditor from '../../editor/quill';
+
+const StyledSystemMessage = styled(Text)`
+  margin: 2.4rem 1.6rem 0;
+  font-size: 1.2rem;
+`;
 
 const StyledText = styled(Text)`
   margin: 0;
@@ -88,135 +94,49 @@ const StyledWrite = styled.div`
 `;
 
 const BoardWrite = ({ children, attributes }) => {
-  const { category, formData, field, upload, read, owner } = attributes || {};
+  const { category, number, user, formData, field, upload, read, error, loading, owner, fakeFields, onChangeSubject, onChangeThumbnail, onClickFakeField, onChangeSelect, onChangeChoice, hour, minute, second, quill } = attributes || {};
 
-  const quillElement = useRef(null); // quill div element
-  const quillInstance = useRef(null); // quill instance
+  if (error) {
+    if (error.response && error.response.status === 404) {
+      console.log('존재하지 않는 글입니다.');
 
-  const mounted = useRef(false);
-
-  useEffect(() => {
-    quillInstance.current = new Quill(quillElement.current, {
-      theme: 'snow',
-      placeholder: '내용을 입력해 주세요.',
-      modules: {
-        // toolbar: []
-      }
-    });
-
-    // quill에 text-change 이벤트 핸들러를 등록합니다.
-    const quill = quillInstance.current;
-
-    quill.on('text-change', (delta, oldDelta, source) => {
-      if (source === 'user') field({ form: 'postWrite', key: 'contents', value: quill.root.innerHTML });
-    });
-  }, [field]);
-
-  useEffect(() => {
-    if (read && !mounted.current) {
-      mounted.current = true;
-
-      const contentValue = read?.content ? read.content : formData.contents;
-
-      quillInstance.current.root.innerHTML = contentValue;
-
-      field({ form: 'postWrite', key: 'contents', value: contentValue });
+      return (
+        <StyledSystemMessage
+          attributes={{
+            text: '존재하지 않는 글입니다.'
+          }}
+        />
+      );
     }
-  }, [formData, field, read]);
 
-  const onChangeSubject = (event) => {
-    field({ form: 'postWrite', key: 'subject', value: event.target.value });
-  };
+    console.log('문제가 발생했습니다.');
 
-  const onChangeThumbnail = (event) => {
-    let files = null;
-    let preview = null;
+    return (
+      <StyledSystemMessage
+        attributes={{
+          text: '문제가 발생했습니다.'
+        }}
+      />
+    );
+  }
 
-    if (window.FileReader) {
-      // 이미지 파일만 통과합니다.
-      if (event.target.files.length === 0) {
-        upload({
-          key: 'thumbnail',
-          value: {
-            files: null,
-            preview: null
-          }
-        });
+  if ((number !== 'write' && loading) || !read) {
+    console.log('읽어들이는 중입니다.');
 
-        return;
-      }
+    return <p>읽어들이는 중입니다.</p>;
+  }
 
-      if (!event.target.files[0].type.match(/image\//)) return;
+  if (number !== 'write' && !read) {
+    console.log('등록된 글이 없습니다.');
 
-      // 읽기
-      const reader = new FileReader();
-      reader.readAsDataURL(event.target.files[0]);
-
-      files = event.target.files[0];
-
-      // 읽은 후
-      reader.onload = (event) => {
-        preview = event.target.result;
-
-        const formData = new FormData();
-        formData.append('files', files);
-        formData.append('preview', preview);
-
-        upload({
-          key: 'thumbnail',
-          value: {
-            files: formData.get('files'),
-            preview: formData.get('preview')
-          }
-        });
-      };
-    } else {
-    }
-  };
-
-  const [year, setYear] = useState([]);
-  const [minute, setMinute] = useState([]);
-  const [second, setSecond] = useState([]);
-
-  useEffect(() => {
-    let _year = [];
-
-    for (let i = 1; i <= 24; i++) {
-      if (i >= 1 && i < 10) {
-        _year.push('0' + i);
-      } else {
-        _year.push(i);
-      }
-    }
-    console.log('_year: ', _year);
-    setYear(_year);
-
-    let _minute = [];
-    for (let i = 0; i <= 12; i++) {
-      let gap = 5 * i;
-
-      if (gap >= 0 && gap < 10) {
-        _minute.push('0' + gap);
-      } else {
-        _minute.push(gap);
-      }
-    }
-    console.log('_minute: ', _minute);
-    setMinute(_minute);
-
-    let _second = [];
-    for (let i = 0; i <= 12; i++) {
-      let gap = 5 * i;
-
-      if (gap >= 0 && gap < 10) {
-        _second.push('0' + gap);
-      } else {
-        _second.push(gap);
-      }
-    }
-    console.log('_second: ', _second);
-    setSecond(_second);
-  }, []);
+    return (
+      <StyledSystemMessage
+        attributes={{
+          text: '등록된 글이 없습니다.'
+        }}
+      />
+    );
+  }
 
   return (
     <StyledWrite>
@@ -249,7 +169,7 @@ const BoardWrite = ({ children, attributes }) => {
             />
           ),
           second: (
-            <StyledSelect>
+            <StyledSelect name="level" onChange={(event) => onChangeSelect({ key: 'category' }, event)} defaultValue={read?.category}>
               <option value="">-- 선택 --</option>
               <option value="stew">찌개</option>
               <option value="noodle">면</option>
@@ -289,15 +209,15 @@ const BoardWrite = ({ children, attributes }) => {
           second: (
             <ul className="list_triple">
               <li className="item_triple">
-                <input type="radio" name="level" id="good" />
+                <input type="radio" name="level" id="good" value="상" onChange={onChangeChoice} defaultChecked={read?.level === '상'} />
                 <label htmlFor="good">상</label>
               </li>
               <li className="item_triple">
-                <input type="radio" name="level" id="fair" defaultChecked />
+                <input type="radio" name="level" id="fair" value="중" onChange={onChangeChoice} defaultChecked={read?.level === '중'} />
                 <label htmlFor="fair">중</label>
               </li>
               <li className="item_triple">
-                <input type="radio" name="level" id="poor" />
+                <input type="radio" name="level" id="poor" value="하" onChange={onChangeChoice} defaultChecked={read?.level === '하'} />
                 <label htmlFor="poor">하</label>
               </li>
             </ul>
@@ -326,10 +246,10 @@ const BoardWrite = ({ children, attributes }) => {
           second: (
             <ul className="list_triple">
               <li className="item_triple">
-                <StyledSelect>
+                <StyledSelect onChange={(event) => onChangeSelect({ key: 'hour' }, event)} defaultValue={read?.time.split(':')[0]}>
                   <option value="">-- 시간 --</option>
 
-                  {year.map((currentValue, index) => (
+                  {hour.map((currentValue, index) => (
                     <option value={currentValue} key={index}>
                       {currentValue}시간
                     </option>
@@ -337,7 +257,7 @@ const BoardWrite = ({ children, attributes }) => {
                 </StyledSelect>
               </li>
               <li className="item_triple">
-                <StyledSelect>
+                <StyledSelect onChange={(event) => onChangeSelect({ key: 'minute' }, event)} defaultValue={read?.time.split(':')[1]}>
                   <option value="">-- 분 --</option>
 
                   {minute.map((currentValue, index) => (
@@ -348,7 +268,7 @@ const BoardWrite = ({ children, attributes }) => {
                 </StyledSelect>
               </li>
               <li className="item_triple">
-                <StyledSelect>
+                <StyledSelect onChange={(event) => onChangeSelect({ key: 'second' }, event)} defaultValue={read?.time.split(':')[2]}>
                   <option value="">-- 초 --</option>
 
                   {second.map((currentValue, index) => (
@@ -383,7 +303,7 @@ const BoardWrite = ({ children, attributes }) => {
       />
 
       <div className="editor_quill">
-        <div ref={quillElement} />
+        <QuillEditor attributes={{ formData, field, read }} />
       </div>
 
       <StyledPublish attributes={{ category, owner }} />

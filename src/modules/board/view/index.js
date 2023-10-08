@@ -40,8 +40,6 @@ export default createReducer(initialState, (builder) => {
     });
   // .addDefaultCase((state, action) => {
   //   console.group('[POST_FAILURE]: addDefaultCase((state, action) => { .. })');
-  //   console.log('action.type: ', action.type);
-  //   console.log('action.payload: ', action.payload);
   //   console.groupEnd();
   // });
 });

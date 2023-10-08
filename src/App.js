@@ -23,6 +23,7 @@ function App() {
     { path: '/member/profile', element: <Profile /> },
     { path: '/member/follow', element: <Follow /> },
     { path: '/board/:category/list/:number', element: <BoardList /> },
+    { path: '/board/write', element: <BoardWrite /> },
     { path: '/board/:category/write', element: <BoardWrite /> },
     { path: '/board/:category/read/:number', element: <BoardView /> },
     { path: '/board/:category/modify/:number', element: <BoardWrite /> },
