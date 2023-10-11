@@ -37,14 +37,14 @@ const Wrapper = ({ className, attributes }) => {
 
   const number = location.pathname.split('/').splice(-1)[0];
 
-  const publish = () => {
+  const publish = async () => {
     const categoryValue = !category ? read?.category : category;
     const levelValue = !level ? read?.level : level;
     const timeValue = /^(?:(?:[0-1][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])|(?:[0-9]+)$/.test(time) ? time : read?.time;
     const subjectValue = !subject ? read?.subject : subject;
     const contentValue = !contents ? read?.contents : contents;
 
-    if (![categoryValue, levelValue, timeValue, subjectValue, contentValue, thumbnail].every(Boolean)) {
+    if (![categoryValue, levelValue, timeValue, subjectValue, contentValue].every(Boolean)) {
       setErrorMessage('필수 정보를 입력해 주세요.');
 
       setVisibleLayer(true);
@@ -58,18 +58,22 @@ const Wrapper = ({ className, attributes }) => {
     formData.append('time', timeValue);
     formData.append('subject', subjectValue);
     formData.append('content', contentValue);
-    formData.append('tags', JSON.stringify(tags));
 
     if (thumbnail) formData.append('thumbnail', thumbnail.files);
+    if (tags.length > 0) formData.append('tags', JSON.stringify(tags));
 
     if (owner) {
-      dispatch(postModify({ category: categoryValue, number, payload: formData }));
+      console.log('await dispatch(postModify({ .. })) 호출');
+      await dispatch(postModify({ category: categoryValue, number, payload: formData }));
 
-      navigate(`/board/${category}/read/${number}`);
+      console.log('navigate( .. ) 호출');
+      navigate(`/board/${categoryValue}/read/${number}`);
     } else {
-      dispatch(postWrite({ category, payload: formData }));
+      console.log('await dispatch(postWrite({ .. })) 호출');
+      await dispatch(postWrite({ category: categoryValue, payload: formData }));
 
-      navigate(`/board/${category}/list/1`);
+      console.log('navigate( .. ) 호출');
+      navigate(`/board/${categoryValue}/list/1`);
     }
   };
 

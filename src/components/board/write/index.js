@@ -120,7 +120,7 @@ const BoardWrite = ({ children, attributes }) => {
     );
   }
 
-  if ((number !== 'write' && loading) || !read) {
+  if (number !== 'write' && (loading || !read)) {
     console.log('읽어들이는 중입니다.');
 
     return <p>읽어들이는 중입니다.</p>;
