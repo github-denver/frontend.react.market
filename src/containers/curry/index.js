@@ -56,6 +56,7 @@ const Curry = ({ attributes }) => {
         flicking,
         grid,
         square,
+        // panelsPerView: 1,
         category,
         user,
         list,

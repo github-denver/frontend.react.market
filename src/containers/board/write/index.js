@@ -111,7 +111,6 @@ const Containers = ({ attributes }) => {
   };
 
   const handleChangeSelect = (payload, event) => {
-    console.group('const handleChangeSelect = (payload, event) => { .. }');
     const { key } = payload;
 
     const value = event.target.options[event.target.selectedIndex].value;
@@ -121,7 +120,6 @@ const Containers = ({ attributes }) => {
     } else {
       setCookingTime((prevState) => ({ ...prevState, [key]: value }));
     }
-    console.groupEnd();
   };
 
   const handleChangeChoice = (event) => {
@@ -198,7 +196,6 @@ const Containers = ({ attributes }) => {
     }
 
     field({ form: 'postWrite', key: 'time', value: read?.time });
-    console.groupEnd();
   }, [field, read]);
 
   return (

@@ -18,7 +18,7 @@ const StyledButton = styled.button`
   display: inline-block;
   font-weight: 500;
   font-size: 1.4rem;
-  color: #fe4362;
+  color: #937062;
   border: 0 none;
   background-color: transparent;
   vertical-align: middle;

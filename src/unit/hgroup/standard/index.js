@@ -29,6 +29,7 @@ const StyledTag = styled.strong`
   display: inline-block;
   font-weight: 500;
   font-size: 1.8rem;
+  /* color: #937062; */
   vertical-align: middle;
 
   .link_local {

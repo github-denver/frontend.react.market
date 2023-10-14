@@ -105,11 +105,11 @@ export default createReducer(initialState, (builder) => {
     .addCase(USER_MODIFY_PROFILE_FAILURE, (state, action) => {
       console.group('[USER_MODIFY_PROFILE_FAILURE]: (state, action) => { .. }');
       console.groupEnd();
+    })
+    .addDefaultCase((state, action) => {
+      // console.group('[USER_MODIFY_PROFILE]: addDefaultCase((state, action) => { .. })');
+      // console.groupEnd();
     });
-  // .addDefaultCase((state, action) => {
-  //   console.group('[USER_MODIFY_PROFILE_FAILURE]: addDefaultCase((state, action) => { .. })');
-  //   console.groupEnd();
-  // });
 });
 
 // Saga

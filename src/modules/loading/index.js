@@ -1,4 +1,4 @@
-import { createAction, createReducer, createSlice } from '@reduxjs/toolkit';
+import { createAction, createReducer } from '@reduxjs/toolkit';
 
 // Action Types
 const LOADING_INITIAL = 'LOADING_INITIAL';
@@ -22,17 +22,20 @@ export default createReducer(initialState, (builder) => {
     })
     .addCase(LOADING_START, (state, action) => {
       console.group('[LOADING_START]: (state, action) => { .. }');
+      console.log('action.payload: ', action.payload);
 
       state[action.payload] = true;
       console.groupEnd();
     })
     .addCase(LOADING_FINISH, (state, action) => {
       console.group('[LOADING_FINISH]: (state, action) => { .. }');
+      console.log('action.payload: ', action.payload);
+
       state[action.payload] = false;
       console.groupEnd();
+    })
+    .addDefaultCase((state, action) => {
+      // console.group('[LOADING]: addDefaultCase((state, action) => { .. })');
+      // console.groupEnd();
     });
-  // .addDefaultCase((state, action) => {
-  //   console.group('[LOADING_FINISH]: addDefaultCase((state, action) => { .. })');
-  //   console.groupEnd();
-  // });
 });

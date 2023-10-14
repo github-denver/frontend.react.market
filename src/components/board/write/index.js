@@ -38,7 +38,7 @@ const StyledSelect = styled.select`
   /* margin-top: 1rem; */
   padding: 0 1.4rem;
   border: 0.1rem solid #bdbdbd;
-  border-radius: 0.4rem;
+  border-radius: 0.8rem;
   box-sizing: border-box;
   font-size: 1.4rem;
   color: #343434;
@@ -174,7 +174,7 @@ const BoardWrite = ({ children, attributes }) => {
               <option value="stew">찌개</option>
               <option value="noodle">면</option>
               <option value="curry">카레</option>
-              <option value="steak">스테이크</option>
+              {/* <option value="steak">스테이크</option>
               <option value="soup">수프</option>
               <option value="salad">샐러드</option>
               <option value="baking">빵</option>
@@ -182,7 +182,7 @@ const BoardWrite = ({ children, attributes }) => {
               <option value="pizza">피자</option>
               <option value="cake">케이크</option>
               <option value="dessert">디저트</option>
-              <option value="drink">음료수</option>
+              <option value="drink">음료수</option> */}
             </StyledSelect>
           )
         }}

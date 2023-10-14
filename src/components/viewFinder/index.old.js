@@ -343,15 +343,13 @@ const StyledGuide = styled.div`
 
 const StyledViewFinder = styled.div`
   position: relative;
-  /* width: 36rem;
-  margin: 0 auto; */
+  width: 36rem;
+  margin: 0 auto;
   background-color: #f7f9fa;
 
   .button_hashtag {
     width: 2rem;
-    width: 5.556vw;
     height: 2rem;
-    height: 5.556vw;
     border-radius: 100%;
     font-size: 0.1rem;
     color: transparent;
@@ -368,10 +366,6 @@ const StyledViewFinder = styled.div`
       bottom: 0;
       left: 0;
       z-index: 1;
-      width: 2rem;
-      width: 5.556vw;
-      height: 2rem;
-      height: 5.556vw;
       color: #fff;
     }
   }
@@ -389,14 +383,12 @@ const ViewFinder = ({ children, className, attributes }) => {
   const [isHovering, setIsHovering] = useState(null);
 
   const personInfo = useRef();
-  const imageProduct = useRef(null);
 
   const [createButton, setCreateButton] = useState(false);
 
   const [buttons, setButtons] = useState([]);
   const [draggingButton, setDraggingButton] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
-  const containerRef = React.createRef(); // 부모 컨테이너의 ref를 생성
 
   const handleMouseDown = (e, button) => {
     setDraggingButton(button);
@@ -406,22 +398,17 @@ const ViewFinder = ({ children, className, attributes }) => {
   const handleMouseMove = (e) => {
     if (!draggingButton) return;
 
-    // 부모 컨테이너의 크기 가져오기
-    const containerWidth = containerRef.current.getBoundingClientRect().width;
-    const containerHeight = containerRef.current.getBoundingClientRect().height;
-
     const updatedButtons = buttons.map((button) => {
       if (button.id === draggingButton.id) {
-        // 마우스 위치에 따라 비율 계산
-        const xPercent = ((e.clientX - containerRef.current.getBoundingClientRect().x - 10) / containerWidth) * 100;
-        const yPercent = ((e.clientY - containerRef.current.getBoundingClientRect().y - 10) / containerHeight) * 100;
+        const dx = e.clientX - draggingButton.startX;
+        const dy = e.clientY - draggingButton.startY;
 
         setIsDragging(true);
 
         return {
           ...button,
-          x: xPercent,
-          y: yPercent
+          x: dx,
+          y: dy
         };
       }
       return button;
@@ -462,17 +449,12 @@ const ViewFinder = ({ children, className, attributes }) => {
   };
 
   const addPointerButton = (e) => {
-    // 부모 컨테이너의 크기 가져오기
-    const containerWidth = containerRef.current.getBoundingClientRect().width;
-    const containerHeight = containerRef.current.getBoundingClientRect().height;
-
-    const xPercent = ((e.clientX - containerRef.current.getBoundingClientRect().x - 10) / containerWidth) * 100;
-    const yPercent = ((e.clientY - containerRef.current.getBoundingClientRect().y - 10) / containerHeight) * 100;
-
+    const x = e.clientX - personInfo.current.getBoundingClientRect().left;
+    const y = e.clientY - personInfo.current.getBoundingClientRect().top;
     const newButton = {
       id: new Date().getTime(),
-      x: xPercent, // 초기 위치 설정
-      y: yPercent
+      x: x - 10,
+      y: y - 10
     };
 
     setButtons((prevButtons) => [...prevButtons, newButton]);
@@ -480,82 +462,35 @@ const ViewFinder = ({ children, className, attributes }) => {
     setCreateButton(false);
   };
 
-  const handleTouchStart = (e, button) => {
-    setDraggingButton(button);
-    setIsDragging(false);
-  };
-
-  const handleTouchMove = (e) => {
-    if (!draggingButton) return;
-
-    // 부모 컨테이너의 크기 가져오기
-    const containerWidth = containerRef.current.getBoundingClientRect().width;
-    const containerHeight = containerRef.current.getBoundingClientRect().height;
-
-    const touch = e.touches[0];
-    const updatedButtons = buttons.map((button) => {
-      if (button.id === draggingButton.id) {
-        // 터치 위치에 따라 비율 계산
-        const xPercent = ((touch.clientX - containerRef.current.getBoundingClientRect().x - 10) / containerWidth) * 100;
-        const yPercent = ((touch.clientY - containerRef.current.getBoundingClientRect().y - 10) / containerHeight) * 100;
-
-        setIsDragging(true);
-
-        return {
-          ...button,
-          x: xPercent,
-          y: yPercent
-        };
-      }
-
-      return button;
-    });
-
-    setButtons(updatedButtons);
-  };
-
-  const handleTouchEnd = () => {
-    setDraggingButton(null);
-  };
-
   useEffect(() => {
     dispatch(insertTag(buttons));
   }, [dispatch, buttons]);
 
   return (
-    <StyledViewFinder
-      className={className}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-      $image={src || url}
-      ref={containerRef} // 부모 컨테이너의 ref를 연결
-    >
+    <StyledViewFinder className={className} onMouseMove={handleMouseMove} onMouseUp={handleMouseUp} $image={src || url}>
       {src ? (
         <StyledThumbnail src={src} alt="1" ref={personInfo} onClick={createButton ? addPointerButton : null} />
       ) : (
         <>
           {url ? (
             <>
-              <StyledThumbnail src={`http://localhost:5000/uploads/${url}`} alt="" ref={imageProduct} />
+              <StyledThumbnail src={`http://localhost:5000/uploads/${url}`} alt="2" />
 
               {products.length > 0 &&
                 tags.map((currentValue, index) => {
                   return (
-                    // <StyledHashtag key={index} style={{ top: currentValue.y + 12, left: currentValue.x + 12, zIndex: currentValue.index }} onMouseOver={() => setIsHovering(index)} onMouseOut={() => setIsHovering(null)}>
-                    <StyledHashtag key={index} style={{ top: currentValue.y + '%', left: currentValue.x + '%', zIndex: currentValue.index }} onMouseOver={() => setIsHovering(index)} onMouseOut={() => setIsHovering(null)}>
+                    <StyledHashtag key={index} style={{ top: currentValue.y + 12, left: currentValue.x + 12, zIndex: currentValue.index }} onMouseOver={() => setIsHovering(index)} onMouseOut={() => setIsHovering(null)}>
                       <StyledIcon $arrow={isHovering === index || showProductId === currentValue.productId ? true : false}>
-                        <em>{currentValue.id}</em>
+                        {currentValue.id}
 
                         <SlPlus size={20} />
                       </StyledIcon>
 
                       {(isHovering === index || showProductId === currentValue.productId) && (
-                        <StyledProductLayer style={{ transform: `translate(-${(currentValue.x * 100) / imageProduct.current.clientWidth}vw, 0)` }}>
+                        <StyledProductLayer style={{ transform: `translate(-${currentValue.x}px, 0)` }}>
                           <StyledProductOuter>
                             <StyledProductInner>
-                              <StyledProductImage src={`/uploads/products/${products[index].thumbnail}`} alt={products[index].name} />
+                              <StyledProductImage src={`/uploads/${products[index].thumbnail}`} alt={products[index].name} />
 
                               <StyledDetail>
                                 <StyledBrand>{products[index].brand}</StyledBrand>
@@ -569,8 +504,7 @@ const ViewFinder = ({ children, className, attributes }) => {
                               attributes={{
                                 type: 'link',
                                 href: products[index].url,
-                                fill: true,
-                                target: '_blank'
+                                fill: true
                               }}>
                               <span className="text_local">구매1</span>
                             </StyledButton2>
@@ -598,9 +532,8 @@ const ViewFinder = ({ children, className, attributes }) => {
           style={{
             position: 'absolute',
             zIndex: 10,
-            top: button.y + '%',
-            left: button.x + '%',
-            touchAction: 'none'
+            top: button.y,
+            left: button.x
           }}>
           <div
             className="button_hashtag"
@@ -609,13 +542,6 @@ const ViewFinder = ({ children, className, attributes }) => {
                 id: button.id,
                 startX: e.clientX - button.x,
                 startY: e.clientY - button.y
-              })
-            }
-            onTouchStart={(e) =>
-              handleTouchStart(e, {
-                id: button.id,
-                startX: e.touches[0].clientX - button.x,
-                startY: e.touches[0].clientY - button.y
               })
             }
             onClick={() => handleClick(button)}>

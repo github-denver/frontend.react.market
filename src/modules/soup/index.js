@@ -1,4 +1,4 @@
-import { createAction, createReducer, createSlice } from '@reduxjs/toolkit';
+import { createAction, createReducer } from '@reduxjs/toolkit';
 import { takeLatest } from 'redux-saga/effects';
 import createRequestSaga, { createRequestActionTypes } from '@/library/createRequestSaga';
 import * as gateway from '@/library/gateway/board';
@@ -37,11 +37,11 @@ export default createReducer(initialState, (builder) => {
       state.data = null;
       state.error = action.payload;
       console.groupEnd();
+    })
+    .addDefaultCase((state, action) => {
+      // console.group('[SOUP]: addDefaultCase((state, action) => { .. })');
+      // console.groupEnd();
     });
-  // .addDefaultCase((state, action) => {
-  //   console.group('[SOUP_FAILURE]: addDefaultCase((state, action) => { .. })');
-  //   console.groupEnd();
-  // });
 });
 
 // Saga

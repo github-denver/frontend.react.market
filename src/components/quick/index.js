@@ -23,7 +23,7 @@ const StyledBox = styled.div`
   position: relative;
   padding-top: 100%;
   border-radius: 0.8rem;
-  /* background-color: #f5f5f5; */
+  background-color: #f7f9fa;
 
   svg {
     position: absolute;
@@ -47,7 +47,13 @@ const StyledLink = styled(Link)`
 
   .text_local {
     display: block;
-    font-size: 1.1rem;
+    padding: 0.4rem 0.2rem;
+    /* border: 0.1rem solid #937062;
+    background-color: #937062; */
+    /* font-weight: 500; */
+    /* font-size: 1.1rem; */
+    font-size: 1.2rem;
+    /* color: #fff; */
     letter-spacing: -0.125rem;
   }
 `;
@@ -97,7 +103,7 @@ const Quick = ({ attributes }) => {
         </StyledItem>
 
         <StyledItem>
-          <StyledLink to="/board/baking/list/1">
+          <StyledLink to="/board/curry/list/1">
             <StyledBox>
               <StyledIcon src="./icons/icon_curry.png" alt="" />
             </StyledBox>
@@ -106,7 +112,7 @@ const Quick = ({ attributes }) => {
           </StyledLink>
         </StyledItem>
 
-        <StyledItem>
+        {/* <StyledItem>
           <StyledLink to="/board/baking/list/1">
             <StyledBox>
               <StyledIcon src="./icons/icon_steak.png" alt="" />
@@ -194,7 +200,7 @@ const Quick = ({ attributes }) => {
 
             <span className="text_local">음료수</span>
           </StyledLink>
-        </StyledItem>
+        </StyledItem> */}
       </StyledList>
     </StyledQuick>
   );

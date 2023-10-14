@@ -2,17 +2,39 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 import { SlStar } from 'react-icons/sl';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { TfiTimer } from 'react-icons/tfi';
+import { LuBarChart } from 'react-icons/lu';
 
 const StyledText = styled.span`
   display: inline-block;
   position: relative;
-  margin-left: 0.6rem;
-  padding-left: 0.6rem;
+  margin-left: 0.4rem;
+  /* padding-left: 0.4rem; */
   font-size: 1.2rem;
   color: #666;
   vertical-align: middle;
 
-  &:before {
+  svg {
+    display: inline-block;
+    vertical-align: middle;
+
+    & + .text_local {
+      margin-left: 0.4rem;
+    }
+  }
+
+  .text_local {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &:nth-of-type(1) {
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  /* &:before {
     position: absolute;
     top: 0.4rem;
     bottom: 0.3rem;
@@ -31,7 +53,7 @@ const StyledText = styled.span`
     &:before {
       display: none;
     }
-  }
+  } */
 `;
 
 const StyledSubject = styled.strong`
@@ -64,7 +86,8 @@ const StyledInformation = styled.div`
   }
 `;
 
-const StyledImage = styled.img`
+// const StyledImage = styled.img`
+const StyledImage = styled(LazyLoadImage)`
   position: absolute;
   top: 50%;
   right: 0;
@@ -84,53 +107,13 @@ const StyledFrame = styled.div`
   position: relative;
   z-index: 1;
   /* padding-top: 150%; */
-  padding-top: 100%;
+  padding-top: 56.25%;
   border-radius: 0;
-
-  /*
-  ${({ $flicking, $grid, $square }) =>
-    $square
-      ? $grid
-        ? css`
-            padding-top: 100%;
-          `
-        : css`
-            ${({ $flicking }) =>
-              $flicking
-                ? css`
-                    display: block;
-                    padding-top: 100%;
-                  `
-                : css`
-                    display: inline-block;
-                    width: 50%;
-                    padding-top: 50%;
-                    vertical-align: top;
-                  `}
-          `
-      : $grid
-      ? css`
-          padding-top: 100%;
-        `
-      : css`
-          ${({ $flicking }) =>
-            $flicking
-              ? css`
-                  display: block;
-                `
-              : css`
-                  display: inline-block;
-                  width: 50%;
-                  vertical-align: top;
-                `}
-          padding-top: 150%;
-        `}
-  */
 
   ${({ $radius }) =>
     $radius &&
     css`
-      border-radius: 0.4rem;
+      border-radius: 0.8rem;
     `}
 
   ${({ $square }) =>
@@ -160,9 +143,11 @@ const Thumbnail = ({ className, attributes }) => {
     <StyledThumbnail className={className}>
       <StyledLink to={href}>
         <StyledFrame $flicking={flicking} $grid={grid} $square={square} $radius={radius}>
-          <StyledImage src={`/uploads/${image}`} alt="" />
+          <StyledImage
+            src={`/uploads/${image}`} // use normal <img> attributes as props
+            alt=""
+          />
         </StyledFrame>
-
         {flicking ? (
           <>{subject && <StyledSubject dangerouslySetInnerHTML={{ __html: subject }} />}</>
         ) : (
@@ -180,9 +165,21 @@ const Thumbnail = ({ className, attributes }) => {
             )}
           </>
         )}
+        {level && (
+          <StyledText>
+            <span className="screen_out">난이도</span>
+            <LuBarChart size={14} />
+            <span className="text_local">{level}</span>
+          </StyledText>
+        )}
 
-        {/* {level && <StyledText>{level}</StyledText>}
-        {time && <StyledText>{time}</StyledText>} */}
+        {time && (
+          <StyledText>
+            <span className="screen_out">조리 시간</span>
+            <TfiTimer size={14} />
+            <span className="text_local">{time}</span>
+          </StyledText>
+        )}
       </StyledLink>
     </StyledThumbnail>
   );

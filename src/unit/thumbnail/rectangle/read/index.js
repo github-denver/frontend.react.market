@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
 import Button from '@/unit/button/standard';
 import { SlPlus } from 'react-icons/sl';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const commonStyles = css`
   display: inline-block;
@@ -33,7 +34,7 @@ const StyledDiscount = styled.em`
   margin-top: 0.4rem;
   font-weight: 700;
   font-size: 1.6rem;
-  color: #fe4362;
+  color: #937062;
 
   & + ${StyledPrice} {
     margin-left: 0.6rem;
@@ -80,7 +81,7 @@ const StyledProductInner = styled.div`
 
 const StyledProductOuter = styled.div`
   padding: 1.2rem;
-  border-radius: 0.4rem;
+  border-radius: 0.8rem;
   background-color: #fff;
 `;
 
@@ -107,6 +108,7 @@ const StyledProductLayer = styled.div`
     $isBottom
       ? css`
           bottom: 4rem;
+          bottom: 11.111vw;
           z-index: 10;
 
           &:before {
@@ -193,7 +195,8 @@ const StyledShadow = styled.div`
   }
 `;
 
-const StyledImage = styled.img`
+// const StyledImage = styled.img`
+const StyledImage = styled(LazyLoadImage)`
   overflow: hidden;
   width: 100%;
   border-radius: 0;
@@ -202,26 +205,33 @@ const StyledImage = styled.img`
 const StyledIcon = styled.button`
   display: inline-block;
   width: 2rem;
+  width: 5.556vw;
   height: 2rem;
+  height: 5.556vw;
   border: 0 none;
   border-radius: 100%;
   font-size: 0.1rem;
   color: transparent;
-  background-color: #fe4362;
+  background-color: #937062;
   vertical-align: top;
   cursor: pointer;
 
   &:before {
     position: absolute;
     top: 2rem;
+    top: 5.556vw;
     left: 0;
     z-index: 1;
     width: 0;
     height: 0;
     border-top: 1rem solid transparent;
+    border-top: 2.778vw solid transparent;
     border-right: 1rem solid transparent;
+    border-right: 2.778vw solid transparent;
     border-bottom: 1rem solid #fff;
+    border-bottom: 2.778vw solid #fff;
     border-left: 1rem solid transparent;
+    border-left: 2.778vw solid transparent;
     visibility: hidden;
     content: '';
   }
@@ -241,6 +251,10 @@ const StyledIcon = styled.button`
     bottom: 0;
     left: 0;
     z-index: 1;
+    width: 2rem;
+    width: 5.556vw;
+    height: 2rem;
+    height: 5.556vw;
     color: #fff;
   }
 
@@ -250,6 +264,7 @@ const StyledIcon = styled.button`
           &:before {
             top: auto;
             bottom: 2rem;
+            bottom: 5.556vw;
             -webkit-transform: rotate(180deg);
             -ms-transform: rotate(180deg);
             -moz-transform: rotate(180deg);
@@ -275,7 +290,7 @@ const StyledThumbnail = styled.div`
 
       ${StyledShadow},
       ${StyledImage} {
-        border-radius: 0.4rem;
+        border-radius: 0.8rem;
       }
     `}
 `;
@@ -294,7 +309,6 @@ const Thumbnail = ({ className, attributes }) => {
     if (imageProduct.current) {
       if (layerProduct.current) {
         const a = imageProduct.current.getBoundingClientRect().height - imageProduct.current.getBoundingClientRect().top;
-
         const b = a + layerProduct.current.getBoundingClientRect().height;
 
         if (b > imageProduct.current.getBoundingClientRect().height) {
@@ -308,12 +322,15 @@ const Thumbnail = ({ className, attributes }) => {
 
   return (
     <StyledThumbnail className={className} $radius={radius}>
-      <StyledImage src={`/uploads/${image}`} alt="" ref={imageProduct} />
+      <div ref={imageProduct}>
+        <StyledImage src={`/uploads/${image}`} alt="" effect="blur" />
+      </div>
 
       {products.length > 0 &&
         tags.map((currentValue, index) => {
           return (
-            <StyledHashtag key={index} style={{ top: currentValue.y + 12, left: currentValue.x + 12, zIndex: currentValue.index }} onMouseOver={() => handleHoverHashtag(index)} onMouseOut={() => setIsHovering(null)}>
+            // <StyledHashtag key={index} style={{ top: currentValue.y + 12, left: currentValue.x + 12, zIndex: currentValue.index }} onMouseOver={() => handleHoverHashtag(index)} onMouseOut={() => setIsHovering(null)}>
+            <StyledHashtag key={index} style={{ top: currentValue.y + '%', left: currentValue.x + '%', zIndex: currentValue.index }} onMouseOver={() => handleHoverHashtag(index)} onMouseOut={() => setIsHovering(null)}>
               <StyledIcon $arrow={isHovering === index || showProductId === currentValue.productId ? true : false} $isBottom={isBottom}>
                 {currentValue.id}
 
@@ -321,10 +338,10 @@ const Thumbnail = ({ className, attributes }) => {
               </StyledIcon>
 
               {(isHovering === index || showProductId === currentValue.productId) && (
-                <StyledProductLayer style={{ transform: `translate(-${currentValue.x}px, 0)` }} ref={layerProduct} $isBottom={isBottom}>
+                <StyledProductLayer style={{ transform: `translate(-${(currentValue.x * 100) / imageProduct.current.clientWidth}vw, 0)` }} ref={layerProduct} $isBottom={isBottom}>
                   <StyledProductOuter>
                     <StyledProductInner>
-                      <StyledProductImage src={`/uploads/${products[index].thumbnail}`} alt={products[index].name} />
+                      <StyledProductImage src={`/uploads/products/${products[index].thumbnail}`} alt={products[index].name} />
 
                       <StyledDetail>
                         <StyledBrand>{products[index].brand}</StyledBrand>
@@ -338,7 +355,8 @@ const Thumbnail = ({ className, attributes }) => {
                       attributes={{
                         type: 'link',
                         href: products[index].url,
-                        fill: true
+                        fill: true,
+                        target: '_blank'
                       }}>
                       <span className="text_local">구매2</span>
                     </StyledButton>

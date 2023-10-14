@@ -31,11 +31,11 @@ const StyledFollowerList = styled.ul`
 const StyledLink = styled(Link)`
   display: inline-block;
   padding: 0.6rem;
-  border: 0.1rem solid #fe4362;
+  border: 0.1rem solid #937062;
   border-radius: 0.4rem;
   font-size: 1.2rem;
   line-height: 1;
-  color: #fe4362;
+  color: #937062;
   vertical-align: middle;
 `;
 
@@ -92,9 +92,9 @@ const Follow = ({ attributes }) => {
 
   if (error) {
     if (error.response && error.response.status === 404) {
-      console.log('존재하지 않는 글입니다.');
+      console.log('존재하지 않는 정보입니다.');
 
-      return <p>존재하지 않는 글입니다.</p>;
+      return <p>존재하지 않는 정보입니다.</p>;
     }
 
     console.log('문제가 발생했습니다.');

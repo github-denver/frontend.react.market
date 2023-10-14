@@ -35,7 +35,7 @@ const StyledNavigation = styled.nav`
             display: block;
             padding: 0.95rem 4rem 0.95rem 4.6rem;
             font-size: 1.4rem;
-            border-radius: 0.4rem;
+            border-radius: 0.8rem;
 
             &:hover,
             &:focus {
@@ -85,12 +85,12 @@ const StyledNavigation = styled.nav`
               bottom: 0;
               left: 0;
               z-index: 1;
-              border-bottom: 0.2rem solid #fe4362;
+              border-bottom: 0.2rem solid #937062;
               content: '';
             }
 
             &.active {
-              color: #fe4362;
+              color: #937062;
 
               &:after {
                 display: block;
@@ -123,7 +123,7 @@ const Navigation = ({ className, attributes }) => {
             <StyledLink to="/board/curry/list/1">카레</StyledLink>
           </StyledItem>
 
-          <StyledItem>
+          {/* <StyledItem>
             <StyledLink to="/board/steak/list/1">스테이크</StyledLink>
           </StyledItem>
 
@@ -157,7 +157,7 @@ const Navigation = ({ className, attributes }) => {
 
           <StyledItem>
             <StyledLink to="/board/drink/list/1">음료수</StyledLink>
-          </StyledItem>
+          </StyledItem> */}
         </StyledList>
       </StyledInner>
     </StyledNavigation>

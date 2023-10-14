@@ -83,12 +83,13 @@ const StyledListGravity = styled.ul`
 const StyledClose = styled.button`
   display: inline-block;
   border: 0 none;
-  /* color: #fe4362; */
+  /* color: #E30B5C; */
   background-color: transparent;
   vertical-align: middle;
 
   svg {
     display: block;
+    color: #937062;
   }
 `;
 
@@ -97,7 +98,7 @@ const StyledLink = styled(Link)`
   height: 2.6rem;
   font-weight: 500;
   font-size: 1.6rem;
-  color: #fe4362;
+  /* color: #937062; */
   line-height: 2.6rem;
   vertical-align: middle;
   text-align: center;
@@ -105,7 +106,7 @@ const StyledLink = styled(Link)`
 
 const StyledText = styled(Text)`
   margin: 1rem 0 0;
-  font-weight: 500;
+  font-weight: 400;
 `;
 
 const StyledLogo = styled.h1`
@@ -154,7 +155,7 @@ const Utility = ({ attributes }) => {
             attributes={{
               first: (
                 <StyledLink to="/">
-                  <span className="ir_wa">hey&rdquo; bread</span>
+                  <span className="ir_wa">오늘의 식탁</span>
                 </StyledLink>
               ),
               second: (
@@ -231,61 +232,61 @@ const Utility = ({ attributes }) => {
                   link: '카레',
                   to: '/board/curry/list/1',
                   arrow: null
-                },
-                {
-                  icon: null,
-                  link: '스테이크',
-                  to: '/board/steak/list/1',
-                  arrow: null
-                },
-                {
-                  icon: null,
-                  link: '수프',
-                  to: '/board/soup/list/1',
-                  arrow: null
-                },
-                {
-                  icon: null,
-                  link: '샐러드',
-                  to: '/board/salad/list/1',
-                  arrow: null
-                },
-                {
-                  icon: null,
-                  link: '빵',
-                  to: '/board/baking/list/1',
-                  arrow: null
-                },
-                {
-                  icon: null,
-                  link: '햄버거',
-                  to: '/board/burger/list/1',
-                  arrow: null
-                },
-                {
-                  icon: null,
-                  link: '피자',
-                  to: '/board/pizza/list/1',
-                  arrow: null
-                },
-                {
-                  icon: null,
-                  link: '케이크',
-                  to: '/board/cake/list/1',
-                  arrow: null
-                },
-                {
-                  icon: null,
-                  link: '디저트',
-                  to: '/board/dessert/list/1',
-                  arrow: null
-                },
-                {
-                  icon: null,
-                  link: '음료수',
-                  to: '/board/drink/list/1',
-                  arrow: null
                 }
+                // {
+                //   icon: null,
+                //   link: '스테이크',
+                //   to: '/board/steak/list/1',
+                //   arrow: null
+                // },
+                // {
+                //   icon: null,
+                //   link: '수프',
+                //   to: '/board/soup/list/1',
+                //   arrow: null
+                // },
+                // {
+                //   icon: null,
+                //   link: '샐러드',
+                //   to: '/board/salad/list/1',
+                //   arrow: null
+                // },
+                // {
+                //   icon: null,
+                //   link: '빵',
+                //   to: '/board/baking/list/1',
+                //   arrow: null
+                // },
+                // {
+                //   icon: null,
+                //   link: '햄버거',
+                //   to: '/board/burger/list/1',
+                //   arrow: null
+                // },
+                // {
+                //   icon: null,
+                //   link: '피자',
+                //   to: '/board/pizza/list/1',
+                //   arrow: null
+                // },
+                // {
+                //   icon: null,
+                //   link: '케이크',
+                //   to: '/board/cake/list/1',
+                //   arrow: null
+                // },
+                // {
+                //   icon: null,
+                //   link: '디저트',
+                //   to: '/board/dessert/list/1',
+                //   arrow: null
+                // },
+                // {
+                //   icon: null,
+                //   link: '음료수',
+                //   to: '/board/drink/list/1',
+                //   arrow: null
+                // }
               ]
             }
           ]}

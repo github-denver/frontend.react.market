@@ -29,7 +29,7 @@ const StyledFlicking = styled(Flicking)`
 `;
 
 const FlickingList = ({ attributes }) => {
-  const { grid, square, list, error, loading } = attributes || {};
+  const { grid, square, panelsPerView, list, error, loading } = attributes || {};
 
   if (error) {
     if (error.response && error.response.status === 404) {
@@ -80,7 +80,7 @@ const FlickingList = ({ attributes }) => {
   }
 
   return (
-    <StyledFlicking align="prev" bound={true}>
+    <StyledFlicking align="prev" bound={true} panelsPerView={panelsPerView}>
       {list.map((currentValue, index) => (
         <StyledBox key={index}>
           <StyledSwiperThumbnail

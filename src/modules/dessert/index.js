@@ -37,11 +37,11 @@ export default createReducer(initialState, (builder) => {
       state.data = null;
       state.error = action.payload;
       console.groupEnd();
+    })
+    .addDefaultCase((state, action) => {
+      // console.group('[DESSERT]: addDefaultCase((state, action) => { .. })');
+      // console.groupEnd();
     });
-  // .addDefaultCase((state, action) => {
-  //   console.group('[DESSERT_FAILURE]: addDefaultCase((state, action) => { .. })');
-  //   console.groupEnd();
-  // });
 });
 
 // Saga

@@ -60,19 +60,16 @@ const Wrapper = ({ className, attributes }) => {
     formData.append('content', contentValue);
 
     if (thumbnail) formData.append('thumbnail', thumbnail.files);
+
     if (tags.length > 0) formData.append('tags', JSON.stringify(tags));
 
     if (owner) {
-      console.log('await dispatch(postModify({ .. })) 호출');
       await dispatch(postModify({ category: categoryValue, number, payload: formData }));
 
-      console.log('navigate( .. ) 호출');
       navigate(`/board/${categoryValue}/read/${number}`);
     } else {
-      console.log('await dispatch(postWrite({ .. })) 호출');
       await dispatch(postWrite({ category: categoryValue, payload: formData }));
 
-      console.log('navigate( .. ) 호출');
       navigate(`/board/${categoryValue}/list/1`);
     }
   };

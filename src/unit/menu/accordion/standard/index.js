@@ -8,7 +8,7 @@ const StyledButton = styled.button`
   width: 100%;
   padding: 0.8rem 4rem 0.8rem 1.4rem;
   border: 0 none;
-  border-radius: 0.4rem;
+  border-radius: 0.8rem;
   box-sizing: border-box;
   background-color: transparent;
   text-align: left;
@@ -41,7 +41,7 @@ const StyledButton = styled.button`
   ${({ $active }) =>
     $active
       ? css`
-          /* color: #fe4362; */
+          /* color: #E30B5C; */
           background-color: #f7f9fa;
           /* background-color: #fff9f9; */
 
@@ -64,11 +64,11 @@ const StyledLink = styled(NavLink)`
   display: block;
   padding: 0.95rem 4rem 0.95rem 4.6rem;
   font-size: 1.4rem;
-  border-radius: 0.4rem;
+  border-radius: 0.8rem;
 
   &.active {
     font-weight: 500;
-    /* color: #fe4362; */
+    /* color: #E30B5C; */
     background-color: #f7f9fa;
     /* background-color: #fff9f9; */
   }

@@ -18,44 +18,11 @@ import Dessert from '@/containers/dessert';
 import Drink from '@/containers/drink';
 
 import Footer from '@/components/footer';
-
-// import Swiper core and required modules
-import { Navigation as SwiperNavigation, Pagination as SwiperPagination, A11y } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
+import Hero from '../../containers/hero';
 
 const StyledBoundary = styled(Boundary)``;
 
-const StyledSwiperImage = styled.img`
-  width: 100%;
-`;
-
-const StyledSwiperSlide = styled(SwiperSlide)`
-  overflow: hidden;
-  border-radius: 0.8rem;
-`;
-
-const StyledSwiper = styled(Swiper)`
-  padding: 0 2rem;
-
-  .swiper-pagination-bullet {
-    background-color: #fff;
-    opacity: 1;
-  }
-
-  .swiper-pagination-bullet-active {
-    background-color: #fe4362;
-  }
-`;
-
-const StyledNavigation = styled(Navigation)`
-  & + ${StyledSwiper} {
-    margin-top: 2rem;
-  }
-`;
+const StyledNavigation = styled(Navigation)``;
 
 const StyledHgroup = styled(Hgroup)`
   margin-top: 1.6rem;
@@ -73,6 +40,8 @@ const Page = () => (
       <StyledHgroup attributes={{ title: '본문 영역', invisible: true }} />
 
       <StyledNavigation />
+
+      <Hero attributes={{ category: 'popular' }} />
 
       <Quick attributes={{ href: '/' }} />
 
@@ -105,7 +74,7 @@ const Page = () => (
       />
       <Curry attributes={{ flicking: true, square: true, category: 'curry' }} />
 
-      <StyledHgroup
+      {/* <StyledHgroup
         attributes={{
           title: '스테이크',
           description: '',
@@ -166,7 +135,7 @@ const Page = () => (
           href: '/board/drink/list/1'
         }}
       />
-      <Drink attributes={{ flicking: true, square: true, category: 'drink' }} />
+      <Drink attributes={{ flicking: true, square: true, category: 'drink' }} /> */}
     </section>
 
     <Footer />

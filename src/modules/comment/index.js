@@ -1,51 +1,66 @@
-import { createAction, createSlice } from '@reduxjs/toolkit';
-import createRequestSaga from '@/library/createRequestSaga';
-import * as gateway from '@/library/gateway/comment';
+import { createAction, createReducer } from '@reduxjs/toolkit';
 import { takeLatest } from 'redux-saga/effects';
+import createRequestSaga, { createRequestActionTypes } from '@/library/createRequestSaga';
+import * as gateway from '@/library/gateway/comment';
 
-const COMMENT = 'comment/list';
-const COMMENT_WRITE = 'comment/write';
+// Action Types
+const COMMENT_INITIAL = 'COMMENT_INITIAL';
+const [COMMENT, COMMENT_SUCCESS, COMMENT_FAILURE] = createRequestActionTypes('COMMENT');
 
+// const COMMENT_WRITE_INITIAL = 'COMMENT_WRITE_INITIAL';
+const [COMMENT_WRITE, COMMENT_WRITE_SUCCESS, COMMENT_WRITE_FAILURE] = createRequestActionTypes('COMMENT_WRITE');
+
+// Action Creators
+export const commentInitial = createAction(COMMENT_INITIAL);
+export const commentList = createAction(COMMENT, (payload) => ({ payload })); // postId
+export const commentWrite = createAction(COMMENT_WRITE, (payload) => ({ payload })); // postId, parentCommentId, content
+
+// initial State
 const initialState = {
   data: null,
   error: null
 };
 
-const commentSlice = createSlice({
-  name: 'comment',
-  initialState,
-  // 내부 action 및 동기 action
-  reducers: {
-    initialComment: (state) => {
+// Reducers
+export default createReducer(initialState, (builder) => {
+  builder
+    .addCase(COMMENT_INITIAL, (state, action) => {
+      console.group('[COMMENT_INITIAL]: (state, action) => { .. }');
       state.data = null;
       state.error = null;
-    },
-    listSuccess: (state, action) => {
+      console.groupEnd();
+    })
+    .addCase(COMMENT_SUCCESS, (state, action) => {
+      console.group('[COMMENT_SUCCESS]: (state, action) => { .. }');
       state.data = action.payload;
       state.error = null;
-    },
-    listFailure: (state, action) => {
+      console.groupEnd();
+    })
+    .addCase(COMMENT_FAILURE, (state, action) => {
+      console.group('[COMMENT_FAILURE]: (state, action) => { .. }');
       state.data = null;
       state.error = action.payload;
-    }
-  },
-  // 외부 action 및 비동기 action
-  extraReducers: (builder) => {
-    builder.addMatcher(
-      (action) => {},
-      (state, action) => {}
-    );
-  }
+      console.groupEnd();
+    })
+    .addCase(COMMENT_WRITE_SUCCESS, (state, action) => {
+      console.group('[COMMENT_WRITE_SUCCESS]: (state, action) => { .. }');
+      state.data = action.payload;
+      state.error = null;
+      console.groupEnd();
+    })
+    .addCase(COMMENT_WRITE_FAILURE, (state, action) => {
+      console.group('[COMMENT_WRITE_FAILURE]: (state, action) => { .. }');
+      state.data = null;
+      state.error = action.payload;
+      console.groupEnd();
+    })
+    .addDefaultCase((state, action) => {
+      // console.group('[COMMENT]: addDefaultCase((state, action) => { .. })');
+      // console.groupEnd();
+    });
 });
 
-export const { initialComment } = commentSlice.actions;
-
-export default commentSlice.reducer;
-
-export const commentList = createAction(COMMENT, (payload) => ({ payload })); // postId
-export const commentWrite = createAction(COMMENT_WRITE, (payload) => ({ payload })); // postId, parentCommentId, content
-
-// Main Saga
+// Saga
 export function* commentSaga() {
   yield takeLatest(COMMENT, createRequestSaga(COMMENT, gateway.commentList));
   yield takeLatest(COMMENT_WRITE, createRequestSaga(COMMENT_WRITE, gateway.commentWrite));

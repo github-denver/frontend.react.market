@@ -17,7 +17,7 @@ const commonStyles = css`
 
   svg {
     display: inline-block;
-    color: #fe4362;
+    color: #937062;
     vertical-align: middle;
   }
 `;
@@ -45,7 +45,7 @@ const StyledLink = styled(Link)`
   height: 2.6rem;
   font-weight: 500;
   font-size: 1.6rem;
-  color: #fe4362;
+  /* color: #937062; */
   line-height: 2.6rem;
   vertical-align: middle;
 `;
@@ -102,14 +102,14 @@ const Header = ({ attributes }) => {
     <StyledHeader $minimal={minimal}>
       <StyledLogo>
         <StyledLink to="/">
-          <span className="ir_wa">hey&rdquo; bread</span>
+          <span className="ir_wa">오늘의 식탁</span>
         </StyledLink>
       </StyledLogo>
 
       {!minimal && (
         <>
           <StyledHamburger onClick={handleVisible}>
-            <SlMenu size={24} />
+            <SlMenu size={20} />
             <span className="screen_out">주메뉴 열기</span>
           </StyledHamburger>
 

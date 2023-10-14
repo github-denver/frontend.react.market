@@ -41,11 +41,11 @@ export default createReducer(initialState, (builder) => {
       state.data = null;
       state.error = action.payload;
       console.groupEnd();
+    })
+    .addDefaultCase((state, action) => {
+      // console.group('[POSTS]: addDefaultCase((state, action) => { .. })');
+      // console.groupEnd();
     });
-  // .addDefaultCase((state, action) => {
-  //   console.group('[POSTS_FAILURE]: addDefaultCase((state, action) => { .. })');
-  //   console.groupEnd();
-  // });
 });
 
 // Saga

@@ -4,12 +4,12 @@ import createRequestSaga, { createRequestActionTypes } from '@/library/createReq
 import * as gateway from '@/library/gateway/board';
 
 // Action Types
-const STEW_INITIAL = 'STEW_INITIAL';
-const [STEW, STEW_SUCCESS, STEW_FAILURE] = createRequestActionTypes('STEW');
+const HERO_INITIAL = 'HERO_INITIAL';
+const [HERO, HERO_SUCCESS, HERO_FAILURE] = createRequestActionTypes('HERO');
 
 // Action Creators
-export const stewInitial = createAction(STEW_INITIAL);
-export const stew = createAction(STEW, (payload) => ({ payload })); // payload: { category, number, select, keyword }
+export const heroInitial = createAction(HERO_INITIAL);
+export const hero = createAction(HERO, (payload) => ({ payload })); // payload: { category, number, select, keyword }
 
 // initial State
 const initialState = {
@@ -20,31 +20,31 @@ const initialState = {
 // Reducers
 export default createReducer(initialState, (builder) => {
   builder
-    .addCase(STEW_INITIAL, (state, action) => {
-      console.group('[STEW_INITIAL]: (state, action) => { .. }');
+    .addCase(HERO_INITIAL, (state, action) => {
+      console.group('[HERO_INITIAL]: (state, action) => { .. }');
       state.data = null;
       state.error = null;
       console.groupEnd();
     })
-    .addCase(STEW_SUCCESS, (state, action) => {
-      console.group('[STEW_SUCCESS]: (state, action) => { .. }');
+    .addCase(HERO_SUCCESS, (state, action) => {
+      console.group('[HERO_SUCCESS]: (state, action) => { .. }');
       state.data = action.payload;
       state.error = null;
       console.groupEnd();
     })
-    .addCase(STEW_FAILURE, (state, action) => {
-      console.group('[STEW_FAILURE]: (state, action) => { .. }');
+    .addCase(HERO_FAILURE, (state, action) => {
+      console.group('[HERO_FAILURE]: (state, action) => { .. }');
       state.data = null;
       state.error = action.payload;
       console.groupEnd();
     })
     .addDefaultCase((state, action) => {
-      // console.group('[STEW]: addDefaultCase((state, action) => { .. })');
+      // console.group('[HERO]: addDefaultCase((state, action) => { .. })');
       // console.groupEnd();
     });
 });
 
 // Saga
-export function* stewSaga() {
-  yield takeLatest(STEW, createRequestSaga(STEW, gateway.posts));
+export function* heroSaga() {
+  yield takeLatest(HERO, createRequestSaga(HERO, gateway.posts));
 }

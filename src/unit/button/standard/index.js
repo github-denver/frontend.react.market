@@ -8,11 +8,11 @@ const commonStyles = css`
   z-index: 1;
   width: 100%;
   padding: 1.4rem 0;
-  border: 0.1rem solid #fe4362;
+  border: 0.1rem solid #937062;
   border-radius: 0.4rem;
   box-sizing: border-box;
   line-height: 1;
-  color: #fe4362;
+  color: #937062;
   text-align: center;
 
   .text_local {
@@ -44,7 +44,7 @@ const commonStyles = css`
     ${({ $fill }) =>
     $fill
       ? css`
-          background-color: #fe4362;
+          background-color: #937062;
 
           .text_local {
             color: #fff;
@@ -64,10 +64,10 @@ const StyledButton = styled.button`
 `;
 
 const Button = ({ className, attributes, children }) => {
-  const { type, href, size, confirm, fill, event } = attributes || {};
+  const { type, href, size, confirm, fill, target, event } = attributes || {};
 
   return type === 'link' ? (
-    <StyledLink to={href} className={className} size={size} $confirm={confirm} $fill={fill}>
+    <StyledLink to={href} className={className} size={size} $confirm={confirm} $fill={fill} target={target}>
       {children}
     </StyledLink>
   ) : (

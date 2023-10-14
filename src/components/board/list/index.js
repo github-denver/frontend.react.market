@@ -104,6 +104,7 @@ const BoardList = ({ attributes }) => {
           <StyledThumbnail
             attributes={{
               href: `/board/${currentValue.category}/read/${currentValue.number}`,
+              square: true,
               radius: false,
               image: currentValue.thumbnail
               // subject: currentValue.subject,

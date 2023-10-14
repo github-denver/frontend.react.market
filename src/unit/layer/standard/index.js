@@ -16,7 +16,7 @@ const StyledInner = styled.div`
   position: relative;
   z-index: 10;
   padding: 2.4rem;
-  border-radius: 0.4rem;
+  border-radius: 0.8rem;
   background-color: #fff;
 
   -webkit-transform: translateY(2.4rem);
