@@ -16,6 +16,8 @@ const StyledList = styled.ul``;
 const StyledInner = styled.div``;
 
 const StyledNavigation = styled.nav`
+  background-color: #fff;
+
   ${({ direction }) =>
     direction === 'vertical'
       ? css`
@@ -48,8 +50,6 @@ const StyledNavigation = styled.nav`
           right: 0;
           left: 0;
           z-index: 10;
-          border-bottom: 0.1rem solid #eee;
-          background-color: #fff;
 
           ${StyledInner} {
             overflow: auto;
@@ -57,6 +57,7 @@ const StyledNavigation = styled.nav`
 
           ${StyledList} {
             padding-left: 1.6rem;
+            padding-bottom: 1.6rem;
             white-space: nowrap;
           }
 
@@ -74,23 +75,26 @@ const StyledNavigation = styled.nav`
 
           ${StyledLink} {
             display: block;
-            padding: 0.95rem 0.8rem;
-            font-weight: 500;
-            font-size: 1.4rem;
+            padding: 0.6rem 0;
+            font-size: 1.2rem;
+            color: #577f67;
 
             &:after {
               display: none;
               position: absolute;
-              right: 0;
-              bottom: 0;
-              left: 0;
+              top: 0.1rem;
+              right: 0.1rem;
+              bottom: 0.1rem;
+              left: 0.1rem;
               z-index: 1;
-              border-bottom: 0.2rem solid #937062;
+              border: 0.1rem solid #fcf7f4;
               content: '';
             }
 
             &.active {
-              color: #937062;
+              background-color: #577f67;
+              font-weight: 500;
+              color: #fcf7f4;
 
               &:after {
                 display: block;

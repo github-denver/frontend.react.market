@@ -8,11 +8,11 @@ const commonStyles = css`
   z-index: 1;
   width: 100%;
   padding: 1.4rem 0;
-  border: 0.1rem solid #937062;
+  border: 0.1rem solid #577f67;
   border-radius: 0.4rem;
   box-sizing: border-box;
   line-height: 1;
-  color: #937062;
+  color: #577f67;
   text-align: center;
 
   .text_local {
@@ -44,7 +44,7 @@ const commonStyles = css`
     ${({ $fill }) =>
     $fill
       ? css`
-          background-color: #937062;
+          background-color: #577f67;
 
           .text_local {
             color: #fff;

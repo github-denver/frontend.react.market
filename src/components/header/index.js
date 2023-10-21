@@ -17,7 +17,7 @@ const commonStyles = css`
 
   svg {
     display: inline-block;
-    color: #937062;
+    color: #182c2b;
     vertical-align: middle;
   }
 `;
@@ -37,16 +37,26 @@ const StyledSearch = styled.button`
 const StyledHamburger = styled.button`
   ${commonStyles}
 
-  left: 1rem;
+  left: 0.8rem;
+
+  /* width: auto;
+  padding: 0 2rem;
+  border-radius: 0 2rem 2rem 0;
+  background-color: #182c2b;
+
+  svg {
+    color: #fff;
+  } */
 `;
 
 const StyledLink = styled(Link)`
   display: inline-block;
   height: 2.6rem;
+  font-family: 'Sunflower', sans-serif;
   font-weight: 500;
-  font-size: 1.6rem;
-  /* color: #937062; */
+  font-size: 2rem;
   line-height: 2.6rem;
+  color: #182c2b;
   vertical-align: middle;
 `;
 
@@ -70,12 +80,16 @@ const StyledHeader = styled.header`
           position: static;
           padding: 4rem 1.2rem;
           text-align: center;
+
+          & + section {
+            padding-top: 0;
+          }
         `
       : css`
           left: 0;
           height: 5rem;
           padding: 0 1.6rem;
-          border-bottom: 0.1rem solid #eee;
+          /* border-bottom: 0.1rem solid #eee; */
           text-align: center;
         `};
 `;

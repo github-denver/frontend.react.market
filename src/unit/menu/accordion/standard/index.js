@@ -41,9 +41,7 @@ const StyledButton = styled.button`
   ${({ $active }) =>
     $active
       ? css`
-          /* color: #E30B5C; */
-          background-color: #f7f9fa;
-          /* background-color: #fff9f9; */
+          background-color: #e5e6e0;
 
           .text_local + svg {
             -webkit-transform: rotate(180deg);
@@ -68,9 +66,7 @@ const StyledLink = styled(NavLink)`
 
   &.active {
     font-weight: 500;
-    /* color: #E30B5C; */
-    background-color: #f7f9fa;
-    /* background-color: #fff9f9; */
+    background-color: #e5e6e0;
   }
 `;
 const StyledItem = styled.li`

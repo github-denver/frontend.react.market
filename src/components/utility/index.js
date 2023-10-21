@@ -83,13 +83,12 @@ const StyledListGravity = styled.ul`
 const StyledClose = styled.button`
   display: inline-block;
   border: 0 none;
-  /* color: #E30B5C; */
   background-color: transparent;
   vertical-align: middle;
 
   svg {
     display: block;
-    color: #937062;
+    color: #182c2b;
   }
 `;
 
@@ -98,7 +97,6 @@ const StyledLink = styled(Link)`
   height: 2.6rem;
   font-weight: 500;
   font-size: 1.6rem;
-  /* color: #937062; */
   line-height: 2.6rem;
   vertical-align: middle;
   text-align: center;

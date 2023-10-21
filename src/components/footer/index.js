@@ -10,7 +10,7 @@ const StyledCopyright = styled.small`
   display: block;
   margin-top: 1.2rem;
   font-size: 1.1rem;
-  color: #828c94;
+  color: #182c2b;
 `;
 
 const StyledSocialLink = styled(Link)`
@@ -19,7 +19,7 @@ const StyledSocialLink = styled(Link)`
   height: 3.6rem;
   border-radius: 100%;
   color: transparent;
-  background-color: #828c94;
+  background-color: #182c2b;
 `;
 
 const StyledSocialItem = styled.li`
@@ -145,13 +145,12 @@ const StyledText = styled(Text)`
   /* padding: 2.4rem 0 0; */
   /* border-top: 0.1rem solid #dadde0; */
   font-size: 1.1rem;
-  color: #828c94;
+  color: #182c2b;
 `;
 
 const StyledFooter = styled.footer`
-  margin-top: 2.4rem;
+  /* margin-top: 2.4rem; */
   padding: 3rem 1.6rem;
-  background-color: #f7f9fa;
 
   small {
   }

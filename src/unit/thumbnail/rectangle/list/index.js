@@ -12,7 +12,7 @@ const StyledText = styled.span`
   margin-left: 0.4rem;
   /* padding-left: 0.4rem; */
   font-size: 1.2rem;
-  color: #666;
+  color: #182c2b;
   vertical-align: middle;
 
   svg {
@@ -33,27 +33,6 @@ const StyledText = styled.span`
     margin-left: 0;
     padding-left: 0;
   }
-
-  /* &:before {
-    position: absolute;
-    top: 0.4rem;
-    bottom: 0.3rem;
-    left: 0;
-    z-index: 1;
-    width: 0.1rem;
-    background-color: #ccc;
-    vertical-align: middle;
-    content: '';
-  }
-
-  &:nth-of-type(1) {
-    margin-left: 0;
-    padding-left: 0;
-
-    &:before {
-      display: none;
-    }
-  } */
 `;
 
 const StyledSubject = styled.strong`
@@ -62,7 +41,7 @@ const StyledSubject = styled.strong`
   margin-top: 0.8rem;
   font-weight: 500;
   font-size: 1.4rem;
-  color: #343434;
+  color: #182c2b;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 `;

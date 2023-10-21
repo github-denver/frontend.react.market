@@ -8,11 +8,6 @@ const StyledLink = styled(Link)`
   right: 1.6rem;
   bottom: 2rem;
   z-index: 1;
-  /* -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%); */
 
   svg {
     display: block;
@@ -29,7 +24,6 @@ const StyledTag = styled.strong`
   display: inline-block;
   font-weight: 500;
   font-size: 1.8rem;
-  /* color: #937062; */
   vertical-align: middle;
 
   .link_local {

@@ -11,14 +11,14 @@ moment.locale('ko');
 const StyledMessage = styled.span`
   display: block;
   font-size: 1.2rem;
-  color: #666;
+  color: #182c2b;
 `;
 
 const StyledButton = styled.button`
   display: inline-block;
   font-weight: 500;
   font-size: 1.4rem;
-  color: #937062;
+  color: #182c2b;
   border: 0 none;
   background-color: transparent;
   vertical-align: middle;
@@ -27,7 +27,7 @@ const StyledButton = styled.button`
 const StyledDot = styled.span`
   display: inline-block;
   padding: 0 0.6rem;
-  color: #343434;
+  color: #182c2b;
   vertical-align: middle;
 `;
 
@@ -35,7 +35,7 @@ const StyledBox = styled.span`
   display: block;
   font-weight: 500;
   font-size: 1.4rem;
-  color: #222;
+  color: #182c2b;
 `;
 
 const StyledInner = styled.p`

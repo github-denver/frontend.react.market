@@ -6,7 +6,7 @@ const StyledBoundary = styled.hr`
   padding: 0;
   height: 1rem;
   border: 0 none;
-  background-color: #f7f9fa;
+  background-color: #fcf7f4;
 `;
 
 const Boundary = ({ className, attributes }) => {

@@ -73,10 +73,7 @@ const StyledOptions = styled(List)`
   text-align: left;
 `;
 
-const StyledCommentProfile = styled(Profile)`
-  /* margin-left: -1.2rem;
-  background-color: skyblue; */
-`;
+const StyledCommentProfile = styled(Profile)``;
 
 const StyledCommentItem = styled.li`
   position: relative;
@@ -85,14 +82,10 @@ const StyledCommentItem = styled.li`
   ${({ $parentCommentId }) =>
     $parentCommentId &&
     css`
-      // margin-left: ${({ $parentCommentId }) => (12 * $parentCommentId) / 10}rem;
       margin-left: 1rem;
       padding-bottom: 1rem;
-      /* border: 0.1rem solid #bdbdbd;
-      border: 0.1rem solid #f7f9fa; */
       border-radius: 0.8rem;
-      background-color: #f7f9fa;
-      /* background-color: orange; */
+      background-color: #fff;
     `}
 `;
 

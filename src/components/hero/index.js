@@ -21,9 +21,14 @@ const StyledSystemMessage = styled(Text)`
 
 const StyledSwiperImage = styled.img`
   width: 100%;
+  border-radius: 0.8rem;
 `;
 
 const StyledSwiperSlide = styled(SwiperSlide)`
+  padding: 2rem;
+  box-sizing: border-box;
+
+  /*
   &:after {
     position: absolute;
     top: 50%;
@@ -31,30 +36,35 @@ const StyledSwiperSlide = styled(SwiperSlide)`
     bottom: 0;
     left: 0;
     z-index: 1;
-    background-color: #000;
+    background-color: #182c2b;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
     content: '';
   }
+  */
 
   div {
-    position: absolute;
+    /* position: absolute;
+    top: 0;
     right: 0;
-    bottom: 0;
     left: 0;
     z-index: 10;
-    padding: 0 1.2rem 1.2rem;
+    padding: 0 1.2rem 1.2rem; */
+
+    & + ${StyledSwiperImage} {
+      margin-top: 1.6rem;
+    }
   }
 
   strong {
     font-weight: 500;
     font-size: 2rem;
-    color: #fff;
+    color: #182c2b;
     word-break: keep-all;
   }
 
   svg {
     display: inline-block;
-    color: #fff;
+    color: #182c2b;
     vertical-align: middle;
 
     & + .text_local {
@@ -64,8 +74,9 @@ const StyledSwiperSlide = styled(SwiperSlide)`
 
   .text_local {
     display: inline-block;
+    font-weight: 300;
     font-size: 1.4rem;
-    color: #fff;
+    color: #182c2b;
     vertical-align: middle;
   }
 
@@ -87,7 +98,7 @@ const StyledSwiper = styled(Swiper)`
     top: auto;
     bottom: auto;
     left: auto;
-    margin-top: 1.2rem;
+    /* margin-top: 1.2rem; */
     font-size: 0;
   }
 
@@ -95,13 +106,13 @@ const StyledSwiper = styled(Swiper)`
     width: 0.8rem;
     height: 0.8rem;
     border-radius: 0.8rem;
-    background-color: #e9e9e9;
+    background-color: #c7baa9;
     opacity: 1;
   }
 
   .swiper-pagination-bullet-active {
     width: 1.6rem;
-    background-color: #937062;
+    background-color: #577f67;
   }
 `;
 
@@ -165,11 +176,11 @@ const HeroList = ({ attributes }) => {
       spaceBetween={16}
       onSwiper={(swiper) => {}}
       onSlideChange={() => {}}
-      effect="fade">
+      autoHeight={true}
+      // effect="fade"
+    >
       {list.map((currentValue, index) => (
         <StyledSwiperSlide key={index}>
-          <StyledSwiperImage src={`http://localhost:5000/uploads/${currentValue.thumbnail}`} alt="" />
-
           <div>
             <strong>{currentValue.subject}</strong>
 
@@ -186,6 +197,8 @@ const HeroList = ({ attributes }) => {
               </li>
             </ul>
           </div>
+
+          <StyledSwiperImage src={`http://localhost:5000/uploads/${currentValue.thumbnail}`} alt="" />
         </StyledSwiperSlide>
       ))}
     </StyledSwiper>

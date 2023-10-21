@@ -9,8 +9,11 @@ const StyledIcon = styled.img`
   left: 50%;
   z-index: 1;
   width: 100%;
-  padding: 0.8rem;
+  padding: 0.6rem;
+  border: 0.2rem solid #577f67;
+  border-radius: 100%;
   box-sizing: border-box;
+
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
@@ -22,8 +25,6 @@ const StyledBox = styled.div`
   display: block;
   position: relative;
   padding-top: 100%;
-  border-radius: 0.8rem;
-  background-color: #f7f9fa;
 
   svg {
     position: absolute;
@@ -36,24 +37,18 @@ const StyledBox = styled.div`
     -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
   }
-
-  & + .text_local {
-    margin-top: 0.6rem;
-  }
 `;
 
 const StyledLink = styled(Link)`
   display: block;
+  border-radius: 0.8rem;
 
   .text_local {
     display: block;
     padding: 0.4rem 0.2rem;
-    /* border: 0.1rem solid #937062;
-    background-color: #937062; */
-    /* font-weight: 500; */
-    /* font-size: 1.1rem; */
+
     font-size: 1.2rem;
-    /* color: #fff; */
+    color: #182c2b;
     letter-spacing: -0.125rem;
   }
 `;

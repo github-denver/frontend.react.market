@@ -23,7 +23,7 @@ const StyledInput = styled.input`
 
   &:disabled {
     border-radius: 0.4rem;
-    background-color: #fafafa;
+    background-color: #fff;
     cursor: not-allowed;
   }
 `;
@@ -31,7 +31,7 @@ const StyledInput = styled.input`
 const StyledBox = styled.div`
   display: block;
   margin-top: 1rem;
-  border: 0.1rem solid #bdbdbd;
+  border: 0.1rem solid #182c2b;
   border-radius: 0.4rem;
   box-sizing: border-box;
   background-color: #fff;
@@ -73,7 +73,7 @@ const StyledLabel = styled.label`
           display: inline-block;
           font-weight: 500;
           font-size: 16px;
-          color: #2f3438;
+          color: #182c2b;
           vertical-align: middle;
         `
       : css`
@@ -83,7 +83,7 @@ const StyledLabel = styled.label`
           left: 1.4rem;
           z-index: 1;
           font-size: 1.4rem;
-          color: #bdbdbd;
+          color: #182c2b;
           -webkit-transform: translateY(-50%);
           -ms-transform: translateY(-50%);
           -moz-transform: translateY(-50%);
@@ -103,7 +103,7 @@ const StyledField = styled.div`
   .text_field {
     margin-top: 0.6rem;
     font-size: 1.2rem;
-    color: #757575;
+    color: #182c2b;
   }
 
   ${({ $standard }) =>
