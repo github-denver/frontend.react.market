@@ -25,37 +25,18 @@ const StyledSwiperImage = styled.img`
   border-radius: 0.8rem;
 `;
 
+const StyledSwiperLink = styled(Link)`
+  display: block;
+
+  ${StyledSwiperImage} {
+    margin-top: 1.6rem;
+  }
+`;
+
 const StyledSwiperSlide = styled(SwiperSlide)`
   padding: 2rem;
   box-sizing: border-box;
-
-  /*
-  &:after {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
-    background-color: #282828;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
-    content: '';
-  }
-  */
-
-  .link_common {
-    /* position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 10;
-    padding: 0 1.2rem 1.2rem; */
-    display: block;
-
-    ${StyledSwiperImage} {
-      margin-top: 1.6rem;
-    }
-  }
+  background-color: #fff;
 
   strong {
     font-weight: 500;
@@ -179,11 +160,10 @@ const HeroList = ({ attributes }) => {
       onSwiper={(swiper) => {}}
       onSlideChange={() => {}}
       autoHeight={true}
-      // effect="fade"
-    >
+      effect="fade">
       {list.map((currentValue, index) => (
         <StyledSwiperSlide key={index}>
-          <Link to={`http://localhost:3000/board/${currentValue.category}/read/${currentValue.number}`} className="link_common">
+          <StyledSwiperLink to={`http://localhost:3000/board/${currentValue.category}/read/${currentValue.number}`} className="link_common">
             <strong>{currentValue.subject}</strong>
 
             <ul>
@@ -198,12 +178,15 @@ const HeroList = ({ attributes }) => {
                 <span className="text_local">{currentValue.time}</span>
               </li>
             </ul>
+
             <StyledSwiperImage src={`http://localhost:5000/uploads/${currentValue.thumbnail}`} alt="" />
-          </Link>
+          </StyledSwiperLink>
         </StyledSwiperSlide>
       ))}
     </StyledSwiper>
   );
 };
+
+StyledSwiperSlide.displayName = 'SwiperSlide';
 
 export default HeroList;
