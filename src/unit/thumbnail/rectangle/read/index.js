@@ -353,8 +353,8 @@ const Thumbnail = ({ className, attributes }) => {
                       <StyledDetail>
                         <StyledBrand>{products[index].brand}</StyledBrand>
                         <StyledName>{products[index].name}</StyledName>
-                        <StyledDiscount>{products[index].discount}%</StyledDiscount>
-                        <StyledPrice>{products[index].price}</StyledPrice>
+                        {parseInt(products[index].discount) !== 0 && <StyledDiscount>{products[index].discount}%</StyledDiscount>}
+                        <StyledPrice>{products[index].price}원</StyledPrice>
                       </StyledDetail>
                     </StyledProductInner>
                   </StyledProductOuter>

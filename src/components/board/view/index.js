@@ -34,10 +34,11 @@ const StyledImageProducts = styled.img`
 `;
 
 const StyledBoxProducts = styled.div`
+  overflow: hidden;
   display: table-cell;
   width: 7.2rem;
   height: 7.2rem;
-  padding: 0.6rem;
+  /* padding: 0.6rem; */
   border: 0.1rem solid #e3e3e3;
   border-radius: 2.4rem;
   box-sizing: border-box;
