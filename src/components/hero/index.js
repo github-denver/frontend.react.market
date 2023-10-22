@@ -13,6 +13,7 @@ import 'swiper/css/pagination';
 
 import { TfiTimer } from 'react-icons/tfi';
 import { LuBarChart } from 'react-icons/lu';
+import { Link } from 'react-router-dom';
 
 const StyledSystemMessage = styled(Text)`
   margin: 2.4rem 1.6rem 0;
@@ -42,7 +43,7 @@ const StyledSwiperSlide = styled(SwiperSlide)`
   }
   */
 
-  div {
+  .link_common {
     /* position: absolute;
     top: 0;
     right: 0;
@@ -50,7 +51,7 @@ const StyledSwiperSlide = styled(SwiperSlide)`
     z-index: 10;
     padding: 0 1.2rem 1.2rem; */
 
-    & + ${StyledSwiperImage} {
+    ${StyledSwiperImage} {
       margin-top: 1.6rem;
     }
   }
@@ -181,7 +182,7 @@ const HeroList = ({ attributes }) => {
     >
       {list.map((currentValue, index) => (
         <StyledSwiperSlide key={index}>
-          <div>
+          <Link to={`http://localhost:3000/board/${currentValue.category}/read/${currentValue.number}`} className="link_common">
             <strong>{currentValue.subject}</strong>
 
             <ul>
@@ -196,9 +197,8 @@ const HeroList = ({ attributes }) => {
                 <span className="text_local">{currentValue.time}</span>
               </li>
             </ul>
-          </div>
-
-          <StyledSwiperImage src={`http://localhost:5000/uploads/${currentValue.thumbnail}`} alt="" />
+            <StyledSwiperImage src={`http://localhost:5000/uploads/${currentValue.thumbnail}`} alt="" />
+          </Link>
         </StyledSwiperSlide>
       ))}
     </StyledSwiper>
