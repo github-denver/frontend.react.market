@@ -50,6 +50,7 @@ const StyledSwiperSlide = styled(SwiperSlide)`
     left: 0;
     z-index: 10;
     padding: 0 1.2rem 1.2rem; */
+    display: block;
 
     ${StyledSwiperImage} {
       margin-top: 1.6rem;
