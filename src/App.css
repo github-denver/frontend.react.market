@@ -164,7 +164,6 @@ input,
 select,
 textarea,
 button {
-  /* font-family: 'Sunflower', 'Noto Sans Korean', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial, Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif; */
   font-family: 'Noto Sans Korean', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial, Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
   line-height: 1.5;
   color: #282828;

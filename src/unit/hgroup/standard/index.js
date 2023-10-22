@@ -37,7 +37,7 @@ const StyledHeading = ({ children, level = 2, size }) => {
   return (
     <StyledTag as={tag} size={size}>
       {size ? (
-        <Link to="/" className="link_local">
+        <Link to="" className="link_local">
           {children}
         </Link>
       ) : (

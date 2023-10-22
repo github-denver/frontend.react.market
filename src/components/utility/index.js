@@ -341,7 +341,7 @@ const Utility = ({ attributes }) => {
           </StyledItemSecond> */}
         </StyledListSecond>
 
-        {user && (
+        {/* {user && (
           <StyledListThird>
             <StyledItemThird>
               <StyledLinkThird to="/">
@@ -349,7 +349,7 @@ const Utility = ({ attributes }) => {
               </StyledLinkThird>
             </StyledItemThird>
           </StyledListThird>
-        )}
+        )} */}
       </StyledInner>
 
       <Dimmed attributes={{ visible }} />

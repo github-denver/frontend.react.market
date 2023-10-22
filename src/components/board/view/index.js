@@ -264,7 +264,7 @@ const BoardView = ({ attributes }) => {
         attributes={{
           userNumber: read.userNumber,
           author: read.name,
-          message: '메시지를 입력해 주세요.',
+          message: '',
           event: [handleLogin, handleFollow, handleUnfollow],
           followings
         }}

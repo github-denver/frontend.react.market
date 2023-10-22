@@ -107,7 +107,7 @@ const StyledSwiper = styled(Swiper)`
     width: 0.8rem;
     height: 0.8rem;
     border-radius: 0.8rem;
-    background-color: #282828;
+    background-color: #fafafa;
     opacity: 1;
   }
 

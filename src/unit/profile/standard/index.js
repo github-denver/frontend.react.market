@@ -91,7 +91,7 @@ const Profile = ({ className, attributes }) => {
       <Half
         attributes={{
           first: (
-            <StyledLink to="/">
+            <StyledLink to="">
               {href ? <StyledImage src={`/uploads/${href}`} alt="" /> : <StyledImage src="/images/default_picture.png" alt="" />}
 
               <StyledBox>

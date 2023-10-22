@@ -88,13 +88,13 @@ const Profile = ({ className, attributes }) => {
 
   return (
     <StyledProfile className={className}>
-      <StyledLink to="/">
+      <StyledLink to="">
         <StyledImage src="/images/default_picture.png" alt="" />
       </StyledLink>
 
       <StyledInner>
         <StyledBox>
-          <StyledLink to="/">
+          <StyledLink to="">
             <span className="text_local">{author}</span>
           </StyledLink>
 
