@@ -56,8 +56,7 @@ const StyledNavigation = styled.nav`
           }
 
           ${StyledList} {
-            padding-left: 1.6rem;
-            padding-bottom: 1.6rem;
+            padding: 0 2rem;
             white-space: nowrap;
           }
 
@@ -69,32 +68,31 @@ const StyledNavigation = styled.nav`
             vertical-align: middle;
 
             &:last-child {
-              padding-right: 1.6rem;
+              padding-right: 2rem;
             }
           }
 
           ${StyledLink} {
             display: block;
-            padding: 0.6rem 0;
+            padding: 0.8rem 0;
             font-size: 1.2rem;
-            color: #577f67;
+            color: #282828;
 
             &:after {
               display: none;
               position: absolute;
-              top: 0.1rem;
-              right: 0.1rem;
-              bottom: 0.1rem;
-              left: 0.1rem;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
               z-index: 1;
-              border: 0.1rem solid #fcf7f4;
+              border-bottom: 0.2rem solid #282828;
               content: '';
             }
 
             &.active {
-              background-color: #577f67;
               font-weight: 500;
-              color: #fcf7f4;
+              color: #282828;
 
               &:after {
                 display: block;

@@ -34,7 +34,7 @@ const StyledDiscount = styled.em`
   margin-top: 0.4rem;
   font-weight: 700;
   font-size: 1.6rem;
-  color: #182c2b;
+  color: #282828;
 
   & + ${StyledPrice} {
     margin-left: 0.6rem;
@@ -46,14 +46,14 @@ const StyledName = styled.span`
 
   display: block;
   font-size: 1.4rem;
-  color: #182c2b;
+  color: #282828;
 `;
 
 const StyledBrand = styled.span`
   ${commonStyles}
 
   font-size: 1.2rem;
-  color: #182c2b;
+  color: #282828;
 `;
 
 const StyledDetail = styled.div`
@@ -133,7 +133,7 @@ const StyledText = styled.span`
   margin-left: 1rem;
   padding-left: 1rem;
   font-size: 1.6rem;
-  color: #182c2b;
+  color: #282828;
   vertical-align: middle;
 
   &:before {
@@ -143,7 +143,7 @@ const StyledText = styled.span`
     left: 0;
     z-index: 1;
     width: 0.1rem;
-    background-color: #182c2b;
+    background-color: #282828;
     vertical-align: middle;
     content: '';
   }
@@ -163,7 +163,7 @@ const StyledSubject = styled.strong`
   display: -webkit-box;
   font-weight: 500;
   font-size: 2.4rem;
-  color: #182c2b;
+  color: #282828;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 `;
@@ -212,7 +212,7 @@ const StyledIcon = styled.button`
   border-radius: 100%;
   font-size: 0.1rem;
   color: transparent;
-  background-color: #182c2b;
+  background-color: #282828;
   vertical-align: top;
   cursor: pointer;
 

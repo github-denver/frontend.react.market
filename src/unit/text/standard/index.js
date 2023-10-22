@@ -11,7 +11,7 @@ const StyledText = styled.div`
   }
 
   a {
-    color: #182c2b;
+    color: #282828;
   }
 `;
 

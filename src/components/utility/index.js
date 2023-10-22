@@ -33,8 +33,8 @@ const StyledListThird = styled.ul`
   overflow: auto;
   margin: -0.4rem 0 0 -0.4rem;
   padding: 2rem 0;
-  border-top: 0.1rem solid #eee;
-  border-bottom: 0.1rem solid #eee;
+  border-top: 0.1rem solid #fafafa;
+  border-bottom: 0.1rem solid #fafafa;
   white-space: nowrap;
 `;
 
@@ -60,8 +60,8 @@ const StyledItemSecond = styled.li`
 
 const StyledListSecond = styled.ul`
   padding: 2rem 0;
-  border-top: 0.1rem solid #eee;
-  border-bottom: 0.1rem solid #eee;
+  border-top: 0.1rem solid #fafafa;
+  border-bottom: 0.1rem solid #fafafa;
 
   & + ${StyledListThird} {
     border-top: 0 none;
@@ -88,7 +88,7 @@ const StyledClose = styled.button`
 
   svg {
     display: block;
-    color: #182c2b;
+    color: #282828;
   }
 `;
 

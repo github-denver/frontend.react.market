@@ -17,7 +17,7 @@ const commonStyles = css`
 
   svg {
     display: inline-block;
-    color: #182c2b;
+    color: #282828;
     vertical-align: middle;
   }
 `;
@@ -42,7 +42,7 @@ const StyledHamburger = styled.button`
   /* width: auto;
   padding: 0 2rem;
   border-radius: 0 2rem 2rem 0;
-  background-color: #182c2b;
+  background-color: #282828;
 
   svg {
     color: #fff;
@@ -56,7 +56,7 @@ const StyledLink = styled(Link)`
   font-weight: 500;
   font-size: 2rem;
   line-height: 2.6rem;
-  color: #182c2b;
+  color: #282828;
   vertical-align: middle;
 `;
 
@@ -89,7 +89,6 @@ const StyledHeader = styled.header`
           left: 0;
           height: 5rem;
           padding: 0 1.6rem;
-          /* border-bottom: 0.1rem solid #eee; */
           text-align: center;
         `};
 `;

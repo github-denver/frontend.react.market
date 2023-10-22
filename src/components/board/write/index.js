@@ -37,11 +37,11 @@ const StyledSelect = styled.select`
   height: 4.4rem;
   /* margin-top: 1rem; */
   padding: 0 1.4rem;
-  border: 0.1rem solid #182c2b;
+  border: 0.1rem solid #282828;
   border-radius: 0.8rem;
   box-sizing: border-box;
   font-size: 1.4rem;
-  color: #182c2b;
+  color: #282828;
   background-color: #fff;
 `;
 

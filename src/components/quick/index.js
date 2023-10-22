@@ -10,7 +10,7 @@ const StyledIcon = styled.img`
   z-index: 1;
   width: 100%;
   padding: 0.6rem;
-  border: 0.2rem solid #577f67;
+  border: 0.2rem solid #282828;
   border-radius: 100%;
   box-sizing: border-box;
 
@@ -48,7 +48,7 @@ const StyledLink = styled(Link)`
     padding: 0.4rem 0.2rem;
 
     font-size: 1.2rem;
-    color: #182c2b;
+    color: #282828;
     letter-spacing: -0.125rem;
   }
 `;

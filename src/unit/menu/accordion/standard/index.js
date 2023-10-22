@@ -26,7 +26,7 @@ const StyledButton = styled.button`
   .text_local {
     display: inline-block;
     font-weight: 500;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     vertical-align: middle;
   }
 
@@ -41,7 +41,7 @@ const StyledButton = styled.button`
   ${({ $active }) =>
     $active
       ? css`
-          background-color: #e5e6e0;
+          background-color: #fafafa;
 
           .text_local + svg {
             -webkit-transform: rotate(180deg);
@@ -61,12 +61,12 @@ const StyledButton = styled.button`
 const StyledLink = styled(NavLink)`
   display: block;
   padding: 0.95rem 4rem 0.95rem 4.6rem;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   border-radius: 0.8rem;
 
   &.active {
     font-weight: 500;
-    background-color: #e5e6e0;
+    background-color: #fafafa;
   }
 `;
 const StyledItem = styled.li`
@@ -91,8 +91,8 @@ const StyledItem = styled.li`
 const StyledList = styled.ul`
   margin-top: 2rem;
   padding: 2rem 0;
-  border-top: 0.1rem solid #eee;
-  border-bottom: 0.1rem solid #eee;
+  border-top: 0.1rem solid #fafafa;
+  border-bottom: 0.1rem solid #fafafa;
   box-sizing: border-box;
 
   & > ${StyledItem} > & {

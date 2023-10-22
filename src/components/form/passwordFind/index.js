@@ -8,7 +8,7 @@ import Layer from '@/unit/layer/standard';
 
 const StyledHyperLink = styled(HyperLink)`
   margin-top: 2rem;
-  color: #182c2b;
+  color: #282828;
 `;
 
 const StyledButton = styled(Button)`

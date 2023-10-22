@@ -12,7 +12,7 @@ const StyledText = styled.span`
   margin-left: 0.4rem;
   /* padding-left: 0.4rem; */
   font-size: 1.2rem;
-  color: #182c2b;
+  color: #282828;
   vertical-align: middle;
 
   svg {
@@ -41,7 +41,7 @@ const StyledSubject = styled.strong`
   margin-top: 0.8rem;
   font-weight: 500;
   font-size: 1.4rem;
-  color: #182c2b;
+  color: #282828;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 `;
