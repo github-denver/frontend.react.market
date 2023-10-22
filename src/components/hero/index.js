@@ -1,10 +1,9 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import Thumbnail from '@/unit/thumbnail/rectangle/list';
+import styled from 'styled-components';
 import Text from '@/unit/text/standard';
 
 // import Swiper core and required modules
-import { Navigation as SwiperNavigation, Pagination as SwiperPagination, A11y, EffectFade as SwiperEffectFade } from 'swiper';
+import { Navigation as SwiperNavigation, Pagination as SwiperPagination, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
@@ -153,14 +152,13 @@ const HeroList = ({ attributes }) => {
   return (
     <StyledSwiper
       // install Swiper modules
-      modules={[SwiperNavigation, SwiperPagination, A11y, SwiperEffectFade]}
+      modules={[SwiperNavigation, SwiperPagination, A11y]}
       navigation
       pagination={{ clickable: true }}
       spaceBetween={16}
       onSwiper={(swiper) => {}}
       onSlideChange={() => {}}
-      autoHeight={true}
-      effect="fade">
+      autoHeight={true}>
       {list.map((currentValue, index) => (
         <StyledSwiperSlide key={index}>
           <StyledSwiperLink to={`http://localhost:3000/board/${currentValue.category}/read/${currentValue.number}`} className="link_common">
