@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import Button from '@/unit/button/standard';
 import { SlPlus } from 'react-icons/sl';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { Link } from 'react-router-dom';
 
 const commonStyles = css`
   display: inline-block;
@@ -12,12 +13,6 @@ const commonStyles = css`
   &:first-child {
     margin-top: 0;
   }
-`;
-
-const StyledButton = styled(Button)`
-  display: block;
-  margin-top: 1.2rem;
-  font-size: 1.4rem;
 `;
 
 const StyledPrice = styled.span`
@@ -65,12 +60,15 @@ const StyledDetail = styled.div`
 const StyledProductImage = styled.img`
   float: left;
   width: 8.4rem;
+  width: 23.333vw;
   max-width: none;
   height: 8.4rem;
+  height: 23.333vw;
 `;
 
 const StyledProductInner = styled.div`
   min-width: 25.6rem;
+  min-width: 71.111vw;
 
   &:after {
     display: block;
@@ -79,9 +77,12 @@ const StyledProductInner = styled.div`
   }
 `;
 
-const StyledProductOuter = styled.div`
-  padding: 1.2rem;
+const StyledProductOuter = styled(Link)`
+  display: block;
+  padding: 0.8rem;
+  padding: 2.222vw;
   border-radius: 0.8rem;
+  border-radius: 2.222vw;
   background-color: #fff;
 `;
 
@@ -175,6 +176,7 @@ const StyledBox = styled.div`
   left: 0;
   z-index: 1;
   padding: 1.2rem;
+  padding: 3.333vw;
 `;
 
 const StyledShadow = styled.div`
@@ -283,6 +285,10 @@ const StyledThumbnail = styled.div`
   overflow: hidden;
   position: relative;
 
+  [class*='lazy-load-image'] {
+    width: 100%;
+  }
+
   ${({ $radius }) =>
     $radius &&
     css`
@@ -338,8 +344,9 @@ const Thumbnail = ({ className, attributes }) => {
               </StyledIcon>
 
               {(isHovering === index || showProductId === currentValue.productId) && (
-                <StyledProductLayer style={{ transform: `translate(-${(currentValue.x * 100) / imageProduct.current.clientWidth}vw, 0)` }} ref={layerProduct} $isBottom={isBottom}>
-                  <StyledProductOuter>
+                // <StyledProductLayer style={{ transform: `translate(-${(currentValue.x * 100) / imageProduct.current.clientWidth}%, 0)` }} ref={layerProduct} $isBottom={isBottom}>
+                <StyledProductLayer style={{ transform: `translate(-${currentValue.x}%, 0)` }} ref={layerProduct} $isBottom={isBottom}>
+                  <StyledProductOuter to={products[index].url} target="_blank">
                     <StyledProductInner>
                       <StyledProductImage src={`/uploads/products/${products[index].thumbnail}`} alt={products[index].name} />
 
@@ -350,16 +357,6 @@ const Thumbnail = ({ className, attributes }) => {
                         <StyledPrice>{products[index].price}</StyledPrice>
                       </StyledDetail>
                     </StyledProductInner>
-
-                    <StyledButton
-                      attributes={{
-                        type: 'link',
-                        href: products[index].url,
-                        fill: true,
-                        target: '_blank'
-                      }}>
-                      <span className="text_local">구매2</span>
-                    </StyledButton>
                   </StyledProductOuter>
                 </StyledProductLayer>
               )}
