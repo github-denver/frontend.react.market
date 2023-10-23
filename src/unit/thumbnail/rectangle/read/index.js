@@ -340,9 +340,7 @@ const Thumbnail = ({ className, attributes }) => {
   }, [showProductId]);
 
   const comma = (str) => {
-    console.log('str: ', str);
-    str = String(str);
-    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+    return String(str).replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
   };
 
   return (

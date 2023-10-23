@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { css, styled } from 'styled-components';
+import { useLocation, useParams } from 'react-router-dom';
 
 const StyledButton = styled.button`
   display: block;
@@ -58,7 +59,7 @@ const StyledButton = styled.button`
         `}
 `;
 
-const StyledLink = styled(NavLink)`
+const StyledLink = styled(Link)`
   display: block;
   padding: 0.95rem 4rem 0.95rem 4.6rem;
   font-size: 1.2rem;
@@ -139,6 +140,10 @@ const StyledList = styled.ul`
 const Accordion = ({ className, items, closeOthersOnClick }) => {
   const [activeIndexes, setActiveIndexes] = useState([]);
 
+  const { category, number } = useParams();
+
+  let location = useLocation();
+
   const onItemClick = (index) => {
     setActiveIndexes((prevIndexes) => {
       if (closeOthersOnClick) {
@@ -168,7 +173,7 @@ const Accordion = ({ className, items, closeOthersOnClick }) => {
           ) : (
             <>
               {item.to ? (
-                <StyledLink to={item.to} className={'link_accordion'}>
+                <StyledLink to={item.to} className={`link_accordion } `}>
                   {activeIndexes.some((i) => i === index)}
                   {item.icon}
                   <span className="text_local">{item.title}</span>

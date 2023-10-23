@@ -1,11 +1,14 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const StyledLink = styled(NavLink)`
+import { useLocation, useParams } from 'react-router-dom';
+
+const StyledLink = styled(Link)`
   position: relative;
 
-  &.active {
+  &.active,
+  &.current {
   }
 `;
 
@@ -90,7 +93,8 @@ const StyledNavigation = styled.nav`
               content: '';
             }
 
-            &.active {
+            &.active,
+            &.current {
               font-weight: 500;
               color: #282828;
 
@@ -105,24 +109,36 @@ const StyledNavigation = styled.nav`
 const Navigation = ({ className, attributes }) => {
   const { direction } = attributes || {};
 
+  const { category, number } = useParams();
+
+  let location = useLocation();
+
   return (
     <StyledNavigation className={className} direction={direction}>
       <StyledInner>
         <StyledList>
           <StyledItem>
-            <StyledLink to="/">홈</StyledLink>
+            <StyledLink to="/" className={typeof category === 'undefined' && 'active'}>
+              홈
+            </StyledLink>
           </StyledItem>
 
           <StyledItem>
-            <StyledLink to="/board/stew/list/1">찌개</StyledLink>
+            <StyledLink to="/board/stew/list/1" className={category === 'stew' && 'active'}>
+              찌개
+            </StyledLink>
           </StyledItem>
 
           <StyledItem>
-            <StyledLink to="/board/noodle/list/1">면</StyledLink>
+            <StyledLink to="/board/noodle/list/1" className={category === 'noodle' && 'active'}>
+              면
+            </StyledLink>
           </StyledItem>
 
           <StyledItem>
-            <StyledLink to="/board/curry/list/1">카레</StyledLink>
+            <StyledLink to="/board/curry/list/1" className={category === 'curry' && 'active'}>
+              카레
+            </StyledLink>
           </StyledItem>
 
           {/* <StyledItem>

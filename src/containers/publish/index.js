@@ -39,30 +39,12 @@ const Wrapper = ({ className, attributes }) => {
   const number = location.pathname.split('/').splice(-1)[0];
 
   const publish = async () => {
-    console.log('read: ', read);
-    console.log('fakeFields: ', fakeFields);
-    console.log('fakeFields.subjectField: ', fakeFields.subjectField);
-    console.log('!fakeFields.subjectField: ', !fakeFields.subjectField);
-
     const categoryValue = !category ? read?.category : category;
-    console.log('categoryValue: ', categoryValue);
-
     const levelValue = !level ? read?.level : level;
-    console.log('levelValue: ', levelValue);
-
     const timeValue = /^(?:(?:[0-1][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])|(?:[0-9]+)$/.test(time) ? time : read?.time;
-    console.log('timeValue: ', timeValue);
-
-    console.log('subject: ', subject);
-    console.log('!subject: ', !subject);
     const subjectValue = !subject ? read?.subject : subject;
-    console.log('subjectValue: ', subjectValue);
-
     const contentValue = !contents ? read?.contents : contents;
-    console.log('contentValue: ', contentValue);
-
     const thumbnailValue = !thumbnail ? read?.thumbnail : thumbnail.files;
-    console.log('thumbnailValue: ', thumbnailValue);
 
     const formData = new FormData();
     formData.append('category', categoryValue);
@@ -72,7 +54,7 @@ const Wrapper = ({ className, attributes }) => {
     formData.append('content', contentValue);
     formData.append('thumbnail', thumbnailValue);
 
-    if (!fakeFields.subjectField && !subject) {
+    if (!fakeFields?.subjectField && !subject) {
       setErrorMessage('제목을 입력해 주세요.');
 
       setVisibleLayer(true);
@@ -88,18 +70,16 @@ const Wrapper = ({ className, attributes }) => {
       return;
     }
 
-    console.log('tags: ', tags);
     if (tags.length > 0) formData.append('tags', JSON.stringify(tags));
 
-    console.log('owner: ', owner);
     if (owner) {
       await dispatch(postModify({ category: categoryValue, number, payload: formData }));
 
-      // navigate(`/board/${categoryValue}/read/${number}`);
+      navigate(`/board/${categoryValue}/read/${number}`);
     } else {
       await dispatch(postWrite({ category: categoryValue, payload: formData }));
 
-      // navigate(`/board/${categoryValue}/list/1`);
+      navigate(`/board/${categoryValue}/list/1`);
     }
   };
 

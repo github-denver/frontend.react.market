@@ -11,7 +11,7 @@ const StyledIcon = styled.img`
   width: 100%;
   height: 100%;
   padding: 0.6rem;
-  border: 0.1rem solid #282828;
+  border: 0.2rem solid #282828;
   border-radius: 100%;
   box-sizing: border-box;
 

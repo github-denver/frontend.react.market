@@ -6,7 +6,7 @@ import Navigation from '@/components/navigation';
 import BoardModify from '@/containers/board/modify';
 import Footer from '@/components/footer';
 
-const Modify = () => {
+const Modify = (props) => {
   const { category } = useParams();
 
   return (
@@ -27,6 +27,8 @@ const Modify = () => {
         />
 
         <BoardModify attributes={{ category: `${category}` }} />
+
+        {props.children}
       </section>
 
       <Footer />

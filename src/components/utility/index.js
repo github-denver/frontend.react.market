@@ -205,6 +205,7 @@ const Utility = ({ attributes }) => {
             {
               icon: <LuHome size={24} />,
               title: '홈',
+              category: ['/'],
               to: '/',
               arrow: null,
               subItems: []
@@ -212,6 +213,7 @@ const Utility = ({ attributes }) => {
             {
               icon: <TbChefHat size={24} />,
               title: '레시피',
+              category: ['stew', 'noodle', 'curry'],
               arrow: <SlArrowDown size={12} />,
               subItems: [
                 {
