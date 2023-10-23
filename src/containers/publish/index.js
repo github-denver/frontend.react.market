@@ -39,19 +39,25 @@ const Wrapper = ({ className, attributes }) => {
   const number = location.pathname.split('/').splice(-1)[0];
 
   const publish = async () => {
+    console.log('read: ', read);
+
     const categoryValue = !category ? read?.category : category;
+    console.log('categoryValue: ', categoryValue);
+
     const levelValue = !level ? read?.level : level;
+    console.log('levelValue: ', levelValue);
+
     const timeValue = /^(?:(?:[0-1][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])|(?:[0-9]+)$/.test(time) ? time : read?.time;
+    console.log('timeValue: ', timeValue);
+
     const subjectValue = !subject ? read?.subject : subject;
+    console.log('subjectValue: ', subjectValue);
+
     const contentValue = !contents ? read?.contents : contents;
+    console.log('contentValue: ', contentValue);
 
-    if (![categoryValue, levelValue, timeValue, subjectValue, contentValue].every(Boolean)) {
-      setErrorMessage('필수 정보를 입력해 주세요.');
-
-      setVisibleLayer(true);
-
-      return;
-    }
+    const thumbnailValue = !thumbnail ? read?.thumbnail : thumbnail.files;
+    console.log('thumbnailValue: ', thumbnailValue);
 
     const formData = new FormData();
     formData.append('category', categoryValue);
@@ -59,11 +65,20 @@ const Wrapper = ({ className, attributes }) => {
     formData.append('time', timeValue);
     formData.append('subject', subjectValue);
     formData.append('content', contentValue);
+    formData.append('thumbnail', thumbnailValue);
 
-    if (thumbnail) formData.append('thumbnail', thumbnail.files);
+    if (![categoryValue, levelValue, timeValue, subjectValue, contentValue, thumbnailValue].every(Boolean)) {
+      setErrorMessage('필수 정보를 입력해 주세요.');
 
+      setVisibleLayer(true);
+
+      return;
+    }
+
+    console.log('tags: ', tags);
     if (tags.length > 0) formData.append('tags', JSON.stringify(tags));
 
+    console.log('owner: ', owner);
     if (owner) {
       await dispatch(postModify({ category: categoryValue, number, payload: formData }));
 

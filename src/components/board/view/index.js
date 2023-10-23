@@ -39,7 +39,7 @@ const StyledBoxProducts = styled.div`
   width: 7.2rem;
   height: 7.2rem;
   /* padding: 0.6rem; */
-  border: 0.1rem solid #e3e3e3;
+  border: 0.1rem solid #f1f1f1;
   border-radius: 2.4rem;
   box-sizing: border-box;
   vertical-align: middle;

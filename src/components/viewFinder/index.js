@@ -7,6 +7,8 @@ import Cell from '@/unit/cell/standard';
 import { insertTag } from '@/modules/form';
 import { useDispatch } from 'react-redux';
 import { TbPhoto } from 'react-icons/tb';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { Link } from 'react-router-dom';
 
 const commonStyles = css`
   display: inline-block;
@@ -16,12 +18,6 @@ const commonStyles = css`
   &:first-child {
     margin-top: 0;
   }
-`;
-
-const StyledButton2 = styled(Button)`
-  display: block;
-  margin-top: 1.2rem;
-  font-size: 1.4rem;
 `;
 
 const StyledPrice = styled.span`
@@ -69,12 +65,15 @@ const StyledDetail = styled.div`
 const StyledProductImage = styled.img`
   float: left;
   width: 8.4rem;
+  width: 23.333vw;
   max-width: none;
   height: 8.4rem;
+  height: 23.333vw;
 `;
 
 const StyledProductInner = styled.div`
   min-width: 25.6rem;
+  min-width: 71.111vw;
 
   &:after {
     display: block;
@@ -83,25 +82,28 @@ const StyledProductInner = styled.div`
   }
 `;
 
-const StyledProductOuter = styled.div`
-  padding: 1.2rem;
+const StyledProductOuter = styled(Link)`
+  display: block;
+  padding: 0.8rem;
+  padding: 2.222vw;
   border-radius: 0.8rem;
+  border-radius: 2.222vw;
   background-color: #fff;
 `;
 
 const StyledProductLayer = styled.div`
   position: absolute;
-  top: 4rem;
   left: 0;
-  z-index: 10;
+  z-index: -1;
+  margin-bottom: -0.1rem;
+  margin-bottom: -0.278vw;
+  /* border: 0.1rem solid #f1f1f1; */
 
   &:before {
     position: absolute;
-    top: -2rem;
     right: 0;
     left: 0;
     z-index: 1;
-    padding-top: 2rem;
     content: '';
   }
 
@@ -110,6 +112,29 @@ const StyledProductLayer = styled.div`
     clear: both;
     content: '';
   }
+
+  ${({ $isBottom }) =>
+    $isBottom
+      ? css`
+          bottom: 4rem;
+          bottom: 11.111vw;
+          z-index: 10;
+
+          &:before {
+            bottom: -2rem;
+            padding-bottom: 2rem;
+          }
+        `
+      : css`
+          top: 4rem;
+          top: 11.111vw;
+          z-index: 10;
+
+          &:before {
+            top: -2rem;
+            padding-top: 2rem;
+          }
+        `}
 `;
 
 const StyledText = styled.span`
@@ -160,6 +185,7 @@ const StyledBox = styled.div`
   left: 0;
   z-index: 1;
   padding: 1.2rem;
+  padding: 3.333vw;
 `;
 
 const StyledShadow = styled.div`
@@ -180,7 +206,8 @@ const StyledShadow = styled.div`
   }
 `;
 
-const StyledImage = styled.img`
+// const StyledImage = styled.img`
+const StyledImage = styled(LazyLoadImage)`
   overflow: hidden;
   width: 100%;
   border-radius: 0;
@@ -189,26 +216,33 @@ const StyledImage = styled.img`
 const StyledIcon = styled.button`
   display: inline-block;
   width: 2rem;
+  width: 5.556vw;
   height: 2rem;
+  height: 5.556vw;
   border: 0 none;
   border-radius: 100%;
   font-size: 0.1rem;
   color: transparent;
   background-color: #282828;
   vertical-align: top;
-  // cursor: pointer;
+  cursor: pointer;
 
   &:before {
     position: absolute;
     top: 2rem;
+    top: 5.556vw;
     left: 0;
     z-index: 1;
     width: 0;
     height: 0;
     border-top: 1rem solid transparent;
+    border-top: 2.778vw solid transparent;
     border-right: 1rem solid transparent;
+    border-right: 2.778vw solid transparent;
     border-bottom: 1rem solid #fff;
+    border-bottom: 2.778vw solid #fff;
     border-left: 1rem solid transparent;
+    border-left: 2.778vw solid transparent;
     visibility: hidden;
     content: '';
   }
@@ -228,8 +262,28 @@ const StyledIcon = styled.button`
     bottom: 0;
     left: 0;
     z-index: 1;
+    width: 2rem;
+    width: 5.556vw;
+    height: 2rem;
+    height: 5.556vw;
     color: #fff;
   }
+
+  ${({ $isBottom }) =>
+    $isBottom
+      ? css`
+          &:before {
+            top: auto;
+            bottom: 2rem;
+            bottom: 5.556vw;
+            -webkit-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -o-transform: rotate(180deg);
+            transform: rotate(180deg);
+          }
+        `
+      : css``}
 `;
 
 const StyledHashtag = styled.div`
@@ -342,10 +396,13 @@ const StyledGuide = styled.div`
 `;
 
 const StyledViewFinder = styled.div`
+  overflow: hidden;
   position: relative;
-  /* width: 36rem;
-  margin: 0 auto; */
-  background-color: #fff;
+  z-index: 1;
+
+  [class*='lazy-load-image'] {
+    width: 100%;
+  }
 
   .button_hashtag {
     width: 2rem;
@@ -518,6 +575,27 @@ const ViewFinder = ({ children, className, attributes }) => {
     setDraggingButton(null);
   };
 
+  const layerProduct = useRef(null);
+  const [isBottom, setIsBottom] = useState(false);
+
+  const handleHoverHashtag = (index) => {
+    setIsBottom(() => false);
+
+    if (imageProduct.current) {
+      setTimeout(() => {
+        if (layerProduct.current && layerProduct.current.getBoundingClientRect().top > imageProduct.current.getBoundingClientRect().height) setIsBottom(() => true);
+      }, 1);
+    }
+
+    setIsHovering(index);
+  };
+
+  const comma = (str) => {
+    console.log('str: ', str);
+    str = String(str);
+    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+  };
+
   useEffect(() => {
     dispatch(insertTag({ form: type, value: buttons }));
   }, [dispatch, type, buttons]);
@@ -532,6 +610,8 @@ const ViewFinder = ({ children, className, attributes }) => {
       $image={src || url}
       ref={containerRef} // 부모 컨테이너의 ref를 연결
     >
+      <p className="screen_out">components → viewFinder → index.js</p>
+
       {src ? (
         <StyledThumbnail src={src} alt="1" ref={personInfo} onClick={createButton ? addPointerButton : null} />
       ) : (
@@ -543,16 +623,15 @@ const ViewFinder = ({ children, className, attributes }) => {
               {products.length > 0 &&
                 tags.map((currentValue, index) => {
                   return (
-                    // <StyledHashtag key={index} style={{ top: currentValue.y + 12, left: currentValue.x + 12, zIndex: currentValue.index }} onMouseOver={() => setIsHovering(index)} onMouseOut={() => setIsHovering(null)}>
-                    <StyledHashtag key={index} style={{ top: currentValue.y + '%', left: currentValue.x + '%', zIndex: currentValue.index }} onMouseEnter={() => setIsHovering(index)} onMouseLeave={() => setIsHovering(null)}>
-                      <StyledIcon $arrow={isHovering === index || showProductId === currentValue.productId ? true : false}>
-                        <em>{currentValue.id}</em>
+                    <StyledHashtag key={index} style={{ top: currentValue.y + '%', left: currentValue.x + '%', zIndex: currentValue.index }} onMouseEnter={() => handleHoverHashtag(index)} onMouseLeave={() => setIsHovering(null)}>
+                      <StyledIcon $arrow={isHovering === index || showProductId === currentValue.productId ? true : false} $isBottom={isBottom}>
+                        <em className="emph_hashtag">{currentValue.id}</em>
 
                         <SlPlus size={20} />
                       </StyledIcon>
 
                       {(isHovering === index || showProductId === currentValue.productId) && (
-                        <StyledProductLayer style={{ transform: `translate(-${(currentValue.x * 100) / imageProduct.current.clientWidth}vw, 0)` }}>
+                        <StyledProductLayer style={{ transform: `translate(-${currentValue.x}%, 0)` }} $isBottom={isBottom} ref={layerProduct}>
                           <StyledProductOuter>
                             <StyledProductInner>
                               <StyledProductImage src={`/uploads/products/${products[index].thumbnail}`} alt={products[index].name} />
@@ -560,20 +639,10 @@ const ViewFinder = ({ children, className, attributes }) => {
                               <StyledDetail>
                                 <StyledBrand>{products[index].brand}</StyledBrand>
                                 <StyledName>{products[index].name}</StyledName>
-                                <StyledDiscount>{products[index].discount}%</StyledDiscount>
-                                <StyledPrice>{products[index].price}</StyledPrice>
+                                {parseInt(products[index].discount) !== 0 && <StyledDiscount>{products[index].discount}%</StyledDiscount>}
+                                <StyledPrice>{comma(products[index].price)}원</StyledPrice>
                               </StyledDetail>
                             </StyledProductInner>
-
-                            <StyledButton2
-                              attributes={{
-                                type: 'link',
-                                href: products[index].url,
-                                fill: true,
-                                target: '_blank'
-                              }}>
-                              <span className="text_local">구매1</span>
-                            </StyledButton2>
                           </StyledProductOuter>
                         </StyledProductLayer>
                       )}

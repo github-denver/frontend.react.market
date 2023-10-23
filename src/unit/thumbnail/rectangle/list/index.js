@@ -120,6 +120,8 @@ const Thumbnail = ({ className, attributes }) => {
 
   return (
     <StyledThumbnail className={className}>
+      <p className="screen_out">thumbnail → rectangle → list → index.js</p>
+
       <StyledLink to={href}>
         <StyledFrame $flicking={flicking} $grid={grid} $square={square} $radius={radius}>
           <StyledImage

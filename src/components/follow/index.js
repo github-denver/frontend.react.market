@@ -116,8 +116,8 @@ const Follow = ({ attributes }) => {
           <StyledAuthor>{user?.name}</StyledAuthor>
 
           <StyledInnerBox>
-            <StyledText>팔로워 0</StyledText>
-            <StyledText>팔로잉 0</StyledText>
+            <StyledText>팔로워 {followers.length}</StyledText>
+            <StyledText>팔로잉 {followings.length}</StyledText>
           </StyledInnerBox>
 
           <StyledLink to="/member/profile">개인정보 수정</StyledLink>

@@ -7,11 +7,12 @@ import Read from '@/components/board/view';
 import { postDelete } from '@/library/gateway/board';
 import { follow, unfollow } from '@/library/gateway/board';
 import { following } from '@/modules/follow';
-import { commentList } from '@/modules/comment';
+import { commentList, commentInitial } from '@/modules/comment';
 import { changeField } from '@/modules/form';
 import { commentWrite } from '@/modules/comment';
 import { commentRemove } from '@/library/gateway/comment';
 import { commentModify } from '@/library/gateway/comment';
+import { formInitial } from '@/modules/form';
 
 const Containers = ({ attributes }) => {
   const { category } = attributes || {};
@@ -110,6 +111,8 @@ const Containers = ({ attributes }) => {
     dispatch(commentWrite({ postId, parentCommentId, category, content }));
 
     dispatch(commentList({ postId: read.number, category }));
+
+    dispatch(formInitial());
   };
 
   const handleCommentModifyVisible = (payload) => {
@@ -153,6 +156,7 @@ const Containers = ({ attributes }) => {
   }, [dispatch, user, read]);
 
   useEffect(() => {
+    dispatch(formInitial());
     dispatch(post({ category, number }));
     dispatch(commentList({ postId: number, category }));
 

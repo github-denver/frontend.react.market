@@ -33,8 +33,8 @@ const StyledListThird = styled.ul`
   overflow: auto;
   margin: -0.4rem 0 0 -0.4rem;
   padding: 2rem 0;
-  border-top: 0.1rem solid #fafafa;
-  border-bottom: 0.1rem solid #fafafa;
+  border-top: 0.1rem solid #f1f1f1;
+  border-bottom: 0.1rem solid #f1f1f1;
   white-space: nowrap;
 `;
 
@@ -60,8 +60,8 @@ const StyledItemSecond = styled.li`
 
 const StyledListSecond = styled.ul`
   padding: 2rem 0;
-  border-top: 0.1rem solid #fafafa;
-  border-bottom: 0.1rem solid #fafafa;
+  border-top: 0.1rem solid #f1f1f1;
+  border-bottom: 0.1rem solid #f1f1f1;
 
   & + ${StyledListThird} {
     border-top: 0 none;
@@ -293,11 +293,11 @@ const Utility = ({ attributes }) => {
         />
 
         <StyledListSecond>
-          <StyledItemSecond>
+          {/* <StyledItemSecond>
             <StyledLinkSecond to="/member/follow">
               <span className="text_local">마이페이지</span>
             </StyledLinkSecond>
-          </StyledItemSecond>
+          </StyledItemSecond> */}
 
           <StyledItemSecond>
             <StyledLinkSecond to="/board/write">

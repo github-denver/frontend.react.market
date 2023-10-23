@@ -1,9 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import Button from '@/unit/button/standard';
 import { SlPlus } from 'react-icons/sl';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 const commonStyles = css`
   display: inline-block;
@@ -92,6 +93,7 @@ const StyledProductLayer = styled.div`
   z-index: -1;
   margin-bottom: -0.1rem;
   margin-bottom: -0.278vw;
+  /* border: 0.1rem solid #f1f1f1; */
 
   &:before {
     position: absolute;
@@ -320,15 +322,33 @@ const Thumbnail = ({ className, attributes }) => {
 
     if (imageProduct.current) {
       setTimeout(() => {
-        if (layerProduct.current.getBoundingClientRect().top > imageProduct.current.getBoundingClientRect().height) setIsBottom(() => true);
+        if (layerProduct.current && layerProduct.current.getBoundingClientRect().top > imageProduct.current.getBoundingClientRect().height) setIsBottom(() => true);
       }, 1);
     }
 
     setIsHovering(index);
   };
 
+  useEffect(() => {
+    setIsBottom(() => false);
+
+    if (imageProduct.current) {
+      setTimeout(() => {
+        if (layerProduct.current && layerProduct.current.getBoundingClientRect().top > imageProduct.current.getBoundingClientRect().height) setIsBottom(() => true);
+      }, 1);
+    }
+  }, [showProductId]);
+
+  const comma = (str) => {
+    console.log('str: ', str);
+    str = String(str);
+    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+  };
+
   return (
     <StyledThumbnail className={className} $radius={radius}>
+      <p className="screen_out">thumbnail → rectangle → read → index.js</p>
+
       <div ref={imageProduct}>
         <StyledImage src={`/uploads/${image}`} alt="" effect="blur" />
       </div>
@@ -338,7 +358,7 @@ const Thumbnail = ({ className, attributes }) => {
           return (
             <StyledHashtag key={index} style={{ top: currentValue.y + '%', left: currentValue.x + '%', zIndex: currentValue.index }} onMouseEnter={() => handleHoverHashtag(index)} onMouseLeave={() => setIsHovering(null)}>
               <StyledIcon $arrow={isHovering === index || showProductId === currentValue.productId ? true : false} $isBottom={isBottom}>
-                {currentValue.id}
+                <em className="emph_hashtag">{currentValue.id}</em>
 
                 <SlPlus size={18} />
               </StyledIcon>
@@ -353,7 +373,7 @@ const Thumbnail = ({ className, attributes }) => {
                         <StyledBrand>{products[index].brand}</StyledBrand>
                         <StyledName>{products[index].name}</StyledName>
                         {parseInt(products[index].discount) !== 0 && <StyledDiscount>{products[index].discount}%</StyledDiscount>}
-                        <StyledPrice>{products[index].price}원</StyledPrice>
+                        <StyledPrice>{comma(products[index].price)}원</StyledPrice>
                       </StyledDetail>
                     </StyledProductInner>
                   </StyledProductOuter>

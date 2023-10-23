@@ -30,12 +30,12 @@ const StyledSwiperLink = styled(Link)`
   display: block;
 
   ${StyledSwiperImage} {
-    margin-top: 1.6rem;
+    margin-top: 1.2rem;
   }
 `;
 
 const StyledSwiperSlide = styled(SwiperSlide)`
-  padding: 2rem;
+  padding: 1.2rem 2rem 2rem;
   box-sizing: border-box;
   background-color: #fff;
 
@@ -107,7 +107,7 @@ const StyledSwiper = styled(Swiper)`
     width: 0.8rem;
     height: 0.8rem;
     border-radius: 0.8rem;
-    background-color: #fafafa;
+    background-color: #f1f1f1;
     opacity: 1;
   }
 

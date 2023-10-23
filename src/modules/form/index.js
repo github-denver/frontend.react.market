@@ -84,6 +84,7 @@ const formSlice = createSlice({
       state.login = initialState.login;
       state.passwordModify = initialState.passwordModify;
       state.postWrite = initialState.postWrite;
+      state.comment = initialState.comment;
       state.error = null;
     }
   },

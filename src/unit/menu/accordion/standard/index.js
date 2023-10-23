@@ -41,7 +41,7 @@ const StyledButton = styled.button`
   ${({ $active }) =>
     $active
       ? css`
-          background-color: #fafafa;
+          /* background-color: #f1f1f1; */
 
           .text_local + svg {
             -webkit-transform: rotate(180deg);
@@ -94,7 +94,7 @@ const StyledLink = styled(NavLink)`
 
   &.active {
     font-weight: 500;
-    background-color: #fafafa;
+    background-color: #f1f1f1;
   }
 `;
 
@@ -120,8 +120,8 @@ const StyledItem = styled.li`
 const StyledList = styled.ul`
   margin-top: 2rem;
   padding: 2rem 0;
-  border-top: 0.1rem solid #fafafa;
-  border-bottom: 0.1rem solid #fafafa;
+  border-top: 0.1rem solid #f1f1f1;
+  border-bottom: 0.1rem solid #f1f1f1;
   box-sizing: border-box;
 
   & > ${StyledItem} > & {
@@ -159,6 +159,8 @@ const Accordion = ({ className, items, closeOthersOnClick }) => {
 
   return (
     <StyledList className={className}>
+      <p className="screen_out">unit → menu → accordion → standard</p>
+
       {items?.map((item, index) => (
         <StyledItem key={index} className={item?.className}>
           {item.link ? (
