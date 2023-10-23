@@ -45,7 +45,7 @@ const Page = () => (
 
       <Quick attributes={{ href: '/' }} />
 
-      <StyledBoundary />
+      {/* <StyledBoundary /> */}
 
       <StyledHgroup
         attributes={{
@@ -55,6 +55,7 @@ const Page = () => (
         }}
       />
       <Stew attributes={{ flicking: true, square: true, category: 'stew' }} />
+      {/* <Stew attributes={{ grid: true, square: true, radius: true, category: 'stew' }} /> */}
 
       <StyledHgroup
         attributes={{

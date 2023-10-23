@@ -3,6 +3,10 @@ import styled, { css } from 'styled-components';
 import Thumbnail from '@/unit/thumbnail/rectangle/list';
 import Text from '@/unit/text/standard';
 
+const StyledThumbnail = styled(Thumbnail)`
+  border-radius: 0.8rem;
+`;
+
 const StyledSystemMessage = styled(Text)`
   margin: 2.4rem 1.6rem 0;
   font-size: 1.2rem;
@@ -32,7 +36,7 @@ const StyledList = styled.ul`
 `;
 
 const CardList = ({ attributes }) => {
-  const { grid, square, list, error, loading } = attributes || {};
+  const { grid, radius, square, list, error, loading } = attributes || {};
 
   if (error) {
     if (error.response && error.response.status === 404) {
@@ -80,7 +84,7 @@ const CardList = ({ attributes }) => {
     <StyledList>
       {list.map((currentValue, index) => (
         <StyledItem key={index} $grid={grid}>
-          <Thumbnail attributes={{ grid, square, href: `/board/${currentValue.category}/read/${currentValue.number}`, image: currentValue.thumbnail, subject: currentValue.subject, content: currentValue.content, level: currentValue.level, time: currentValue.time, author: currentValue.name, count: currentValue.count }} />
+          <StyledThumbnail attributes={{ grid, radius, square, href: `/board/${currentValue.category}/read/${currentValue.number}`, image: currentValue.thumbnail, subject: currentValue.subject, content: currentValue.content, level: currentValue.level, time: currentValue.time, author: currentValue.name, count: currentValue.count }} />
         </StyledItem>
       ))}
     </StyledList>

@@ -3,10 +3,11 @@ import React, { useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { stew, stewInitial } from '@/modules/stew';
+// import FlickingList from '@/components/card/list';
 import FlickingList from '@/components/flicking/list';
 
 const Stew = ({ attributes }) => {
-  const { flicking, grid, square, category } = attributes || {};
+  const { flicking, radius, grid, square, category } = attributes || {};
 
   const { user, list, pagination, error, loading } = useSelector(
     ({ user, stew, loading }) => ({
@@ -55,6 +56,7 @@ const Stew = ({ attributes }) => {
       attributes={{
         flicking,
         grid,
+        // radius,
         square,
         category,
         user,
