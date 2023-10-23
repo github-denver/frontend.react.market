@@ -3,9 +3,9 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { changeField, changeThumbnail, formInitial } from '@/modules/form';
 import { post, postInitial } from '@/modules/board/view';
-import Write from '@/components/board/write';
+import Modify from '@/components/board/modify';
 import Quill from 'quill';
-import { postWriteInitial } from '@/modules/board/write';
+import { postModifyInitial } from '@/modules/board/modify';
 
 const Containers = ({ attributes }) => {
   const { category } = attributes || {};
@@ -17,23 +17,26 @@ const Containers = ({ attributes }) => {
     levelField: true,
     hourField: true,
     minuteField: true,
-    secondField: true
+    secondField: true,
+
+    subjectField: true
   });
 
   const [cookingTime, setCookingTime] = useState({
-    hour: '00',
-    minute: '00',
-    second: '00'
+    hour: '',
+    minute: '',
+    second: ''
   });
 
   const [hour, setHour] = useState([]);
   const [minute, setMinute] = useState([]);
   const [second, setSecond] = useState([]);
 
-  const { user, form, error, loading } = useSelector(
+  const { user, form, read, error, loading } = useSelector(
     ({ form, user, post, loading }) => ({
       user: user.user?.user2,
-      form: form.postWrite,
+      form: form.postModify,
+      read: post.data?.result[0],
       error: post.error,
       loading: loading['POST']
     }),
@@ -61,7 +64,7 @@ const Containers = ({ attributes }) => {
   };
 
   const handleChangeSubject = (event) => {
-    field({ form: 'postWrite', key: 'subject', value: event.target.value });
+    field({ form: 'postModify', key: 'subject', value: event.target.value });
   };
 
   const handleChangeThumbnail = (event) => {
@@ -72,7 +75,7 @@ const Containers = ({ attributes }) => {
       // 이미지 파일만 통과합니다.
       if (event.target.files.length === 0) {
         upload({
-          form: 'postWrite',
+          form: 'postModify',
           key: 'thumbnail',
           value: {
             files: null,
@@ -100,7 +103,7 @@ const Containers = ({ attributes }) => {
         formData.append('preview', preview);
 
         upload({
-          form: 'postWrite',
+          form: 'postModify',
           key: 'thumbnail',
           value: {
             files: formData.get('files'),
@@ -118,19 +121,19 @@ const Containers = ({ attributes }) => {
     const value = event.target.options[event.target.selectedIndex].value;
 
     if (key === 'category') {
-      field({ form: 'postWrite', key, value });
+      field({ form: 'postModify', key, value });
     } else {
       setCookingTime((prevState) => ({ ...prevState, [key]: value }));
     }
   };
 
   const handleChangeChoice = (event) => {
-    field({ form: 'postWrite', key: 'level', value: event.target.value });
+    field({ form: 'postModify', key: 'level', value: event.target.value });
   };
 
   useEffect(() => {
-    field({ form: 'postWrite', key: 'time', value: `${cookingTime.hour}:${cookingTime.minute}:${cookingTime.second}` });
-  }, [field, cookingTime.hour, cookingTime.minute, cookingTime.second]);
+    field({ form: 'postModify', key: 'time', value: `${cookingTime.hour}:${cookingTime.minute}:${cookingTime.second}` });
+  }, [field, cookingTime]);
 
   useEffect(() => {
     let _hour = [];
@@ -175,22 +178,45 @@ const Containers = ({ attributes }) => {
   useEffect(() => {
     if (!user) navigate(`/member/login`);
 
+    if (number !== 'write' && !board) {
+      setBoard(true);
+
+      dispatch(post({ category, number }));
+    }
+
     return () => {
-      console.log('unmount: board/modify');
+      console.log('unmount: board/write');
     };
-  }, [dispatch, navigate, category, board, user]);
+  }, [dispatch, navigate, category, board, user, number]);
+
+  useEffect(() => {
+    if (typeof read?.time === 'undefined') {
+      setCookingTime((prevState) => ({ ...prevState, hour: '00' }));
+      setCookingTime((prevState) => ({ ...prevState, minute: '00' }));
+      setCookingTime((prevState) => ({ ...prevState, second: '00' }));
+    } else {
+      setCookingTime((prevState) => ({ ...prevState, hour: read?.time.split(':')[0] }));
+      setCookingTime((prevState) => ({ ...prevState, minute: read?.time.split(':')[1] }));
+      setCookingTime((prevState) => ({ ...prevState, second: read?.time.split(':')[2] }));
+    }
+
+    field({ form: 'postModify', key: 'time', value: read?.time });
+  }, [field, read]);
 
   return (
     <>
-      <Write
+      <Modify
         attributes={{
           category,
+          number,
           user,
           formData: form,
           field,
           upload,
+          read,
           error,
           loading,
+          owner: read?.id,
           fakeFields,
           onChangeSubject: handleChangeSubject,
           onChangeThumbnail: handleChangeThumbnail,
@@ -200,8 +226,7 @@ const Containers = ({ attributes }) => {
           hour,
           minute,
           second
-        }}
-      />
+        }}></Modify>
     </>
   );
 };

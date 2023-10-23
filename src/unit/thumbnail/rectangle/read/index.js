@@ -90,6 +90,8 @@ const StyledProductLayer = styled.div`
   position: absolute;
   left: 0;
   z-index: -1;
+  margin-bottom: -0.1rem;
+  margin-bottom: -0.278vw;
 
   &:before {
     position: absolute;
@@ -119,6 +121,7 @@ const StyledProductLayer = styled.div`
         `
       : css`
           top: 4rem;
+          top: 11.111vw;
           z-index: 10;
 
           &:before {
@@ -284,6 +287,7 @@ const StyledHashtag = styled.div`
 const StyledThumbnail = styled.div`
   overflow: hidden;
   position: relative;
+  z-index: 1;
 
   [class*='lazy-load-image'] {
     width: 100%;
@@ -312,15 +316,12 @@ const Thumbnail = ({ className, attributes }) => {
   const [isBottom, setIsBottom] = useState(false);
 
   const handleHoverHashtag = (index) => {
-    if (imageProduct.current) {
-      if (layerProduct.current) {
-        const a = imageProduct.current.getBoundingClientRect().height - imageProduct.current.getBoundingClientRect().top;
-        const b = a + layerProduct.current.getBoundingClientRect().height;
+    setIsBottom(() => false);
 
-        if (b > imageProduct.current.getBoundingClientRect().height) {
-          setIsBottom(() => true);
-        }
-      }
+    if (imageProduct.current) {
+      setTimeout(() => {
+        if (layerProduct.current.getBoundingClientRect().top > imageProduct.current.getBoundingClientRect().height) setIsBottom(() => true);
+      }, 1);
     }
 
     setIsHovering(index);
@@ -335,17 +336,15 @@ const Thumbnail = ({ className, attributes }) => {
       {products.length > 0 &&
         tags.map((currentValue, index) => {
           return (
-            // <StyledHashtag key={index} style={{ top: currentValue.y + 12, left: currentValue.x + 12, zIndex: currentValue.index }} onMouseOver={() => handleHoverHashtag(index)} onMouseOut={() => setIsHovering(null)}>
-            <StyledHashtag key={index} style={{ top: currentValue.y + '%', left: currentValue.x + '%', zIndex: currentValue.index }} onMouseOver={() => handleHoverHashtag(index)} onMouseOut={() => setIsHovering(null)}>
+            <StyledHashtag key={index} style={{ top: currentValue.y + '%', left: currentValue.x + '%', zIndex: currentValue.index }} onMouseEnter={() => handleHoverHashtag(index)} onMouseLeave={() => setIsHovering(null)}>
               <StyledIcon $arrow={isHovering === index || showProductId === currentValue.productId ? true : false} $isBottom={isBottom}>
                 {currentValue.id}
 
-                <SlPlus size={20} />
+                <SlPlus size={18} />
               </StyledIcon>
 
               {(isHovering === index || showProductId === currentValue.productId) && (
-                // <StyledProductLayer style={{ transform: `translate(-${(currentValue.x * 100) / imageProduct.current.clientWidth}%, 0)` }} ref={layerProduct} $isBottom={isBottom}>
-                <StyledProductLayer style={{ transform: `translate(-${currentValue.x}%, 0)` }} ref={layerProduct} $isBottom={isBottom}>
+                <StyledProductLayer style={{ transform: `translate(-${currentValue.x}%, 0)` }} $isBottom={isBottom} ref={layerProduct}>
                   <StyledProductOuter to={products[index].url} target="_blank">
                     <StyledProductInner>
                       <StyledProductImage src={`/uploads/products/${products[index].thumbnail}`} alt={products[index].name} />

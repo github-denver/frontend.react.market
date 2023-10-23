@@ -3,11 +3,13 @@ import styled from 'styled-components';
 import Text from '@/unit/text/standard';
 
 // import Swiper core and required modules
-import { Navigation as SwiperNavigation, Pagination as SwiperPagination, A11y } from 'swiper';
+import { Navigation as SwiperNavigation, Pagination as SwiperPagination, A11y, EffectFade as SwiperEffectFade, Autoplay as SwiperAutoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
 import 'swiper/css';
+import 'swiper/css/autoplay';
+import 'swiper/css/effect-fade';
 import 'swiper/css/pagination';
 
 import { TfiTimer } from 'react-icons/tfi';
@@ -38,10 +40,15 @@ const StyledSwiperSlide = styled(SwiperSlide)`
   background-color: #fff;
 
   strong {
+    /* overflow: hidden;
+    display: -webkit-box;
+    position: relative; */
     font-weight: 500;
     font-size: 2rem;
     color: #282828;
     word-break: keep-all;
+    /* -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1; */
   }
 
   svg {
@@ -75,13 +82,25 @@ const StyledSwiperSlide = styled(SwiperSlide)`
 `;
 
 const StyledSwiper = styled(Swiper)`
+  .swiper-wrapper {
+    transition-property: none !important;
+  }
+
+  .swiper-slide {
+  }
+
+  .swiper-slide-active {
+    z-index: 10;
+  }
+
   .swiper-pagination {
-    position: static;
+    position: relative;
     top: auto;
     bottom: auto;
     left: auto;
-    /* margin-top: 1.2rem; */
+    z-index: 10;
     font-size: 0;
+    background-color: #fff;
   }
 
   .swiper-pagination-bullet {
@@ -152,13 +171,20 @@ const HeroList = ({ attributes }) => {
   return (
     <StyledSwiper
       // install Swiper modules
-      modules={[SwiperNavigation, SwiperPagination, A11y]}
+      modules={[SwiperNavigation, SwiperPagination, A11y, SwiperEffectFade, SwiperAutoplay]}
       navigation
       pagination={{ clickable: true }}
       spaceBetween={16}
       onSwiper={(swiper) => {}}
       onSlideChange={() => {}}
-      autoHeight={true}>
+      autoHeight={true}
+      effect="fade"
+      speed={800}
+      loop={true}
+      autoplay={{
+        delay: 8000,
+        disableOnInteraction: false
+      }}>
       {list.map((currentValue, index) => (
         <StyledSwiperSlide key={index}>
           <StyledSwiperLink to={`http://localhost:3000/board/${currentValue.category}/read/${currentValue.number}`} className="link_common">

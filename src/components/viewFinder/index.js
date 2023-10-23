@@ -384,7 +384,7 @@ const StyledViewFinder = styled.div`
 `;
 
 const ViewFinder = ({ children, className, attributes }) => {
-  const { src, url, tags, products, showProductId, event } = attributes || {};
+  const { type, src, url, tags, products, showProductId, event } = attributes || {};
 
   const [isHovering, setIsHovering] = useState(null);
 
@@ -519,8 +519,8 @@ const ViewFinder = ({ children, className, attributes }) => {
   };
 
   useEffect(() => {
-    dispatch(insertTag(buttons));
-  }, [dispatch, buttons]);
+    dispatch(insertTag({ form: type, value: buttons }));
+  }, [dispatch, type, buttons]);
 
   return (
     <StyledViewFinder

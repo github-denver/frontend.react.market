@@ -24,7 +24,17 @@ const initialState = {
     subject: null,
     contents: null,
     thumbnail: null,
-    tags: null,
+    tags: [],
+    error: null
+  },
+  postModify: {
+    category: null,
+    level: null,
+    time: null,
+    subject: null,
+    contents: null,
+    thumbnail: null,
+    tags: [],
     error: null
   },
   comment: {
@@ -47,15 +57,27 @@ const formSlice = createSlice({
       state[form][key] = value;
     },
     changeThumbnail: (state, action) => {
+      /*
       const { key, value } = action.payload;
 
       state.postWrite[key] = {
         files: value.files,
         preview: value.preview
       };
+      */
+
+      const { form, key, value } = action.payload;
+
+      state[form][key] = {
+        files: value.files,
+        preview: value.preview
+      };
     },
     insertTag: (state, action) => {
-      state.postWrite.tags = action.payload;
+      // state.postWrite.tags = action.payload;
+      const { form, value } = action.payload;
+
+      state[form].tags = value;
     },
     formInitial: (state) => {
       state.register = initialState.register;

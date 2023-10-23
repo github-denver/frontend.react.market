@@ -94,7 +94,7 @@ const StyledWrite = styled.div`
 `;
 
 const BoardWrite = ({ children, attributes }) => {
-  const { category, formData, field, error, loading, owner, onChangeSubject, onChangeThumbnail, onChangeSelect, onChangeChoice, hour, minute, second } = attributes || {};
+  const { category, number, user, formData, field, upload, read, error, loading, owner, fakeFields, onChangeSubject, onChangeThumbnail, onClickFakeField, onChangeSelect, onChangeChoice, hour, minute, second, quill } = attributes || {};
 
   if (error) {
     if (error.response && error.response.status === 404) {
@@ -120,23 +120,38 @@ const BoardWrite = ({ children, attributes }) => {
     );
   }
 
-  if (loading) {
+  if (loading || !read) {
     console.log('읽어들이는 중입니다.');
 
     return <p>읽어들이는 중입니다.</p>;
+  }
+
+  if (!read) {
+    console.log('등록된 글이 없습니다.');
+
+    return (
+      <StyledSystemMessage
+        attributes={{
+          text: '등록된 글이 없습니다.'
+        }}
+      />
+    );
   }
 
   return (
     <StyledWrite>
       <ViewFinder
         attributes={{
-          type: 'postWrite',
-          src: formData.thumbnail?.preview,
+          type: 'postModify',
+          src: formData?.thumbnail?.preview,
+          url: read?.thumbnail,
+          tags: read?.tags,
+          products: read?.products,
           event: onChangeThumbnail
         }}
       />
 
-      <StyledHalf
+      {/* <StyledHalf
         attributes={{
           styles: {
             first: {
@@ -155,12 +170,12 @@ const BoardWrite = ({ children, attributes }) => {
             />
           ),
           second: (
-            <StyledSelect name="level" onChange={(event) => onChangeSelect({ key: 'category' }, event)}>
+            <StyledSelect name="level" onChange={(event) => onChangeSelect({ key: 'category' }, event)} defaultValue={read?.category ? read.category : ''}>
               <option value="">-- 선택 --</option>
               <option value="stew">찌개</option>
               <option value="noodle">면</option>
               <option value="curry">카레</option>
-              {/* <option value="steak">스테이크</option>
+              <option value="steak">스테이크</option>
               <option value="soup">수프</option>
               <option value="salad">샐러드</option>
               <option value="baking">빵</option>
@@ -168,11 +183,11 @@ const BoardWrite = ({ children, attributes }) => {
               <option value="pizza">피자</option>
               <option value="cake">케이크</option>
               <option value="dessert">디저트</option>
-              <option value="drink">음료수</option> */}
+              <option value="drink">음료수</option>
             </StyledSelect>
           )
         }}
-      />
+      /> */}
 
       <StyledHalf
         attributes={{
@@ -195,15 +210,15 @@ const BoardWrite = ({ children, attributes }) => {
           second: (
             <ul className="list_triple">
               <li className="item_triple">
-                <input type="radio" name="level" id="good" value="상" onChange={onChangeChoice} />
+                <input type="radio" name="level" id="good" value="상" onChange={onChangeChoice} defaultChecked={read?.level === '상'} />
                 <label htmlFor="good">상</label>
               </li>
               <li className="item_triple">
-                <input type="radio" name="level" id="fair" value="중" onChange={onChangeChoice} />
+                <input type="radio" name="level" id="fair" value="중" onChange={onChangeChoice} defaultChecked={read?.level === '중'} />
                 <label htmlFor="fair">중</label>
               </li>
               <li className="item_triple">
-                <input type="radio" name="level" id="poor" value="하" onChange={onChangeChoice} />
+                <input type="radio" name="level" id="poor" value="하" onChange={onChangeChoice} defaultChecked={read?.level === '하'} />
                 <label htmlFor="poor">하</label>
               </li>
             </ul>
@@ -232,7 +247,7 @@ const BoardWrite = ({ children, attributes }) => {
           second: (
             <ul className="list_triple">
               <li className="item_triple">
-                <StyledSelect onChange={(event) => onChangeSelect({ key: 'hour' }, event)}>
+                <StyledSelect onChange={(event) => onChangeSelect({ key: 'hour' }, event)} defaultValue={read?.time.split(':')[0]}>
                   <option value="">-- 시간 --</option>
 
                   {hour.map((currentValue, index) => (
@@ -243,7 +258,7 @@ const BoardWrite = ({ children, attributes }) => {
                 </StyledSelect>
               </li>
               <li className="item_triple">
-                <StyledSelect onChange={(event) => onChangeSelect({ key: 'minute' }, event)}>
+                <StyledSelect onChange={(event) => onChangeSelect({ key: 'minute' }, event)} defaultValue={read?.time.split(':')[1]}>
                   <option value="">-- 분 --</option>
 
                   {minute.map((currentValue, index) => (
@@ -254,7 +269,7 @@ const BoardWrite = ({ children, attributes }) => {
                 </StyledSelect>
               </li>
               <li className="item_triple">
-                <StyledSelect onChange={(event) => onChangeSelect({ key: 'second' }, event)}>
+                <StyledSelect onChange={(event) => onChangeSelect({ key: 'second' }, event)} defaultValue={read?.time.split(':')[2]}>
                   <option value="">-- 초 --</option>
 
                   {second.map((currentValue, index) => (
@@ -283,16 +298,23 @@ const BoardWrite = ({ children, attributes }) => {
             id: 'subject',
             placeholder: '제목을 입력해 주세요.',
             value: formData.subject,
-            event: onChangeSubject
+            event: onChangeSubject,
+            fake: {
+              state: fakeFields.subjectField,
+              input: {
+                value: read?.subject,
+                event: () => onClickFakeField('subject')
+              }
+            }
           }
         }}
       />
 
       <div className="editor_quill">
-        <QuillEditor attributes={{ type: 'write', formData, field }} />
+        <QuillEditor attributes={{ type: 'modify', formData, field, read }} />
       </div>
 
-      <StyledPublish attributes={{ type: 'write', category, owner }} />
+      <StyledPublish attributes={{ type: 'modify', category, owner }} />
     </StyledWrite>
   );
 };

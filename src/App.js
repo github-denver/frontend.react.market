@@ -10,6 +10,7 @@ import Profile from '@/pages/profile';
 import Follow from '@/pages/follow';
 import BoardList from '@/pages/board/list';
 import BoardWrite from '@/pages/board/write';
+import BoardModify from '@/pages/board/modify';
 import BoardView from '@/pages/board/view';
 import Error from '@/pages/error';
 
@@ -26,7 +27,7 @@ function App() {
     { path: '/board/write', element: <BoardWrite /> },
     { path: '/board/:category/write', element: <BoardWrite /> },
     { path: '/board/:category/read/:number', element: <BoardView /> },
-    { path: '/board/:category/modify/:number', element: <BoardWrite /> },
+    { path: '/board/:category/modify/:number', element: <BoardModify /> },
     { path: '*', element: <Error /> }
   ];
 
