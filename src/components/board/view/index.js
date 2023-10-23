@@ -172,7 +172,13 @@ const BoardView = ({ attributes }) => {
   if (loading || !read) {
     console.log('읽어들이는 중입니다.');
 
-    return <p>읽어들이는 중입니다.</p>;
+    return (
+      <StyledSystemMessage
+        attributes={{
+          text: '읽어들이는 중입니다.'
+        }}
+      />
+    );
   }
 
   if (!read) {

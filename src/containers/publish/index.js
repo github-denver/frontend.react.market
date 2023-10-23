@@ -10,7 +10,7 @@ import { postInitial } from '@/modules/board/view';
 
 const Wrapper = ({ className, attributes }) => {
   // const { category, owner } = attributes || {};
-  const { type, owner } = attributes || {};
+  const { type, owner, fakeFields } = attributes || {};
 
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -40,6 +40,9 @@ const Wrapper = ({ className, attributes }) => {
 
   const publish = async () => {
     console.log('read: ', read);
+    console.log('fakeFields: ', fakeFields);
+    console.log('fakeFields.subjectField: ', fakeFields.subjectField);
+    console.log('!fakeFields.subjectField: ', !fakeFields.subjectField);
 
     const categoryValue = !category ? read?.category : category;
     console.log('categoryValue: ', categoryValue);
@@ -50,6 +53,8 @@ const Wrapper = ({ className, attributes }) => {
     const timeValue = /^(?:(?:[0-1][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])|(?:[0-9]+)$/.test(time) ? time : read?.time;
     console.log('timeValue: ', timeValue);
 
+    console.log('subject: ', subject);
+    console.log('!subject: ', !subject);
     const subjectValue = !subject ? read?.subject : subject;
     console.log('subjectValue: ', subjectValue);
 
@@ -66,6 +71,14 @@ const Wrapper = ({ className, attributes }) => {
     formData.append('subject', subjectValue);
     formData.append('content', contentValue);
     formData.append('thumbnail', thumbnailValue);
+
+    if (!fakeFields.subjectField && !subject) {
+      setErrorMessage('제목을 입력해 주세요.');
+
+      setVisibleLayer(true);
+
+      return;
+    }
 
     if (![categoryValue, levelValue, timeValue, subjectValue, contentValue, thumbnailValue].every(Boolean)) {
       setErrorMessage('필수 정보를 입력해 주세요.');

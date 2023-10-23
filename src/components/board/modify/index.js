@@ -123,7 +123,13 @@ const BoardWrite = ({ children, attributes }) => {
   if (loading || !read) {
     console.log('읽어들이는 중입니다.');
 
-    return <p>읽어들이는 중입니다.</p>;
+    return (
+      <StyledSystemMessage
+        attributes={{
+          text: '읽어들이는 중입니다.'
+        }}
+      />
+    );
   }
 
   if (!read) {
@@ -314,7 +320,7 @@ const BoardWrite = ({ children, attributes }) => {
         <QuillEditor attributes={{ type: 'modify', formData, field, read }} />
       </div>
 
-      <StyledPublish attributes={{ type: 'modify', category, owner }} />
+      <StyledPublish attributes={{ type: 'modify', category, owner, fakeFields }} />
     </StyledWrite>
   );
 };

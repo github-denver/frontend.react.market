@@ -123,7 +123,13 @@ const BoardWrite = ({ children, attributes }) => {
   if (loading) {
     console.log('읽어들이는 중입니다.');
 
-    return <p>읽어들이는 중입니다.</p>;
+    return (
+      <StyledSystemMessage
+        attributes={{
+          text: '읽어들이는 중입니다.'
+        }}
+      />
+    );
   }
 
   return (

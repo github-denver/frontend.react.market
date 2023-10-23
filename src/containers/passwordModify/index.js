@@ -45,6 +45,14 @@ const PasswordModify = () => {
       return;
     }
 
+    if (!/^(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!])[A-Za-z\d@#$%^&+=!]{6,12}$/.test(password)) {
+      setErrorMessage('패스워드는 알파벳 소문자, 숫자, 특수문자를 하나 이상 포함하고 6자리 이상 12자리 이하로 입력해 주세요.');
+
+      setVisibleLayer(true);
+
+      return;
+    }
+
     if (!passwordConfirm.trim()) {
       setErrorMessage('패스워드 확인을 입력해 주세요.');
 

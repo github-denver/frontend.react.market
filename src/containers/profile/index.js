@@ -45,8 +45,24 @@ const Profile = () => {
     if (name === '') name = user.name;
     if (email === '') email = user.email;
 
-    if (password === '') {
+    if (!/^[가-힣A-Za-z0-9]{2,6}$/.test(name)) {
+      setErrorMessage('닉네임은 한글과 알파벳, 숫자만 입력 가능하고 2자리 이상 6자리 이하로 입력해 주세요.');
+
+      setVisibleLayer(true);
+
+      return;
+    }
+
+    if (!password.trim()) {
       setErrorMessage('패스워드를 입력해 주세요.');
+
+      setVisibleLayer(true);
+
+      return;
+    }
+
+    if (!/^(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!])[A-Za-z\d@#$%^&+=!]{6,12}$/.test(password)) {
+      setErrorMessage('패스워드는 알파벳 소문자, 숫자, 특수문자를 하나 이상 포함하고 6자리 이상 12자리 이하로 입력해 주세요.');
 
       setVisibleLayer(true);
 

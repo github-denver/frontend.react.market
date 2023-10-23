@@ -6,6 +6,12 @@ import Hgroup from '@/unit/hgroup/standard';
 import Boundary from '@/unit/boundary/standard';
 import Thin from '@/unit/thin/standard';
 import Button from '@/unit/button/standard';
+import Text from '@/unit/text/standard';
+
+const StyledSystemMessage = styled(Text)`
+  margin: 2.4rem 1.6rem 0;
+  font-size: 1.2rem;
+`;
 
 const StyledFollowerText = styled.span`
   display: inline-block;
@@ -94,18 +100,36 @@ const Follow = ({ attributes }) => {
     if (error.response && error.response.status === 404) {
       console.log('존재하지 않는 정보입니다.');
 
-      return <p>존재하지 않는 정보입니다.</p>;
+      return (
+        <StyledSystemMessage
+          attributes={{
+            text: '존재하지 않는 글입니다.'
+          }}
+        />
+      );
     }
 
     console.log('문제가 발생했습니다.');
 
-    return <p>문제가 발생했습니다.</p>;
+    return (
+      <StyledSystemMessage
+        attributes={{
+          text: '문제가 발생했습니다.'
+        }}
+      />
+    );
   }
 
   if (loadingFollowing || loadingFollower) {
     console.log('읽어들이는 중입니다.');
 
-    return <p>읽어들이는 중입니다.</p>;
+    return (
+      <StyledSystemMessage
+        attributes={{
+          text: '읽어들이는 중입니다.'
+        }}
+      />
+    );
   }
 
   return (
@@ -116,8 +140,8 @@ const Follow = ({ attributes }) => {
           <StyledAuthor>{user?.name}</StyledAuthor>
 
           <StyledInnerBox>
-            <StyledText>팔로워 {followers.length}</StyledText>
-            <StyledText>팔로잉 {followings.length}</StyledText>
+            <StyledText>팔로워 {followers?.length}</StyledText>
+            <StyledText>팔로잉 {followings?.length}</StyledText>
           </StyledInnerBox>
 
           <StyledLink to="/member/profile">개인정보 수정</StyledLink>

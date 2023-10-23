@@ -1,6 +1,12 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import Thumbnail from '@/unit/thumbnail/rectangle/list';
+import Text from '@/unit/text/standard';
+
+const StyledSystemMessage = styled(Text)`
+  margin: 2.4rem 1.6rem 0;
+  font-size: 1.2rem;
+`;
 
 const StyledItem = styled.li`
   margin-top: 1.6rem;
@@ -32,18 +38,36 @@ const CardList = ({ attributes }) => {
     if (error.response && error.response.status === 404) {
       console.log('존재하지 않는 글입니다.');
 
-      return <p>존재하지 않는 글입니다.</p>;
+      return (
+        <StyledSystemMessage
+          attributes={{
+            text: '존재하지 않는 글입니다.'
+          }}
+        />
+      );
     }
 
     console.log('문제가 발생했습니다.');
 
-    return <p>문제가 발생했습니다.</p>;
+    return (
+      <StyledSystemMessage
+        attributes={{
+          text: '문제가 발생했습니다.'
+        }}
+      />
+    );
   }
 
   if (loading || !list) {
     console.log('읽어들이는 중입니다.');
 
-    return <p>읽어들이는 중입니다.</p>;
+    return (
+      <StyledSystemMessage
+        attributes={{
+          text: '읽어들이는 중입니다.'
+        }}
+      />
+    );
   }
 
   if (!list) {

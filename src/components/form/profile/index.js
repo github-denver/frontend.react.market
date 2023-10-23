@@ -6,6 +6,12 @@ import Field from '@/unit/field/standard';
 // import List from '@/unit/list/standard';
 import Layer from '@/unit/layer/standard';
 import Half from '@/unit/half/standard';
+import Text from '@/unit/text/standard';
+
+const StyledSystemMessage = styled(Text)`
+  margin: 2.4rem 1.6rem 0;
+  font-size: 1.2rem;
+`;
 
 const StyledSubmit = styled(Button)`
   margin-top: 2rem;
@@ -35,19 +41,37 @@ const Profile = ({ formData, errorMessage, user, error, loading, onSubmitModifyP
 
     console.log('문제가 발생했습니다.');
 
-    return <p>문제가 발생했습니다.</p>;
+    return (
+      <StyledSystemMessage
+        attributes={{
+          text: '문제가 발생했습니다.'
+        }}
+      />
+    );
   }
 
   if (loading || !user) {
     console.log('읽어들이는 중입니다.');
 
-    return <p>읽어들이는 중입니다.</p>;
+    return (
+      <StyledSystemMessage
+        attributes={{
+          text: '읽어들이는 중입니다.'
+        }}
+      />
+    );
   }
 
   if (!user) {
     console.log('정보가 존재하지 않습니다.');
 
-    return <p>정보가 존재하지 않습니다.</p>;
+    return (
+      <StyledSystemMessage
+        attributes={{
+          text: '정보가 존재하지 않습니다.'
+        }}
+      />
+    );
   }
 
   return (

@@ -43,6 +43,38 @@ const Register = () => {
       return;
     }
 
+    if (!/^[A-Za-z0-9-._]{4,8}$/.test(id)) {
+      setErrorMessage('아이디는 알파벳 소·대문자, 숫자, - . _만 입력 가능하고 4자리 이상 8자리 이하로 입력해 주세요.');
+
+      setVisibleLayer(true);
+
+      return;
+    }
+
+    if (!/^[가-힣A-Za-z0-9]{2,6}$/.test(id)) {
+      setErrorMessage('닉네임은 한글과 알파벳, 숫자만 입력 가능하고 2자리 이상 6자리 이하로 입력해 주세요.');
+
+      setVisibleLayer(true);
+
+      return;
+    }
+
+    if (!password.trim()) {
+      setErrorMessage('패스워드를 입력해 주세요.');
+
+      setVisibleLayer(true);
+
+      return;
+    }
+
+    if (!/^(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!])[A-Za-z\d@#$%^&+=!]{6,12}$/.test(password)) {
+      setErrorMessage('패스워드는 알파벳 소문자, 숫자, 특수문자를 하나 이상 포함하고 6자리 이상 12자리 이하로 입력해 주세요.');
+
+      setVisibleLayer(true);
+
+      return;
+    }
+
     if (password !== passwordConfirm) {
       setErrorMessage('패스워드가 일치하지 않습니다.');
 
@@ -86,6 +118,28 @@ const Register = () => {
       setVisibleLayer(true);
 
       return;
+    }
+
+    if (fieldName === 'id') {
+      if (/^[A-Za-z0-9-._]{4,8}$/.test(fieldValue)) {
+      } else {
+        setErrorMessage('아이디는 알파벳 소·대문자, 숫자, - . _만 입력 가능하고 4자리 이상 8자리 이하로 입력해 주세요.');
+
+        setVisibleLayer(true);
+
+        return;
+      }
+    }
+
+    if (fieldName === 'name') {
+      if (/^[가-힣A-Za-z0-9]{2,6}$/.test(fieldValue)) {
+      } else {
+        setErrorMessage('닉네임은 한글과 알파벳, 숫자만 입력 가능하고 2자리 이상 6자리 이하로 입력해 주세요.');
+
+        setVisibleLayer(true);
+
+        return;
+      }
     }
 
     const result = await checkFunction({ [fieldName]: fieldValue });
