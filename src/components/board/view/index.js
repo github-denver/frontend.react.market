@@ -224,7 +224,7 @@ const BoardView = ({ attributes }) => {
         <StyledProducts>
           <StyledListProducts>
             {read.products.map((currentValue, index) => (
-              <StyledItemProducts key={index} onMouseOver={() => handle111Click(currentValue.productId)} onMouseOut={() => setShowProductId(null)}>
+              <StyledItemProducts key={index} onMouseEnter={() => handle111Click(currentValue.productId)} onMouseLeave={() => setShowProductId(null)}>
                 <StyledBoxProducts>
                   <StyledImageProducts src={`/uploads/products/${currentValue.thumbnail}`} alt={currentValue.name} />
                 </StyledBoxProducts>

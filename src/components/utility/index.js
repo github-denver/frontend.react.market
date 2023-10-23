@@ -205,6 +205,7 @@ const Utility = ({ attributes }) => {
             {
               icon: <LuHome size={24} />,
               title: '홈',
+              to: '/',
               arrow: null,
               subItems: []
             },

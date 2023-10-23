@@ -544,7 +544,7 @@ const ViewFinder = ({ children, className, attributes }) => {
                 tags.map((currentValue, index) => {
                   return (
                     // <StyledHashtag key={index} style={{ top: currentValue.y + 12, left: currentValue.x + 12, zIndex: currentValue.index }} onMouseOver={() => setIsHovering(index)} onMouseOut={() => setIsHovering(null)}>
-                    <StyledHashtag key={index} style={{ top: currentValue.y + '%', left: currentValue.x + '%', zIndex: currentValue.index }} onMouseOver={() => setIsHovering(index)} onMouseOut={() => setIsHovering(null)}>
+                    <StyledHashtag key={index} style={{ top: currentValue.y + '%', left: currentValue.x + '%', zIndex: currentValue.index }} onMouseEnter={() => setIsHovering(index)} onMouseLeave={() => setIsHovering(null)}>
                       <StyledIcon $arrow={isHovering === index || showProductId === currentValue.productId ? true : false}>
                         <em>{currentValue.id}</em>
 

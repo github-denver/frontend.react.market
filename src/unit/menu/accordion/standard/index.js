@@ -64,11 +64,40 @@ const StyledLink = styled(NavLink)`
   font-size: 1.2rem;
   border-radius: 0.8rem;
 
+  &.link_accordion {
+    padding: 0.8rem 4rem 0.8rem 1.4rem;
+
+    svg:first-child {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    svg:first-child + .text_local {
+      margin-left: 0.8rem;
+    }
+
+    .text_local {
+      display: inline-block;
+      font-weight: 500;
+      font-size: 1.4rem;
+      vertical-align: middle;
+    }
+
+    .text_local + svg {
+      position: absolute;
+      top: 50%;
+      right: 1.4rem;
+      z-index: 1;
+      margin-top: -0.6rem;
+    }
+  }
+
   &.active {
     font-weight: 500;
     background-color: #fafafa;
   }
 `;
+
 const StyledItem = styled.li`
   margin-top: 0.4rem;
 
@@ -135,12 +164,23 @@ const Accordion = ({ className, items, closeOthersOnClick }) => {
           {item.link ? (
             <StyledLink to={item.to}>{item.link}</StyledLink>
           ) : (
-            <StyledButton onClick={() => onItemClick(index)} $active={activeIndexes.some((i) => i === index)}>
-              {activeIndexes.some((i) => i === index)}
-              {item.icon}
-              <span className="text_local">{item.title}</span>
-              {item.arrow}
-            </StyledButton>
+            <>
+              {item.to ? (
+                <StyledLink to={item.to} className={'link_accordion'}>
+                  {activeIndexes.some((i) => i === index)}
+                  {item.icon}
+                  <span className="text_local">{item.title}</span>
+                  {item.arrow}
+                </StyledLink>
+              ) : (
+                <StyledButton onClick={() => onItemClick(index)} $active={activeIndexes.some((i) => i === index)}>
+                  {activeIndexes.some((i) => i === index)}
+                  {item.icon}
+                  <span className="text_local">{item.title}</span>
+                  {item.arrow}
+                </StyledButton>
+              )}
+            </>
           )}
 
           <Accordion items={item.subItems} closeOthersOnClick={closeOthersOnClick} />
