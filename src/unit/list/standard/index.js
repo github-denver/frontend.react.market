@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const StyledButton = styled.button`
   display: block;
   font-size: 1.2rem;
-  color: #282828;
+  color: #000;
   border: 0 none;
   background-color: transparent;
 `;
@@ -13,14 +13,14 @@ const StyledButton = styled.button`
 const StyledLink = styled(Link)`
   display: block;
   font-size: 1.2rem;
-  color: #282828;
+  color: #000;
 `;
 
 const StyledItem = styled.li`
   display: inline-block;
   margin: 2rem 0 0 2rem;
   font-size: 1.2rem;
-  color: #282828;
+  color: #000;
   vertical-align: middle;
 `;
 

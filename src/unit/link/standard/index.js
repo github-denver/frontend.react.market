@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const StyledLink = styled(Link)`
   display: inline-block;
   font-size: 1.2rem;
-  color: #282828;
+  color: #000;
   vertical-align: top;
 `;
 

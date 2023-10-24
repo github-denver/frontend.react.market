@@ -88,7 +88,7 @@ const StyledClose = styled.button`
 
   svg {
     display: block;
-    color: #282828;
+    color: #000;
   }
 `;
 

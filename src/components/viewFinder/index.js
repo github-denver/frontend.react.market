@@ -34,7 +34,7 @@ const StyledDiscount = styled.em`
   margin-top: 0.4rem;
   font-weight: 700;
   font-size: 1.6rem;
-  color: #282828;
+  color: #000;
 
   & + ${StyledPrice} {
     margin-left: 0.6rem;
@@ -46,14 +46,14 @@ const StyledName = styled.span`
 
   display: block;
   font-size: 1.4rem;
-  color: #282828;
+  color: #000;
 `;
 
 const StyledBrand = styled.span`
   ${commonStyles}
 
   font-size: 1.2rem;
-  color: #282828;
+  color: #000;
 `;
 
 const StyledDetail = styled.div`
@@ -143,7 +143,7 @@ const StyledText = styled.span`
   margin-left: 1rem;
   padding-left: 1rem;
   font-size: 1.6rem;
-  color: #282828;
+  color: #000;
   vertical-align: middle;
 
   &:before {
@@ -153,7 +153,7 @@ const StyledText = styled.span`
     left: 0;
     z-index: 1;
     width: 0.1rem;
-    background-color: #282828;
+    background-color: #000;
     vertical-align: middle;
     content: '';
   }
@@ -173,7 +173,7 @@ const StyledSubject = styled.strong`
   display: -webkit-box;
   font-weight: 500;
   font-size: 2.4rem;
-  color: #282828;
+  color: #000;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 `;
@@ -223,7 +223,7 @@ const StyledIcon = styled.button`
   border-radius: 100%;
   font-size: 0.1rem;
   color: transparent;
-  background-color: #282828;
+  background-color: #000;
   vertical-align: top;
   cursor: pointer;
 
@@ -313,7 +313,7 @@ const StyledUploads = styled.div`
   /* border: 0.1rem solid #E30B5C; */
   border-radius: 0.8rem;
   box-sizing: border-box;
-  background-color: #282828;
+  background-color: #000;
 
   input[type='file'] {
     width: 3.6rem;
@@ -385,13 +385,13 @@ const StyledGuide = styled.div`
     display: inline-block;
     font-weight: 500;
     font-size: 1.6rem;
-    color: #282828;
+    color: #000;
     vertical-align: top;
   }
 
   .text_local {
     font-size: 1.4rem;
-    color: #282828;
+    color: #000;
   }
 `;
 
@@ -412,7 +412,7 @@ const StyledViewFinder = styled.div`
     border-radius: 100%;
     font-size: 0.1rem;
     color: transparent;
-    background-color: #282828;
+    background-color: #000;
     -webkit-user-select: none;
     -ms-user-select: none;
     -moz-user-select: none;
@@ -623,7 +623,7 @@ const ViewFinder = ({ children, className, attributes }) => {
                   return (
                     <StyledHashtag key={index} style={{ top: currentValue.y + '%', left: currentValue.x + '%', zIndex: currentValue.index }} onMouseEnter={() => handleHoverHashtag(index)} onMouseLeave={() => setIsHovering(null)}>
                       <StyledIcon $arrow={isHovering === index || showProductId === currentValue.productId ? true : false} $isBottom={isBottom}>
-                        <em className="emph_hashtag">{currentValue.id}</em>
+                        <em className="emphasis_hashtag">{currentValue.id}</em>
 
                         <SlPlus size={20} />
                       </StyledIcon>

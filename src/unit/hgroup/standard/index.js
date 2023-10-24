@@ -70,6 +70,12 @@ const StyledHgroup = styled.div`
       position: relative;
       padding: 1.6rem;
     `};
+
+  ${({ align }) =>
+    align &&
+    css`
+      text-align: ${align};
+    `};
 `;
 
 const filteredText = (category, navigation) => {
@@ -87,10 +93,10 @@ const filteredText = (category, navigation) => {
 };
 
 const Hgroup = ({ className, attributes }) => {
-  const { level, title, description, href, category, navigation, size, invisible } = attributes || {};
+  const { level, title, description, href, category, navigation, size, invisible, align } = attributes || {};
 
   return (
-    <StyledHgroup className={`${className} ${invisible && 'screen_out'}`} size={size} $invisible={invisible}>
+    <StyledHgroup className={`${className} ${invisible && 'screen_out'}`} size={size} $invisible={invisible} align={align}>
       <StyledHeading level={level}>{title ? title : filteredText(category, navigation)}</StyledHeading>
       {description && <StyledDescription>{description}</StyledDescription>}
 

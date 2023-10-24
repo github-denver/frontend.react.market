@@ -17,7 +17,7 @@ const commonStyles = css`
 
   svg {
     display: inline-block;
-    color: #282828;
+    color: #000;
     vertical-align: middle;
   }
 `;
@@ -42,7 +42,7 @@ const StyledHamburger = styled.button`
   /* width: auto;
   padding: 0 2rem;
   border-radius: 0 2rem 2rem 0;
-  background-color: #282828;
+  background-color: #000;
 
   svg {
     color: #fff;
@@ -56,7 +56,7 @@ const StyledLink = styled(Link)`
   font-weight: 500;
   font-size: 2rem;
   line-height: 2.6rem;
-  color: #282828;
+  color: #000;
   vertical-align: middle;
 `;
 

@@ -10,7 +10,7 @@ const StyledCopyright = styled.small`
   display: block;
   margin-top: 1.2rem;
   font-size: 1.1rem;
-  color: #282828;
+  color: #000;
 `;
 
 const StyledSocialLink = styled(Link)`
@@ -19,7 +19,7 @@ const StyledSocialLink = styled(Link)`
   height: 3.6rem;
   border-radius: 100%;
   color: transparent;
-  background-color: #282828;
+  background-color: #000;
 `;
 
 const StyledSocialItem = styled.li`
@@ -145,7 +145,7 @@ const StyledText = styled(Text)`
   /* padding: 2.4rem 0 0; */
   /* border-top: 0.1rem solid #dadde0; */
   font-size: 1.1rem;
-  color: #282828;
+  color: #000;
 `;
 
 const StyledFooter = styled.footer`

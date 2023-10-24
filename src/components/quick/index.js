@@ -11,7 +11,7 @@ const StyledIcon = styled.img`
   width: 100%;
   height: 100%;
   padding: 0.6rem;
-  border: 0.2rem solid #282828;
+  border: 0.2rem solid #000;
   border-radius: 100%;
   box-sizing: border-box;
 
@@ -42,14 +42,14 @@ const StyledBox = styled.div`
 
 const StyledLink = styled(Link)`
   display: block;
-  border-radius: 0.8rem;
+  border: 0.1rem solid #ddd;
+  border-radius: 1.55rem;
 
   .text_local {
     display: block;
     padding: 0.4rem 0.2rem;
-
-    font-size: 1.2rem;
-    color: #282828;
+    font-size: 1.4rem;
+    color: #000;
     letter-spacing: -0.125rem;
   }
 `;
@@ -69,7 +69,7 @@ const StyledList = styled.ul`
 `;
 
 const StyledQuick = styled.div`
-  margin: 2rem;
+  margin: 0 1.6rem;
 `;
 
 const Quick = ({ attributes }) => {
@@ -80,9 +80,9 @@ const Quick = ({ attributes }) => {
       <StyledList>
         <StyledItem>
           <StyledLink to="/board/stew/list/1">
-            <StyledBox>
+            {/* <StyledBox>
               <StyledIcon src="./icons/icon_cooking.png" alt="" />
-            </StyledBox>
+            </StyledBox> */}
 
             <span className="text_local">찌개</span>
           </StyledLink>
@@ -90,9 +90,9 @@ const Quick = ({ attributes }) => {
 
         <StyledItem>
           <StyledLink to="/board/noodle/list/1">
-            <StyledBox>
+            {/* <StyledBox>
               <StyledIcon src="./icons/icon_spicy.png" alt="" />
-            </StyledBox>
+            </StyledBox> */}
 
             <span className="text_local">면</span>
           </StyledLink>
@@ -100,9 +100,9 @@ const Quick = ({ attributes }) => {
 
         <StyledItem>
           <StyledLink to="/board/curry/list/1">
-            <StyledBox>
+            {/* <StyledBox>
               <StyledIcon src="./icons/icon_curry.png" alt="" />
-            </StyledBox>
+            </StyledBox> */}
 
             <span className="text_local">카레</span>
           </StyledLink>

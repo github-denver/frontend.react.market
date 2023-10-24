@@ -56,7 +56,7 @@ const Stew = ({ attributes }) => {
       attributes={{
         flicking,
         grid,
-        // radius,
+        radius,
         square,
         category,
         user,

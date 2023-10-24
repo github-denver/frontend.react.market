@@ -24,7 +24,7 @@ const StyledBox = styled.div`
 `;
 
 const StyledFlicking = styled(Flicking)`
-  padding: 0 2rem 0 1rem;
+  padding: 0 1.6rem 1.6rem 0.6rem;
   box-sizing: border-box;
 `;
 

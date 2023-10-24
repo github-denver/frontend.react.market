@@ -21,6 +21,16 @@ const StyledInner = styled.div``;
 const StyledNavigation = styled.nav`
   background-color: #fff;
 
+  &:after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    border-bottom: 0.1rem solid #f1f1f1;
+    content: '';
+  }
+
   ${({ direction }) =>
     direction === 'vertical'
       ? css`
@@ -77,9 +87,9 @@ const StyledNavigation = styled.nav`
 
           ${StyledLink} {
             display: block;
-            padding: 0.8rem 0;
-            font-size: 1.2rem;
-            color: #282828;
+            padding: 0.8rem 1.6rem;
+            font-size: 1.4rem;
+            color: #666;
 
             &:after {
               display: none;
@@ -88,15 +98,17 @@ const StyledNavigation = styled.nav`
               right: 0;
               bottom: 0;
               left: 0;
-              z-index: 1;
-              border-bottom: 0.2rem solid #282828;
+              z-index: 10;
+              border-bottom: 0.2rem solid #f66f66;
+              // border-bottom: 0.2rem solid #987060;
               content: '';
             }
 
             &.active,
             &.current {
               font-weight: 500;
-              color: #282828;
+              color: #f66f66;
+              // color: #987060;
 
               &:after {
                 display: block;
@@ -141,7 +153,7 @@ const Navigation = ({ className, attributes }) => {
             </StyledLink>
           </StyledItem>
 
-          {/* <StyledItem>
+          <StyledItem>
             <StyledLink to="/board/steak/list/1">스테이크</StyledLink>
           </StyledItem>
 
@@ -175,7 +187,7 @@ const Navigation = ({ className, attributes }) => {
 
           <StyledItem>
             <StyledLink to="/board/drink/list/1">음료수</StyledLink>
-          </StyledItem> */}
+          </StyledItem>
         </StyledList>
       </StyledInner>
     </StyledNavigation>

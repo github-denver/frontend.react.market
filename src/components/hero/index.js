@@ -35,25 +35,25 @@ const StyledSwiperLink = styled(Link)`
 `;
 
 const StyledSwiperSlide = styled(SwiperSlide)`
-  padding: 1.2rem 2rem 2rem;
+  padding: 1.6rem;
   box-sizing: border-box;
   background-color: #fff;
 
   strong {
-    /* overflow: hidden;
+    overflow: hidden;
     display: -webkit-box;
-    position: relative; */
+    position: relative;
     font-weight: 500;
     font-size: 2rem;
-    color: #282828;
+    color: #000;
     word-break: keep-all;
-    /* -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1; */
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
   }
 
   svg {
     display: inline-block;
-    color: #282828;
+    color: #000;
     vertical-align: middle;
 
     & + .text_local {
@@ -65,7 +65,7 @@ const StyledSwiperSlide = styled(SwiperSlide)`
     display: inline-block;
     font-weight: 300;
     font-size: 1.4rem;
-    color: #282828;
+    color: #000;
     vertical-align: middle;
   }
 
@@ -83,7 +83,7 @@ const StyledSwiperSlide = styled(SwiperSlide)`
 
 const StyledSwiper = styled(Swiper)`
   .swiper-wrapper {
-    transition-property: none !important;
+    /* transition-property: none !important; */
   }
 
   .swiper-slide {
@@ -100,20 +100,50 @@ const StyledSwiper = styled(Swiper)`
     left: auto;
     z-index: 10;
     font-size: 0;
-    background-color: #fff;
+    /* background-color: #fff; */
   }
 
   .swiper-pagination-bullet {
     width: 0.8rem;
     height: 0.8rem;
     border-radius: 0.8rem;
-    background-color: #f1f1f1;
+    background-color: #ddd;
     opacity: 1;
+
+    -webkit-transition: transform 0.4s;
+    -moz-transition: transform 0.4s;
+    -o-transition: transform 0.4s;
+    transition: transform 0.4s;
   }
 
   .swiper-pagination-bullet-active {
     width: 1.6rem;
-    background-color: #282828;
+
+    -webkit-transform: scaleX(1.2);
+    -ms-transform: scaleX(1.2);
+    -moz-transform: scaleX(1.2);
+    -o-transform: scaleX(1.2);
+    transform: scaleX(1.2);
+    background-color: #f66f66;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none;
+    top: auto;
+    bottom: 0;
+    z-index: 10;
+    width: 2rem;
+    height: 2rem;
+    margin-top: 0;
+    background-color: #000;
+  }
+
+  .swiper-button-prev:after,
+  .swiper-button-next:after {
+    width: 100%;
+    height: 100%;
+    content: '';
   }
 `;
 
@@ -181,10 +211,11 @@ const HeroList = ({ attributes }) => {
       effect="fade"
       speed={800}
       loop={true}
-      autoplay={{
-        delay: 8000,
-        disableOnInteraction: false
-      }}>
+      // autoplay={{
+      //   delay: 8000,
+      //   disableOnInteraction: false
+      // }}
+    >
       {list.map((currentValue, index) => (
         <StyledSwiperSlide key={index}>
           <StyledSwiperLink to={`http://localhost:3000/board/${currentValue.category}/read/${currentValue.number}`} className="link_common">
