@@ -99,8 +99,8 @@ const StyledNavigation = styled.nav`
               bottom: 0;
               left: 0;
               z-index: 10;
-              border-bottom: 0.2rem solid #f66f66;
-              // border-bottom: 0.2rem solid #987060;
+              border-bottom: 0.4rem solid #f66f66;
+              // border-bottom: 0.4rem solid #f66f66;
               content: '';
             }
 
@@ -108,7 +108,7 @@ const StyledNavigation = styled.nav`
             &.current {
               font-weight: 500;
               color: #f66f66;
-              // color: #987060;
+              // color: #f66f66;
 
               &:after {
                 display: block;

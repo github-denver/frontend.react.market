@@ -31,7 +31,7 @@ const StyledInput = styled.input`
 const StyledBox = styled.div`
   display: block;
   margin-top: 1rem;
-  border: 0.1rem solid #000;
+  border: 0.1rem solid #987060;
   border-radius: 0.4rem;
   box-sizing: border-box;
   background-color: #fff;
@@ -103,7 +103,7 @@ const StyledField = styled.div`
   .text_field {
     margin-top: 0.6rem;
     font-size: 1.2rem;
-    color: #000;
+    color: #666;
   }
 
   ${({ $standard }) =>

@@ -275,7 +275,7 @@ const Footer = ({ children, attributes }) => {
 
       <StyledText
         attributes={{
-          text: '오늘의 식탁은 포트폴리오 사이트입니다.'
+          text: '오늘의 식사은 포트폴리오 사이트입니다.'
         }}
       />
 
@@ -288,27 +288,27 @@ const Footer = ({ children, attributes }) => {
       />
       <StyledSocial>
         <StyledSocialItem>
-          <StyledSocialLink to="/">오늘의 식탁 유튜브</StyledSocialLink>
+          <StyledSocialLink to="/">오늘의 식사 유튜브</StyledSocialLink>
         </StyledSocialItem>
 
         <StyledSocialItem>
-          <StyledSocialLink to="/">오늘의 식탁 인스타그램</StyledSocialLink>
+          <StyledSocialLink to="/">오늘의 식사 인스타그램</StyledSocialLink>
         </StyledSocialItem>
 
         <StyledSocialItem>
-          <StyledSocialLink to="/">오늘의 식탁 페이스북</StyledSocialLink>
+          <StyledSocialLink to="/">오늘의 식사 페이스북</StyledSocialLink>
         </StyledSocialItem>
 
         <StyledSocialItem>
-          <StyledSocialLink to="/">오늘의 식탁 카카오 스토리</StyledSocialLink>
+          <StyledSocialLink to="/">오늘의 식사 카카오 스토리</StyledSocialLink>
         </StyledSocialItem>
 
         <StyledSocialItem>
-          <StyledSocialLink to="/">오늘의 식탁 네이버 포스트</StyledSocialLink>
+          <StyledSocialLink to="/">오늘의 식사 네이버 포스트</StyledSocialLink>
         </StyledSocialItem>
       </StyledSocial> */}
 
-      {/* <StyledCopyright>Copyright 2024. 오늘의 식탁, Co., Ltd. All rights reserved.</StyledCopyright> */}
+      {/* <StyledCopyright>Copyright 2024. 오늘의 식사, Co., Ltd. All rights reserved.</StyledCopyright> */}
     </StyledFooter>
   );
 };

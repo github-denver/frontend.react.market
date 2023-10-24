@@ -33,8 +33,8 @@ const StyledListThird = styled.ul`
   overflow: auto;
   margin: -0.4rem 0 0 -0.4rem;
   padding: 2rem 0;
-  border-top: 0.1rem solid #f1f1f1;
-  border-bottom: 0.1rem solid #f1f1f1;
+  border-top: 0.1rem solid #eee;
+  border-bottom: 0.1rem solid #eee;
   white-space: nowrap;
 `;
 
@@ -60,8 +60,8 @@ const StyledItemSecond = styled.li`
 
 const StyledListSecond = styled.ul`
   padding: 2rem 0;
-  border-top: 0.1rem solid #f1f1f1;
-  border-bottom: 0.1rem solid #f1f1f1;
+  /* border-top: 0.1rem solid #eee; */
+  border-bottom: 0.1rem solid #eee;
 
   & + ${StyledListThird} {
     border-top: 0 none;
@@ -153,7 +153,7 @@ const Utility = ({ attributes }) => {
             attributes={{
               first: (
                 <StyledLink to="/">
-                  <span className="ir_wa">오늘의 식탁</span>
+                  <span className="ir_wa">오늘의 식사</span>
                 </StyledLink>
               ),
               second: (

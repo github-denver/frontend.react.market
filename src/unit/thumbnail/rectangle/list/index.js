@@ -12,11 +12,12 @@ const StyledText = styled.span`
   margin-left: 0.4rem;
   /* padding-left: 0.4rem; */
   font-size: 1.2rem;
-  color: #000;
+  color: #666;
   vertical-align: middle;
 
   svg {
     display: inline-block;
+    color: #000;
     vertical-align: middle;
 
     & + .text_local {

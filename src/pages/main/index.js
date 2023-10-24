@@ -87,87 +87,43 @@ const Page = () => {
           //   delay: 8000,
           //   disableOnInteraction: false
           // }}
-
-          onProgress={(swiper) => {
-            console.group('onProgress={(swiper) => { .. }}');
-            console.log('swiper: ', swiper);
-            console.log('swiper.width: ', swiper.width);
-
-            for (let i = 0; i < swiper.slides.length; i++) {
-              slideProgress = swiper.slides[i].progress;
-              console.log('slideProgress: ', slideProgress);
-
-              console.log('interleaveOffset: ', interleaveOffset);
-
-              innerOffset = swiper.width * interleaveOffset;
-              console.log('innerOffset: ', innerOffset);
-
-              innerTranslate = slideProgress * innerOffset;
-              console.log('innerTranslate: ', innerTranslate);
-
-              swiper.slides[i].querySelector('.slide-inner').style.transform = 'translate3d(' + innerTranslate + 'px, 0, 0)';
-            }
-            console.groupEnd();
-          }}
-          onTouchStart={(swiper) => {
-            console.group('onTouchStart={(swiper) => { .. }}');
-            console.log('swiper: ', swiper);
-            console.log('swiper.slides.length: ', swiper.slides.length);
-
-            for (let i = 0; i < swiper.slides.length; i++) {
-              console.log('swiper.slides[i]: ', swiper.slides[i]);
-              swiper.slides[i].style.transition = '';
-              swiper.slides[i].querySelector('.slide-inner').style.transition = '';
-              swiper.slides[i].querySelector('.con123tainer').style.transition = '';
-            }
-            console.groupEnd();
-          }}
-          onTouchEnd={(swiper) => {
-            console.group('onTouchEnd={(swiper) => { .. }}');
-            console.log('swiper: ', swiper);
-            console.log('swiper.slides.length: ', swiper.slides.length);
-            console.log('swiper.width: ', swiper.width);
-
-            for (let i = 0; i < swiper.slides.length; i++) {
-              console.log('swiper.slides[i]: ', swiper.slides[i]);
-              swiper.slides[i].style.transition = speed + 'ms';
-              swiper.slides[i].querySelector('.slide-inner').style.transition = speed + 'ms';
-              swiper.slides[i].querySelector('.con123tainer').style.transition = speed + 'ms';
-            }
-            console.groupEnd();
-          }}>
+        >
           <SwiperSlide style={{ height: '100%' }}>
-            <div className="slide-inner slide-bg-image" style={{ backgroundImage: `url(http://localhost:5000/uploads/돼지고기+김치찌개.jpg)` }}>
-              <div className="con123tainer" data-swiper-parallax="-180">
-                <div className="slide-title">
-                  <h2>속이 확 풀리는 얼큰함 돼지고기 김치찌개</h2>
+            <div className="slide-inner slide-bg-image" style={{ backgroundImage: `url(http://localhost:5000/uploads/돼지고기+김치찌개.jpg)` }} data-swiper-parallax="100">
+              <div className="con123tainer" data-swiper-parallax="-100">
+                <div className="inner_comm">
+                  <div className="inner2_comm">
+                    <div className="slide-title">
+                      <h2>속이 확 풀리는 얼큰함 돼지고기 김치찌개</h2>
+                    </div>
+
+                    <div className="slide-text">
+                      <p>밥 한 공기를 뚝딱하게 만드는 얼큰한 국물 맛이 일품~ 돼지고기 김치찌개를 만들었어요. 푸짐하게 넣은 돼지고기와 김치가 숟가락을 멈출 수 없게 만든답니다. 언제 먹어도 맛있는 돼지고기 김치찌개로 즐거운 식탁을 만들어보세요.</p>
+                    </div>
+
+                    <div className="clearfix"></div>
+                  </div>
                 </div>
-
-                <div className="slide-text">
-                  <p>밥 한 공기를 뚝딱하게 만드는 얼큰한 국물 맛이 일품~ 돼지고기 김치찌개를 만들었어요. 푸짐하게 넣은 돼지고기와 김치가 숟가락을 멈출 수 없게 만든답니다. 언제 먹어도 맛있는 돼지고기 김치찌개로 즐거운 식탁을 만들어보세요.</p>
-                </div>
-
-                <div className="clearfix"></div>
-
-                {/* <div data-swiper-parallax="600" className="slide-btns"></div> */}
               </div>
             </div>
           </SwiperSlide>
 
           <SwiperSlide style={{ height: '100%' }}>
-            <div className="slide-inner slide-bg-image" style={{ backgroundImage: `url(http://localhost:5000/uploads/돼지고기+김치찌개.jpg)` }}>
-              <div className="con123tainer" data-swiper-parallax="-180">
-                <div className="slide-title">
-                  <h2>속이 확 풀리는 얼큰함 돼지고기 김치찌개</h2>
+            <div className="slide-inner slide-bg-image" style={{ backgroundImage: `url(http://localhost:5000/uploads/돼지고기+김치찌개.jpg)` }} data-swiper-parallax="100">
+              <div className="con123tainer" data-swiper-parallax="-100">
+                <div className="inner_comm">
+                  <div className="inner2_comm">
+                    <div className="slide-title">
+                      <h2>속이 확 풀리는 얼큰함 돼지고기 김치찌개</h2>
+                    </div>
+
+                    <div className="slide-text">
+                      <p>밥 한 공기를 뚝딱하게 만드는 얼큰한 국물 맛이 일품~ 돼지고기 김치찌개를 만들었어요. 푸짐하게 넣은 돼지고기와 김치가 숟가락을 멈출 수 없게 만든답니다. 언제 먹어도 맛있는 돼지고기 김치찌개로 즐거운 식탁을 만들어보세요.</p>
+                    </div>
+
+                    <div className="clearfix"></div>
+                  </div>
                 </div>
-
-                <div className="slide-text">
-                  <p>밥 한 공기를 뚝딱하게 만드는 얼큰한 국물 맛이 일품~ 돼지고기 김치찌개를 만들었어요. 푸짐하게 넣은 돼지고기와 김치가 숟가락을 멈출 수 없게 만든답니다. 언제 먹어도 맛있는 돼지고기 김치찌개로 즐거운 식탁을 만들어보세요.</p>
-                </div>
-
-                <div className="clearfix"></div>
-
-                {/* <div data-swiper-parallax="600" className="slide-btns"></div> */}
               </div>
             </div>
           </SwiperSlide>
@@ -175,8 +131,8 @@ const Page = () => {
 
         <StyledHgroup
           attributes={{
-            title: '오늘, 이 식사는 어떠세요?',
-            description: '덴버님을 위해 준비했어요.',
+            title: '오늘, 식사는 하셨나요?',
+            description: '맛있는 거 먹고 힘내요.',
             align: 'center'
           }}
         />

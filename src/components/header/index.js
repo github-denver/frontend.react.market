@@ -115,7 +115,7 @@ const Header = ({ attributes }) => {
     <StyledHeader $minimal={minimal}>
       <StyledLogo>
         <StyledLink to="/">
-          <span className="ir_wa">오늘의 식탁</span>
+          <span className="ir_wa">오늘의 식사</span>
         </StyledLink>
       </StyledLogo>
 

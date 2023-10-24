@@ -37,11 +37,11 @@ const StyledFollowerList = styled.ul`
 const StyledLink = styled(Link)`
   display: inline-block;
   padding: 0.6rem;
-  border: 0.1rem solid #000;
+  border: 0.1rem solid #987060;
   border-radius: 0.4rem;
   font-size: 1.2rem;
   line-height: 1;
-  color: #000;
+  color: #987060;
   vertical-align: middle;
 `;
 
@@ -50,7 +50,7 @@ const StyledText = styled.span`
   margin-left: 0.4rem;
   padding-left: 0.4rem;
   font-size: 1.2rem;
-  color: #000;
+  color: #666;
   vertical-align: middle;
 
   &:first-child {

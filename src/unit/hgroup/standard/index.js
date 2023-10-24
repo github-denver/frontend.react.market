@@ -18,6 +18,7 @@ const StyledDescription = styled.p`
   display: block;
   padding-right: 1.2rem;
   font-size: 1.4rem;
+  color: #666;
 `;
 
 const StyledTag = styled.strong`

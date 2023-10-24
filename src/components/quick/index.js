@@ -49,7 +49,7 @@ const StyledLink = styled(Link)`
     display: block;
     padding: 0.4rem 0.2rem;
     font-size: 1.4rem;
-    color: #000;
+    color: #666;
     letter-spacing: -0.125rem;
   }
 `;

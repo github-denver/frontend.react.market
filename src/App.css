@@ -244,6 +244,7 @@ section {
 .date_recipe_note {
   display: inline-block;
   font-size: 1.1rem;
+  color: #666;
   line-height: 1;
   vertical-align: middle;
 }
@@ -261,6 +262,7 @@ section {
   display: inline-block;
   margin-left: 0.4rem;
   font-size: 1.1rem;
+  color: #666;
   line-height: 1;
   vertical-align: middle;
 }
@@ -269,14 +271,19 @@ section {
   overflow: hidden;
   padding-left: 0.8rem;
   font-size: 1.2rem;
+  color: #666;
   vertical-align: middle;
 }
 /**/
 
 .con123tainer {
-  margin: 0 1.6rem;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
   padding: 1.6rem;
-  background-color: rgba(255, 255, 255, 0.75);
 }
 
 .con123tainer:after {
@@ -286,21 +293,36 @@ section {
   right: 0;
   bottom: 0;
   left: 0;
-  /* z-index: 1;
+  z-index: 1;
   background: rgb(0, 0, 0);
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.95) 100%); */
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 100%);
   content: '';
+}
+
+.inner_comm {
+  display: table;
+  position: relative;
+  z-index: 10;
+  height: 100%;
+}
+
+.inner2_comm {
+  display: table-cell;
+  vertical-align: bottom;
+}
+
+.slide-title {
 }
 
 .slide-title h2 {
   font-weight: 500;
   font-size: 1.6rem;
-  color: #000;
+  color: #fff;
 }
 
 .slide-text {
   font-size: 1.1rem;
-  color: #000;
+  color: #fff;
 
   overflow: hidden;
   display: -webkit-box;

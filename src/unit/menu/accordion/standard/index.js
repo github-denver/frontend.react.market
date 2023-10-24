@@ -121,8 +121,8 @@ const StyledItem = styled.li`
 const StyledList = styled.ul`
   margin-top: 2rem;
   padding: 2rem 0;
-  border-top: 0.1rem solid #f1f1f1;
-  border-bottom: 0.1rem solid #f1f1f1;
+  border-top: 0.1rem solid #eee;
+  border-bottom: 0.1rem solid #eee;
   box-sizing: border-box;
 
   & > ${StyledItem} > & {
