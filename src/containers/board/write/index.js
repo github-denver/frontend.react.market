@@ -176,7 +176,7 @@ const Containers = ({ attributes }) => {
     if (!user) navigate(`/member/login`);
 
     return () => {
-      console.log('unmount: board/modify');
+      // console.log('unmount: board/modify');
     };
   }, [dispatch, navigate, category, board, user]);
 

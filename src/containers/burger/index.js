@@ -44,7 +44,7 @@ const Burger = ({ attributes }) => {
     dispatch(burger({ category, number, select: prefixed.select, keyword: prefixed.keyword }));
 
     return () => {
-      console.log('unmount: burger/list');
+      // console.log('unmount: burger/list');
 
       dispatch(burgerInitial());
     };

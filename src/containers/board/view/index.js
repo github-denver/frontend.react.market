@@ -161,7 +161,7 @@ const Containers = ({ attributes }) => {
     dispatch(commentList({ postId: number, category }));
 
     return () => {
-      console.log('unmount: board/view');
+      // console.log('unmount: board/view');
 
       dispatch(postInitial());
     };

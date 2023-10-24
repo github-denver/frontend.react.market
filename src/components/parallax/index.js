@@ -153,7 +153,7 @@ const ParallaxList = ({ attributes }) => {
 
   if (error) {
     if (error.response && error.response.status === 404) {
-      console.log('존재하지 않는 글입니다.');
+      // console.log('존재하지 않는 글입니다.');
 
       return (
         <StyledSystemMessage
@@ -164,7 +164,7 @@ const ParallaxList = ({ attributes }) => {
       );
     }
 
-    console.log('문제가 발생했습니다.');
+    // console.log('문제가 발생했습니다.');
 
     return (
       <StyledSystemMessage
@@ -176,7 +176,7 @@ const ParallaxList = ({ attributes }) => {
   }
 
   if (loading || !list) {
-    console.log('읽어들이는 중입니다.');
+    // console.log('읽어들이는 중입니다.');
 
     return (
       <StyledSystemMessage
@@ -188,7 +188,7 @@ const ParallaxList = ({ attributes }) => {
   }
 
   if (list.length === 0) {
-    console.log('등록된 글이 없습니다.');
+    // console.log('등록된 글이 없습니다.');
 
     return (
       <StyledSystemMessage

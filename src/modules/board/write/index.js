@@ -21,27 +21,18 @@ const initialState = {
 export default createReducer(initialState, (builder) => {
   builder
     .addCase(POST_WRITE_INITIAL, (state, action) => {
-      console.group('[POST_WRITE_INITIAL]: (state, action) => { .. }');
       state.data = null;
       state.error = null;
-      console.groupEnd();
     })
     .addCase(POST_WRITE_SUCCESS, (state, action) => {
-      console.group('[POST_WRITE_SUCCESS]: (state, action) => { .. }');
       state.data = action.payload;
       state.error = null;
-      console.groupEnd();
     })
     .addCase(POST_WRITE_FAILURE, (state, action) => {
-      console.group('[POST_WRITE_FAILURE]: (state, action) => { .. }');
       state.data = null;
       state.error = action.payload;
-      console.groupEnd();
     })
-    .addDefaultCase((state, action) => {
-      // console.group('[POST_WRITE]: addDefaultCase((state, action) => { .. })');
-      // console.groupEnd();
-    });
+    .addDefaultCase((state, action) => {});
 });
 
 // Main Saga

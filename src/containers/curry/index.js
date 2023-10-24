@@ -44,7 +44,7 @@ const Curry = ({ attributes }) => {
     dispatch(curry({ category, number, select: prefixed.select, keyword: prefixed.keyword }));
 
     return () => {
-      console.log('unmount: curry/list');
+      // console.log('unmount: curry/list');
 
       dispatch(curryInitial());
     };

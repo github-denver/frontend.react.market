@@ -44,7 +44,7 @@ const Soup = ({ attributes }) => {
     dispatch(soup({ category, number, select: prefixed.select, keyword: prefixed.keyword }));
 
     return () => {
-      console.log('unmount: soup/list');
+      // console.log('unmount: soup/list');
 
       dispatch(soupInitial());
     };

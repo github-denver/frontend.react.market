@@ -99,7 +99,7 @@ const Wrapper = ({ className, attributes }) => {
     if (error) console.error(error);
 
     return () => {
-      console.log('unmount: publish');
+      // console.log('unmount: publish');
 
       dispatch(formInitial());
       dispatch(postInitial());

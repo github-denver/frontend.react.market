@@ -44,7 +44,7 @@ const Noodle = ({ attributes }) => {
     dispatch(noodle({ category, number, select: prefixed.select, keyword: prefixed.keyword }));
 
     return () => {
-      console.log('unmount: noodle/list');
+      // console.log('unmount: noodle/list');
 
       dispatch(noodleInitial());
     };

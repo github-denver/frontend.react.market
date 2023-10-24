@@ -41,75 +41,47 @@ const initialState = {
 export default createReducer(initialState, (builder) => {
   builder
     .addCase(ERROR_INITIAL, (state, action) => {
-      console.group('[ERROR_INITIAL]: (state, action) => { .. }');
       state.error = null;
-      console.groupEnd();
     })
     .addCase(SET_ACCESS_TOKEN, (state, action) => {
-      console.group('[SET_ACCESS_TOKEN]: (state, action) => { .. }');
       state.auth.accessToken = action.payload;
       state.auth.message = null;
-      console.groupEnd();
     })
     .addCase(SET_USER, (state, action) => {
-      console.group('[SET_USER]: (state, action) => { .. }');
       state.user.user2 = JSON.parse(action.payload);
       state.error = null;
-      console.groupEnd();
     })
     .addCase(USER_REGISTER_SUCCESS, (state, action) => {
-      console.group('[USER_REGISTER_SUCCESS]: (state, action) => { .. }');
       state.error = null;
-      console.groupEnd();
     })
     .addCase(USER_REGISTER_FAILURE, (state, action) => {
-      console.group('[USER_REGISTER_FAILURE]: (state, action) => { .. }');
       state.error = action.payload.response.data.message;
-      console.groupEnd();
     })
     .addCase(USER_CHECK_SUCCESS, (state, action) => {
-      console.group('[USER_CHECK_SUCCESS]: (state, action) => { .. }');
       state.user = action.payload;
       state.error = null;
-      console.groupEnd();
     })
     .addCase(USER_CHECK_FAILURE, (state, action) => {
-      console.group('[USER_CHECK_FAILURE]: (state, action) => { .. }');
       state.error = action.payload;
-      console.groupEnd();
     })
     .addCase(USER_LOGIN_SUCCESS, (state, action) => {
-      console.group('[USER_LOGIN_SUCCESS]: (state, action) => { .. }');
       state.auth = action.payload;
       state.error = null;
-      console.groupEnd();
     })
     .addCase(USER_LOGIN_FAILURE, (state, action) => {
-      console.group('[USER_LOGIN_FAILURE]: (state, action) => { .. }');
       state.error = action.payload.response.data.message;
-      console.groupEnd();
     })
     .addCase(USER_LOGOUT, (state, action) => {
-      console.group('[USER_LOGOUT]: (state, action) => { .. }');
       state.user = initialState.user;
       state.auth = initialState.auth;
       state.error = null;
-      console.groupEnd();
     })
     .addCase(USER_MODIFY_PROFILE_SUCCESS, (state, action) => {
-      console.group('[USER_MODIFY_PROFILE_SUCCESS]: (state, action) => { .. }');
       state.user.user2.name = action.payload.user.name;
       state.user.user2.email = action.payload.user.email;
-      console.groupEnd();
     })
-    .addCase(USER_MODIFY_PROFILE_FAILURE, (state, action) => {
-      console.group('[USER_MODIFY_PROFILE_FAILURE]: (state, action) => { .. }');
-      console.groupEnd();
-    })
-    .addDefaultCase((state, action) => {
-      // console.group('[USER_MODIFY_PROFILE]: addDefaultCase((state, action) => { .. })');
-      // console.groupEnd();
-    });
+    .addCase(USER_MODIFY_PROFILE_FAILURE, (state, action) => {})
+    .addDefaultCase((state, action) => {});
 });
 
 // Saga

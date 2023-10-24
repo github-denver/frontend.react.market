@@ -44,7 +44,7 @@ const Steak = ({ attributes }) => {
     dispatch(steak({ category, number, select: prefixed.select, keyword: prefixed.keyword }));
 
     return () => {
-      console.log('unmount: steak/list');
+      // console.log('unmount: steak/list');
 
       dispatch(steakInitial());
     };

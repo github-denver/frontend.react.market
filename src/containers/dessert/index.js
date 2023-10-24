@@ -44,7 +44,7 @@ const Dessert = ({ attributes }) => {
     dispatch(dessert({ category, number, select: prefixed.select, keyword: prefixed.keyword }));
 
     return () => {
-      console.log('unmount: dessert/list');
+      // console.log('unmount: dessert/list');
 
       dispatch(dessertInitial());
     };

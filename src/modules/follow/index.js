@@ -31,45 +31,30 @@ const initialState = {
 export default createReducer(initialState, (builder) => {
   builder
     .addCase(FOLLOWING_INITIAL, (state, action) => {
-      console.group('[FOLLOWING_INITIAL]: (state, action) => { .. }');
       state.following = null;
       state.error = null;
-      console.groupEnd();
     })
     .addCase(FOLLOWING_SUCCESS, (state, action) => {
-      console.group('[FOLLOWING_SUCCESS]: (state, action) => { .. }');
       state.following = action.payload;
       state.error = null;
-      console.groupEnd();
     })
     .addCase(FOLLOWING_FAILURE, (state, action) => {
-      console.group('[FOLLOWING_FAILURE]: (state, action) => { .. }');
       state.following = null;
       state.error = action.payload;
-      console.groupEnd();
     })
     .addCase(FOLLOWER_INITIAL, (state, action) => {
-      console.group('[FOLLOWER_INITIAL]: (state, action) => { .. }');
       state.follower = null;
       state.error = null;
-      console.groupEnd();
     })
     .addCase(FOLLOWER_SUCCESS, (state, action) => {
-      console.group('[FOLLOWER_SUCCESS]: (state, action) => { .. }');
       state.follower = action.payload;
       state.error = null;
-      console.groupEnd();
     })
     .addCase(FOLLOWER_FAILURE, (state, action) => {
-      console.group('[FOLLOWER_FAILURE]: (state, action) => { .. }');
       state.follower = null;
       state.error = action.payload;
-      console.groupEnd();
     })
-    .addDefaultCase((state, action) => {
-      // console.group('[FOLLOW]: addDefaultCase((state, action) => { .. })');
-      // console.groupEnd();
-    });
+    .addDefaultCase((state, action) => {});
 });
 
 // Saga

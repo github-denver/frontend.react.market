@@ -51,7 +51,7 @@ const Containers = ({ attributes }) => {
     }
 
     return () => {
-      console.log('unmount: board/write');
+      // console.log('unmount: board/write');
 
       dispatch(formInitial());
       dispatch(postInitial());

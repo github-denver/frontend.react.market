@@ -34,12 +34,12 @@ const StyledForm = styled.div`
 const Profile = ({ formData, errorMessage, user, error, loading, onSubmitModifyProfile, onChangeField, onCloseLayer, visibleLayer, onNameCheck, onEmailCheck, onSendEmail, fakeFields, onClickFakeField }) => {
   if (error) {
     if (error.response && error.response.status === 404) {
-      console.log('존재하지 않는 글입니다.');
+      // console.log('존재하지 않는 글입니다.');
 
       return <p>존재하지 않는 글입니다.</p>;
     }
 
-    console.log('문제가 발생했습니다.');
+    // console.log('문제가 발생했습니다.');
 
     return (
       <StyledSystemMessage
@@ -51,7 +51,7 @@ const Profile = ({ formData, errorMessage, user, error, loading, onSubmitModifyP
   }
 
   if (loading || !user) {
-    console.log('읽어들이는 중입니다.');
+    // console.log('읽어들이는 중입니다.');
 
     return (
       <StyledSystemMessage
@@ -63,7 +63,7 @@ const Profile = ({ formData, errorMessage, user, error, loading, onSubmitModifyP
   }
 
   if (!user) {
-    console.log('정보가 존재하지 않습니다.');
+    // console.log('정보가 존재하지 않습니다.');
 
     return (
       <StyledSystemMessage

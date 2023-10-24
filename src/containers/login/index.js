@@ -61,7 +61,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    console.log('로그인 양식을 초기화합니다.');
+    // console.log('로그인 양식을 초기화합니다.');
 
     dispatch(formInitial());
   }, [dispatch]);
@@ -74,7 +74,7 @@ const Login = () => {
 
       setVisibleLayer(true);
     } else if (accessToken) {
-      console.log('로그인에 성공했습니다.');
+      // console.log('로그인에 성공했습니다.');
 
       dispatch(userCheck(accessToken));
     }
@@ -82,7 +82,7 @@ const Login = () => {
 
   useEffect(() => {
     if (user) {
-      console.log('사용자 확인에 성공했습니다. 메인 화면으로 이동합니다.');
+      // console.log('사용자 확인에 성공했습니다. 메인 화면으로 이동합니다.');
 
       navigate('/');
 
@@ -96,7 +96,7 @@ const Login = () => {
     }
 
     return () => {
-      console.log('unmount: login');
+      // console.log('unmount: login');
 
       dispatch(formInitial());
     };

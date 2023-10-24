@@ -44,7 +44,7 @@ const Baking = ({ attributes }) => {
     dispatch(baking({ category, number, select: prefixed.select, keyword: prefixed.keyword }));
 
     return () => {
-      console.log('unmount: baking/list');
+      // console.log('unmount: baking/list');
 
       dispatch(bakingInitial());
     };

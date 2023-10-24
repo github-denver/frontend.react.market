@@ -21,27 +21,18 @@ const initialState = {
 export default createReducer(initialState, (builder) => {
   builder
     .addCase(CURRY_INITIAL, (state, action) => {
-      console.group('[CURRY_INITIAL]: (state, action) => { .. }');
       state.data = null;
       state.error = null;
-      console.groupEnd();
     })
     .addCase(CURRY_SUCCESS, (state, action) => {
-      console.group('[CURRY_SUCCESS]: (state, action) => { .. }');
       state.data = action.payload;
       state.error = null;
-      console.groupEnd();
     })
     .addCase(CURRY_FAILURE, (state, action) => {
-      console.group('[CURRY_FAILURE]: (state, action) => { .. }');
       state.data = null;
       state.error = action.payload;
-      console.groupEnd();
     })
-    .addDefaultCase((state, action) => {
-      // console.group('[CURRY]: addDefaultCase((state, action) => { .. })');
-      // console.groupEnd();
-    });
+    .addDefaultCase((state, action) => {});
 });
 
 // Saga

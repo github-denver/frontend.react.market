@@ -22,7 +22,7 @@ const Hero = ({ attributes }) => {
     dispatch(hero({ category }));
 
     return () => {
-      console.log('unmount: hero/list');
+      // console.log('unmount: hero/list');
 
       dispatch(heroInitial());
     };

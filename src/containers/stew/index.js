@@ -45,7 +45,7 @@ const Stew = ({ attributes }) => {
     dispatch(stew({ category, number, select: prefixed.select, keyword: prefixed.keyword }));
 
     return () => {
-      console.log('unmount: stew/list');
+      // console.log('unmount: stew/list');
 
       dispatch(stewInitial());
     };

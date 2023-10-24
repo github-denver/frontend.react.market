@@ -45,7 +45,7 @@ const Meal = ({ attributes }) => {
     dispatch(meal({ category, number, select: prefixed.select, keyword: prefixed.keyword }));
 
     return () => {
-      console.log('unmount: meal/list');
+      // console.log('unmount: meal/list');
 
       dispatch(mealInitial());
     };

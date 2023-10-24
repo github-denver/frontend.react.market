@@ -16,26 +16,12 @@ const initialState = {};
 // Reducers
 export default createReducer(initialState, (builder) => {
   builder
-    .addCase(LOADING_INITIAL, (state) => {
-      console.group('[LOADING_INITIAL]: (state) => { .. }');
-      console.groupEnd();
-    })
+    .addCase(LOADING_INITIAL, (state) => {})
     .addCase(LOADING_START, (state, action) => {
-      console.group('[LOADING_START]: (state, action) => { .. }');
-      console.log('action.payload: ', action.payload);
-
       state[action.payload] = true;
-      console.groupEnd();
     })
     .addCase(LOADING_FINISH, (state, action) => {
-      console.group('[LOADING_FINISH]: (state, action) => { .. }');
-      console.log('action.payload: ', action.payload);
-
       state[action.payload] = false;
-      console.groupEnd();
     })
-    .addDefaultCase((state, action) => {
-      // console.group('[LOADING]: addDefaultCase((state, action) => { .. })');
-      // console.groupEnd();
-    });
+    .addDefaultCase((state, action) => {});
 });

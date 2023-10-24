@@ -108,7 +108,7 @@ const PasswordFind = () => {
   };
 
   useEffect(() => {
-    console.log('이메일 인증 양식을 초기화합니다.');
+    // console.log('이메일 인증 양식을 초기화합니다.');
 
     dispatch(formInitial());
   }, [dispatch]);
@@ -125,7 +125,7 @@ const PasswordFind = () => {
     }
 
     return () => {
-      console.log('unmount: passwordFind');
+      // console.log('unmount: passwordFind');
 
       dispatch(formInitial());
     };

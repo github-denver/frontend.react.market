@@ -54,7 +54,7 @@ const Follow = ({ attributes }) => {
       return;
     } else {
       if (!user && !accessToken) {
-        console.log('로그인 화면으로 이동합니다.');
+        // console.log('로그인 화면으로 이동합니다.');
 
         navigate('/member/login');
       } else {
@@ -64,7 +64,7 @@ const Follow = ({ attributes }) => {
     }
 
     return () => {
-      console.log('unmount: follow');
+      // console.log('unmount: follow');
     };
   }, [dispatch, navigate, user, accessToken, error]);
 

@@ -25,39 +25,26 @@ const initialState = {
 export default createReducer(initialState, (builder) => {
   builder
     .addCase(COMMENT_INITIAL, (state, action) => {
-      console.group('[COMMENT_INITIAL]: (state, action) => { .. }');
       state.data = null;
       state.error = null;
-      console.groupEnd();
     })
     .addCase(COMMENT_SUCCESS, (state, action) => {
-      console.group('[COMMENT_SUCCESS]: (state, action) => { .. }');
       state.data = action.payload;
       state.error = null;
-      console.groupEnd();
     })
     .addCase(COMMENT_FAILURE, (state, action) => {
-      console.group('[COMMENT_FAILURE]: (state, action) => { .. }');
       state.data = null;
       state.error = action.payload;
-      console.groupEnd();
     })
     .addCase(COMMENT_WRITE_SUCCESS, (state, action) => {
-      console.group('[COMMENT_WRITE_SUCCESS]: (state, action) => { .. }');
       state.data = action.payload;
       state.error = null;
-      console.groupEnd();
     })
     .addCase(COMMENT_WRITE_FAILURE, (state, action) => {
-      console.group('[COMMENT_WRITE_FAILURE]: (state, action) => { .. }');
       state.data = null;
       state.error = action.payload;
-      console.groupEnd();
     })
-    .addDefaultCase((state, action) => {
-      // console.group('[COMMENT]: addDefaultCase((state, action) => { .. })');
-      // console.groupEnd();
-    });
+    .addDefaultCase((state, action) => {});
 });
 
 // Saga

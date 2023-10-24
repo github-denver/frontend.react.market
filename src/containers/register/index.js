@@ -93,7 +93,7 @@ const Register = () => {
 
     dispatch(userRegister({ id, name, password, email }));
 
-    console.log('로그인 화면으로 이동합니다.');
+    // console.log('로그인 화면으로 이동합니다.');
     navigate('/member/login');
   };
 
@@ -160,7 +160,7 @@ const Register = () => {
   };
 
   useEffect(() => {
-    console.log('회원가입 양식을 초기화합니다.');
+    // console.log('회원가입 양식을 초기화합니다.');
 
     dispatch(formInitial());
   }, [dispatch]);
@@ -180,14 +180,14 @@ const Register = () => {
       }
     } else {
       if (user) {
-        console.log('메인 화면으로 이동합니다.');
+        // console.log('메인 화면으로 이동합니다.');
 
         navigate('/');
       }
 
       /*
       if (message) {
-        console.log('로그인 화면으로 이동합니다.');
+        // console.log('로그인 화면으로 이동합니다.');
 
         navigate('/member/login');
       }
@@ -195,7 +195,7 @@ const Register = () => {
     }
 
     return () => {
-      console.log('unmount: register');
+      // console.log('unmount: register');
 
       dispatch(formInitial());
     };

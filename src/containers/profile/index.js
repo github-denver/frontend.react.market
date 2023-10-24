@@ -134,14 +134,14 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    console.log('회원정보 수정 양식을 초기화합니다.');
+    // console.log('회원정보 수정 양식을 초기화합니다.');
 
     dispatch(formInitial());
   }, [dispatch]);
 
   useEffect(() => {
     if (user) {
-      console.log('회원정보 수정 양식에 접근할 때는 사용자 정보를 localStorage에 설정합니다.');
+      // console.log('회원정보 수정 양식에 접근할 때는 사용자 정보를 localStorage에 설정합니다.');
 
       try {
         localStorage.setItem('user', JSON.stringify(user));
@@ -164,14 +164,14 @@ const Profile = () => {
       return;
     } else {
       if (!user && !accessToken) {
-        console.log('로그인 화면으로 이동합니다.');
+        // console.log('로그인 화면으로 이동합니다.');
 
         navigate('/member/login');
       }
     }
 
     return () => {
-      console.log('unmount: profile');
+      // console.log('unmount: profile');
     };
   }, [navigate, user, accessToken, error]);
 

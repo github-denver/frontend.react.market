@@ -22,7 +22,7 @@ const Parallax = ({ attributes }) => {
     dispatch(parallax({ category }));
 
     return () => {
-      console.log('unmount: parallax/list');
+      // console.log('unmount: parallax/list');
 
       dispatch(parallaxInitial());
     };

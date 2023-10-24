@@ -45,7 +45,7 @@ const Meal = ({ attributes }) => {
     dispatch(week({ category, number, select: prefixed.select, keyword: prefixed.keyword }));
 
     return () => {
-      console.log('unmount: week/list');
+      // console.log('unmount: week/list');
 
       dispatch(weekInitial());
     };

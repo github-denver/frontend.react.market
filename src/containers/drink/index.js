@@ -44,7 +44,7 @@ const Drink = ({ attributes }) => {
     dispatch(drink({ category, number, select: prefixed.select, keyword: prefixed.keyword }));
 
     return () => {
-      console.log('unmount: drink/list');
+      // console.log('unmount: drink/list');
 
       dispatch(drinkInitial());
     };

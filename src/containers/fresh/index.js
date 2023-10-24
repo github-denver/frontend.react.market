@@ -44,7 +44,7 @@ const Salad = ({ attributes }) => {
     dispatch(salad({ category, number, select: prefixed.select, keyword: prefixed.keyword }));
 
     return () => {
-      console.log('unmount: salad/list');
+      // console.log('unmount: salad/list');
 
       dispatch(saladInitial());
     };

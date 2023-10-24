@@ -44,7 +44,7 @@ const Pizza = ({ attributes }) => {
     dispatch(pizza({ category, number, select: prefixed.select, keyword: prefixed.keyword }));
 
     return () => {
-      console.log('unmount: pizza/list');
+      // console.log('unmount: pizza/list');
 
       dispatch(pizzaInitial());
     };

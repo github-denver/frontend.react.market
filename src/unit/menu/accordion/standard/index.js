@@ -42,8 +42,6 @@ const StyledButton = styled.button`
   ${({ $active }) =>
     $active
       ? css`
-          /* background-color: #f1f1f1; */
-
           .text_local + svg {
             -webkit-transform: rotate(180deg);
             -ms-transform: rotate(180deg);
@@ -139,10 +137,6 @@ const StyledList = styled.ul`
 
 const Accordion = ({ className, items, closeOthersOnClick }) => {
   const [activeIndexes, setActiveIndexes] = useState([]);
-
-  const { category, number } = useParams();
-
-  let location = useLocation();
 
   const onItemClick = (index) => {
     setActiveIndexes((prevIndexes) => {

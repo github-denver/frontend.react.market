@@ -44,7 +44,7 @@ const Cake = ({ attributes }) => {
     dispatch(cake({ category, number, select: prefixed.select, keyword: prefixed.keyword }));
 
     return () => {
-      console.log('unmount: cake/list');
+      // console.log('unmount: cake/list');
 
       dispatch(cakeInitial());
     };

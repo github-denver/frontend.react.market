@@ -10,7 +10,6 @@ const StyledText = styled.span`
   display: inline-block;
   position: relative;
   margin-left: 0.4rem;
-  /* padding-left: 0.4rem; */
   font-size: 1.2rem;
   color: #666;
   vertical-align: middle;
@@ -66,7 +65,6 @@ const StyledInformation = styled.div`
   }
 `;
 
-// const StyledImage = styled.img`
 const StyledImage = styled(LazyLoadImage)`
   position: absolute;
   top: 50%;
@@ -86,7 +84,6 @@ const StyledFrame = styled.div`
   overflow: hidden;
   position: relative;
   z-index: 1;
-  /* padding-top: 150%; */
   padding-top: 56.25%;
   border-radius: 0;
 

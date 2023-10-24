@@ -22,7 +22,7 @@ const View = () => {
         <Hgroup
           attributes={{
             level: 3,
-            title: '집사진',
+            title: '',
             invisible: true
           }}
         />

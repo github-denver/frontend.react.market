@@ -95,7 +95,7 @@ const PasswordModify = () => {
   };
 
   useEffect(() => {
-    console.log('패스워드 재설정 양식을 초기화합니다.');
+    // console.log('패스워드 재설정 양식을 초기화합니다.');
 
     dispatch(formInitial());
   }, [dispatch]);
@@ -112,7 +112,7 @@ const PasswordModify = () => {
     }
 
     return () => {
-      console.log('unmount: passwordModify');
+      // console.log('unmount: passwordModify');
 
       dispatch(formInitial());
     };

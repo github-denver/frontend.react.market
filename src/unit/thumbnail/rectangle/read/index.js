@@ -1,10 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
-import Button from '@/unit/button/standard';
 import { SlPlus } from 'react-icons/sl';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 
 const commonStyles = css`
   display: inline-block;
@@ -93,7 +91,6 @@ const StyledProductLayer = styled.div`
   z-index: -1;
   margin-bottom: -0.1rem;
   margin-bottom: -0.278vw;
-  /* border: 0.1rem solid #f1f1f1; */
 
   &:before {
     position: absolute;

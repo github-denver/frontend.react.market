@@ -86,7 +86,7 @@ const Containers = ({ attributes }) => {
     dispatch(posts({ category, number, select: prefixed.select, keyword: prefixed.keyword }));
 
     return () => {
-      console.log('unmount: board/list');
+      // console.log('unmount: board/list');
 
       dispatch(postsInitial());
     };
