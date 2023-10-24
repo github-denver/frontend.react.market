@@ -31,8 +31,7 @@ const StyledItem = styled.li`
 
 const StyledList = styled.ul`
   margin: -3.2rem 0 0 -1.6rem;
-  padding: 1.6rem;
-  padding: 1.6rem 1.6rem 0 1.6rem;
+  padding: 1.6rem 1.6rem 1.6rem 1.6rem;
 `;
 
 const CardList = ({ attributes }) => {

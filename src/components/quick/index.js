@@ -73,7 +73,7 @@ const StyledQuick = styled.div`
 `;
 
 const Quick = ({ attributes }) => {
-  const { href } = attributes || {};
+  const {} = attributes || {};
 
   return (
     <StyledQuick>

@@ -7,7 +7,7 @@ import Publish from '@/containers/publish';
 import ViewFinder from '@/components/viewFinder';
 import Half from '@/unit/half/standard';
 import Text from '@/unit/text/standard';
-import QuillEditor from '../../editor/quill';
+import QuillEditor from '@/components/editor/quill';
 
 const StyledSystemMessage = styled(Text)`
   margin: 2.4rem 1.6rem 0;
