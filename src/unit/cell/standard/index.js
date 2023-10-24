@@ -12,10 +12,12 @@ const StyledOuter = styled.div`
   height: 100%;
 `;
 
-const Cell = ({ children, className }) => {
+const Cell = ({ children, className, attributes }) => {
+  const { styles } = attributes || {};
+
   return (
-    <StyledOuter className={className}>
-      <StyledInner>{children}</StyledInner>
+    <StyledOuter className={className} style={{ ...styles?.first }}>
+      <StyledInner style={{ ...styles?.second }}>{children}</StyledInner>
     </StyledOuter>
   );
 };

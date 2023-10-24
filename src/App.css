@@ -214,7 +214,9 @@ section {
 }
 
 .list_recipe_note {
-  padding: 0 1.6rem;
+  margin: 0 1.6rem;
+  border-top: 0.1rem solid #f1f1f1;
+  border-bottom: 0.1rem solid #f1f1f1;
 }
 
 .inner_recipe_note {
@@ -225,6 +227,10 @@ section {
   padding: 1.2rem 0;
   border-top: 0.1rem solid #f1f1f1;
   font-size: 0;
+}
+
+.item_recipe_note:first-child {
+  border-top: 0 none;
 }
 
 .item_recipe_note:after {

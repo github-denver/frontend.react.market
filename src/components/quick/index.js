@@ -108,95 +108,59 @@ const Quick = ({ attributes }) => {
           </StyledLink>
         </StyledItem>
 
-        {/* <StyledItem>
+        <StyledItem>
           <StyledLink to="/board/baking/list/1">
-            <StyledBox>
-              <StyledIcon src="./icons/icon_steak.png" alt="" />
-            </StyledBox>
-
             <span className="text_local">스테이크</span>
           </StyledLink>
         </StyledItem>
 
         <StyledItem>
           <StyledLink to="/board/soup/list/1">
-            <StyledBox>
-              <StyledIcon src="./icons/icon_soup.png" alt="" />
-            </StyledBox>
-
             <span className="text_local">수프</span>
           </StyledLink>
         </StyledItem>
 
         <StyledItem>
           <StyledLink to="/board/salad/list/1">
-            <StyledBox>
-              <StyledIcon src="./icons/icon_salad.png" alt="" />
-            </StyledBox>
-
             <span className="text_local">샐러드</span>
           </StyledLink>
         </StyledItem>
 
         <StyledItem>
           <StyledLink to="/board/baking/list/1">
-            <StyledBox>
-              <StyledIcon src="./icons/icon_bakery.png" alt="" />
-            </StyledBox>
-
             <span className="text_local">빵</span>
           </StyledLink>
         </StyledItem>
 
         <StyledItem>
           <StyledLink to="/board/burger/list/1">
-            <StyledBox>
-              <StyledIcon src="./icons/icon_burger.png" alt="" />
-            </StyledBox>
-
             <span className="text_local">햄버거</span>
           </StyledLink>
         </StyledItem>
 
         <StyledItem>
           <StyledLink to="/board/baking/list/1">
-            <StyledBox>
-              <StyledIcon src="./icons/icon_pizza.png" alt="" />
-            </StyledBox>
-
             <span className="text_local">피자</span>
           </StyledLink>
         </StyledItem>
 
         <StyledItem>
           <StyledLink to="/board/cake/list/1">
-            <StyledBox>
-              <StyledIcon src="./icons/icon_cake.png" alt="" />
-            </StyledBox>
-
             <span className="text_local">케이크</span>
           </StyledLink>
         </StyledItem>
 
         <StyledItem>
           <StyledLink to="/board/dessert/list/1">
-            <StyledBox>
-              <StyledIcon src="./icons/icon_dessert.png" alt="" />
-            </StyledBox>
-
             <span className="text_local">디저트</span>
           </StyledLink>
         </StyledItem>
 
         <StyledItem>
           <StyledLink to="/board/drink/list/1">
-            <StyledBox>
-              <StyledIcon src="./icons/icon_drink.png" alt="" />
-            </StyledBox>
-
             <span className="text_local">음료수</span>
           </StyledLink>
-        </StyledItem> */}
+        </StyledItem>
       </StyledList>
     </StyledQuick>
   );

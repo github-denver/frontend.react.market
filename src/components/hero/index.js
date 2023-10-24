@@ -82,6 +82,8 @@ const StyledSwiperSlide = styled(SwiperSlide)`
 `;
 
 const StyledSwiper = styled(Swiper)`
+  /* padding-bottom: 1.6rem; */
+
   .swiper-wrapper {
     /* transition-property: none !important; */
   }

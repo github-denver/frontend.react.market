@@ -19,7 +19,8 @@ import Dessert from '@/containers/dessert';
 import Drink from '@/containers/drink';
 
 import Footer from '@/components/footer';
-import Hero from '../../containers/hero';
+import Hero from '@/containers/hero';
+import Parallax from '@/containers/slider/swiper/parallax';
 
 // import Swiper core and required modules
 import { Navigation as SwiperNavigation, Pagination as SwiperPagination, A11y, EffectFade as SwiperEffectFade, Autoplay as SwiperAutoplay, Parallax as SwiperParallax } from 'swiper';
@@ -38,7 +39,7 @@ const StyledBoundary = styled(Boundary)``;
 const StyledNavigation = styled(Navigation)``;
 
 const StyledHgroup = styled(Hgroup)`
-  /* margin-top: 1.6rem; */
+  margin-top: 1.6rem;
 
   ${StyledBoundary} + & {
     margin-top: 0;
@@ -64,70 +65,7 @@ const Page = () => {
 
         <StyledNavigation />
 
-        {/* <StyledHgroup
-          attributes={{
-            title: '오늘, 이 식사 어때요?',
-            description: '오늘은 이 요리에 도전해 보는 건 어떠세요?',
-            align: 'center'
-          }}
-        /> */}
-        <Swiper
-          className="hero-slider hero-style"
-          // install Swiper modules
-          modules={[SwiperNavigation, SwiperPagination, A11y, SwiperEffectFade, SwiperAutoplay, SwiperParallax]}
-          navigation
-          pagination={{ clickable: true }}
-          parallax={true}
-          onSwiper={(swiper) => {}}
-          onSlideChange={() => {}}
-          watchSlidesProgress={true}
-          speed={1000}
-          loop={true}
-          // autoplay={{
-          //   delay: 8000,
-          //   disableOnInteraction: false
-          // }}
-        >
-          <SwiperSlide style={{ height: '100%' }}>
-            <div className="slide-inner slide-bg-image" style={{ backgroundImage: `url(http://localhost:5000/uploads/돼지고기+김치찌개.jpg)` }} data-swiper-parallax="100">
-              <div className="con123tainer" data-swiper-parallax="-100">
-                <div className="inner_comm">
-                  <div className="inner2_comm">
-                    <div className="slide-title">
-                      <h2>속이 확 풀리는 얼큰함 돼지고기 김치찌개</h2>
-                    </div>
-
-                    <div className="slide-text">
-                      <p>밥 한 공기를 뚝딱하게 만드는 얼큰한 국물 맛이 일품~ 돼지고기 김치찌개를 만들었어요. 푸짐하게 넣은 돼지고기와 김치가 숟가락을 멈출 수 없게 만든답니다. 언제 먹어도 맛있는 돼지고기 김치찌개로 즐거운 식탁을 만들어보세요.</p>
-                    </div>
-
-                    <div className="clearfix"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-
-          <SwiperSlide style={{ height: '100%' }}>
-            <div className="slide-inner slide-bg-image" style={{ backgroundImage: `url(http://localhost:5000/uploads/돼지고기+김치찌개.jpg)` }} data-swiper-parallax="100">
-              <div className="con123tainer" data-swiper-parallax="-100">
-                <div className="inner_comm">
-                  <div className="inner2_comm">
-                    <div className="slide-title">
-                      <h2>속이 확 풀리는 얼큰함 돼지고기 김치찌개</h2>
-                    </div>
-
-                    <div className="slide-text">
-                      <p>밥 한 공기를 뚝딱하게 만드는 얼큰한 국물 맛이 일품~ 돼지고기 김치찌개를 만들었어요. 푸짐하게 넣은 돼지고기와 김치가 숟가락을 멈출 수 없게 만든답니다. 언제 먹어도 맛있는 돼지고기 김치찌개로 즐거운 식탁을 만들어보세요.</p>
-                    </div>
-
-                    <div className="clearfix"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-        </Swiper>
+        <Parallax attributes={{ category: 'popular' }} />
 
         <StyledHgroup
           attributes={{
@@ -150,10 +88,11 @@ const Page = () => {
         <Noodle attributes={{ flicking: true, square: true, category: 'noodle' }} />
         {/* <Stew attributes={{ grid: true, square: true, radius: true, category: 'stew' }} /> */}
 
-        {/* <StyledBoundary /> */}
         <StyledThin />
 
         <Hero attributes={{ category: 'popular' }} />
+
+        {/* <StyledBoundary /> */}
 
         <StyledHgroup
           attributes={{
@@ -184,8 +123,6 @@ const Page = () => {
             </div>
           </li>
         </ul>
-
-        <StyledThin />
 
         <StyledHgroup
           attributes={{
