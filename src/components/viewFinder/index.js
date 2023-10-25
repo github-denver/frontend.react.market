@@ -690,7 +690,7 @@ const ViewFinder = ({ children, className, attributes }) => {
             <SlPlus size={20} />
           </div>
 
-          <input type="text" onChange={(e) => handleInputChange(button.id, e)} />
+          <input type="number" onChange={(e) => handleInputChange(button.id, e)} maxLength={49} />
         </div>
       ))}
       {src && (
