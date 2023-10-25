@@ -86,7 +86,7 @@ const StyledSwiperBox = styled.div`
   text-align: left;
 
   justify-content: center;
-  align-items: end;
+  align-items: flex-end;
 `;
 
 const StyledSwiperSlide = styled(SwiperSlide)`

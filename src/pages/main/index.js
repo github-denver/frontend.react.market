@@ -65,7 +65,7 @@ const Page = () => (
       <StyledHgroup
         attributes={{
           title: '이번 주 식사 추천',
-          description: '업무에 지친 당신을 위해',
+          description: '',
           align: 'center'
         }}
       />
@@ -77,7 +77,7 @@ const Page = () => (
 
       <StyledHgroup
         attributes={{
-          title: '카테고리별 레시피',
+          title: '카테고리별 식사',
           description: ''
         }}
       />

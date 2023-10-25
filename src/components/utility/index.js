@@ -13,7 +13,7 @@ import { LuHome } from 'react-icons/lu';
 
 const StyledLinkThird = styled(Link)`
   display: inline-block;
-  padding: 0.95rem 0.4rem;
+  padding: 0.95rem 1.4rem;
   vertical-align: middle;
 
   .text_local {
@@ -212,7 +212,7 @@ const Utility = ({ attributes }) => {
             },
             {
               icon: <TbChefHat size={24} />,
-              title: '레시피',
+              title: '식사',
               category: ['stew', 'noodle', 'curry'],
               arrow: <SlArrowDown size={12} />,
               subItems: [
@@ -233,61 +233,61 @@ const Utility = ({ attributes }) => {
                   link: '카레',
                   to: '/board/curry/list/1',
                   arrow: null
+                },
+                {
+                  icon: null,
+                  link: '스테이크',
+                  to: '/board/steak/list/1',
+                  arrow: null
+                },
+                {
+                  icon: null,
+                  link: '수프',
+                  to: '/board/soup/list/1',
+                  arrow: null
+                },
+                {
+                  icon: null,
+                  link: '샐러드',
+                  to: '/board/salad/list/1',
+                  arrow: null
+                },
+                {
+                  icon: null,
+                  link: '빵',
+                  to: '/board/baking/list/1',
+                  arrow: null
+                },
+                {
+                  icon: null,
+                  link: '햄버거',
+                  to: '/board/burger/list/1',
+                  arrow: null
+                },
+                {
+                  icon: null,
+                  link: '피자',
+                  to: '/board/pizza/list/1',
+                  arrow: null
+                },
+                {
+                  icon: null,
+                  link: '케이크',
+                  to: '/board/cake/list/1',
+                  arrow: null
+                },
+                {
+                  icon: null,
+                  link: '디저트',
+                  to: '/board/dessert/list/1',
+                  arrow: null
+                },
+                {
+                  icon: null,
+                  link: '음료수',
+                  to: '/board/drink/list/1',
+                  arrow: null
                 }
-                // {
-                //   icon: null,
-                //   link: '스테이크',
-                //   to: '/board/steak/list/1',
-                //   arrow: null
-                // },
-                // {
-                //   icon: null,
-                //   link: '수프',
-                //   to: '/board/soup/list/1',
-                //   arrow: null
-                // },
-                // {
-                //   icon: null,
-                //   link: '샐러드',
-                //   to: '/board/salad/list/1',
-                //   arrow: null
-                // },
-                // {
-                //   icon: null,
-                //   link: '빵',
-                //   to: '/board/baking/list/1',
-                //   arrow: null
-                // },
-                // {
-                //   icon: null,
-                //   link: '햄버거',
-                //   to: '/board/burger/list/1',
-                //   arrow: null
-                // },
-                // {
-                //   icon: null,
-                //   link: '피자',
-                //   to: '/board/pizza/list/1',
-                //   arrow: null
-                // },
-                // {
-                //   icon: null,
-                //   link: '케이크',
-                //   to: '/board/cake/list/1',
-                //   arrow: null
-                // },
-                // {
-                //   icon: null,
-                //   link: '디저트',
-                //   to: '/board/dessert/list/1',
-                //   arrow: null
-                // },
-                // {
-                //   icon: null,
-                //   link: '음료수',
-                //   to: '/board/drink/list/1',
-                //   arrow: null
-                // }
               ]
             }
           ]}
@@ -295,64 +295,22 @@ const Utility = ({ attributes }) => {
         />
 
         <StyledListSecond>
-          {/* <StyledItemSecond>
-            <StyledLinkSecond to="/member/follow">
-              <span className="text_local">마이페이지</span>
-            </StyledLinkSecond>
-          </StyledItemSecond> */}
-
           <StyledItemSecond>
             <StyledLinkSecond to="/board/write">
-              <span className="text_local">레시피 올리기</span>
+              <span className="text_local">식사 올리기</span>
             </StyledLinkSecond>
           </StyledItemSecond>
-
-          {/* <StyledItemSecond>
-            <StyledLinkSecond to="/board/baking/write">
-              <span className="text_local">케이크 올리기</span>
-            </StyledLinkSecond>
-          </StyledItemSecond> */}
-
-          {/* <StyledItemSecond>
-            <StyledLinkSecond to="/board/popular/write">
-              <span className="text_local">요리 올리기</span>
-            </StyledLinkSecond>
-          </StyledItemSecond> */}
-
-          {/* <StyledItemSecond>
-            <StyledLinkSecond to="/board/salad/write">
-              <span className="text_local">샐러드 올리기</span>
-            </StyledLinkSecond>
-          </StyledItemSecond> */}
-
-          {/* <StyledItemSecond>
-            <StyledLinkSecond to="/board/dessert/write">
-              <span className="text_local">디저트 올리기</span>
-            </StyledLinkSecond>
-          </StyledItemSecond> */}
-
-          {/* <StyledItemSecond>
-            <StyledLinkSecond to="/board/spicy/write">
-              <span className="text_local">매운 요리 올리기</span>
-            </StyledLinkSecond>
-          </StyledItemSecond>
-
-          <StyledItemSecond>
-            <StyledLinkSecond to="/board/soup/write">
-              <span className="text_local">국물요리 올리기</span>
-            </StyledLinkSecond>
-          </StyledItemSecond> */}
         </StyledListSecond>
 
-        {/* {user && (
+        {user && (
           <StyledListThird>
             <StyledItemThird>
-              <StyledLinkThird to="/">
-                <span className="text_local">로그아웃</span>
+              <StyledLinkThird to="/member/profile">
+                <span className="text_local">개인정보 수정</span>
               </StyledLinkThird>
             </StyledItemThird>
           </StyledListThird>
-        )} */}
+        )}
       </StyledInner>
 
       <Dimmed attributes={{ visible }} />

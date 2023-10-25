@@ -80,30 +80,18 @@ const Quick = ({ attributes }) => {
       <StyledList>
         <StyledItem>
           <StyledLink to="/board/stew/list/1">
-            {/* <StyledBox>
-              <StyledIcon src="./icons/icon_cooking.png" alt="" />
-            </StyledBox> */}
-
             <span className="text_local">찌개</span>
           </StyledLink>
         </StyledItem>
 
         <StyledItem>
           <StyledLink to="/board/noodle/list/1">
-            {/* <StyledBox>
-              <StyledIcon src="./icons/icon_spicy.png" alt="" />
-            </StyledBox> */}
-
             <span className="text_local">면</span>
           </StyledLink>
         </StyledItem>
 
         <StyledItem>
           <StyledLink to="/board/curry/list/1">
-            {/* <StyledBox>
-              <StyledIcon src="./icons/icon_curry.png" alt="" />
-            </StyledBox> */}
-
             <span className="text_local">카레</span>
           </StyledLink>
         </StyledItem>

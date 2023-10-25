@@ -156,7 +156,7 @@ const BoardWrite = ({ children, attributes }) => {
           first: (
             <StyledText
               attributes={{
-                text: '레시피 종류'
+                text: '식사 종류'
               }}
             />
           ),
@@ -166,7 +166,7 @@ const BoardWrite = ({ children, attributes }) => {
               <option value="stew">찌개</option>
               <option value="noodle">면</option>
               <option value="curry">카레</option>
-              {/* <option value="steak">스테이크</option>
+              <option value="steak">스테이크</option>
               <option value="soup">수프</option>
               <option value="salad">샐러드</option>
               <option value="baking">빵</option>
@@ -174,7 +174,7 @@ const BoardWrite = ({ children, attributes }) => {
               <option value="pizza">피자</option>
               <option value="cake">케이크</option>
               <option value="dessert">디저트</option>
-              <option value="drink">음료수</option> */}
+              <option value="drink">음료수</option>
             </StyledSelect>
           )
         }}

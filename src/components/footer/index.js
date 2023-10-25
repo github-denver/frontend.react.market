@@ -275,7 +275,7 @@ const Footer = ({ children, attributes }) => {
 
       <StyledText
         attributes={{
-          text: '오늘의 식사은 포트폴리오 사이트입니다.'
+          text: '오늘의 식사는 포트폴리오 사이트입니다.'
         }}
       />
 

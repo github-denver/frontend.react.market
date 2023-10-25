@@ -171,7 +171,7 @@ const BoardWrite = ({ children, attributes }) => {
           first: (
             <StyledText
               attributes={{
-                text: '레시피 종류'
+                text: '식사 종류'
               }}
             />
           ),

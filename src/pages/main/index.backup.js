@@ -157,7 +157,7 @@ const Page = () => {
 
         <StyledHgroup
           attributes={{
-            title: '레시피 노트',
+            title: '식사 노트',
             description: ''
           }}
         />
@@ -189,7 +189,7 @@ const Page = () => {
 
         <StyledHgroup
           attributes={{
-            title: '카테고리별 레시피',
+            title: '카테고리별 식사',
             description: ''
           }}
         />

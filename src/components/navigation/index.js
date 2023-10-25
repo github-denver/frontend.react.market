@@ -154,39 +154,57 @@ const Navigation = ({ className, attributes }) => {
           </StyledItem>
 
           <StyledItem>
-            <StyledLink to="/board/steak/list/1">스테이크</StyledLink>
+            <StyledLink to="/board/steak/list/1" className={category === 'steak' && 'active'}>
+              스테이크
+            </StyledLink>
           </StyledItem>
 
           <StyledItem>
-            <StyledLink to="/board/soup/list/1">수프</StyledLink>
+            <StyledLink to="/board/soup/list/1" className={category === 'soup' && 'active'}>
+              수프
+            </StyledLink>
           </StyledItem>
 
           <StyledItem>
-            <StyledLink to="/board/salad/list/1">샐러드</StyledLink>
+            <StyledLink to="/board/salad/list/1" className={category === 'salad' && 'active'}>
+              샐러드
+            </StyledLink>
           </StyledItem>
 
           <StyledItem>
-            <StyledLink to="/board/baking/list/1">빵</StyledLink>
+            <StyledLink to="/board/baking/list/1" className={category === 'baking' && 'active'}>
+              빵
+            </StyledLink>
           </StyledItem>
 
           <StyledItem>
-            <StyledLink to="/board/burger/list/1">햄버거</StyledLink>
+            <StyledLink to="/board/burger/list/1" className={category === 'burger' && 'active'}>
+              햄버거
+            </StyledLink>
           </StyledItem>
 
           <StyledItem>
-            <StyledLink to="/board/pizza/list/1">피자</StyledLink>
+            <StyledLink to="/board/pizza/list/1" className={category === 'pizza' && 'active'}>
+              피자
+            </StyledLink>
           </StyledItem>
 
           <StyledItem>
-            <StyledLink to="/board/cake/list/1">케이크</StyledLink>
+            <StyledLink to="/board/cake/list/1" className={category === 'cake' && 'active'}>
+              케이크
+            </StyledLink>
           </StyledItem>
 
           <StyledItem>
-            <StyledLink to="/board/dessert/list/1">디저트</StyledLink>
+            <StyledLink to="/board/dessert/list/1" className={category === 'dessert' && 'active'}>
+              디저트
+            </StyledLink>
           </StyledItem>
 
           <StyledItem>
-            <StyledLink to="/board/drink/list/1">음료수</StyledLink>
+            <StyledLink to="/board/drink/list/1" className={category === 'drink' && 'active'}>
+              음료수
+            </StyledLink>
           </StyledItem>
         </StyledList>
       </StyledInner>
