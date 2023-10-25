@@ -146,7 +146,7 @@ const Quick = ({ attributes }) => {
 
         <StyledItem>
           <StyledLink to="/board/drink/list/1">
-            <span className="text_local">음료수</span>
+            <span className="text_local">주스</span>
           </StyledLink>
         </StyledItem>
       </StyledList>

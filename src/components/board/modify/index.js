@@ -189,7 +189,7 @@ const BoardWrite = ({ children, attributes }) => {
               <option value="pizza">피자</option>
               <option value="cake">케이크</option>
               <option value="dessert">디저트</option>
-              <option value="drink">음료수</option>
+              <option value="drink">주스</option>
             </StyledSelect>
           )
         }}

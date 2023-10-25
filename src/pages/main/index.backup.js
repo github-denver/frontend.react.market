@@ -281,7 +281,7 @@ const Page = () => {
 
         <StyledHgroup
           attributes={{
-            title: '음료수',
+            title: '주스',
             description: '',
             href: '/board/drink/list/1'
           }}

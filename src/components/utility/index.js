@@ -284,7 +284,7 @@ const Utility = ({ attributes }) => {
                 },
                 {
                   icon: null,
-                  link: '음료수',
+                  link: '주스',
                   to: '/board/drink/list/1',
                   arrow: null
                 }

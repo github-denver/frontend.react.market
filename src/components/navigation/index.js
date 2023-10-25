@@ -203,7 +203,7 @@ const Navigation = ({ className, attributes }) => {
 
           <StyledItem>
             <StyledLink to="/board/drink/list/1" className={category === 'drink' && 'active'}>
-              음료수
+              주스
             </StyledLink>
           </StyledItem>
         </StyledList>
