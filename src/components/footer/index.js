@@ -34,7 +34,7 @@ const StyledSocial = styled.ul`
 `;
 
 const StyledCompanyLink = styled(Link)`
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 `;
 
 const StyledCompanyItem = styled.li`
@@ -57,7 +57,7 @@ const StyledCounselingLink = styled(Link)`
   display: block;
   padding: 0.35rem 0.8rem;
   border: 0.1rem solid #dadde0;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
 `;
 
 const StyledCounselingItem = styled.li`
@@ -74,14 +74,14 @@ const StyledHourDescription = styled.dd`
   overflow: hidden;
   margin-top: 0.6rem;
   padding-left: 0.4rem;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 `;
 
 const StyledHourTitle = styled.dt`
   float: left;
   margin-top: 0.6rem;
   font-weight: 500;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 
   &:first-child,
   &:first-child + ${StyledHourDescription} {
@@ -94,19 +94,19 @@ const StyledHour = styled.ul`
 `;
 
 const StyledHelpTime = styled.span`
-  font-size: 1.4rem;
+  font-size: 1.3rem;
 `;
 
 const StyledHelpTel = styled(Link)`
   display: block;
   font-weight: 500;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
 `;
 
 const StyledHelpText = styled.span`
   display: inline-block;
   font-weight: 500;
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   vertical-align: middle;
 `;
 
@@ -144,7 +144,7 @@ const StyledText = styled(Text)`
   /* margin: 2.4rem 0 0; */
   /* padding: 2.4rem 0 0; */
   /* border-top: 0.1rem solid #dadde0; */
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   color: #000;
 `;
 

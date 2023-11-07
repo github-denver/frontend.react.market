@@ -9,7 +9,7 @@ const StyledButton = styled(Button)`
 `;
 
 const StyledText = styled.p`
-  font-size: 1.4rem;
+  font-size: 1.3rem;
 `;
 
 const StyledInner = styled.div`

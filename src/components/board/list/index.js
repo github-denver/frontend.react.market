@@ -17,7 +17,7 @@ const StyledText = styled(Text)`
 
 const StyledSystemMessage = styled(Text)`
   margin: 2.4rem 1.6rem 0;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 `;
 
 const StyledItem = styled.li``;

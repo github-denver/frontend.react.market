@@ -8,7 +8,7 @@ const StyledFakeField = styled.button`
   border: 0 none;
   box-sizing: border-box;
   background-color: transparent;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   text-align: left;
   cursor: text;
 `;
@@ -19,7 +19,7 @@ const StyledInput = styled.input`
   border: 0 none;
   box-sizing: border-box;
   background-color: transparent;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
 
   &:disabled {
     border-radius: 0.4rem;
@@ -43,8 +43,8 @@ const StyledBox = styled.div`
 
 const StyledInner = styled.div`
   display: inline-block;
-  width: 70%;
-  padding-right: 1rem;
+  width: 100%;
+  padding-right: 9.4rem;
   box-sizing: border-box;
   vertical-align: middle;
 
@@ -72,7 +72,7 @@ const StyledLabel = styled.label`
       ? css`
           display: inline-block;
           font-weight: 500;
-          font-size: 16px;
+          font-size: 1.5rem;
           color: #000;
           vertical-align: middle;
         `
@@ -82,7 +82,7 @@ const StyledLabel = styled.label`
           top: 50%;
           left: 1.4rem;
           z-index: 1;
-          font-size: 1.4rem;
+          font-size: 1.3rem;
           color: #000;
           -webkit-transform: translateY(-50%);
           -ms-transform: translateY(-50%);
@@ -102,7 +102,7 @@ const StyledField = styled.div`
 
   .text_field {
     margin-top: 0.6rem;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: #666;
   }
 

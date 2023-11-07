@@ -19,7 +19,8 @@ const Containers = ({ attributes }) => {
     minuteField: true,
     secondField: true,
 
-    subjectField: true
+    subjectField: true,
+    recipeContentField: true
   });
 
   const [cookingTime, setCookingTime] = useState({
@@ -32,10 +33,11 @@ const Containers = ({ attributes }) => {
   const [minute, setMinute] = useState([]);
   const [second, setSecond] = useState([]);
 
-  const { user, form, read, error, loading } = useSelector(
+  const { user, form, read, recipesForm, error, loading } = useSelector(
     ({ form, user, post, loading }) => ({
       user: user.user?.user2,
       form: form.postModify,
+      recipesForm: form.recipesModify,
       read: post.data?.result[0],
       error: post.error,
       loading: loading['POST']
@@ -67,7 +69,12 @@ const Containers = ({ attributes }) => {
     field({ form: 'postModify', key: 'subject', value: event.target.value });
   };
 
-  const handleChangeThumbnail = (event) => {
+  const handleChangeThumbnail = (event, payload) => {
+    console.log('payload: ', payload);
+
+    const { formType, idx } = payload;
+    console.log('formType: ', formType);
+
     let files = null;
     let preview = null;
 
@@ -75,12 +82,13 @@ const Containers = ({ attributes }) => {
       // 이미지 파일만 통과합니다.
       if (event.target.files.length === 0) {
         upload({
-          form: 'postModify',
+          form: formType,
           key: 'thumbnail',
           value: {
             files: null,
             preview: null
-          }
+          },
+          idx
         });
 
         return;
@@ -103,12 +111,13 @@ const Containers = ({ attributes }) => {
         formData.append('preview', preview);
 
         upload({
-          form: 'postModify',
+          form: formType,
           key: 'thumbnail',
           value: {
             files: formData.get('files'),
             preview: formData.get('preview')
-          }
+          },
+          idx
         });
       };
     } else {
@@ -211,6 +220,7 @@ const Containers = ({ attributes }) => {
           number,
           user,
           formData: form,
+          recipesFormData: recipesForm,
           field,
           upload,
           read,

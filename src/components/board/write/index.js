@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
@@ -8,16 +8,21 @@ import ViewFinder from '@/components/viewFinder';
 import Half from '@/unit/half/standard';
 import Text from '@/unit/text/standard';
 import QuillEditor from '@/components/editor/quill';
+import { ImBin } from 'react-icons/im';
+import { HiPlusSmall } from 'react-icons/hi2';
+import Thin from '@/unit/thin/standard';
+import { _changeField } from '../../../modules/form';
+import { useDispatch } from 'react-redux';
 
 const StyledSystemMessage = styled(Text)`
   margin: 2.4rem 1.6rem 0;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 `;
 
 const StyledText = styled(Text)`
   margin: 0;
   font-weight: 500;
-  /* font-size: 1.6rem; */
+  /* font-size: 1.5rem; */
 `;
 
 const StyledHalf = styled(Half)`
@@ -40,7 +45,7 @@ const StyledSelect = styled.select`
   border: 0.1rem solid #987060;
   border-radius: 0.8rem;
   box-sizing: border-box;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: #987060;
   background-color: #fff;
 `;
@@ -82,7 +87,7 @@ const StyledWrite = styled.div`
 
     label {
       display: inline-block;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       vertical-align: middle;
       cursor: pointer;
       -webkit-user-select: none;
@@ -94,7 +99,43 @@ const StyledWrite = styled.div`
 `;
 
 const BoardWrite = ({ children, attributes }) => {
-  const { category, formData, field, error, loading, owner, onChangeSubject, onChangeThumbnail, onChangeSelect, onChangeChoice, hour, minute, second } = attributes || {};
+  const { category, formData, recipesFormData, field, error, loading, owner, onChangeSubject, onChangeThumbnail, onChangeSelect, onChangeChoice, hour, minute, second } = attributes || {};
+  console.log('formData: ', formData);
+  console.log('recipesFormData: ', recipesFormData);
+
+  const [formFields, setFormFields] = useState([{ name: '', value: '', image: '' }]);
+
+  const dispatch = useDispatch();
+  const _field = useCallback((payload) => dispatch(_changeField(payload)), [dispatch]);
+
+  const handleAddFields = () => {
+    const values = [...formFields, { name: '', value: '', image: '' }];
+    setFormFields(values);
+  };
+
+  const handleRemoveFields = (index) => {
+    if (formFields.length === 1) {
+      alert('At least one form must remain');
+      return;
+    }
+    const values = [...formFields].splice(index, 1);
+    setFormFields(values);
+  };
+
+  const handleInputChange = (index, event) => {
+    /*
+    const values = [...formFields];
+
+    if (e.target.name === 'name') {
+      values[index].name = e.target.value;
+    } else {
+      values[index].value = e.target.value;
+    }
+    setFormFields(values);
+    */
+
+    _field({ form: 'recipesWrite', key: 'contents', value: event.target.value, index });
+  };
 
   if (error) {
     if (error.response && error.response.status === 404) {
@@ -297,6 +338,38 @@ const BoardWrite = ({ children, attributes }) => {
       <div className="editor_quill">
         <QuillEditor attributes={{ type: 'write', formData, field }} />
       </div>
+
+      {formFields.map((field, index) => (
+        <div className="write_recipe" key={index}>
+          <Thin />
+
+          <div className="inner_recipe">
+            <label htmlFor={`step${index}`} className="recipe_label">
+              Step {index + 1}
+            </label>
+
+            <ViewFinder
+              attributes={{
+                type: 'recipesWrite',
+                src: recipesFormData.thumbnail[index]?.preview,
+                event: onChangeThumbnail,
+                isTags: true,
+                idx: index
+              }}
+            />
+
+            <textarea name={`recipe_content${index}`} value={recipesFormData[index]?.contents} placeholder="" className="recipe_content" onChange={(e) => handleInputChange(index, e)}></textarea>
+
+            <button type="button" className="button_remove" onClick={() => handleRemoveFields(index)}>
+              <ImBin size={20} />
+            </button>
+          </div>
+        </div>
+      ))}
+
+      <button type="button" className="button_add" onClick={() => handleAddFields()}>
+        <HiPlusSmall size={24} />
+      </button>
 
       <StyledPublish attributes={{ type: 'write', category, owner }} />
     </StyledWrite>

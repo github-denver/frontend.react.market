@@ -17,14 +17,14 @@ const StyledLink = styled(Link)`
 const StyledDescription = styled.p`
   display: block;
   /* padding-right: 1.2rem; */
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   color: #666;
 `;
 
 const StyledTag = styled.strong`
   display: inline-block;
   font-weight: 500;
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   vertical-align: middle;
 
   .link_local {
@@ -57,7 +57,7 @@ const StyledHgroup = styled.div`
       text-align: left;
 
       ${StyledTag} {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
       }
 
       ${StyledLink} {
@@ -69,14 +69,35 @@ const StyledHgroup = styled.div`
     !$invisible &&
     css`
       position: relative;
-      padding: 1.6rem;
+      margin: 0 1.2rem;
+      padding: 1.6rem 0;
     `};
 
-  ${({ align }) =>
-    align &&
+  ${({ $align }) =>
+    $align &&
     css`
-      text-align: ${align};
+      text-align: ${$align};
     `};
+
+  ${({ $line }) =>
+    $line === 'thick' &&
+    css`
+      border-bottom: 0.2rem solid #987060;
+
+      ${StyledTag} {
+        font-weight: 700;
+      }
+    `}
+
+  ${({ $line }) =>
+    $line === 'thin' &&
+    css`
+      border-bottom: 0.1rem solid #eee;
+
+      ${StyledTag} {
+        font-weight: 700;
+      }
+    `}
 `;
 
 const filteredText = (category, navigation) => {
@@ -94,10 +115,11 @@ const filteredText = (category, navigation) => {
 };
 
 const Hgroup = ({ className, attributes }) => {
-  const { level, title, description, href, category, navigation, size, invisible, align } = attributes || {};
+  const { level, title, description, href, category, navigation, size, invisible, align, line } = attributes || {};
+  console.log(line);
 
   return (
-    <StyledHgroup className={`${className} ${invisible && 'screen_out'}`} size={size} $invisible={invisible} align={align}>
+    <StyledHgroup className={`${className} ${invisible && 'screen_out'}`} size={size} $invisible={invisible} $align={align} $line={line}>
       <StyledHeading level={level}>{title ? title : filteredText(category, navigation)}</StyledHeading>
       {description && <StyledDescription>{description}</StyledDescription>}
 

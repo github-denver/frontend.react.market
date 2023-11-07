@@ -7,7 +7,7 @@ const commonStyles = css`
   position: relative;
   z-index: 1;
   width: 100%;
-  padding: 1.4rem 0;
+  padding: 1.375rem 0;
   border: 0.1rem solid #987060;
   border-radius: 0.4rem;
   box-sizing: border-box;
@@ -18,7 +18,7 @@ const commonStyles = css`
   .text_local {
     display: inline-block;
     font-weight: 500;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     vertical-align: middle;
   }
 
@@ -37,7 +37,7 @@ const commonStyles = css`
       position: absolute;
       top: 0;
       right: 0;
-      width: 30%;
+      width: 8.4rem;
       margin-top: 0;
     `}
 

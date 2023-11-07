@@ -15,13 +15,13 @@ import 'swiper/css/pagination';
 
 const StyledSystemMessage = styled(Text)`
   margin: 2.4rem 1.6rem 0;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 `;
 
 const StyledSwiperContent = styled.div`
   overflow: hidden;
   display: -webkit-box;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   color: #fff;
   word-break: keep-all;
   -webkit-box-orient: vertical;
@@ -29,8 +29,8 @@ const StyledSwiperContent = styled.div`
 `;
 
 const StyledSwiperSubject = styled.strong`
-  font-weight: 500;
-  font-size: 1.6rem;
+  font-weight: 700;
+  font-size: 1.8rem;
   color: #fff;
 `;
 

@@ -48,7 +48,7 @@ const StyledLink = styled(Link)`
   .text_local {
     display: block;
     padding: 0.4rem 0.2rem;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     color: #666;
     letter-spacing: -0.125rem;
   }

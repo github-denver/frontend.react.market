@@ -19,7 +19,7 @@ const StyledPrice = styled.span`
 
   margin-top: 0.4rem;
   font-weight: 700;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
 `;
 
 const StyledDiscount = styled.em`
@@ -27,7 +27,7 @@ const StyledDiscount = styled.em`
 
   margin-top: 0.4rem;
   font-weight: 700;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   color: #000;
 
   & + ${StyledPrice} {
@@ -39,14 +39,14 @@ const StyledName = styled.span`
   ${commonStyles}
 
   display: block;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: #000;
 `;
 
 const StyledBrand = styled.span`
   ${commonStyles}
 
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: #000;
 `;
 
@@ -135,7 +135,7 @@ const StyledText = styled.span`
   position: relative;
   margin-left: 1rem;
   padding-left: 1rem;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   color: #000;
   vertical-align: middle;
 
@@ -212,11 +212,12 @@ const StyledIcon = styled.button`
   width: 5.556vw;
   height: 2rem;
   height: 5.556vw;
-  border: 0 none;
-  border-radius: 100%;
+  border: 0.1rem solid #fff;
+  border-radius: 0.4rem;
+  box-sizing: border-box;
   font-size: 0.1rem;
   color: transparent;
-  background-color: #000;
+  background-color: #987060;
   vertical-align: top;
   cursor: pointer;
 
@@ -355,7 +356,7 @@ const Thumbnail = ({ className, attributes }) => {
               <StyledIcon $arrow={isHovering === index || showProductId === currentValue.productId ? true : false} $isBottom={isBottom}>
                 <em className="emphasis_hashtag">{currentValue.id}</em>
 
-                <SlPlus size={18} />
+                {/* <SlPlus size={18} /> */}
               </StyledIcon>
 
               {(isHovering === index || showProductId === currentValue.productId) && (

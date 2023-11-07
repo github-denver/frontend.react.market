@@ -27,7 +27,7 @@ const StyledButton = styled.button`
   .text_local {
     display: inline-block;
     font-weight: 500;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     vertical-align: middle;
   }
 
@@ -60,7 +60,7 @@ const StyledButton = styled.button`
 const StyledLink = styled(Link)`
   display: block;
   padding: 0.95rem 4rem 0.95rem 4.6rem;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   border-radius: 0.8rem;
 
   &.link_accordion {
@@ -78,7 +78,7 @@ const StyledLink = styled(Link)`
     .text_local {
       display: inline-block;
       font-weight: 500;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       vertical-align: middle;
     }
 
@@ -110,7 +110,7 @@ const StyledItem = styled.li`
 
       .text_local {
         font-weight: normal;
-        font-size: 1.4rem;
+        font-size: 1.3rem;
       }
     }
   }

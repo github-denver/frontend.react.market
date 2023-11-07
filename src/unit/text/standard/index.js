@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const StyledText = styled.div`
   margin: 1.2rem;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
 
   img {
     width: 100%;

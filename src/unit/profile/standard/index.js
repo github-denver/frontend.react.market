@@ -12,14 +12,14 @@ moment.locale('ko');
 
 const StyledDate = styled.span`
   display: block;
-  font-size: 1.2rem;
-  color: #000;
+  font-size: 1.3rem;
+  color: #666;
 `;
 
 const StyledAuthor = styled.span`
   display: block;
   font-weight: 500;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: #000;
 `;
 

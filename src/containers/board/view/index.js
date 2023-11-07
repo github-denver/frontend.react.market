@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { post, postInitial } from '@/modules/board/view';
+import { recipes, recipesInitial } from '@/modules/recipe/list';
 import Read from '@/components/board/view';
 import { postDelete } from '@/library/gateway/board';
 import { follow, unfollow } from '@/library/gateway/board';
@@ -19,11 +20,12 @@ const Containers = ({ attributes }) => {
 
   const [commentModifyVisible, setCommentModifyVisible] = useState(null);
 
-  const { user, read, followings, comment, error, loading, formData } = useSelector(
-    ({ form, user, post, follow, comment, loading }) => ({
+  const { user, read, recipeList, followings, comment, error, loading, formData } = useSelector(
+    ({ form, user, post, recipes, follow, comment, loading }) => ({
       formData: form,
       user: user.user?.user2,
       read: post.data?.result[0],
+      recipeList: recipes.data?.result,
       followings: follow.following?.result,
       comment: comment.data?.result,
       error: post.error,
@@ -158,6 +160,7 @@ const Containers = ({ attributes }) => {
   useEffect(() => {
     dispatch(formInitial());
     dispatch(post({ category, number }));
+    dispatch(recipes({ postId: number, category }));
     dispatch(commentList({ postId: number, category }));
 
     return () => {
@@ -175,6 +178,7 @@ const Containers = ({ attributes }) => {
         user,
         number,
         read,
+        recipeList,
         error,
         loading,
         onChangeField: handleChangeField,

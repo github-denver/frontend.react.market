@@ -43,6 +43,20 @@ const initialState = {
     content: '',
     modifyContent: ''
   },
+  recipesWrite: {
+    subject: [],
+    contents: [],
+    thumbnail: [],
+    tags: [],
+    error: null
+  },
+  recipesModify: {
+    subject: [],
+    contents: [],
+    thumbnail: [],
+    tags: [],
+    error: null
+  },
   error: null
 };
 
@@ -56,26 +70,45 @@ const formSlice = createSlice({
 
       state[form][key] = value;
     },
+    _changeField: (state, action) => {
+      const { form, key, value, index } = action.payload;
+
+      /* if (state[form][key].length > 0) {
+        state[form][key][index] = value;
+      } else {
+        state[form][key].push(value);
+      } */
+
+      state[form][key][index] = value;
+    },
     changeThumbnail: (state, action) => {
-      /*
-      const { key, value } = action.payload;
+      const { form, key, value, idx } = action.payload;
+      console.log('{ form, key, value, idx }: ', { form, key, value, idx });
 
-      state.postWrite[key] = {
-        files: value.files,
-        preview: value.preview
-      };
-      */
+      if (form === 'postWrite' || form === 'postModify') {
+        state[form][key] = {
+          files: value.files,
+          preview: value.preview
+        };
+      }
 
-      const { form, key, value } = action.payload;
-
-      state[form][key] = {
-        files: value.files,
-        preview: value.preview
-      };
+      if (form === 'recipesWrite' || form === 'recipesModify') {
+        state[form][key][idx] = {
+          files: value.files,
+          preview: value.preview
+        };
+      }
     },
     insertTag: (state, action) => {
       // state.postWrite.tags = action.payload;
       const { form, value } = action.payload;
+      console.log('{ form, value }: ', { form, value });
+
+      if (form === 'postWrite') {
+      }
+
+      if (form === 'recipesWrite') {
+      }
 
       state[form].tags = value;
     },
@@ -97,6 +130,6 @@ const formSlice = createSlice({
   }
 });
 
-export const { changeField, changeThumbnail, insertTag, formInitial } = formSlice.actions;
+export const { changeField, _changeField, changeThumbnail, insertTag, formInitial } = formSlice.actions;
 
 export default formSlice.reducer;

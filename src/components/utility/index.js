@@ -18,7 +18,7 @@ const StyledLinkThird = styled(Link)`
 
   .text_local {
     display: inline-block;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     vertical-align: middle;
   }
 `;
@@ -45,7 +45,7 @@ const StyledLinkSecond = styled(Link)`
 
   .text_local {
     display: inline-block;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     vertical-align: middle;
   }
 `;
@@ -96,7 +96,7 @@ const StyledLink = styled(Link)`
   display: inline-block;
   height: 2.6rem;
   font-weight: 500;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   line-height: 2.6rem;
   vertical-align: middle;
   text-align: center;

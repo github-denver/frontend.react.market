@@ -9,8 +9,8 @@ import { LuBarChart } from 'react-icons/lu';
 const StyledText = styled.span`
   display: inline-block;
   position: relative;
-  margin-left: 0.4rem;
-  font-size: 1.2rem;
+  margin-left: 0.8rem;
+  font-size: 1.3rem;
   color: #666;
   vertical-align: middle;
 
@@ -26,6 +26,7 @@ const StyledText = styled.span`
 
   .text_local {
     display: inline-block;
+    font-size: 1.3rem;
     vertical-align: middle;
   }
 
@@ -40,7 +41,7 @@ const StyledSubject = styled.strong`
   display: -webkit-box;
   margin-top: 0.8rem;
   font-weight: 500;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   color: #000;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;

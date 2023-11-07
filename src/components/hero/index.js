@@ -18,7 +18,7 @@ import { Link } from 'react-router-dom';
 
 const StyledSystemMessage = styled(Text)`
   margin: 2.4rem 1.6rem 0;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 `;
 
 const StyledSwiperImage = styled.img`
@@ -44,7 +44,7 @@ const StyledSwiperSlide = styled(SwiperSlide)`
     display: -webkit-box;
     position: relative;
     font-weight: 500;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: #000;
     word-break: keep-all;
     -webkit-box-orient: vertical;
@@ -57,20 +57,19 @@ const StyledSwiperSlide = styled(SwiperSlide)`
     vertical-align: middle;
 
     & + .text_local {
-      margin-left: 0.8rem;
+      margin-left: 0.4rem;
     }
   }
 
   .text_local {
     display: inline-block;
-    font-weight: 300;
-    font-size: 1.4rem;
-    color: #000;
+    font-size: 1.3rem;
+    color: #666;
     vertical-align: middle;
   }
 
   ul {
-    margin: 0.8rem 0 0 -0.8rem;
+    margin: 0 0 0 -0.8rem;
     font-size: 0;
   }
 
@@ -226,12 +225,12 @@ const HeroList = ({ attributes }) => {
             <ul>
               <li>
                 <span className="screen_out">난이도</span>
-                <LuBarChart size={20} />
+                <LuBarChart size={14} />
                 <span className="text_local">{currentValue.level}</span>
               </li>
               <li>
                 <span className="screen_out">조리 시간</span>
-                <TfiTimer size={20} />
+                <TfiTimer size={14} />
                 <span className="text_local">{currentValue.time}</span>
               </li>
             </ul>

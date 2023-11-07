@@ -10,14 +10,14 @@ import Text from '@/unit/text/standard';
 
 const StyledSystemMessage = styled(Text)`
   margin: 2.4rem 1.6rem 0;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 `;
 
 const StyledFollowerText = styled.span`
   display: inline-block;
   padding-left: 0.6rem;
   font-weight: 500;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   vertical-align: middle;
 `;
 
@@ -39,7 +39,7 @@ const StyledLink = styled(Link)`
   padding: 0.6rem;
   border: 0.1rem solid #987060;
   border-radius: 0.4rem;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   line-height: 1;
   color: #987060;
   vertical-align: middle;
@@ -49,7 +49,7 @@ const StyledText = styled.span`
   display: inline-block;
   margin-left: 0.4rem;
   padding-left: 0.4rem;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: #666;
   vertical-align: middle;
 

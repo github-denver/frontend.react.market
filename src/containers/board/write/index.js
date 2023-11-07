@@ -30,10 +30,11 @@ const Containers = ({ attributes }) => {
   const [minute, setMinute] = useState([]);
   const [second, setSecond] = useState([]);
 
-  const { user, form, error, loading } = useSelector(
+  const { user, form, recipesForm, error, loading } = useSelector(
     ({ form, user, post, loading }) => ({
       user: user.user?.user2,
       form: form.postWrite,
+      recipesForm: form.recipesWrite,
       error: post.error,
       loading: loading['POST']
     }),
@@ -64,7 +65,12 @@ const Containers = ({ attributes }) => {
     field({ form: 'postWrite', key: 'subject', value: event.target.value });
   };
 
-  const handleChangeThumbnail = (event) => {
+  const handleChangeThumbnail = (event, payload) => {
+    console.log('payload: ', payload);
+
+    const { formType, idx } = payload;
+    console.log('formType: ', formType);
+
     let files = null;
     let preview = null;
 
@@ -72,12 +78,13 @@ const Containers = ({ attributes }) => {
       // 이미지 파일만 통과합니다.
       if (event.target.files.length === 0) {
         upload({
-          form: 'postWrite',
+          form: formType,
           key: 'thumbnail',
           value: {
             files: null,
             preview: null
-          }
+          },
+          idx
         });
 
         return;
@@ -100,12 +107,13 @@ const Containers = ({ attributes }) => {
         formData.append('preview', preview);
 
         upload({
-          form: 'postWrite',
+          form: formType,
           key: 'thumbnail',
           value: {
             files: formData.get('files'),
             preview: formData.get('preview')
-          }
+          },
+          idx
         });
       };
     } else {
@@ -187,6 +195,7 @@ const Containers = ({ attributes }) => {
           category,
           user,
           formData: form,
+          recipesFormData: recipesForm,
           field,
           upload,
           error,

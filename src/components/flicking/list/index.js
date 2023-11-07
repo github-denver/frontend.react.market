@@ -12,7 +12,7 @@ import Text from '@/unit/text/standard';
 
 const StyledSystemMessage = styled(Text)`
   margin: 0 1.6rem;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 `;
 
 const StyledSwiperThumbnail = styled(Thumbnail)`

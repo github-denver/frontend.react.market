@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
@@ -8,16 +8,22 @@ import ViewFinder from '@/components/viewFinder';
 import Half from '@/unit/half/standard';
 import Text from '@/unit/text/standard';
 import QuillEditor from '@/components/editor/quill';
+import { ImBin } from 'react-icons/im';
+import { HiPlusSmall } from 'react-icons/hi2';
+import Thin from '@/unit/thin/standard';
+import { _changeField } from '../../../modules/form';
+import { useDispatch } from 'react-redux';
+import TextArea from './test';
 
 const StyledSystemMessage = styled(Text)`
   margin: 2.4rem 1.6rem 0;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 `;
 
 const StyledText = styled(Text)`
   margin: 0;
   font-weight: 500;
-  /* font-size: 1.6rem; */
+  /* font-size: 1.5rem; */
 `;
 
 const StyledHalf = styled(Half)`
@@ -40,7 +46,7 @@ const StyledSelect = styled.select`
   border: 0.1rem solid #987060;
   border-radius: 0.8rem;
   box-sizing: border-box;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: #987060;
   background-color: #fff;
 `;
@@ -82,7 +88,7 @@ const StyledWrite = styled.div`
 
     label {
       display: inline-block;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       vertical-align: middle;
       cursor: pointer;
       -webkit-user-select: none;
@@ -94,7 +100,74 @@ const StyledWrite = styled.div`
 `;
 
 const BoardWrite = ({ children, attributes }) => {
-  const { category, number, user, formData, field, upload, read, error, loading, owner, fakeFields, onChangeSubject, onChangeThumbnail, onClickFakeField, onChangeSelect, onChangeChoice, hour, minute, second, quill } = attributes || {};
+  const { category, number, user, formData, recipesFormData, field, upload, read, error, loading, owner, fakeFields, onChangeSubject, onChangeThumbnail, onClickFakeField, onChangeSelect, onChangeChoice, hour, minute, second, quill } = attributes || {};
+  console.log('formData: ', formData);
+  console.log('recipesFormData: ', recipesFormData);
+
+  const [formFields, setFormFields] = useState([]);
+
+  const [isTest123, setIsTest123] = useState(false);
+
+  const dispatch = useDispatch();
+  const _field = useCallback((payload) => dispatch(_changeField(payload)), [dispatch]);
+
+  const handleAddFields = () => {
+    const values = [...formFields, { subject: [], content: [], thumbnail: [] }];
+    setFormFields(values);
+  };
+
+  const handleRemoveFields = (index) => {
+    if (formFields.length === 1) {
+      alert('At least one form must remain');
+      return;
+    }
+    const values = [...formFields].splice(index, 1);
+    setFormFields(values);
+  };
+
+  const handleInputChange = (index, event) => {
+    /*
+    const values = [...formFields];
+
+    if (e.target.name === 'name') {
+      values[index].name = e.target.value;
+    } else {
+      values[index].value = e.target.value;
+    }
+    setFormFields(values);
+    */
+
+    _field({ form: 'recipesModify', key: 'contents', value: event.target.value, index });
+  };
+
+  useEffect(() => {
+    console.group('useEffect(() => { .. }, [])');
+    console.log('!read?.recipes: ', !read?.recipes);
+    if (!read?.recipes) {
+      setIsTest123(true);
+    }
+    console.groupEnd();
+  }, [read]);
+
+  useEffect(() => {
+    console.group('useEffect(() => { .. }, [])');
+    console.log('read?.recipes: ', read?.recipes);
+    console.log('isTest123: ', isTest123);
+    if (isTest123) {
+      read?.recipes.forEach((currentValue, index) => {
+        console.log('currentValue: ', currentValue);
+
+        const values = [...formFields, { subject: currentValue.subject, content: currentValue.content, thumbnail: currentValue.thumbnail?.split(',')[index] }];
+        setFormFields(values);
+
+        _field({ form: 'recipesModify', key: 'contents', value: currentValue.content, index });
+        _field({ form: 'recipesModify', key: 'thumbnail', value: currentValue.thumbnail?.split(',')[index], index });
+      });
+      setIsTest123(false);
+    }
+
+    console.groupEnd();
+  }, [read]);
 
   if (error) {
     if (error.response && error.response.status === 404) {
@@ -319,6 +392,70 @@ const BoardWrite = ({ children, attributes }) => {
       <div className="editor_quill">
         <QuillEditor attributes={{ type: 'modify', formData, field, read }} />
       </div>
+
+      <p style={{ fontSize: 14 }}>formFields: {JSON.stringify(formFields)}</p>
+      <p style={{ fontSize: 14 }}>formFields.length: {formFields.length}</p>
+
+      {formFields.map((currentValue, index) => (
+        <div className="write_recipe" key={index}>
+          <Thin />
+
+          <div className="inner_recipe">
+            <label htmlFor={`step${index}`} className="recipe_label">
+              {currentValue.subject}
+            </label>
+
+            <ViewFinder
+              attributes={{
+                type: 'recipesModify',
+                src: recipesFormData.thumbnail[index]?.preview,
+                url: currentValue.thumbnail?.split(',')[index],
+                event: onChangeThumbnail,
+                isTags: true,
+                idx: index
+              }}
+            />
+
+            <TextArea index={index} value={recipesFormData[index]?.contents} defaultValue={currentValue.content} event={handleInputChange} />
+
+            {/* <textarea name={`recipe_content${index}`} value={recipesFormData[index]?.contents} defaultValue={currentValue.content} placeholder="" className="recipe_content" onChange={(e) => handleInputChange(index, e)}></textarea> */}
+
+            {/* <StyledField
+              attributes={{
+                standard: true,
+                label: {
+                  htmlFor: `recipe_content${index}`,
+                  text: '레시피 내용',
+                  flexible: true
+                },
+                input: {
+                  type: 'text',
+                  name: `recipe_content${index}`,
+                  id: `recipe_content${index}`,
+                  placeholder: '레시피 내용을 입력해 주세요.',
+                  value: recipesFormData[index]?.contents,
+                  event: (e) => handleInputChange(index, e),
+                  fake: {
+                    state: fakeFields.recipeContentField,
+                    input: {
+                      value: currentValue.content,
+                      event: () => onClickFakeField('recipeContent')
+                    }
+                  }
+                }
+              }}
+            /> */}
+
+            <button type="button" className="button_remove" onClick={() => handleRemoveFields(index)}>
+              <ImBin size={20} />
+            </button>
+          </div>
+        </div>
+      ))}
+
+      <button type="button" className="button_add" onClick={() => handleAddFields()}>
+        <HiPlusSmall size={24} />
+      </button>
 
       <StyledPublish attributes={{ type: 'modify', category, owner, fakeFields }} />
     </StyledWrite>

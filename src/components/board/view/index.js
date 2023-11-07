@@ -13,20 +13,38 @@ import Field from '@/unit/field/standard';
 import Button from '@/unit/button/standard';
 import Half from '@/unit/half/standard';
 import Cell from '@/unit/cell/standard';
+import { TfiTimer } from 'react-icons/tfi';
+import { LuBarChart } from 'react-icons/lu';
+import { GoComment } from 'react-icons/go';
 
 import moment from 'moment';
 import 'moment/locale/ko';
 
 moment.locale('ko');
 
+const StyledProfile = styled(Profile)`
+  padding-top: 0;
+`;
+
+const StyledThin = styled(Thin)`
+  &.test {
+    margin-top: 1.6rem;
+  }
+`;
+
+const StyledSignature = styled(Signature)``;
+
 const StyledSystemMessage = styled(Text)`
   margin: 2.4rem 1.6rem 0;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 `;
 
 const StyledList = styled(List)`
-  margin-top: -4rem !important;
-  margin-bottom: 1.2rem !important;
+  margin: 0 1.2rem;
+  text-align: center;
+
+  /* margin-top: -4rem !important;
+  margin-bottom: 1.2rem !important; */
 `;
 
 const StyledImageProducts = styled.img`
@@ -69,7 +87,7 @@ const StyledText = styled(Text)`
 `;
 
 const StyledOptions = styled(List)`
-  margin: -2rem 0 0 -2rem;
+  /* margin: -2rem 0 0 -2rem; */
   padding: 0 1.2rem;
   text-align: left;
 `;
@@ -79,6 +97,10 @@ const StyledCommentProfile = styled(Profile)``;
 const StyledCommentItem = styled.li`
   position: relative;
   margin-top: 1rem;
+
+  &:first-child {
+    margin-top: 0;
+  }
 
   ${({ $parentCommentId }) =>
     $parentCommentId &&
@@ -124,20 +146,35 @@ const StyledCommentWrite = styled.div`
 const StyledComments = styled.div``;
 
 const StyledCommentList = styled.ul`
-  /* margin-top: -1rem;
-  padding: 1.6rem 1.6rem 0; */
+  padding: 0.4rem 0.4rem;
 
   ${StyledCommentWrite} {
     padding: 0 1.2rem 1.2rem 1.2rem;
 
-    ${StyledHalf} {
-      margin-left: -1.2rem;
+    & > div > div > div {
+      width: 100%;
+      padding-right: 9.4rem;
+    }
+
+    & > div > div > button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 1;
+      width: 8.4rem;
     }
   }
 `;
 
+const StyledHgroup = styled(Hgroup)`
+  & + ${StyledImageProducts} {
+    margin-top: 1.6rem;
+  }
+`;
+
 const BoardView = ({ attributes }) => {
-  const { category, formData, user, number, read, error, loading, owner, edit, remove, handleLogin, handleFollow, handleUnfollow, followings, comment, onChangeField, handleCommentSubmit, handleCommentModifyVisible, commentModifyVisible, handleCommentModify, handleCommentRemove } = attributes || {};
+  const { category, formData, user, number, read, recipeList, error, loading, owner, edit, remove, handleLogin, handleFollow, handleUnfollow, followings, comment, onChangeField, handleCommentSubmit, handleCommentModifyVisible, commentModifyVisible, handleCommentModify, handleCommentRemove } = attributes || {};
+  console.log('recipeList: ', recipeList);
 
   const [showProductId, setShowProductId] = useState(null);
 
@@ -193,9 +230,32 @@ const BoardView = ({ attributes }) => {
     );
   }
 
+  const comma = (str) => {
+    return String(str).replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+  };
+
   return (
     <>
-      <Profile
+      <div className="head_common">
+        <strong>{read.subject}</strong>
+
+        <ul>
+          <li>
+            <span className="screen_out">난이도</span>
+            <LuBarChart size={14} />
+            <span className="text_local">{read.level}</span>
+          </li>
+          <li>
+            <span className="screen_out">조리 시간</span>
+            <TfiTimer size={14} />
+            <span className="text_local">{read.time}</span>
+          </li>
+        </ul>
+      </div>
+
+      {/* <StyledThin /> */}
+
+      <StyledProfile
         attributes={{
           visible: {
             author: true,
@@ -209,6 +269,8 @@ const BoardView = ({ attributes }) => {
           followings
         }}
       />
+
+      {/* <Boundary /> */}
 
       <Thumbnail
         attributes={{
@@ -246,6 +308,96 @@ const BoardView = ({ attributes }) => {
         }}
       />
 
+      <Boundary />
+
+      <Hgroup attributes={{ level: 'strong', title: '재료' }} />
+      <ul className="test2">
+        {read.products.map((currentValue, index) => (
+          <li key={index}>
+            <Half
+              attributes={{
+                first: (
+                  <>
+                    <img src={`/uploads/products/${currentValue.thumbnail}`} alt="" className="img_comm" />
+
+                    <div className="outer_comm1">
+                      <Cell className="test001">
+                        <em className="emph_comm">{currentValue.name}</em>
+                      </Cell>
+                    </div>
+                  </>
+                ),
+                second: (
+                  <Text
+                    className="txt_comm"
+                    attributes={{
+                      text: `${comma(currentValue.price)}원`
+                    }}
+                  />
+                )
+              }}
+            />
+          </li>
+        ))}
+      </ul>
+
+      <StyledHgroup attributes={{ level: 'strong', title: '레시피', line: 'thick' }} />
+
+      {recipeList?.map((currentValue, index) => (
+        <>
+          {currentValue.thumbnail && <StyledImageProducts src={`/uploads/${currentValue.thumbnail?.split(',')[index]}`} alt="" />}
+
+          <Hgroup attributes={{ level: 'strong', title: currentValue.subject, line: 'thin' }} />
+          <StyledText
+            attributes={{
+              text: currentValue.content
+            }}
+          />
+        </>
+      ))}
+
+      {/* <StyledImageProducts src={`/uploads/${read.thumbnail}`} alt={read.name} />
+
+      <Hgroup attributes={{ level: 'strong', title: 'Step 1', line: 'thin' }} />
+      <StyledText
+        attributes={{
+          text: '오렌지의 껍질을 칼로 제거해 주세요.'
+        }}
+      />
+      <StyledImageProducts src={`/uploads/${read.thumbnail}`} alt={read.name} />
+
+      <Hgroup attributes={{ level: 'strong', title: 'Step 2', line: 'thin' }} />
+      <StyledText
+        attributes={{
+          text: '블렌더에 오렌지 과육을 넣고 갈아주세요.'
+        }}
+      />
+      <StyledImageProducts src={`/uploads/${read.thumbnail}`} alt={read.name} />
+
+      <Hgroup attributes={{ level: 'strong', title: 'Step 3', line: 'thin' }} />
+      <StyledText
+        attributes={{
+          text: '곱게 간 오렌지즙에 꿀을 넣고 섞어주세요.'
+        }}
+      />
+      <StyledImageProducts src={`/uploads/${read.thumbnail}`} alt={read.name} />
+
+      <Hgroup attributes={{ level: 'strong', title: 'Step 4', line: 'thin' }} />
+      <StyledText
+        attributes={{
+          text: '컵에 장식용 오렌지 조각을 넣고 얼음을 넣어주세요. 오렌지 주스를 컵의 반 정도 채우고 시원한 탄산수를 부어주세요.'
+        }}
+      />
+      <StyledImageProducts src={`/uploads/${read.thumbnail}`} alt={read.name} />
+
+      <Hgroup attributes={{ level: 'strong', title: 'Step 5', line: 'thin' }} />
+      <StyledText
+        attributes={{
+          text: '허브나 말린 오렌지칩 등으로 장식해 맛있게 즐겨주세요.'
+        }}
+      />
+      <StyledImageProducts src={`/uploads/${read.thumbnail}`} alt={read.name} /> */}
+
       {owner && (
         <StyledList
           attributes={{
@@ -265,9 +417,9 @@ const BoardView = ({ attributes }) => {
         />
       )}
 
-      <Thin />
+      <StyledThin className="test" />
 
-      <Signature
+      <StyledSignature
         attributes={{
           userNumber: read.userNumber,
           author: read.name,
@@ -286,7 +438,9 @@ const BoardView = ({ attributes }) => {
           <StyledHalf
             attributes={{
               styles: {
-                first: {},
+                first: {
+                  paddingLeft: 0
+                },
                 second: {}
               },
               first: (
@@ -319,6 +473,7 @@ const BoardView = ({ attributes }) => {
                         attributes={{
                           type: 'button',
                           confirm: true,
+                          fill: true,
                           event: () => handleCommentSubmit({ postId: read.number, parentCommentId: null, category })
                         }}>
                         <span className="text_local">등록</span>
@@ -386,6 +541,7 @@ const BoardView = ({ attributes }) => {
                           attributes={{
                             type: 'button',
                             confirm: true,
+                            // fill: true,
                             event: () => handleCommentModify({ commentId: currentValue.commentId })
                           }}>
                           <span className="text_local">수정</span>
@@ -435,6 +591,14 @@ const BoardView = ({ attributes }) => {
           ))}
         </StyledCommentList>
       </StyledComments>
+
+      <ul className="toolbar">
+        <li>
+          <span className="screen_out">댓글</span>
+          <GoComment size={24} />
+          <span className="text_local">{comment?.length}</span>
+        </li>
+      </ul>
     </>
   );
 };

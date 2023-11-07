@@ -10,15 +10,15 @@ moment.locale('ko');
 
 const StyledMessage = styled.span`
   display: block;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: #000;
 `;
 
 const StyledButton = styled.button`
   display: inline-block;
   font-weight: 500;
-  font-size: 1.4rem;
-  color: #000;
+  font-size: 1.3rem;
+  color: #987060;
   border: 0 none;
   background-color: transparent;
   vertical-align: middle;
@@ -34,7 +34,7 @@ const StyledDot = styled.span`
 const StyledBox = styled.span`
   display: block;
   font-weight: 500;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: #000;
 `;
 

@@ -49,7 +49,7 @@ const StyledNavigation = styled.nav`
           ${StyledLink} {
             display: block;
             padding: 0.95rem 4rem 0.95rem 4.6rem;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             border-radius: 0.8rem;
 
             &:hover,
@@ -88,7 +88,7 @@ const StyledNavigation = styled.nav`
           ${StyledLink} {
             display: block;
             padding: 0.8rem 1.6rem;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: #666;
 
             &:after {
