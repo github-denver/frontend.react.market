@@ -66,10 +66,7 @@ const Containers = ({ attributes }) => {
   };
 
   const handleChangeThumbnail = (event, payload) => {
-    console.log('payload: ', payload);
-
     const { formType, idx } = payload;
-    console.log('formType: ', formType);
 
     let files = null;
     let preview = null;

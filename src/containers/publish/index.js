@@ -16,9 +16,9 @@ const Wrapper = ({ className, attributes }) => {
 
   const [visibleLayer, setVisibleLayer] = useState(false);
 
-  const { read, category, level, time, subject, contents, thumbnail, tags, data, error, contents2, thumbnail2, error2 } = useSelector(({ form, post }) => {
+  const { read, category, level, time, subject, contents, thumbnail, tags, data, error, contents2, thumbnail2, error2, test2 } = useSelector(({ form, post }) => {
     const test = type === 'modify' ? form.postModify : form.postWrite;
-    const test2 = type === 'modify' ? form.recipesModify : form.recipesWrite;
+    const test2 = type === 'modify' ? form.recipeModifyFormFields : form.recipesWrite;
 
     return {
       read: post.data?.result[0],
@@ -31,6 +31,7 @@ const Wrapper = ({ className, attributes }) => {
       tags: test?.tags,
       error: test?.error,
 
+      test2: test2,
       contents2: test2?.contents,
       thumbnail2: test2?.thumbnail,
       error2: test2?.error
@@ -50,13 +51,6 @@ const Wrapper = ({ className, attributes }) => {
     const subjectValue = !subject ? read?.subject : subject;
     const contentValue = !contents ? read?.contents : contents;
     const thumbnailValue = !thumbnail ? read?.thumbnail : thumbnail.files;
-    console.log('1. thumbnailValue: ', thumbnailValue);
-
-    const contentValue2 = !contents2 ? read?.contents : contents2;
-    console.log('1. contentValue2: ', contentValue2);
-
-    const recipeValue = !thumbnail2 ? read?.thumbnail : thumbnail2;
-    console.log('1. recipeValue: ', recipeValue);
 
     const formData = new FormData();
     formData.append('category', categoryValue);
@@ -65,7 +59,6 @@ const Wrapper = ({ className, attributes }) => {
     formData.append('subject', subjectValue);
     formData.append('content', contentValue);
     formData.append('thumbnail', thumbnailValue);
-    console.log("1. formData.get('thumbnail'): ", formData.get('thumbnail'));
 
     if (!fakeFields?.subjectField && !subject) {
       setErrorMessage('제목을 입력해 주세요.');
@@ -83,7 +76,7 @@ const Wrapper = ({ className, attributes }) => {
       return;
     }
 
-    if (type !== 'modify' && ![thumbnailValue].every(Boolean)) {
+    if (![thumbnailValue].every(Boolean)) {
       setErrorMessage('필수 정보를 입력해 주세요.');
 
       setVisibleLayer(true);
@@ -93,35 +86,39 @@ const Wrapper = ({ className, attributes }) => {
 
     if (tags?.length > 0) formData.append('tags', JSON.stringify(tags));
 
-    // if (recipeValue?.length > 0) {}
-
-    console.log('2. contentValue2?.length: ', contentValue2?.length);
-    console.log('2. recipeValue?.length: ', recipeValue?.length);
     const asyncForEachFuc = async () => {
-      for (const [index, value] of contentValue2.entries()) {
-        console.log('2. value: ', value);
+      const obj = [];
+      for (const [index, value] of test2.entries()) {
+        await formData.append('content2', value.content);
 
-        await formData.append('content2', value);
+        const obj2 = {};
+
+        obj2.num = value.num;
+        obj2.index = value.index;
+        obj2.subject = value.subject;
+        obj2.content = value.content;
+
+        if (!!value.thumbnail) {
+          obj2.thumbnail = typeof value.thumbnail === 'string' ? value.thumbnail : value.thumbnail.files?.name ? value.thumbnail.files.name : null;
+
+          await formData.append('recipe', value.thumbnail.files);
+        }
+
+        obj.push(obj2);
       }
 
-      for (const [index, value] of recipeValue.entries()) {
-        console.log('2. value: ', value);
-
-        await formData.append('recipe', value.files);
-      }
+      await formData.append('obj', JSON.stringify(obj));
     };
 
     asyncForEachFuc().then(async () => {
-      console.log("3. formData.get('thumbnail'): ", formData.get('thumbnail'));
-      console.log("3. formData.get('recipe'): ", formData.get('recipe'));
+      for (const pair of formData.entries()) {
+      }
 
       if (owner) {
         await dispatch(postModify({ category: categoryValue, number, payload: formData }));
-
         navigate(`/board/${categoryValue}/read/${number}`);
       } else {
         await dispatch(postWrite({ category: categoryValue, payload: formData }));
-
         navigate(`/board/${categoryValue}/list/1`);
       }
     });
@@ -140,14 +137,12 @@ const Wrapper = ({ className, attributes }) => {
   useEffect(() => {
     if (data) navigate(`/board/${data.service}/read/${data.number}`);
 
-    console.log('error: ', error);
     if (error) console.error(error);
 
-    console.log('error2: ', error2);
     if (error2) console.error(error2);
 
     return () => {
-      // console.log('unmount: publish');
+      console.log('unmount: publish');
 
       dispatch(formInitial());
       dispatch(postInitial());

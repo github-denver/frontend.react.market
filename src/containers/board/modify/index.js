@@ -6,6 +6,7 @@ import { post, postInitial } from '@/modules/board/view';
 import Modify from '@/components/board/modify';
 import Quill from 'quill';
 import { postModifyInitial } from '@/modules/board/modify';
+import { _changeField, addRecipeFormFields, recipeFormFields } from '../../../modules/form';
 
 const Containers = ({ attributes }) => {
   const { category } = attributes || {};
@@ -33,14 +34,17 @@ const Containers = ({ attributes }) => {
   const [minute, setMinute] = useState([]);
   const [second, setSecond] = useState([]);
 
-  const { user, form, read, recipesForm, error, loading } = useSelector(
+  const [recipeLoading, setRecipeLoading] = useState(false);
+
+  const { user, form, read, recipesForm, error, loading, recipeModifyFormFields } = useSelector(
     ({ form, user, post, loading }) => ({
       user: user.user?.user2,
       form: form.postModify,
       recipesForm: form.recipesModify,
+      recipeModifyFormFields: form.recipeModifyFormFields,
       read: post.data?.result[0],
       error: post.error,
-      loading: loading['POST']
+      loading: loading['MODIFY']
     }),
     shallowEqual
   );
@@ -49,6 +53,7 @@ const Containers = ({ attributes }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const _field = useCallback((payload) => dispatch(_changeField(payload)), [dispatch]);
   const field = useCallback((payload) => dispatch(changeField(payload)), [dispatch]);
   const upload = useCallback((payload) => dispatch(changeThumbnail(payload)), [dispatch]);
 
@@ -70,10 +75,7 @@ const Containers = ({ attributes }) => {
   };
 
   const handleChangeThumbnail = (event, payload) => {
-    console.log('payload: ', payload);
-
     const { formType, idx } = payload;
-    console.log('formType: ', formType);
 
     let files = null;
     let preview = null;
@@ -210,7 +212,32 @@ const Containers = ({ attributes }) => {
     }
 
     field({ form: 'postModify', key: 'time', value: read?.time });
-  }, [field, read]);
+
+    read?.recipes.forEach((currentValue, index) => {
+      dispatch(addRecipeFormFields({ num: read.recipes[index].number, index: index, subject: currentValue.subject, content: currentValue.content, thumbnail: currentValue.thumbnail }));
+    });
+  }, [field, read, dispatch, loading, recipeLoading]);
+
+  const [formFields, setFormFields] = useState([]);
+
+  const handleAddFields = (payload) => {
+    dispatch(
+      addRecipeFormFields({
+        index: -1,
+        subject: '',
+        content: '',
+        thumbnail: {
+          files: null,
+          preview: null
+        },
+        tags: []
+      })
+    );
+  };
+
+  const handleInputChange = (index, event) => {
+    _field({ form: 'recipeModifyFormFields', key: 'content', value: event.target.value, index });
+  };
 
   return (
     <>
@@ -235,7 +262,10 @@ const Containers = ({ attributes }) => {
           onChangeChoice: handleChangeChoice,
           hour,
           minute,
-          second
+          second,
+          formFields,
+          recipeModifyFormFields,
+          handleAddFields
         }}></Modify>
     </>
   );

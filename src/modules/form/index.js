@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import _ from 'lodash';
 
 const initialState = {
   register: {
@@ -57,6 +58,7 @@ const initialState = {
     tags: [],
     error: null
   },
+  recipeModifyFormFields: [],
   error: null
 };
 
@@ -65,6 +67,20 @@ const formSlice = createSlice({
   initialState,
   // 내부 action 및 동기 action
   reducers: {
+    addRecipeFormFields: (state, action) => {
+      if (action.payload.index === -1) {
+        state.recipeModifyFormFields.push({
+          index: state.recipeModifyFormFields.length,
+          subject: `Step ${state.recipeModifyFormFields.length + 1}`,
+          content: '',
+          thumbnail: null,
+          tags: []
+        });
+      } else {
+        state.recipeModifyFormFields.push(action.payload);
+      }
+    },
+
     changeField: (state, action) => {
       const { form, key, value } = action.payload;
 
@@ -73,17 +89,10 @@ const formSlice = createSlice({
     _changeField: (state, action) => {
       const { form, key, value, index } = action.payload;
 
-      /* if (state[form][key].length > 0) {
-        state[form][key][index] = value;
-      } else {
-        state[form][key].push(value);
-      } */
-
-      state[form][key][index] = value;
+      state[form][index][key] = value;
     },
     changeThumbnail: (state, action) => {
       const { form, key, value, idx } = action.payload;
-      console.log('{ form, key, value, idx }: ', { form, key, value, idx });
 
       if (form === 'postWrite' || form === 'postModify') {
         state[form][key] = {
@@ -98,17 +107,16 @@ const formSlice = createSlice({
           preview: value.preview
         };
       }
+
+      if (form === 'recipeModifyFormFields') {
+        state[form][idx][key] = {
+          files: value.files,
+          preview: value.preview
+        };
+      }
     },
     insertTag: (state, action) => {
-      // state.postWrite.tags = action.payload;
       const { form, value } = action.payload;
-      console.log('{ form, value }: ', { form, value });
-
-      if (form === 'postWrite') {
-      }
-
-      if (form === 'recipesWrite') {
-      }
 
       state[form].tags = value;
     },
@@ -119,6 +127,7 @@ const formSlice = createSlice({
       state.postWrite = initialState.postWrite;
       state.comment = initialState.comment;
       state.error = null;
+      state.recipeModifyFormFields = initialState.recipeModifyFormFields;
     }
   },
   // 외부 action 및 비동기 action
@@ -130,6 +139,6 @@ const formSlice = createSlice({
   }
 });
 
-export const { changeField, _changeField, changeThumbnail, insertTag, formInitial } = formSlice.actions;
+export const { addRecipeFormFields, recipeFormFields, changeField, _changeField, changeThumbnail, insertTag, formInitial } = formSlice.actions;
 
 export default formSlice.reducer;

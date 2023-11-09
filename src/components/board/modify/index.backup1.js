@@ -13,6 +13,7 @@ import { HiPlusSmall } from 'react-icons/hi2';
 import Thin from '@/unit/thin/standard';
 import { _changeField } from '../../../modules/form';
 import { useDispatch } from 'react-redux';
+import TextArea from './test';
 
 const StyledSystemMessage = styled(Text)`
   margin: 2.4rem 1.6rem 0;
@@ -99,15 +100,17 @@ const StyledWrite = styled.div`
 `;
 
 const BoardWrite = ({ children, attributes }) => {
-  const { category, formData, recipesFormData, field, error, loading, owner, onChangeSubject, onChangeThumbnail, onChangeSelect, onChangeChoice, hour, minute, second } = attributes || {};
+  const { category, number, user, formData, recipesFormData, field, upload, read, error, loading, owner, fakeFields, onChangeSubject, onChangeThumbnail, onClickFakeField, onChangeSelect, onChangeChoice, hour, minute, second, quill, recipeModifyFormFields } = attributes || {};
 
-  const [formFields, setFormFields] = useState([{ name: '', value: '', image: '' }]);
+  const [formFields, setFormFields] = useState([]);
+
+  const [isTest123, setIsTest123] = useState(false);
 
   const dispatch = useDispatch();
   const _field = useCallback((payload) => dispatch(_changeField(payload)), [dispatch]);
 
   const handleAddFields = () => {
-    const values = [...formFields, { name: '', value: '', image: '' }];
+    const values = [...formFields, { subject: [], content: [], thumbnail: [] }];
     setFormFields(values);
   };
 
@@ -132,7 +135,7 @@ const BoardWrite = ({ children, attributes }) => {
     setFormFields(values);
     */
 
-    _field({ form: 'recipesWrite', key: 'contents', value: event.target.value, index });
+    _field({ form: 'recipesModify', key: 'contents', value: event.target.value, index });
   };
 
   if (error) {
@@ -159,7 +162,7 @@ const BoardWrite = ({ children, attributes }) => {
     );
   }
 
-  if (loading) {
+  if (loading || !read) {
     // console.log('읽어들이는 중입니다.');
 
     return (
@@ -171,17 +174,32 @@ const BoardWrite = ({ children, attributes }) => {
     );
   }
 
+  if (!read) {
+    // console.log('등록된 글이 없습니다.');
+
+    return (
+      <StyledSystemMessage
+        attributes={{
+          text: '등록된 글이 없습니다.'
+        }}
+      />
+    );
+  }
+
   return (
     <StyledWrite>
       <ViewFinder
         attributes={{
-          type: 'postWrite',
-          src: formData.thumbnail?.preview,
+          type: 'postModify',
+          src: formData?.thumbnail?.preview,
+          url: read?.thumbnail,
+          tags: read?.tags,
+          products: read?.products,
           event: onChangeThumbnail
         }}
       />
 
-      <StyledHalf
+      {/* <StyledHalf
         attributes={{
           styles: {
             first: {
@@ -200,7 +218,7 @@ const BoardWrite = ({ children, attributes }) => {
             />
           ),
           second: (
-            <StyledSelect name="level" onChange={(event) => onChangeSelect({ key: 'category' }, event)}>
+            <StyledSelect name="level" onChange={(event) => onChangeSelect({ key: 'category' }, event)} defaultValue={read?.category ? read.category : ''}>
               <option value="">-- 선택 --</option>
               <option value="stew">찌개</option>
               <option value="noodle">면</option>
@@ -217,7 +235,7 @@ const BoardWrite = ({ children, attributes }) => {
             </StyledSelect>
           )
         }}
-      />
+      /> */}
 
       <StyledHalf
         attributes={{
@@ -240,15 +258,15 @@ const BoardWrite = ({ children, attributes }) => {
           second: (
             <ul className="list_triple">
               <li className="item_triple">
-                <input type="radio" name="level" id="good" value="상" onChange={onChangeChoice} />
+                <input type="radio" name="level" id="good" value="상" onChange={onChangeChoice} defaultChecked={read?.level === '상'} />
                 <label htmlFor="good">상</label>
               </li>
               <li className="item_triple">
-                <input type="radio" name="level" id="fair" value="중" onChange={onChangeChoice} />
+                <input type="radio" name="level" id="fair" value="중" onChange={onChangeChoice} defaultChecked={read?.level === '중'} />
                 <label htmlFor="fair">중</label>
               </li>
               <li className="item_triple">
-                <input type="radio" name="level" id="poor" value="하" onChange={onChangeChoice} />
+                <input type="radio" name="level" id="poor" value="하" onChange={onChangeChoice} defaultChecked={read?.level === '하'} />
                 <label htmlFor="poor">하</label>
               </li>
             </ul>
@@ -277,7 +295,7 @@ const BoardWrite = ({ children, attributes }) => {
           second: (
             <ul className="list_triple">
               <li className="item_triple">
-                <StyledSelect onChange={(event) => onChangeSelect({ key: 'hour' }, event)}>
+                <StyledSelect onChange={(event) => onChangeSelect({ key: 'hour' }, event)} defaultValue={read?.time.split(':')[0]}>
                   <option value="">-- 시간 --</option>
 
                   {hour.map((currentValue, index) => (
@@ -288,7 +306,7 @@ const BoardWrite = ({ children, attributes }) => {
                 </StyledSelect>
               </li>
               <li className="item_triple">
-                <StyledSelect onChange={(event) => onChangeSelect({ key: 'minute' }, event)}>
+                <StyledSelect onChange={(event) => onChangeSelect({ key: 'minute' }, event)} defaultValue={read?.time.split(':')[1]}>
                   <option value="">-- 분 --</option>
 
                   {minute.map((currentValue, index) => (
@@ -299,7 +317,7 @@ const BoardWrite = ({ children, attributes }) => {
                 </StyledSelect>
               </li>
               <li className="item_triple">
-                <StyledSelect onChange={(event) => onChangeSelect({ key: 'second' }, event)}>
+                <StyledSelect onChange={(event) => onChangeSelect({ key: 'second' }, event)} defaultValue={read?.time.split(':')[2]}>
                   <option value="">-- 초 --</option>
 
                   {second.map((currentValue, index) => (
@@ -328,48 +346,87 @@ const BoardWrite = ({ children, attributes }) => {
             id: 'subject',
             placeholder: '제목을 입력해 주세요.',
             value: formData.subject,
-            event: onChangeSubject
+            event: onChangeSubject,
+            fake: {
+              state: fakeFields.subjectField,
+              input: {
+                value: read?.subject,
+                event: () => onClickFakeField('subject')
+              }
+            }
           }
         }}
       />
 
       <div className="editor_quill">
-        <QuillEditor attributes={{ type: 'write', formData, field }} />
+        <QuillEditor attributes={{ type: 'modify', formData, field, read }} />
       </div>
 
-      {formFields.map((field, index) => (
-        <div className="write_recipe" key={index}>
-          <Thin />
+      <p style={{ fontSize: 14 }}>formFields: {JSON.stringify(formFields)}</p>
+      <p style={{ fontSize: 14 }}>formFields.length: {formFields.length}</p>
 
-          <div className="inner_recipe">
-            <label htmlFor={`step${index}`} className="recipe_label">
-              Step {index + 1}
-            </label>
+      {recipeModifyFormFields.map((currentValue, index) => {
+        return (
+          <div className="write_recipe" key={index}>
+            <Thin />
 
-            <ViewFinder
+            <div className="inner_recipe">
+              <label htmlFor={`step${index}`} className="recipe_label">
+                {currentValue.subject}
+              </label>
+
+              <ViewFinder
+                attributes={{
+                  type: 'recipesModify',
+                  src: recipesFormData.thumbnail[index]?.preview,
+                  url: currentValue.thumbnail,
+                  event: onChangeThumbnail,
+                  isTags: true,
+                  idx: index
+                }}
+              />
+
+              <TextArea index={index} value={recipesFormData[index]?.contents} defaultValue={currentValue.content} event={handleInputChange} />
+
+              {/* <StyledField
               attributes={{
-                type: 'recipesWrite',
-                src: recipesFormData.thumbnail[index]?.preview,
-                event: onChangeThumbnail,
-                isTags: true,
-                idx: index
+                standard: true,
+                label: {
+                  htmlFor: `recipe_content${index}`,
+                  text: '레시피 내용',
+                  flexible: true
+                },
+                input: {
+                  type: 'text',
+                  name: `recipe_content${index}`,
+                  id: `recipe_content${index}`,
+                  placeholder: '레시피 내용을 입력해 주세요.',
+                  value: recipesFormData[index]?.contents,
+                  event: (e) => handleInputChange(index, e),
+                  fake: {
+                    state: fakeFields.recipeContentField,
+                    input: {
+                      value: currentValue.content,
+                      event: () => onClickFakeField('recipeContent')
+                    }
+                  }
+                }
               }}
-            />
+            /> */}
 
-            <textarea name={`recipe_content${index}`} value={recipesFormData[index]?.contents} placeholder="" className="recipe_content" onChange={(e) => handleInputChange(index, e)}></textarea>
-
-            <button type="button" className="button_remove" onClick={() => handleRemoveFields(index)}>
-              <ImBin size={20} />
-            </button>
+              <button type="button" className="button_remove" onClick={() => handleRemoveFields(index)}>
+                <ImBin size={20} />
+              </button>
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
 
       <button type="button" className="button_add" onClick={() => handleAddFields()}>
         <HiPlusSmall size={24} />
       </button>
 
-      <StyledPublish attributes={{ type: 'write', category, owner }} />
+      <StyledPublish attributes={{ type: 'modify', category, owner, fakeFields }} />
     </StyledWrite>
   );
 };

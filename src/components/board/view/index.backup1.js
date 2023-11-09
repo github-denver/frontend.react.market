@@ -19,14 +19,11 @@ import { GoComment } from 'react-icons/go';
 
 import moment from 'moment';
 import 'moment/locale/ko';
-import BoardHeader from '../../../unit/board/header';
-import ListIngredient from '../../../unit/list/ingredient';
-import ListRecipe from '../../../unit/list/recipe';
 
 moment.locale('ko');
 
 const StyledProfile = styled(Profile)`
-  /* padding-top: 0; */
+  padding-top: 0;
 `;
 
 const StyledThin = styled(Thin)`
@@ -232,9 +229,47 @@ const BoardView = ({ attributes }) => {
     );
   }
 
+  const comma = (str) => {
+    return String(str).replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+  };
+
   return (
     <>
-      <BoardHeader attributes={{ read }} />
+      <div className="head_common">
+        <strong>{read.subject}</strong>
+
+        <ul>
+          <li>
+            <span className="screen_out">난이도</span>
+            <LuBarChart size={14} />
+            <span className="text_local">{read.level}</span>
+          </li>
+          <li>
+            <span className="screen_out">조리 시간</span>
+            <TfiTimer size={14} />
+            <span className="text_local">{read.time}</span>
+          </li>
+        </ul>
+      </div>
+
+      {/* <StyledThin /> */}
+
+      <StyledProfile
+        attributes={{
+          visible: {
+            author: true,
+            date: true,
+            follow: true
+          },
+          userNumber: read.userNumber,
+          author: read.name,
+          date: read.regdate,
+          event: [handleLogin, handleFollow, handleUnfollow],
+          followings
+        }}
+      />
+
+      {/* <Boundary /> */}
 
       <Thumbnail
         attributes={{
@@ -266,21 +301,6 @@ const BoardView = ({ attributes }) => {
         </StyledProducts>
       )}
 
-      <StyledProfile
-        attributes={{
-          visible: {
-            author: true,
-            date: true,
-            follow: true
-          },
-          userNumber: read.userNumber,
-          author: read.name,
-          date: read.regdate,
-          event: [handleLogin, handleFollow, handleUnfollow],
-          followings
-        }}
-      />
-
       <StyledText
         attributes={{
           text: read.content
@@ -290,11 +310,40 @@ const BoardView = ({ attributes }) => {
       <Boundary />
 
       <Hgroup attributes={{ level: 'strong', title: '재료' }} />
-      <ListIngredient attributes={{ products: read.products }} />
+      <ul className="test2">
+        {read.products.map((currentValue, index) => (
+          <li key={index}>
+            <Half
+              attributes={{
+                first: (
+                  <>
+                    <img src={`/uploads/products/${currentValue.thumbnail}`} alt="" className="img_comm" />
+
+                    <div className="outer_comm1">
+                      <Cell className="test001">
+                        <em className="emph_comm">{currentValue.name}</em>
+                      </Cell>
+                    </div>
+                  </>
+                ),
+                second: (
+                  <Text
+                    className="txt_comm"
+                    attributes={{
+                      text: `${comma(currentValue.price)}원`
+                    }}
+                  />
+                )
+              }}
+            />
+          </li>
+        ))}
+      </ul>
 
       <StyledHgroup attributes={{ level: 'strong', title: '레시피', line: 'thick' }} />
+
       {recipeList?.map((currentValue, index) => (
-        <ListRecipe key={index}>
+        <div key={index}>
           {currentValue.thumbnail && <StyledImageProducts src={`/uploads/${currentValue.thumbnail}`} alt="" />}
 
           <Hgroup attributes={{ level: 'strong', title: currentValue.subject, line: 'thin' }} />
@@ -303,7 +352,7 @@ const BoardView = ({ attributes }) => {
               text: currentValue.content
             }}
           />
-        </ListRecipe>
+        </div>
       ))}
 
       {owner && (

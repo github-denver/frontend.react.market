@@ -116,7 +116,6 @@ const filteredText = (category, navigation) => {
 
 const Hgroup = ({ className, attributes }) => {
   const { level, title, description, href, category, navigation, size, invisible, align, line } = attributes || {};
-  console.log(line);
 
   return (
     <StyledHgroup className={`${className} ${invisible && 'screen_out'}`} size={size} $invisible={invisible} $align={align} $line={line}>

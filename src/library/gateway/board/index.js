@@ -15,8 +15,6 @@ export const postModify = ({ category, number, payload }) => axios.post(`/api/bo
 export const postDelete = ({ category, number }) => axios.get(`/api/board/${category}/delete/${number}`);
 
 export const recipes = ({ postId, category }) => {
-  console.log('1. { postId, category }: ', { postId, category });
-
   return axios.get(`/api/board/recipes?postId=${postId}&category=${category}`);
 };
 export const recipesWrite = ({ category, payload }) => axios.post(`/api/recipes/${category}/write`, payload);

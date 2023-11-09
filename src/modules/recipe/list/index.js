@@ -11,7 +11,6 @@ const [RECIPES, RECIPES_SUCCESS, RECIPES_FAILURE] = createRequestActionTypes('RE
 export const recipesInitial = createAction(RECIPES_INITIAL);
 export const recipes = createAction(RECIPES, (payload) => {
   const { postId, category } = payload;
-  console.log('0. { postId, category }: ', { postId, category });
 
   return { payload: { postId, category } };
 }); // payload: { postId, category }

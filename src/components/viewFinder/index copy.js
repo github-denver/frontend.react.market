@@ -598,9 +598,7 @@ const ViewFinder = ({ children, className, attributes }) => {
   };
 
   useEffect(() => {
-    if (type !== 'recipeModifyFormFields') {
-      dispatch(insertTag({ form: type, value: buttons }));
-    }
+    dispatch(insertTag({ form: type, value: buttons }));
   }, [dispatch, type, buttons]);
 
   return (
@@ -621,7 +619,7 @@ const ViewFinder = ({ children, className, attributes }) => {
         <>
           {url ? (
             <>
-              <StyledThumbnail src={`http://localhost:5000/uploads/${url}`} alt="2" ref={imageProduct} />
+              <StyledThumbnail src={`http://localhost:5000/uploads/${url}`} alt="" ref={imageProduct} />
 
               {products?.length > 0 &&
                 tags.map((currentValue, index) => {
