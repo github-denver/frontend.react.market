@@ -63,6 +63,9 @@ const StyledNavigation = styled.nav`
           right: 0;
           left: 0;
           z-index: 10;
+          min-width: 32rem;
+          max-width: 64rem;
+          margin: 0 auto;
 
           ${StyledInner} {
             overflow: auto;

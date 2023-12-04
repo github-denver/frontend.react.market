@@ -209,9 +209,13 @@ img {
   text-indent: -999.9rem;
 }
 
-section {
+.container {
+  min-width: 32rem;
+  max-width: 64rem;
+  margin: 0 auto;
   padding-top: 8.4rem;
   padding-bottom: 2.4rem;
+  box-sizing: border-box;
   background-color: #fff;
 }
 
@@ -430,8 +434,10 @@ section {
   bottom: 0;
   left: 0;
   z-index: 10;
-
+  min-width: 32rem;
+  max-width: 64rem;
   height: 4.8rem;
+  margin: 0 auto;
   padding: 0 1.2rem;
   border-top: 0.1rem solid #eee;
   box-sizing: border-box;
