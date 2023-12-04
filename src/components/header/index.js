@@ -66,30 +66,41 @@ const StyledLogo = styled.h1`
 `;
 
 const StyledHeader = styled.header`
-  display: table;
   position: fixed;
   top: 0;
+  right: 0;
+  left: 0;
   z-index: 100;
-  width: 100%;
-  box-sizing: border-box;
+  min-width: 32rem;
+  max-width: 64rem;
+  margin: 0 auto;
   background-color: #fff;
+
+  .inner {
+    display: table;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    text-align: center;
+  }
 
   ${({ $minimal }) =>
     $minimal
       ? css`
           position: static;
-          padding: 4rem 1.2rem;
-          text-align: center;
+          .inner {
+            padding: 4rem 1.2rem;
+          }
 
           & + section {
             padding-top: 0;
           }
         `
       : css`
-          left: 0;
-          height: 5rem;
-          padding: 0 1.6rem;
-          text-align: center;
+          .inner {
+            height: 5rem;
+            padding: 0 1.6rem;
+          }
         `};
 `;
 
@@ -113,29 +124,30 @@ const Header = ({ attributes }) => {
 
   return (
     <StyledHeader $minimal={minimal}>
-      <StyledLogo>
-        <StyledLink to="/">
-          <span className="ir_wa">오늘의 식사</span>
-        </StyledLink>
-      </StyledLogo>
+      <div className="inner">
+        <StyledLogo>
+          <StyledLink to="/">
+            <span className="ir_wa">오늘의 식사</span>
+          </StyledLink>
+        </StyledLogo>
 
-      {!minimal && (
-        <>
-          <StyledHamburger onClick={handleVisible}>
-            <SlMenu size={20} />
-            <span className="screen_out">주메뉴 열기</span>
-          </StyledHamburger>
+        {!minimal && (
+          <>
+            <StyledHamburger onClick={handleVisible}>
+              <SlMenu size={20} />
+              <span className="screen_out">주메뉴 열기</span>
+            </StyledHamburger>
 
-          <Utility
-            attributes={{
-              user,
-              visible,
-              handleVisible,
-              handleLogout
-            }}
-          />
+            <Utility
+              attributes={{
+                user,
+                visible,
+                handleVisible,
+                handleLogout
+              }}
+            />
 
-          {/* <StyledSearch>
+            {/* <StyledSearch>
             <SlMagnifier size={24} />
             <span className="screen_out">통합 검색창 열기</span>
           </StyledSearch>
@@ -144,8 +156,9 @@ const Header = ({ attributes }) => {
             <SlBasket size={24} />
             <span className="screen_out">장바구니 열기</span>
           </StyledBasket> */}
-        </>
-      )}
+          </>
+        )}
+      </div>
     </StyledHeader>
   );
 };

@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 import Hgroup from '@/unit/hgroup/standard';
 import { SlArrowRight } from 'react-icons/sl';
 import Text from '@/unit/text/standard';
-import Boundary from '@/unit/boundary/standard';
+import Thin from '@/unit/thin/standard';
+
+const StyledThin = styled(Thin)``;
 
 const StyledCopyright = styled.small`
   display: block;
@@ -146,11 +148,22 @@ const StyledText = styled(Text)`
   /* border-top: 0.1rem solid #dadde0; */
   font-size: 1.3rem;
   color: #000;
+  text-align: center;
 `;
 
 const StyledFooter = styled.footer`
+  min-width: 32rem;
+  max-width: 64rem;
+  margin: 0 auto;
   /* margin-top: 2.4rem; */
-  padding: 3rem 1.6rem;
+  padding-bottom: 4.8rem;
+
+  .inner {
+    padding: 3rem 1.6rem;
+    border-top: 0.1rem solid #eee;
+    box-sizing: border-box;
+    background-color: #fff;
+  }
 
   small {
   }
@@ -159,156 +172,154 @@ const StyledFooter = styled.footer`
 const Footer = ({ children, attributes }) => {
   return (
     <StyledFooter>
-      <Hgroup attributes={{ title: '회사소개 및 이용안내', invisible: true }} />
+      <div className="inner">
+        <Hgroup attributes={{ title: '회사소개 및 이용안내', invisible: true }} />
 
-      {/* <Hgroup
-        attributes={{
-          level: 'strong',
-          title: '고객센터 전화번호 및 운영시간',
-          invisible: true
-        }}
-      /> */}
+        {/* <Hgroup
+          attributes={{
+            level: 'strong',
+            title: '고객센터 전화번호 및 운영시간',
+            invisible: true
+          }}
+        /> */}
+        {/* <StyledHelp>
+          <StyledHelpItem>
+            <StyledHelpLink>
+              <StyledHelpText>
+                고객센터 <span className="screen_out">바로 가기</span>
+              </StyledHelpText>
+              <SlArrowRight size="10" />
+            </StyledHelpLink>
+          </StyledHelpItem>
 
-      {/* <StyledHelp>
-        <StyledHelpItem>
-          <StyledHelpLink>
-            <StyledHelpText>
-              고객센터 <span className="screen_out">바로 가기</span>
-            </StyledHelpText>
-            <SlArrowRight size="10" />
-          </StyledHelpLink>
-        </StyledHelpItem>
+          <StyledHelpItem>
+            <span className="screen_out">고객센터 전화번호</span>
+            <StyledHelpTel to="tel:1670-0876">1670-0876</StyledHelpTel>
+          </StyledHelpItem>
 
-        <StyledHelpItem>
-          <span className="screen_out">고객센터 전화번호</span>
-          <StyledHelpTel to="tel:1670-0876">1670-0876</StyledHelpTel>
-        </StyledHelpItem>
+          <StyledHelpItem>
+            <span className="screen_out">고객센터 운영시간</span>
+            <StyledHelpTime>09:00~18:00</StyledHelpTime>
+          </StyledHelpItem>
+        </StyledHelp> */}
+        {/* <StyledHour>
+          <StyledHourTitle>평일</StyledHourTitle>
+          <StyledHourDescription>모든 문의 상담 가능</StyledHourDescription>
+          <StyledHourTitle>주말, 공휴일</StyledHourTitle>
+          <StyledHourDescription>직접 배송, 이사/시공/수리 문의 상담 가능</StyledHourDescription>
+        </StyledHour> */}
+        {/* <StyledCounseling>
+          <StyledCounselingItem>
+            <StyledCounselingLink to="/">카카오톡 상담 (평일 09:00~18:00)</StyledCounselingLink>
+          </StyledCounselingItem>
+          <StyledCounselingItem>
+            <StyledCounselingLink to="/">이메일 문의</StyledCounselingLink>
+          </StyledCounselingItem>
+        </StyledCounseling> */}
 
-        <StyledHelpItem>
-          <span className="screen_out">고객센터 운영시간</span>
-          <StyledHelpTime>09:00~18:00</StyledHelpTime>
-        </StyledHelpItem>
-      </StyledHelp> */}
+        {/* <Hgroup
+          attributes={{
+            level: 'strong',
+            title: '회사소개',
+            invisible: true
+          }}
+        />
+        <StyledCompanyGroup>
+          <StyledCompany>
+            <StyledCompanyItem>
+              <StyledCompanyLink to="/">회사소개</StyledCompanyLink>
+            </StyledCompanyItem>
 
-      {/* <StyledHour>
-        <StyledHourTitle>평일</StyledHourTitle>
-        <StyledHourDescription>모든 문의 상담 가능</StyledHourDescription>
-        <StyledHourTitle>주말, 공휴일</StyledHourTitle>
-        <StyledHourDescription>직접 배송, 이사/시공/수리 문의 상담 가능</StyledHourDescription>
-      </StyledHour> */}
+            <StyledCompanyItem>
+              <StyledCompanyLink to="/">채용정보</StyledCompanyLink>
+            </StyledCompanyItem>
 
-      {/* <StyledCounseling>
-        <StyledCounselingItem>
-          <StyledCounselingLink to="/">카카오톡 상담 (평일 09:00~18:00)</StyledCounselingLink>
-        </StyledCounselingItem>
-        <StyledCounselingItem>
-          <StyledCounselingLink to="/">이메일 문의</StyledCounselingLink>
-        </StyledCounselingItem>
-      </StyledCounseling> */}
+            <StyledCompanyItem>
+              <StyledCompanyLink to="/">이용약관</StyledCompanyLink>
+            </StyledCompanyItem>
 
-      {/* <Hgroup
-        attributes={{
-          level: 'strong',
-          title: '회사소개',
-          invisible: true
-        }}
-      />
-      <StyledCompanyGroup>
-        <StyledCompany>
-          <StyledCompanyItem>
-            <StyledCompanyLink to="/">회사소개</StyledCompanyLink>
-          </StyledCompanyItem>
+            <StyledCompanyItem>
+              <StyledCompanyLink to="/">개인정보처리 방침</StyledCompanyLink>
+            </StyledCompanyItem>
 
-          <StyledCompanyItem>
-            <StyledCompanyLink to="/">채용정보</StyledCompanyLink>
-          </StyledCompanyItem>
+            <StyledCompanyItem>
+              <StyledCompanyLink to="/">공지사항</StyledCompanyLink>
+            </StyledCompanyItem>
 
-          <StyledCompanyItem>
-            <StyledCompanyLink to="/">이용약관</StyledCompanyLink>
-          </StyledCompanyItem>
+            <StyledCompanyItem>
+              <StyledCompanyLink to="/">안전거래센터</StyledCompanyLink>
+            </StyledCompanyItem>
 
-          <StyledCompanyItem>
-            <StyledCompanyLink to="/">개인정보처리 방침</StyledCompanyLink>
-          </StyledCompanyItem>
+            <StyledCompanyItem>
+              <StyledCompanyLink to="/">입점 신청</StyledCompanyLink>
+            </StyledCompanyItem>
 
-          <StyledCompanyItem>
-            <StyledCompanyLink to="/">공지사항</StyledCompanyLink>
-          </StyledCompanyItem>
+            <StyledCompanyItem>
+              <StyledCompanyLink to="/">제휴/광고문의</StyledCompanyLink>
+            </StyledCompanyItem>
 
-          <StyledCompanyItem>
-            <StyledCompanyLink to="/">안전거래센터</StyledCompanyLink>
-          </StyledCompanyItem>
+            <StyledCompanyItem>
+              <StyledCompanyLink to="/">사업자 구매 회원</StyledCompanyLink>
+            </StyledCompanyItem>
 
-          <StyledCompanyItem>
-            <StyledCompanyLink to="/">입점 신청</StyledCompanyLink>
-          </StyledCompanyItem>
+            <StyledCompanyItem>
+              <StyledCompanyLink to="/">시공 파트너 안내</StyledCompanyLink>
+            </StyledCompanyItem>
 
-          <StyledCompanyItem>
-            <StyledCompanyLink to="/">제휴/광고문의</StyledCompanyLink>
-          </StyledCompanyItem>
+            <StyledCompanyItem>
+              <StyledCompanyLink to="/">상품광고 소개</StyledCompanyLink>
+            </StyledCompanyItem>
 
-          <StyledCompanyItem>
-            <StyledCompanyLink to="/">사업자 구매 회원</StyledCompanyLink>
-          </StyledCompanyItem>
+            <StyledCompanyItem>
+              <StyledCompanyLink to="/">고객의 소리</StyledCompanyLink>
+            </StyledCompanyItem>
+          </StyledCompany>
+        </StyledCompanyGroup> */}
 
-          <StyledCompanyItem>
-            <StyledCompanyLink to="/">시공 파트너 안내</StyledCompanyLink>
-          </StyledCompanyItem>
+        <Hgroup
+          attributes={{
+            level: 'strong',
+            title: '이용안내',
+            invisible: true
+          }}
+        />
+        <StyledText
+          attributes={{
+            text: '오늘의 식사는 포트폴리오 사이트입니다.'
+          }}
+        />
 
-          <StyledCompanyItem>
-            <StyledCompanyLink to="/">상품광고 소개</StyledCompanyLink>
-          </StyledCompanyItem>
+        {/* <Hgroup
+          attributes={{
+            level: 'strong',
+            title: '소셜 네트워크 서비스',
+            invisible: true
+          }}
+        />
+        <StyledSocial>
+          <StyledSocialItem>
+            <StyledSocialLink to="/">오늘의 식사 유튜브</StyledSocialLink>
+          </StyledSocialItem>
 
-          <StyledCompanyItem>
-            <StyledCompanyLink to="/">고객의 소리</StyledCompanyLink>
-          </StyledCompanyItem>
-        </StyledCompany>
-      </StyledCompanyGroup> */}
+          <StyledSocialItem>
+            <StyledSocialLink to="/">오늘의 식사 인스타그램</StyledSocialLink>
+          </StyledSocialItem>
 
-      <Hgroup
-        attributes={{
-          level: 'strong',
-          title: '이용안내',
-          invisible: true
-        }}
-      />
+          <StyledSocialItem>
+            <StyledSocialLink to="/">오늘의 식사 페이스북</StyledSocialLink>
+          </StyledSocialItem>
 
-      <StyledText
-        attributes={{
-          text: '오늘의 식사는 포트폴리오 사이트입니다.'
-        }}
-      />
+          <StyledSocialItem>
+            <StyledSocialLink to="/">오늘의 식사 카카오 스토리</StyledSocialLink>
+          </StyledSocialItem>
 
-      {/* <Hgroup
-        attributes={{
-          level: 'strong',
-          title: '소셜 네트워크 서비스',
-          invisible: true
-        }}
-      />
-      <StyledSocial>
-        <StyledSocialItem>
-          <StyledSocialLink to="/">오늘의 식사 유튜브</StyledSocialLink>
-        </StyledSocialItem>
+          <StyledSocialItem>
+            <StyledSocialLink to="/">오늘의 식사 네이버 포스트</StyledSocialLink>
+          </StyledSocialItem>
+        </StyledSocial> */}
 
-        <StyledSocialItem>
-          <StyledSocialLink to="/">오늘의 식사 인스타그램</StyledSocialLink>
-        </StyledSocialItem>
-
-        <StyledSocialItem>
-          <StyledSocialLink to="/">오늘의 식사 페이스북</StyledSocialLink>
-        </StyledSocialItem>
-
-        <StyledSocialItem>
-          <StyledSocialLink to="/">오늘의 식사 카카오 스토리</StyledSocialLink>
-        </StyledSocialItem>
-
-        <StyledSocialItem>
-          <StyledSocialLink to="/">오늘의 식사 네이버 포스트</StyledSocialLink>
-        </StyledSocialItem>
-      </StyledSocial> */}
-
-      {/* <StyledCopyright>Copyright 2024. 오늘의 식사, Co., Ltd. All rights reserved.</StyledCopyright> */}
+        {/* <StyledCopyright>Copyright 2024. 오늘의 식사, Co., Ltd. All rights reserved.</StyledCopyright> */}
+      </div>
     </StyledFooter>
   );
 };
