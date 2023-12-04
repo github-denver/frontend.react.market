@@ -3,8 +3,8 @@ import React from 'react';
 const Error = () => (
   <>
     <header></header>
-    <section> </section>
-    <footer> </footer>
+    <section></section>
+    <footer></footer>
   </>
 );
 

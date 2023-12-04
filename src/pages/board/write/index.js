@@ -13,7 +13,7 @@ const Write = () => {
     <>
       <Header />
 
-      <section>
+      <section className="container">
         <Hgroup attributes={{ title: '본문 영역', invisible: true }} />
 
         <Navigation />
