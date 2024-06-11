@@ -52,6 +52,9 @@ const Wrapper = ({ className, attributes }) => {
     const contentValue = !contents ? read?.contents : contents;
     const thumbnailValue = !thumbnail ? read?.thumbnail : thumbnail.files;
 
+    const contentValue2 = !contents2 ? read?.contents : contents2;
+    const recipeValue = !thumbnail2 ? read?.thumbnail : thumbnail2;
+
     const formData = new FormData();
     formData.append('category', categoryValue);
     formData.append('level', levelValue);
@@ -87,27 +90,36 @@ const Wrapper = ({ className, attributes }) => {
     if (tags?.length > 0) formData.append('tags', JSON.stringify(tags));
 
     const asyncForEachFuc = async () => {
-      const obj = [];
-      for (const [index, value] of test2.entries()) {
-        await formData.append('content2', value.content);
-
-        const obj2 = {};
-
-        obj2.num = value.num;
-        obj2.index = value.index;
-        obj2.subject = value.subject;
-        obj2.content = value.content;
-
-        if (!!value.thumbnail) {
-          obj2.thumbnail = typeof value.thumbnail === 'string' ? value.thumbnail : value.thumbnail.files?.name ? value.thumbnail.files.name : null;
-
-          await formData.append('recipe', value.thumbnail.files);
+      if (type === 'write') {
+        for (const [index, value] of contentValue2.entries()) {
+          await formData.append('content2', value);
         }
 
-        obj.push(obj2);
-      }
+        for (const [index, value] of recipeValue.entries()) {
+          await formData.append('recipe', value.files);
+        }
+      } else {
+        const obj = [];
 
-      await formData.append('obj', JSON.stringify(obj));
+        for (const [key, value] of test2.entries()) {
+          const obj2 = {};
+
+          obj2.num = value.num;
+          obj2.index = value.index;
+          obj2.subject = value.subject;
+          obj2.content = value.content;
+
+          if (!!value.thumbnail) {
+            obj2.thumbnail = typeof value.thumbnail === 'string' ? value.thumbnail : value.thumbnail.files?.name ? value.thumbnail.files.name : null;
+
+            await formData.append('recipe', value.thumbnail.files);
+          }
+
+          obj.push(obj2);
+        }
+
+        await formData.append('obj', JSON.stringify(obj));
+      }
     };
 
     asyncForEachFuc().then(async () => {

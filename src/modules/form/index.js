@@ -89,7 +89,11 @@ const formSlice = createSlice({
     _changeField: (state, action) => {
       const { form, key, value, index } = action.payload;
 
-      state[form][index][key] = value;
+      if (form === 'recipesWrite') {
+        state[form][key][index] = value;
+      } else {
+        state[form][index][key] = value;
+      }
     },
     changeThumbnail: (state, action) => {
       const { form, key, value, idx } = action.payload;
